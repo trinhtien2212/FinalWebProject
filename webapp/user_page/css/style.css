@@ -1226,14 +1226,25 @@ ol {
   color:grey;
 }
 .progress-style{
-  height: 20px; 
+  width: 100%;
+  border-radius: 45px;
+  height: 20px;
   margin-bottom: 20px;
   position: relative;
 }
-.pass_time{
+.progress-past{
   position: absolute;
   left: 0;
   bottom: 0;
+  height: 100%;
+}
+.progress-text{
+  position: absolute;
+  z-index: 100;
+  color: white;
+  width: 100%;
+  text-align: center;
+  top: -3px;
 }
 .none-margin{
   margin: 0;

@@ -26,6 +26,7 @@ public class Home_direct extends HttpServlet {
         request.setAttribute("title","Trang chủ");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("discount_pros",ProductEntity.loadDiscountProducts(8));
+        request.setAttribute("hight_light_pros",ProductEntity.loadHightLightProducts());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(8));
         request.getRequestDispatcher("user_page/home.jsp").forward(request,response);
     }

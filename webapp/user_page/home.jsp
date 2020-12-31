@@ -138,18 +138,23 @@
                             <div class="product__item__price"><%= Util.formatCurrency((double) pageContext.getAttribute("price_sale"))%><span><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></span></div>
 
                         </div>
-                        <div class="progress progress-style none-margin ">
-                            <p class="text-muted">Còn ${dp.dayRest} ngày</p>
-                            <div
-                                    class="progress-bar bg-success pass_time"
-                                    role="progressbar"
-<%--                                    style="width: ${dp.percent_sale_past}%"--%>
-                                    style="width:90%"
-                            >
+<%--                        <div class="progress progress-style none-margin ">--%>
+<%--                            <p class="text-muted">Còn ${dp.dayRest} ngày</p>--%>
+<%--                            <div--%>
+<%--                                    class="progress-bar bg-success pass_time"--%>
+<%--                                    role="progressbar"--%>
+<%--&lt;%&ndash;                                    style="width: ${dp.percent_sale_past}%"&ndash;%&gt;--%>
+<%--                                    style="width:90%"--%>
+<%--                            >--%>
 
-                            </div>
-                            <c:out value="${dp.percent_sale_past}"></c:out>
+<%--                            </div>--%>
+<%--                            --%>
+<%--                            <c:out value="${dp.percent_sale_past}"></c:out>--%>
 
+<%--                        </div>--%>
+                        <div  class="progress-style progress none-margin">
+                            <div class="progress-bar bg-success progress-past" role="progressbar" style="width: ${dp.percent_sale_past}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <p class="progress-text text-muted">Còn ${dp.dayRest} ngày</p>
                         </div>
                     </div>
                 </div>
@@ -159,6 +164,59 @@
 
     </section>
     <!-- Categories Section End -->
+    <!-- Featured Section Begin -->
+    <section class="featured spad container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h4 class="tit-box">
+                        <a href="shop-grid.html">Nổi bật</a>
+                    </h4>
+                </div>
+                <div class="featured__controls max-width">
+                    <ul>
+                        <li class="active" data-filter="*">Tất cả</li>
+                        <li data-filter=".cay-de-ban">Cây để bàn</li>
+                        <li data-filter=".cay-day-leo">Cây dây leo</li>
+                        <li data-filter=".cay-tet">Cây tết</li>
+                        <li data-filter=".cay-thuy-sinh">Cây thủy sinh</li>
+                        <li data-filter=".cay-trong-nha">Cây trong nhà</li>
+                        <li data-filter=".cay-ngoai-vuon">Cây ngoài vườn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="featured__filter" id="smooth-scrollbar" data-scrollbar>
+            <div class="row height-prevent ">
+                <c:forEach var="c" items="${hight_light_pros}">
+                <c:set var="price" value="${c.price}"></c:set>
+                    <c:if test="${c.category_id==1}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-de-ban"></c:if>
+                    <c:if test="${c.category_id==2}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-day-leo"></c:if>
+                    <c:if test="${c.category_id==3}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-tet"></c:if>
+                    <c:if test="${c.category_id==4}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-thuy-sinh"></c:if>
+                    <c:if test="${c.category_id==5}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-trong-nha"></c:if>
+                    <c:if test="${c.category_id==6}"><div class="col-lg-3 col-md-4 col-sm-6 mix cay-ngoai-vuon"></c:if>
+                            <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="${c.img}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-money"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">${c.name}</a></h6>
+                                <h5><%= Util.formatCurrency((double) pageContext.getAttribute("price"))%></h5>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+        </div>
+
+    </section>
+    <!-- Featured Section End -->
 
     <!-- Banner Begin -->
     <div class="banner">

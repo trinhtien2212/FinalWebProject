@@ -73,6 +73,26 @@ public class ProductEntity {
         }
         return null;
     }
+    public static List<Product> loadHightLightProducts() {
+        List<Product> mostRatingProducts = new ArrayList<Product>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            String sql = "select p.* from product  p join " +
+                    " (select pro_id  from order_product GROUP BY pro_id ORDER BY count(pro_id) desc limit 15 ) as most_pro on most_pro.pro_id=p.id";
+            synchronized (statement) {
+                ResultSet resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    mostRatingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return mostRatingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 //    public List<Product> loadHightLightProducts(){
 //
 //        try {

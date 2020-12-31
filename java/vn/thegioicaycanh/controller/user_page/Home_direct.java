@@ -27,7 +27,9 @@ public class Home_direct extends HttpServlet {
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("discount_pros",ProductEntity.loadDiscountProducts(8));
         request.setAttribute("hight_light_pros",ProductEntity.loadHightLightProducts());
+        request.setAttribute("most_rating",ProductEntity.loadMostRating(9));
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
+        request.setAttribute("for_you",ProductEntity.loadFirstPros(9));
         request.getRequestDispatcher("user_page/home.jsp").forward(request,response);
     }
     protected void initAttr(){

@@ -73,6 +73,25 @@ public class ProductEntity {
         }
         return null;
     }
+    public static List<Product> loadFirstPros(int num) {
+        List<Product> mostRatingProducts = new ArrayList<Product>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            String sql = "SELECT * from product p LIMIT " + num;
+            synchronized (statement) {
+                ResultSet resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    mostRatingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return mostRatingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static List<Product> loadHightLightProducts() {
         List<Product> mostRatingProducts = new ArrayList<Product>();
         try {

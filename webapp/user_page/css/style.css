@@ -2857,6 +2857,7 @@ ol {
 }
 
 .blog__sidebar__recent__item__text {
+  margin-top: 5%;
   overflow: hidden;
   width: 65%;
 }

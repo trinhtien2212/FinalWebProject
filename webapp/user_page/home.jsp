@@ -250,50 +250,24 @@
                 <div class="latest-product__text">
                     <h4>Mới nhất</h4>
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <c:forEach var="np" items="${new_pros}">
-                            <c:set var="price_new_pos" value="${np.price}"></c:set>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="${np.img}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <!-- Phần này chưa đổi tiếng việt nè -->
-                                    <h6>${np.name}</h6>
-                                    <span><%= Util.formatCurrency((double)pageContext.getAttribute("price_new_pos")) %></span>
-                                </div>
-                            </a>
-                            </c:forEach>
-                        </div>
-<%--                        <div class="latest-prdouct__slider__item">--%>
-<%--                            <a href="#" class="latest-product__item">--%>
-<%--                                <div class="latest-product__item__pic fix_size">--%>
-<%--                                    <img src="img/latest-product/cay-bong-nho-110.jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="latest-product__item__text">--%>
-<%--                                    <h6>Cây bông nho</h6>--%>
-<%--                                    <span>110.000 VNĐ</span>--%>
-<%--                                </div>--%>
-<%--                            </a>--%>
-<%--                            <a href="#" class="latest-product__item">--%>
-<%--                                <div class="latest-product__item__pic fix_size">--%>
-<%--                                    <img src="img/latest-product/cay-hong-anh.jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="latest-product__item__text">--%>
-<%--                                    <h6>Cây hồng anh</h6>--%>
-<%--                                    <span>199.000 VNĐ</span>--%>
-<%--                                </div>--%>
-<%--                            </a>--%>
-<%--                            <a href="#" class="latest-product__item">--%>
-<%--                                <div class="latest-product__item__pic fix_size">--%>
-<%--                                    <img src="img/latest-product/cay-kim-ngan-499.jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="latest-product__item__text">--%>
-<%--                                    <h6>Cây kim ngân</h6>--%>
-<%--                                    <span>499.000 VNĐ</span>--%>
-<%--                                </div>--%>
-<%--                            </a>--%>
-<%--                        </div>--%>
+                        <c:forEach var="i" begin="0" end="2" step="1">
+                            <div class="latest-prdouct__slider__item">
+                                <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
+                                    <c:set var="np" value="${new_pros.get(j)}"></c:set>
+                                <c:set var="price_new_pos" value="${np.price}"></c:set>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic fix_size">
+                                        <img src="${np.img}" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <!-- Phần này chưa đổi tiếng việt nè -->
+                                        <h6>${np.name}</h6>
+                                        <span><%= Util.formatCurrency((double)pageContext.getAttribute("price_new_pos")) %></span>
+                                    </div>
+                                </a>
+                                </c:forEach>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

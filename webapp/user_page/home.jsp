@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chi tiết đơn hàng</title>
+    <title>${title}</title>
 
 <%--    <c:set var="header" scope="application" value="${applicationScope.header}"></c:set>--%>
     <link href="${applicationScope.header.shortcut}" rel="shortcut icon">

@@ -12,7 +12,7 @@ import java.util.List;
 public class Blog_Con_DB {
     public static Blog loadBlog(int id){
         try {
-            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement("select * from blog where id=?");
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select * from blog where id=?");
             pe.setInt(1,id);
             synchronized (pe){
                 ResultSet rs = pe.executeQuery();

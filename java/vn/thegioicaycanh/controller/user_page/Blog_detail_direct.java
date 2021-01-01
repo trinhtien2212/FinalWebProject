@@ -1,4 +1,4 @@
-package vn.thegioicaycanh.controller;
+package vn.thegioicaycanh.controller.user_page;
 
 import vn.thegioicaycanh.model.blog.Blog;
 import vn.thegioicaycanh.model.blog.Blog_Con_DB;

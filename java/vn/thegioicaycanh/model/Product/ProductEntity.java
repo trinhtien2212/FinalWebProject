@@ -1,6 +1,8 @@
 package vn.thegioicaycanh.model.Product;
 
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -126,7 +128,26 @@ public class ProductEntity {
         }
         return null;
     }
-
+    public static List<Product> loadShoppingProducts(int start, int num) {
+        List<Product> shoppingProducts = new ArrayList<Product>();
+        try {
+            String sql = "select p.* from product limit(?,?)";
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1, start);
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery(sql);
+                while (resultSet.next()) {
+                    shoppingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return shoppingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static Product getProduct(ResultSet resultSet) {
         if (resultSet == null)
             return null;

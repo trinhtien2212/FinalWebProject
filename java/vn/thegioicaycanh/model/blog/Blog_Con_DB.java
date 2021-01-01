@@ -132,6 +132,24 @@ public class Blog_Con_DB {
         }
         return null;
     }
+    public static int getCount(){
+        List<Blog>blogList =new ArrayList<Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement(" select * from blog");
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                while(rs.next()){
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList.size();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
     public static void main(String[] args) {
 //        List<Blog>list = loadRandomBlog(3);
         List<Blog> list=loadLimitBlog(1,5);

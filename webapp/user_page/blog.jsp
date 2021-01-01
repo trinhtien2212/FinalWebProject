@@ -175,6 +175,13 @@
                         </div>
                     </div>
                     </c:forEach>
+                    <%
+                        int first = 0, last = 0, pages = 1;
+
+                        if (request.getParameter("pages") != null) {
+                            pages = (int) Integer.parseInt(request.getParameter("pages"));
+                        }
+                    %>
                     <div class="col-lg-12">
                         <div class="product__pagination blog__pagination">
                             <a href="#">1</a>

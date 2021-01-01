@@ -27,11 +27,15 @@ public class Shopping_direct extends HttpServlet {
         request.setAttribute("title","Mua sắm");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
-        request.setAttribute("shop-list",ProductEntity.loadShoppingProducts(1,9));
+        request.setAttribute("shop_list",ProductEntity.loadShoppingProducts(1,9));
+
+
+        System.out.println("dang o trang servlet shopping_direct");
+        List<Product> l = (List<Product>) request.getAttribute("shop_list");
+        System.out.println("Trang servlet shopping_direct: "+l.size());
+
         request.getRequestDispatcher("user_page/shopping-list.jsp").forward(request,response);
 
-//        List<Product> l = (List<Product>) request.getAttribute("shop-list");
-//        System.out.println(l.size());
     }
 
 }

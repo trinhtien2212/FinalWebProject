@@ -31,8 +31,8 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
-<c:out value=" co du lieu ${shop-list.get(0).name}"></c:out>
-<%  List<Product> l = (List<Product>) request.getAttribute("shop-list");
+<c:out value=" co du lieu ${requestScope.shop_list.size()}"></c:out>
+<%  List<Product> l = (List<Product>) request.getAttribute("shop_list");
     System.out.println(l.size()); %>
 <jsp:include page="Menu.jsp"></jsp:include>
 

@@ -111,10 +111,31 @@ public class Blog_Con_DB {
         }
         return null;
     }
+    public static List<Blog> loadLimitBlog(int pageNum,int limit){
+        List<Blog>blogList =new ArrayList<Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement(" select * from blog limit ?,?");
+            pe.setInt(1,limit*(pageNum-1)+1);
+            pe.setInt(2,pageNum*limit);
 
-
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                while(rs.next()){
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static void main(String[] args) {
-        List<Blog>list = loadRandomBlog(3);
+//        List<Blog>list = loadRandomBlog(3);
+        List<Blog> list=loadLimitBlog(1,5);
+//        List<Blog> list=loadRandomBlog(3);
         System.out.println(list);
     }
 

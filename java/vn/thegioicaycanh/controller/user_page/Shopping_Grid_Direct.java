@@ -2,6 +2,7 @@ package vn.thegioicaycanh.controller.user_page;
 
 import vn.thegioicaycanh.model.header_footer.LoadHeaderFooter;
 import vn.thegioicaycanh.model.header_footer.Social_media;
+import vn.thegioicaycanh.model.home_page.Home_page;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,17 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Contact_direct", urlPatterns = "/contact")
-public class Contact_direct extends HttpServlet {
+@WebServlet(name = "Shopping_Grid_Direct")
+public class Shopping_Grid_Direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
-        request.setAttribute("page_menu","contact");
-        request.setAttribute("title","Liên hệ");
-        request.getRequestDispatcher("user_page/contact.jsp").forward(request,response);
+        request.setAttribute("page_menu","BÀI VIẾT");
+        request.setAttribute("title","Bài viết");
+        request.setAttribute("home_page_data",new Home_page());
+
+        request.getRequestDispatcher("user_page/shopping-list.jsp").forward(request,response);
     }
     protected void initAttr(){
         ServletContext context = getServletContext();

@@ -132,8 +132,44 @@ public class Blog_Con_DB {
         return 0;
     }
 
-    public static void main(String[] args) {
-        System.out.println(sumOfBlogs());
+    public static List<Blog> loadLimitBlog(int start,int num){
+        List<Blog>blogList =new ArrayList<Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement(" select * from blog limit ?,?");
+            pe.setInt(1,start);
+            pe.setInt(2,num);
+
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                while(rs.next()){
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public static int getCount() {
+        List<Blog> blogList = new ArrayList<Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select * from blog");
+            synchronized (pe) {
+                ResultSet rs = pe.executeQuery();
+                while (rs.next()) {
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList.size();
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return 0;
     }
 
 }

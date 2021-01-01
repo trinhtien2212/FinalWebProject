@@ -181,12 +181,13 @@
                         if (request.getParameter("pages") != null) {
                             pages = (int) Integer.parseInt(request.getParameter("pages"));
                         }
+
                     %>
                     <div class="col-lg-12">
-                        <div class="product__pagination blog__pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
+                        <div class="product__pagination blog__pagination" name="pages">
+                            <a href="#" name="1">1</a>
+                            <a href="#" name="2">2</a>
+                            <a href="#" name="3">3</a>
                             <a href="#"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>

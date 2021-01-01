@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.controller.user_page;
 
+import vn.thegioicaycanh.model.Product.ProductEntity;
 import vn.thegioicaycanh.model.header_footer.LoadHeaderFooter;
 import vn.thegioicaycanh.model.header_footer.Social_media;
 import vn.thegioicaycanh.model.home_page.Home_page;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Shopping_Grid_Direct")
+@WebServlet(urlPatterns = "/shopping-grid")
 public class Shopping_Grid_Direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -23,8 +24,9 @@ public class Shopping_Grid_Direct extends HttpServlet {
         request.setAttribute("page_menu","BÀI VIẾT");
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
-
-        request.getRequestDispatcher("user_page/shopping-list.jsp").forward(request,response);
+        request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
+        request.setAttribute("shopping_grid_data", ProductEntity.loadShoppingProducts(1,10));
+        request.getRequestDispatcher("user_page/shopping-grid.jsp").forward(request,response);
     }
     protected void initAttr(){
         ServletContext context = getServletContext();

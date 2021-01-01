@@ -4,7 +4,8 @@
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page import="vn.thegioicaycanh.model.header_footer.Category" %>
 <%@ page import="java.util.List" %>
-<%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %><%--
+<%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %>
+<%--
   Created by IntelliJ IDEA.
   User: Trinh Quang Tien
   Date: 25/12/2020

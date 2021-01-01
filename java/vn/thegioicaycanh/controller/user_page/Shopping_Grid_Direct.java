@@ -25,7 +25,7 @@ public class Shopping_Grid_Direct extends HttpServlet {
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
-        request.setAttribute("shopping_grid_data", ProductEntity.loadShoppingProducts(1,10));
+        request.setAttribute("shopping_grid_data", ProductEntity.loadShoppingProducts(1,9));
         request.getRequestDispatcher("user_page/shopping-grid.jsp").forward(request,response);
     }
     protected void initAttr(){

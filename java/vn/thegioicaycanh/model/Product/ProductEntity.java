@@ -150,9 +150,10 @@ public class ProductEntity {
     public static List<Product> loadShoppingProducts(int start, int num) {
         List<Product> shoppingProducts = new ArrayList<Product>();
         try {
-            String sql = "select p.* from product limit(?,?)";
+            String sql = "select * from product limit ?,?";
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
             pe.setInt(1, start);
+            pe.setInt(2,num);
             synchronized (pe) {
                 ResultSet resultSet = pe.executeQuery(sql);
                 while (resultSet.next()) {

@@ -222,37 +222,35 @@
                     </div>
                 </div>
                 <div class="row shop_wrapper grid_list ">
-<%--                    <c:forEach var="">--%>
+                    <c:forEach items="${shop-list}" var="sl">
+                        <c:set var="price_new_pos" value="${np.price}"></c:set>
                         <div class="col-custom product-area col-12">
                             <div class="single-product position-relative">
                                 <div class="product-image">
                                     <a class="d-block" href="product-details.html">
-                                        <img src="img/cay-de-ban/cay-dua-canh-nen-do.jpg" alt=""
+                                        <img src="${sl.img}" alt=""
                                              class="product-image-1 w-100">
                                     </a>
                                 </div>
                                 <div class="product-content-listview">
                                     <div class="product-item-text">
-                                        <h5><a href="shop-details.html">Cây Dứa Cảnh Nến</a></h5>
-                                        <h6>130.000 VNĐ</h6>
+                                        <h5><a href="shop-details.html">${sl.name}</a></h5>
+                                        <h6>${sl.price}</h6>
                                     </div>
                                     <div class="add-action-listview d-flex">
                                         <ul class="product__item__pic__hover-1">
                                             <li><a href="#"><i class="fa fa-money"></i></a></li>
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
                                             <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <p class="desc-content">
-                                        Cây thường được trưng và tặng trong dịp tết với ý nghĩa phong thủy mang đến may mắn
-                                        và tài lộc. Ngoài ra trong phong thủy 12 con giáp thì cây rất hợp với người tuổi
-                                        Sửu, giúp mang đến vận khí tốt cho gia chủ.
+                                        ${sl.description}
                                     </p>
                                 </div>
                             </div>
                         </div>
-<%--                    </c:forEach>--%>
+                    </c:forEach>
                 </div>
                 <div class="product__pagination">
                     <a href="#">1</a>
@@ -280,3 +278,4 @@
 <script src="user_page/js/owl.carousel.min.js"></script>
 <script src="user_page/js/main.js"></script>
 </body>
+</html>

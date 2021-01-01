@@ -153,7 +153,7 @@ public class ProductEntity {
             String sql = "select * from product limit ?,?";
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
             pe.setInt(1, start);
-            pe.setInt(2,num);
+            pe.setInt(2, num);
             synchronized (pe) {
                 ResultSet resultSet = pe.executeQuery(sql);
                 while (resultSet.next()) {

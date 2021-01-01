@@ -1852,11 +1852,18 @@ ol {
   color: #ffffff;
 }
 
+.noneHover{
+  pointer-events: none;
+}
+
 .product__pagination a:last-child,
 .blog__pagination a:last-child {
   margin-right: 0;
 }
-
+.set_choose{
+  background: #7fad39;
+  color: #ffffff !important;
+}
 /* Thy sửa phần shop list */
 .col-custom {
   padding-right: 15px;

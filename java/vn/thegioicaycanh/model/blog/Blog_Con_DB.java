@@ -111,11 +111,29 @@ public class Blog_Con_DB {
         }
         return null;
     }
+    public static int sumOfBlogs(){
+        int sum = 0;
+        try {
+            Statement statement = DBCPDataSource.getStatement();
 
+
+            synchronized (statement){
+                ResultSet rs = statement.executeQuery("select count(*) from blog");
+               if(rs.next()){
+                   sum = rs.getInt(1);
+               }
+                rs.close();
+            }
+          statement.close();
+            return sum;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
-        List<Blog>list = loadRandomBlog(3);
-        System.out.println(list);
+        System.out.println(sumOfBlogs());
     }
 
 }

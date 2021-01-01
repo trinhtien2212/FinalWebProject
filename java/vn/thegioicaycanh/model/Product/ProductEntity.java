@@ -168,6 +168,26 @@ public class ProductEntity {
         }
         return null;
     }
+    public static int sumOfProduct(){
+        int sum = 0;
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+
+
+            synchronized (statement){
+                ResultSet rs = statement.executeQuery("select count(*) from product");
+                if(rs.next()){
+                    sum = rs.getInt(1);
+                }
+                rs.close();
+            }
+            statement.close();
+            return sum;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
     public static Product getProduct(ResultSet resultSet) {
         if (resultSet == null)
             return null;

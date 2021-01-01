@@ -111,12 +111,12 @@ public class Blog_Con_DB {
         }
         return null;
     }
-    public static List<Blog> loadLimitBlog(int pageNum,int limit){
+    public static List<Blog> loadLimitBlog(int start,int num){
         List<Blog>blogList =new ArrayList<Blog>();
         try {
             PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement(" select * from blog limit ?,?");
-            pe.setInt(1,limit*(pageNum-1)+1);
-            pe.setInt(2,pageNum*limit);
+            pe.setInt(1,start);
+            pe.setInt(2,num);
 
             synchronized (pe){
                 ResultSet rs = pe.executeQuery();

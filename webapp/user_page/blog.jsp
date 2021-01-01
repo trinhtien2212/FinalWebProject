@@ -1,13 +1,20 @@
 
-<%--
+<%@ page import="vn.thegioicaycanh.model.home_page.Home_page" %>
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
+<%@ page import="vn.thegioicaycanh.model.header_footer.Category" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Trinh Quang Tien
-  Date: 29/12/2020
-  Time: 13:38
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  Date: 25/12/2020
+  Time: 21:02
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%--<%@ page import="vn.thegioicaycanh.model.util.Util" %>--%>
+<!DOCTYPE html>
+<html lang="vi-VN">
 <html>
 <head>
     <meta charset="UTF-8">
@@ -31,6 +38,65 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
+<jsp:include page="Menu.jsp"></jsp:include>
+<%--<jsp:include page="search_bar.jsp"></jsp:include>--%>
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>Danh Mục</span>
+                    </div>
+                    <ul>
+                        <c:forEach var="cate" items="${applicationScope.category}">
+                            <li><a href="/${cate.slug}">${cate.name}</a></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+                            <input type="text" placeholder="Tên cây cảnh">
+                            <button type="submit" class="site-btn">TÌM KIẾM</button>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>${applicationScope.address.get(0).phone}</h5>
+                            <span>Hỗ trợ 24/7</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+<!-- Begin banner top -->
+<section class="container ">
+    <div class=" banner_top row set-bg" data-setbg="imgs/home/bg1.png">
+        <div class="col-lg-12">
+            <h2>${applicationScope.header.name}</h2>
+            <div class="row">
+                <c:forEach var="mes" items="${home_page_data.mes_sep}">
+                    <p>${mes}</p>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -56,34 +122,24 @@
                     </div>
                     <div class="blog__sidebar__item">
                         <h4>Tin Tức Mới</h4>
-                        <div class="blog__sidebar__recent">
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/sidebar/3-loai-cay-duoc-tang-trong-noen.jpg" alt="">
+                        <div class="latest-product__slider owl-carousel">
+                            <c:forEach var="i" begin="0" end="2" step="1">
+                                <div class="latest-prdouct__slider__item">
+                                    <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
+                                        <c:set var="nb" value="${newBlog.get(j)}"></c:set>
+
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
+                                                <img src="${nb.avatar}" alt="blog-avatar">
+                                            </div>
+                                            <div class="blog__sidebar__recent__item__text">
+                                                <h6>${nb.name}</h6>
+                                                <span>${nb.date_created}</span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
                                 </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>3 loại cây được tặng trong Noel</h6>
-                                    <span>THÁNG SÁU 05, 2020</span>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/sidebar/cach-cham-soc-hoa-hong.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Cách chăm sóc hoa hồng</h6>
-                                    <span>THÁNG BA 05, 2019</span>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/sidebar/cach-chon-dao-tet.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Cách chọn đào tết</h6>
-                                    <span>THÁNG TƯ 12, 2020</span>
-                                </div>
-                            </a>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="blog__sidebar__item">
@@ -134,6 +190,7 @@
 </section>
 <!-- Blog Section End -->
 
+<jsp:include page="footer.jsp"></jsp:include>
 <!-- Js Plugins -->
 <script src="user_page/js/jquery-3.3.1.min.js"></script>
 <script src="user_page/js/bootstrap.min.js"></script>

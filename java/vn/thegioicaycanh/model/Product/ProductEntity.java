@@ -152,10 +152,10 @@ public class ProductEntity {
         try {
             String sql = "select * from product limit ?,?";
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-            pe.setInt(1, start);
+            pe.setInt(1,start);
             pe.setInt(2,num);
             synchronized (pe) {
-                ResultSet resultSet = pe.executeQuery(sql);
+                ResultSet resultSet = pe.executeQuery();
                 while (resultSet.next()) {
                     shoppingProducts.add(getProduct(resultSet));
                 }
@@ -202,6 +202,14 @@ public class ProductEntity {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        List<Product>l = loadShoppingProducts(1,9);
+        System.out.println(l.size());
+        for(Product i:l){
+            System.out.println(i);
+        }
     }
 
 

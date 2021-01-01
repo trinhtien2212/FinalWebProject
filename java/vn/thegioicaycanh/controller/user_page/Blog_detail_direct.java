@@ -25,7 +25,8 @@ public class Blog_detail_direct extends HttpServlet {
         request.setAttribute("author", LoadUser.loadUser(blog.getAdmin_id()));
         request.setAttribute("blog",blog);
         request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));
-        request.setAttribute("randomBlog",Blog_Con_DB.loadRandomBlog(12));
+        request.setAttribute("mostReadBlogs",Blog_Con_DB.mostReadBlogs(12));
+        request.setAttribute("randomBlog",Blog_Con_DB.loadRandomBlog(3));
         request.getRequestDispatcher("user_page/blog-detail.jsp").forward(request,response);
     }
 }

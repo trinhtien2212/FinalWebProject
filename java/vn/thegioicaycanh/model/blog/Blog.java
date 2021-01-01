@@ -12,6 +12,7 @@ public class Blog {
     private Date date_created;
     private String slug;
     private int admin_id;
+    private int numOfRead;
 
     public Blog() {
     }
@@ -24,7 +25,7 @@ public class Blog {
         this.description = description;
     }
 
-    public Blog(int id, String name, String content, boolean active, String avatar, Date date_created, String slug, int admin_id) {
+    public Blog(int id, String name, String content, boolean active, String avatar, Date date_created, String slug, int admin_id,int numOfRead) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -33,8 +34,17 @@ public class Blog {
         this.date_created = date_created;
         this.slug = slug;
         this.admin_id = admin_id;
+        this.numOfRead=numOfRead;
     }
     //generate getter and setter
+
+    public int getNumOfRead() {
+        return numOfRead;
+    }
+
+    public void setNumOfRead(int numOfRead) {
+        this.numOfRead = numOfRead;
+    }
 
     public int getId() {
         return id;

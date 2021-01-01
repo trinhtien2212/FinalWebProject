@@ -38,6 +38,12 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
+                        <div class="blog__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Tìm kiếm bài viết">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Bài viết mới nhất</h4>
@@ -49,7 +55,7 @@
 
                                                 <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
-                                                        <img src="${nb.avatar}" alt="">
+                                                        <img src="${nb.avatar}" alt="blog-avatar">
                                                     </div>
                                                     <div class="blog__sidebar__recent__item__text">
                                                         <h6>${nb.name}</h6>
@@ -64,16 +70,16 @@
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                                <h4>Có thể bạn thích</h4>
+                                <h4>Đọc nhiều nhất</h4>
                                 <div class="latest-product__slider owl-carousel">
                                     <c:forEach var="i" begin="0" end="2" step="1">
                                         <div class="latest-prdouct__slider__item">
                                             <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
-                                                <c:set var="nb" value="${randomBlog.get(j)}"></c:set>
+                                                <c:set var="nb" value="${mostReadBlogs.get(j)}"></c:set>
 
                                                 <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
-                                                        <img src="${nb.avatar}" alt="">
+                                                        <img src="${nb.avatar}" alt="blog-avatar">
                                                     </div>
                                                     <div class="blog__sidebar__recent__item__text">
                                                         <h6>${nb.name}</h6>
@@ -86,12 +92,36 @@
                                 </div>
                             </div>
                         </div>
+<%--                        <div class="sidebar__item">--%>
+<%--                            <div class="latest-product__text">--%>
+<%--                                <h4>Có thể bạn thích</h4>--%>
+<%--                                <div class="latest-product__slider owl-carousel">--%>
+<%--                                    <c:forEach var="i" begin="0" end="2" step="1">--%>
+<%--                                        <div class="latest-prdouct__slider__item">--%>
+<%--                                            <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">--%>
+<%--                                                <c:set var="nb" value="${randomBlog.get(j)}"></c:set>--%>
+
+<%--                                                <a href="#" class="latest-product__item">--%>
+<%--                                                    <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">--%>
+<%--                                                        <img src="${nb.avatar}" alt="">--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="blog__sidebar__recent__item__text">--%>
+<%--                                                        <h6>${nb.name}</h6>--%>
+<%--                                                        <span>${nb.date_created}</span>--%>
+<%--                                                    </div>--%>
+<%--                                                </a>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </div>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="title-blog">${blog.name}</div>
                     <div class="blog__details__text">
-                        <img src="${blog.avatar}" style="width: 100%;" alt="" />
+                        <img src="${blog.avatar}" style="width: 100%;" alt="blog-avatar" />
                         ${blog.content}
                     </div>
                     <div class="blog__details__content">
@@ -99,7 +129,7 @@
                             <div class="col-lg-6">
                                 <div class="blog__details__author">
                                     <div class="blog__details__author__pic">
-                                        <img src="${author.avatar}" alt="" />
+                                        <img src="${author.avatar}" alt="author-avatar" />
                                     </div>
                                     <div class="blog__details__author__text">
                                         <h6>${author.name}</h6>
@@ -114,63 +144,40 @@
         </div>
     </section>
     <!-- Blog Details Section End -->
-<!-- Popup footer -->
-<div class="popup-footer">
-    <a href=""><i class="fa fa-comments" aria-hidden="true"></i></a>
-    <button id="scroll-top" class="circle-wrap" href=""><i class="fa fa-angle-up " aria-hidden="true"></i></button>
-</div>
-<!-- End popup footer -->
-
-<!-- Footer Section Begin -->
-<footer class="footer spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <a href="./index.html"><img src="img/banner/bieutuong_off.png" alt=""></a>
-                    </div>
-                    <ul>
-                        <li>Địa chỉ: Đại học Nông Lâm TP.HCM</li>
-                        <li>Điện thoại: +84353535355</li>
-                        <li>Email: thegioicaycanhNLU@gmail.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 ">
-                <div class="footer__widget no_flex">
-                    <h6>Địa chỉ bán lẻ</h6>
-                    <ul>
-                        <li>Địa chỉ: KIOT 35, đường số 6, Đại học Nông Lâm</li>
-                        <li>Điện thoại: +84353535355</li>
-                        <li>Email: thegioicaycanhNLU@gmail.com</li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget no_flex">
-                    <h6>Để lại thông tin liên hệ</h6>
-                    <p>Sản phẩm mới nhất, chương trình khuyến mãi</p>
-                    <form action="#">
-                        <input type="text" placeholder="Email">
-                        <button type="submit" class="site-btn">Gửi</button>
-                    </form>
-                    <a class="term" href="terms-and-conditions.html">Xem thêm chính sách và điều khoản <i class="fa fa-arrow-right"></i></a>
-                    <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+    <!-- Related Blog Section Begin -->
+    <section class="related-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related-blog-title">
+                        <h2>Có Thể Bạn Thích</h2>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <c:forEach var="rb" items="${randomBlog}">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="${rb.avatar}" alt="blog-name">
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i>${rb.date_created}</li>
+                                    <li><i class="fa fa-eye"></i> ${rb.numOfRead}</li>
+                                </ul>
+                                <h5><a href="#">${rb.name}
+                                </a></h5>
+                                <p>${rb.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
-    </div>
-</footer>
-
-<!-- Footer Section End -->
-
+    </section>
+    <!-- Related Blog Section End -->
+    <jsp:include page="footer.jsp"></jsp:include>
 <!-- Js Plugins -->
     <script src="user_page/js/jquery-3.3.1.min.js"></script>
     <script src="user_page/js/bootstrap.min.js"></script>

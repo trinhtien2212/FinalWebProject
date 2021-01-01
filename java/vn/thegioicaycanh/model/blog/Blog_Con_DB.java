@@ -44,12 +44,32 @@ public class Blog_Con_DB {
                 blog.setDate_created(rs.getDate(7));
                 blog.setSlug(rs.getString(8));
                 blog.setAdmin_id(rs.getInt(9));
+                blog.setNumOfRead(rs.getInt(10));
                 return blog;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
        return  null;
 
+    }
+    public static List<Blog> mostReadBlogs(int num){
+        List<Blog>blogList =new ArrayList<vn.thegioicaycanh.model.blog.Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement("select  * from blog order by numOfRead desc limit ?");
+            pe.setInt(1,num);
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                while(rs.next()){
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
     public static List<Blog>loadNewBlogs(int num){
         List<Blog>blogList =new ArrayList<Blog>();

@@ -19,8 +19,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>${title}</title>
-
-<%--    <c:set var="header" scope="application" value="${applicationScope.header}"></c:set>--%>
     <link href="${applicationScope.header.shortcut}" rel="shortcut icon">
 
 
@@ -37,10 +35,6 @@
 </head>
 
 <body>
-    <c:out value="${applicationScope.address.get(0).address}"></c:out>
-    <c:out value="${home_page_data.wel_img}"></c:out>
-    <c:out value="${applicationScope.header.name}"></c:out>
-    <c:out value="${discount_pros.size()}"></c:out>
     <jsp:include page="Menu.jsp"></jsp:include>
 
     <!-- Hero Section Begin -->
@@ -138,20 +132,6 @@
                             <div class="product__item__price"><%= Util.formatCurrency((double) pageContext.getAttribute("price_sale"))%><span><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></span></div>
 
                         </div>
-<%--                        <div class="progress progress-style none-margin ">--%>
-<%--                            <p class="text-muted">Còn ${dp.dayRest} ngày</p>--%>
-<%--                            <div--%>
-<%--                                    class="progress-bar bg-success pass_time"--%>
-<%--                                    role="progressbar"--%>
-<%--&lt;%&ndash;                                    style="width: ${dp.percent_sale_past}%"&ndash;%&gt;--%>
-<%--                                    style="width:90%"--%>
-<%--                            >--%>
-
-<%--                            </div>--%>
-<%--                            --%>
-<%--                            <c:out value="${dp.percent_sale_past}"></c:out>--%>
-
-<%--                        </div>--%>
                         <div  class="progress-style progress none-margin">
                             <div class="progress-bar bg-success progress-past" role="progressbar" style="width: ${dp.percent_sale_past}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             <p class="progress-text text-muted">Còn ${dp.dayRest} ngày</p>
@@ -260,7 +240,6 @@
                                         <img src="${np.img}" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <!-- Phần này chưa đổi tiếng việt nè -->
                                         <h6>${np.name}</h6>
                                         <span><%= Util.formatCurrency((double)pageContext.getAttribute("price_new_pos")) %></span>
                                     </div>
@@ -275,64 +254,23 @@
                 <div class="latest-product__text">
                     <h4>Đánh giá cao nhất</h4>
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/cuc-tan-an-do-35.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây cúc tần Ấn Độ</h6>
-                                    <span>35.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/luoi-ho-thai-69.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây lưỡi hổ thái</h6>
-                                    <span>69.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/featured/xuong-rong-tai-tho.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Xương Rồng tai thỏ</h6>
-                                    <span>36.000 VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/cay-de-ban/xuong-rong-nui.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Xương rồng núi</h6>
-                                    <span>66.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/cay-de-ban/cay-mong-rong.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây móng rồng</h6>
-                                    <span>64.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/featured/cay-binh-an.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây bình an</h6>
-                                    <span>149.000 VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
+                        <c:forEach var="i" begin="0" end="2" step="1">
+                            <div class="latest-prdouct__slider__item">
+                                <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
+                                    <c:set var="np" value="${most_rating.get(j)}"></c:set>
+                                    <c:set var="price_new_pos" value="${np.price}"></c:set>
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic fix_size">
+                                            <img src="${np.img}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>${np.name}</h6>
+                                            <span><%= Util.formatCurrency((double)pageContext.getAttribute("price_new_pos")) %></span>
+                                        </div>
+                                    </a>
+                                </c:forEach>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -340,64 +278,23 @@
                 <div class="latest-product__text">
                     <h4>Dành cho bạn</h4>
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/cay-de-ban/xuong-rong-astro.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây xương rồng Astro</h6>
-                                    <span>79.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/truc-day-leo-110.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Trúc dây leo</h6>
-                                    <span>110.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/tieu-thao-xoan-19.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây tiểu thảo xoắn</h6>
-                                    <span>39.000 VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/cay-anh-duong.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây ánh dương</h6>
-                                    <span>250.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/cam-tu-mai-30.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây cẩm tú mai</h6>
-                                    <span>30.000 VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic fix_size">
-                                    <img src="img/latest-product/cay-bong-trang-90.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cây bông trang</h6>
-                                    <span>90.000 VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
+                        <c:forEach var="i" begin="0" end="2" step="1">
+                            <div class="latest-prdouct__slider__item">
+                                <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
+                                    <c:set var="np" value="${for_you.get(j)}"></c:set>
+                                    <c:set var="price_new_pos" value="${np.price}"></c:set>
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic fix_size">
+                                            <img src="${np.img}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>${np.name}</h6>
+                                            <span><%= Util.formatCurrency((double)pageContext.getAttribute("price_new_pos")) %></span>
+                                        </div>
+                                    </a>
+                                </c:forEach>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

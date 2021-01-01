@@ -38,63 +38,52 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Tìm kiếm...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Danh Mục</h4>
-                            <ul>
-                                <li><a href="#">Tất Cả</a></li>
-                                <li><a href="#">Chăm Sóc Cây (20)</a></li>
-                                <li><a href="#">Trồng Cây (5)</a></li>
-                                <li><a href="#">Lợi Ích Của Cây (9)</a></li>
-                                <li><a href="#">Trang Trí Cây (10)</a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Tin Tức Mới</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/3-loai-cay-duoc-tang-trong-noen.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>3 loại cay được tang trong Noel</h6>
-                                        <span>THÁNG SÁU 05, 2020</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/cach-cham-soc-hoa-hong.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Cách chăm sóc hoa hồng</h6>
-                                        <span>THÁNG BA 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/cach-chon-dao-tet.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Cách chọn đào tết</h6>
-                                        <span>THÁNG TƯ 12, 2020</span>
-                                    </div>
-                                </a>
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Bài viết mới nhất</h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <c:forEach var="i" begin="0" end="2" step="1">
+                                        <div class="latest-prdouct__slider__item">
+                                            <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
+                                                <c:set var="nb" value="${newBlog.get(j)}"></c:set>
+
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
+                                                        <img src="${nb.avatar}" alt="">
+                                                    </div>
+                                                    <div class="blog__sidebar__recent__item__text">
+                                                        <h6>${nb.name}</h6>
+                                                        <span>${nb.date_created}</span>
+                                                    </div>
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Tìm Kiếm Nhiều</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Bạch Mã Hoàng Tử</a>
-                                <a href="#">Dâu Tây</a>
-                                <a href="#">Kim Tiền</a>
-                                <a href="#">Lưỡi Hổ</a>
-                                <a href="#">Mai</a>
-                                <a href="#">Đẹp</a>
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Có thể bạn thích</h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <c:forEach var="i" begin="0" end="2" step="1">
+                                        <div class="latest-prdouct__slider__item">
+                                            <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
+                                                <c:set var="nb" value="${randomBlog.get(j)}"></c:set>
+
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
+                                                        <img src="${nb.avatar}" alt="">
+                                                    </div>
+                                                    <div class="blog__sidebar__recent__item__text">
+                                                        <h6>${nb.name}</h6>
+                                                        <span>${nb.date_created}</span>
+                                                    </div>
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,29 +99,11 @@
                             <div class="col-lg-6">
                                 <div class="blog__details__author">
                                     <div class="blog__details__author__pic">
-                                        <img src="img/blog/details/admin.jpg" alt="" />
+                                        <img src="${author.avatar}" alt="" />
                                     </div>
                                     <div class="blog__details__author__text">
-                                        <h6>Nhật Thy</h6>
+                                        <h6>${author.name}</h6>
                                         <span>Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="blog__details__widget">
-                                    <ul>
-                                        <li><span>Danh Mục:</span> Trang Trí Cây</li>
-                                        <li>
-                                            <span>Từ khóa:</span> Tất Cả, Trang Trí, Cây Xanh,
-                                            Cách sống
-                                        </li>
-                                    </ul>
-                                    <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -143,69 +114,6 @@
         </div>
     </section>
     <!-- Blog Details Section End -->
-<!-- Related Blog Section Begin -->
-<section class="related-blog spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title related-blog-title">
-                    <h2>Bạn Có Thể Thích</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/cong-dung-cay-luoc-vang.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> Tháng Bảy 15,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="#">Cây trồng trong nhà đuổi muỗi
-                        </a></h5>
-                        <p>Muỗi là một trong những loại côn trùng mang đến nhiều bệnh tật cho sức khỏe của con người. Muỗi thích hợp với những nơi ẩm ướt, không sạch…</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/nhung-cay-treo-tren-ban-cong-dep.png" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> Tháng Mười 12,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="#">Những cây treo trên ban công</a></h5>
-                        <p>Ban công là không gian để làm đẹp cho ngôi nhà của bạn, giúp bạn cảm thấy sảng khoái sau những giờ làm việc mệt nhọc. Trồng cây cảnh…</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/cay-trong-trong-nha-duoi-muoi.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> Tháng Bảy 15,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="#">Cây trồng trong nhà đuổi muỗi
-                        </a></h5>
-                        <p>Muỗi là một trong những loại côn trùng mang đến nhiều bệnh tật cho sức khỏe của con người. Muỗi thích hợp với những nơi ẩm ướt, không sạch…</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Related Blog Section End -->
-
 <!-- Popup footer -->
 <div class="popup-footer">
     <a href=""><i class="fa fa-comments" aria-hidden="true"></i></a>

@@ -5,6 +5,7 @@ import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,6 @@ public class Blog_Con_DB {
         }
         return null;
     }
-
     public static Blog getBlog(ResultSet rs){
         if(rs == null)
             return null;
@@ -71,10 +71,30 @@ public class Blog_Con_DB {
         }
         return null;
     }
+    public static List<Blog>loadRandomBlog(int num){
+        List<Blog>blogList =new ArrayList<Blog>();
+        try {
+            PreparedStatement pe = DBCPDataSource.getConnection().prepareStatement(" select * from blog order by Rand() limit ?");
+            pe.setInt(1,num);
+
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                while(rs.next()){
+                    blogList.add(getBlog(rs));
+                }
+                rs.close();
+            }
+            pe.close();
+            return blogList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 
 
     public static void main(String[] args) {
-        List<Blog>list = loadNewBlogs(3);
+        List<Blog>list = loadRandomBlog(3);
         System.out.println(list);
     }
 

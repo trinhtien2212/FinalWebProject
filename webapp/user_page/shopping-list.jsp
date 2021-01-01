@@ -1,4 +1,6 @@
-<%@ page import="vn.thegioicaycanh.model.util.Util" %><%--
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
+<%@ page import="vn.thegioicaycanh.model.Product.Product" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: TRAN NHAT THY
   Date: 01/01/2021
@@ -29,6 +31,9 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
+<c:out value=" co du lieu ${shop-list.get(0).name}"></c:out>
+<%  List<Product> l = (List<Product>) request.getAttribute("shop-list");
+    System.out.println(l.size()); %>
 <jsp:include page="Menu.jsp"></jsp:include>
 
 <!-- Hero Section Begin -->
@@ -223,19 +228,19 @@
                 </div>
                 <div class="row shop_wrapper grid_list ">
                     <c:forEach items="${shop-list}" var="sl">
-                        <c:set var="price_new_pos" value="${np.price}"></c:set>
+                        <c:set var="p" value="${sl.price}"></c:set>
                         <div class="col-custom product-area col-12">
                             <div class="single-product position-relative">
                                 <div class="product-image">
                                     <a class="d-block" href="product-details.html">
-                                        <img src="${sl.img}" alt=""
+                                        <img src="${sl.img}" alt="${sl.name}"
                                              class="product-image-1 w-100">
                                     </a>
                                 </div>
                                 <div class="product-content-listview">
                                     <div class="product-item-text">
                                         <h5><a href="shop-details.html">${sl.name}</a></h5>
-                                        <h6>${sl.price}</h6>
+                                        <h6><%= Util.formatCurrency((double)pageContext.getAttribute("p"))%></h6>
                                     </div>
                                     <div class="add-action-listview d-flex">
                                         <ul class="product__item__pic__hover-1">

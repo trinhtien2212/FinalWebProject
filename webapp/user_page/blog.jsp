@@ -1,8 +1,10 @@
 
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page import="vn.thegioicaycanh.model.home_page.Home_page" %>
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page import="vn.thegioicaycanh.model.header_footer.Category" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %><%--
   Created by IntelliJ IDEA.
   User: Trinh Quang Tien
   Date: 25/12/2020
@@ -39,9 +41,9 @@
 </head>
 <body>
 <jsp:include page="Menu.jsp"></jsp:include>
-<%--<jsp:include page="search_bar.jsp"></jsp:include>--%>
+
 <!-- Hero Section Begin -->
-<section class="hero">
+<section class="hero hero-normal">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -75,27 +77,28 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </section>
 <!-- Hero Section End -->
 
-<!-- Begin banner top -->
-<section class="container ">
-    <div class=" banner_top row set-bg" data-setbg="imgs/home/bg1.png">
-        <div class="col-lg-12">
-            <h2>${applicationScope.header.name}</h2>
-            <div class="row">
-                <c:forEach var="mes" items="${home_page_data.mes_sep}">
-                    <p>${mes}</p>
-                </c:forEach>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="imgs/home/bg1.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Thế Giới Cây Cảnh</h2>
+                    <div class="breadcrumb__option">
+                        <span>${title}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<!-- Breadcrumb Section End -->
 
 
 <!-- Blog Section Begin -->
@@ -181,13 +184,22 @@
                         if (request.getParameter("pages") != null) {
                             pages = (int) Integer.parseInt(request.getParameter("pages"));
                         }
+                        int total= Blog_Con_DB.getCount();
+                        if (total <= 10) {
+                            first = 0;
+                            last = total;
+                        } else {
+                            first = (pages - 1) * 10;
+                            last = 10;
+                        }
+
 
                     %>
-                    <div class="col-lg-12">
-                        <div class="product__pagination blog__pagination" name="pages">
-                            <a href="#" name="1">1</a>
-                            <a href="#" name="2">2</a>
-                            <a href="#" name="3">3</a>
+                    <div class="col-lg-12" action="pages">
+                        <div class="product__pagination blog__pagination" >
+                            <a href="#" name="pages">1</a>
+                            <a href="#" name="pages">2</a>
+                            <a href="#" name="pages">3</a>
                             <a href="#"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>

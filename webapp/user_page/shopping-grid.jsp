@@ -221,6 +221,7 @@
                 </div>
                 <div class="row">
                     <c:forEach var="sgd" items="${shopping_grid_data}">
+                        <c:set var="p" value="${sgd.price}"></c:set>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="${sgd.img}">
@@ -232,7 +233,7 @@
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="shop-details.html">${sgd.name}</a></h6>
-                                <h5>${sgd.price}</h5>
+                                <h5><%= Util.formatCurrency((double)pageContext.getAttribute("p")) %></h5>
                             </div>
                         </div>
                     </div>

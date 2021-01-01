@@ -227,7 +227,7 @@
                     </div>
                 </div>
                 <div class="row shop_wrapper grid_list ">
-                    <c:forEach items="${shop-list}" var="sl">
+                    <c:forEach items="${shop_list}" var="sl">
                         <c:set var="p" value="${sl.price}"></c:set>
                         <div class="col-custom product-area col-12">
                             <div class="single-product position-relative">

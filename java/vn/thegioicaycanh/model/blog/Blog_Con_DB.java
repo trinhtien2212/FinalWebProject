@@ -154,7 +154,8 @@ public class Blog_Con_DB {
 //        List<Blog>list = loadRandomBlog(3);
         List<Blog> list=loadLimitBlog(1,5);
 //        List<Blog> list=loadRandomBlog(3);
-        System.out.println(list);
+        //System.out.println(list);
+        System.out.println(getCount());
     }
 
 }

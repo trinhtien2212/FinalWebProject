@@ -21,7 +21,7 @@ public class Shopping_Grid_Direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
-        request.setAttribute("page_menu","BÀI VIẾT");
+        request.setAttribute("page_menu","shopping");
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));

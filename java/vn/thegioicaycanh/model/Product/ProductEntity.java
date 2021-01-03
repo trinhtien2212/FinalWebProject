@@ -34,27 +34,7 @@ public class ProductEntity {
         return null;
     }
 
-    public static List<Product> loadPriceProducts(int num) {
 
-        List<Product> newProducts = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "SELECT * from product " +
-                    "order by price asc LIMIT " + num;
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    newProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return newProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
     public static List<Product> loadNewProducts(int num) {
 
         List<Product> newProducts = new ArrayList<Product>();
@@ -243,7 +223,27 @@ public class ProductEntity {
         }
         return null;
     }
+    public static List<Product> loadPriceProducts(int num) {
 
+        List<Product> newProducts = new ArrayList<Product>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            String sql = "SELECT * from product " +
+                    "order by price asc LIMIT " + num;
+            synchronized (statement) {
+                ResultSet resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    newProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return newProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static void main(String[] args) {
 
         System.out.println(loadPriceProducts(2));

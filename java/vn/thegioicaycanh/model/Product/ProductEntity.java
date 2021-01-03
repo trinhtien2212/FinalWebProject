@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductEntity {
     public static List<Product> loadDiscountProducts(int num) {
@@ -34,7 +36,6 @@ public class ProductEntity {
         return null;
     }
 
-
     public static List<Product> loadNewProducts(int num) {
 
         List<Product> newProducts = new ArrayList<Product>();
@@ -56,6 +57,7 @@ public class ProductEntity {
         }
         return null;
     }
+
     public static List<Product> loadMostRating(int num) {
         List<Product> mostRatingProducts = new ArrayList<Product>();
         try {
@@ -147,6 +149,7 @@ public class ProductEntity {
         }
         return null;
     }
+    // Load product in shopping page
     public static List<Product> loadShoppingProducts(int start, int num) {
         List<Product> shoppingProducts = new ArrayList<Product>();
         try {
@@ -168,14 +171,13 @@ public class ProductEntity {
         }
         return null;
     }
-    public static int sumOfProduct(){
+
+    public static int sumOfProduct(String sql){
         int sum = 0;
         try {
             Statement statement = DBCPDataSource.getStatement();
-
-
             synchronized (statement){
-                ResultSet rs = statement.executeQuery("select count(*) from product");
+                ResultSet rs = statement.executeQuery(sql);
                 if(rs.next()){
                     sum = rs.getInt(1);
                 }
@@ -188,6 +190,55 @@ public class ProductEntity {
         }
         return 0;
     }
+
+    // Filter product by category
+    public static List<Product> filterProductByCategory(int id, int start, int num) {
+        List<Product> shoppingProducts = new ArrayList<Product>();
+        try {
+            String sql = "SELECT * FROM product WHERE category_id = ? LIMIT ?, ?";
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1, id);
+            pe.setInt(2,start);
+            pe.setInt(3,num);
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                while (resultSet.next()) {
+                    shoppingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return shoppingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    // Filter product by type_weight
+    public static List<Product> filterProductBySize(int id, int start, int num) {
+        List<Product> shoppingProducts = new ArrayList<Product>();
+        try {
+            String sql = "SELECT * FROM product WHERE type_weight = ? LIMIT ?, ?";
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1, id);
+            pe.setInt(2,start);
+            pe.setInt(3,num);
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                while (resultSet.next()) {
+                    shoppingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return shoppingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
     public static Product getProduct(ResultSet resultSet) {
         if (resultSet == null)
             return null;
@@ -223,8 +274,8 @@ public class ProductEntity {
         }
         return null;
     }
-    public static List<Product> loadPriceProducts(int num) {
 
+    public static List<Product> loadPriceProducts(int num) {
         List<Product> newProducts = new ArrayList<Product>();
         try {
             Statement statement = DBCPDataSource.getStatement();
@@ -244,10 +295,65 @@ public class ProductEntity {
         }
         return null;
     }
+
+
+    public static List<Product>loadProductFormSql(String sql){
+        List<Product>list = new ArrayList<Product>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()) {
+                    list.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return list;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public static List<Product> searchProduct(String key){
+        Map<Integer,Product>map = new LinkedHashMap<Integer, Product>();
+        List<Product>ab_pros = loadProductFormSql("select * from product where name like '%"+key+"%'");
+        convertListToMap(map,ab_pros);
+        String[] words = key.split(" ");
+        for(String word:words){
+            if(word.equalsIgnoreCase("cây")
+                    || word.equalsIgnoreCase("chậu")
+                    || word.equalsIgnoreCase("cay")
+                    || word.equalsIgnoreCase("chau"))
+                continue;;
+            List<Product>pros = loadProductFormSql("select * from product where name like '% "+word+" %' or discription like '% "+key+" %'or content like '% "+key+" %'");
+            convertListToMap(map,pros);
+        }
+        return convertMapToList(map);
+    }
+    public static List<Product> convertMapToList(Map<Integer,Product>map){
+        List<Product> list = new ArrayList<Product>();
+        for(Product p:map.values()){
+            list.add(p);
+        }
+        return list;
+    }
+    public static void convertListToMap(Map<Integer,Product>map,List<Product>list){
+        for(Product product : list){
+            if(!map.containsKey(product.getId()))
+                map.put(product.getId(),product);
+        }
+    }
+
+
     public static void main(String[] args) {
 
-        System.out.println(loadPriceProducts(2));
+        for(Product p:searchProduct("cây ngũ gia bì")){
+            System.out.println(p.getName());
+        }
+
     }
+
 
 
 }

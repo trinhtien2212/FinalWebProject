@@ -193,7 +193,6 @@ public class ProductEntity {
         return null;
     }
     // Filter product by type_weight
-    // Type 1: very small, Type 2: small, Type 3: normal, Type 4: big
     public static List<Product> filterProductBySize(int id, int start, int num) {
         List<Product> shoppingProducts = new ArrayList<Product>();
         try {
@@ -273,7 +272,6 @@ public class ProductEntity {
     }
 
     public static void main(String[] args) {
-
         System.out.println(filterProductByCategory(2,5, 9));
     }
 

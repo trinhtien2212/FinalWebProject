@@ -127,12 +127,14 @@
                     </div>
                     <div class="sidebar__item">
                         <h4>Kích Thước</h4>
-                        <div class="sidebar__item__size">
-                            <label for="large">
-                                Lớn
-                                <input type="radio" id="large">
-                            </label>
-                        </div>
+                        <a href="">
+                            <div class="sidebar__item__size">
+                                <label for="large">
+                                    Lớn
+                                    <input type="radio" id="large">
+                                </label>
+                            </div>
+                        </a>
                         <div class="sidebar__item__size">
                             <label for="medium">
                                 Trung Bình

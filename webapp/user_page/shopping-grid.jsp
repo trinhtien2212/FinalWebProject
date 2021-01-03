@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <c:forEach var="sgd" items="${shopping_grid_data}">
+                    <c:forEach var="sgd" items="${data}">
                         <c:set var="p" value="${sgd.price}"></c:set>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
@@ -240,10 +240,25 @@
                     </c:forEach>
                 </div>
                 <div class="product__pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+<%--                    <a href="#" class="set_choose"><i class="fa fa-angle-left"></i></a>--%>
+<%--                    <a href="#" class="set_choose">1</a>--%>
+<%--                    <a href="#" class="noneHover">2</a>--%>
+<%--                    <a href="#">3</a>--%>
+<%--                    <a href="#" class="set_choose"><i class="fa fa-angle-right"></i></a>--%>
+                    <c:if test="${pages>1}">
+                        <a href="${back}"><i class="fa fa-angle-left"></i></a>
+                    </c:if>
+
+                    <c:forEach var="i" begin="${start}" end="${end}">
+                        <c:if test="${pages==i}"><a href="${type_page}?pages=${i}" class="set_choose">${i}</a></c:if>
+                        <c:if test="${pages!=i}"><a href="${type_page}?pages=${i}">${i}</a></c:if>
+                    </c:forEach>
+                    <c:if test="${isStill==true}"><a class="noneHover" href="">...</a></c:if>
+                    <c:if test="${pages!=end}">
+                        <a href="${next}">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </c:if>
                 </div>
             </div>
 

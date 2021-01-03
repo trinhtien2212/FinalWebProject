@@ -149,6 +149,7 @@ public class ProductEntity {
         }
         return null;
     }
+    // Load product in shopping page
     public static List<Product> loadShoppingProducts(int start, int num) {
         List<Product> shoppingProducts = new ArrayList<Product>();
         try {
@@ -170,12 +171,11 @@ public class ProductEntity {
         }
         return null;
     }
+
     public static int sumOfProduct(String sql){
         int sum = 0;
         try {
             Statement statement = DBCPDataSource.getStatement();
-
-
             synchronized (statement){
                 ResultSet rs = statement.executeQuery(sql);
                 if(rs.next()){
@@ -190,6 +190,54 @@ public class ProductEntity {
         }
         return 0;
     }
+
+    // Filter product by category
+    public static List<Product> filterProductByCategory(int id, int start, int num) {
+        List<Product> shoppingProducts = new ArrayList<Product>();
+        try {
+            String sql = "SELECT * FROM product WHERE category_id = ? LIMIT ?, ?";
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1, id);
+            pe.setInt(2,start);
+            pe.setInt(3,num);
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                while (resultSet.next()) {
+                    shoppingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return shoppingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    // Filter product by type_weight
+    public static List<Product> filterProductBySize(int id, int start, int num) {
+        List<Product> shoppingProducts = new ArrayList<Product>();
+        try {
+            String sql = "SELECT * FROM product WHERE type_weight = ? LIMIT ?, ?";
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1, id);
+            pe.setInt(2,start);
+            pe.setInt(3,num);
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                while (resultSet.next()) {
+                    shoppingProducts.add(getProduct(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return shoppingProducts;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static Product getProduct(ResultSet resultSet) {
         if (resultSet == null)
@@ -273,7 +321,9 @@ public class ProductEntity {
                 map.put(product.getId(),product);
         }
     }
+
     public static void main(String[] args) {
+
         for(Product p:searchProduct("cây ngũ gia bì")){
             System.out.println(p.getName());
         }

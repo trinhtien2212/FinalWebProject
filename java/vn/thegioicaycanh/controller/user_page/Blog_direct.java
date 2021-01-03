@@ -21,7 +21,7 @@ public class Blog_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
-        request.setAttribute("page_menu","BÀI VIẾT");
+        request.setAttribute("page_menu","blog");
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("blog_data", Blog_Con_DB.loadLimitBlog(1,10));

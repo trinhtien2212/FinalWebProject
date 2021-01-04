@@ -1,6 +1,7 @@
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page import="vn.thegioicaycanh.model.Product.Product" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="vn.thegioicaycanh.model.Product.ProductEntity" %><%--
   Created by IntelliJ IDEA.
   User: TRAN NHAT THY
   Date: 01/01/2021
@@ -31,69 +32,8 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
-<c:out value=" co du lieu ${requestScope.shop_list.size()}"></c:out>
-<%  List<Product> l = (List<Product>) request.getAttribute("shop_list");
-    System.out.println(l.size()); %>
 <jsp:include page="Menu.jsp"></jsp:include>
-
-<!-- Hero Section Begin -->
-<section class="hero hero-normal">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
-                    </div>
-                    <ul>
-                        <c:forEach var="cate" items="${applicationScope.category}">
-                            <li><a href="/${cate.slug}">${cate.name}</a></li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Tên cây cảnh">
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>${applicationScope.address.get(0).phone}</h5>
-                            <span>Hỗ trợ 24/7</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Hero Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="imgs/home/bg1.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Thế Giới Cây Cảnh</h2>
-                    <div class="breadcrumb__option">
-                        <span>${title}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
-
+<jsp:include page="search_bar.jsp"></jsp:include>
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
@@ -104,7 +44,7 @@
                         <h4>Danh Mục</h4>
                         <ul>
                             <c:forEach var="cate" items="${applicationScope.category}">
-                                <li><a href="/${cate.slug}">${cate.name}</a></li>
+                                <li><a href="filter-category-shopping?id=${cate.id}&pages=1">${cate.name}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -229,7 +169,7 @@
                     </div>
                 </div>
                 <div class="row shop_wrapper grid_list ">
-                    <c:forEach items="${shop_list}" var="sl">
+                    <c:forEach items="${data}" var="sl">
                         <c:set var="p" value="${sl.price}"></c:set>
                         <div class="col-custom product-area col-12">
                             <div class="single-product position-relative">
@@ -260,10 +200,19 @@
                     </c:forEach>
                 </div>
                 <div class="product__pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <c:if test="${pages>1}">
+                        <a href="${back}"><i class="fa fa-angle-left"></i></a>
+                    </c:if>
+                    <c:forEach var="i" begin="${start}" end="${end}">
+                        <c:if test="${pages==i}"><a href="${type_page}?pages=${i}" class="set_choose">${i}</a></c:if>
+                        <c:if test="${pages!=i}"><a href="${type_page}?pages=${i}">${i}</a></c:if>
+                    </c:forEach>
+                    <c:if test="${isStill==true}"><a class="noneHover" href="">...</a></c:if>
+                    <c:if test="${pages!=end}">
+                        <a href="${next}">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </c:if>
                 </div>
             </div>
 

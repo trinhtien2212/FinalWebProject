@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/Shopping_sorted_By_Date_Direct")
+@WebServlet(urlPatterns = "/shopping_sorted_by_date_direct")
 public class Shopping_sorted_By_Date_Direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

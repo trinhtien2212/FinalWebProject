@@ -13,163 +13,40 @@ import java.util.Map;
 
 public class ProductEntity {
     public static List<Product> loadDiscountProducts(int num) {
-        List<Product> discountProduct = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "select *" +
-                    "from product p " +
-                    "WHERE is_sale=1 and discription is not null " +
-                    "and content is not null " +
-                    "ORDER BY percent_sale DESC LIMIT " + num;
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    discountProduct.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return discountProduct;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        String sql = "select *" +
+                "from product p " +
+                "WHERE is_sale=1 and discription is not null " +
+                "and content is not null " +
+                "ORDER BY percent_sale DESC LIMIT " + num;
+        return loadProductFormSql(sql);
     }
 
     public static List<Product> loadNewProducts(int num) {
-
-        List<Product> newProducts = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "SELECT * from product " +
-                    "order by date_created desc LIMIT " + num;
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    newProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return newProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        String sql = "SELECT * from product " +
+                "order by date_created desc LIMIT " + num;
+        return loadProductFormSql(sql);
     }
 
     public static List<Product> loadMostRating(int num) {
-        List<Product> mostRatingProducts = new ArrayList<Product>();
-        try {
-            String sql = "SELECT * from product p join rating r on p.id=r.pro_id where r.rating_type_id  = (SELECT  max(r1.rating_type_id) from rating r1) LIMIT " + num;
-            Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    mostRatingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return mostRatingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        String sql = "SELECT * from product p join rating r on p.id=r.pro_id where r.rating_type_id  = (SELECT  max(r1.rating_type_id) from rating r1) LIMIT " + num;
+        return loadProductFormSql(sql);
     }
     public static List<Product> loadFirstPros(int num) {
-        List<Product> mostRatingProducts = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "SELECT * from product p LIMIT " + num;
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    mostRatingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return mostRatingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        String sql = "SELECT * from product p LIMIT " + num;
+        return loadProductFormSql(sql);
     }
     public static List<Product> loadHightLightProducts() {
-        List<Product> mostRatingProducts = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "select p.* from product  p join " +
-                    " (select pro_id  from order_product GROUP BY pro_id ORDER BY count(pro_id) desc limit 15 ) as most_pro on most_pro.pro_id=p.id";
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    mostRatingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return mostRatingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        String sql = "select p.* from product  p join " +
+                " (select pro_id  from order_product GROUP BY pro_id ORDER BY count(pro_id) desc limit 15 ) as most_pro on most_pro.pro_id=p.id";
+        return loadProductFormSql(sql);
     }
-//    public List<Product> loadHightLightProducts(){
-//
-//        try {
-//            List<Product> products = new ArrayList<Product>();
-//            Connection connection = DBCPDataSource.getConnection();
-//            for(int i = 1;i<7;i++){
-//                products.addAll(loadProductBaseOn(connection.createStatement(), "select * from product "));
-//            }
-//            return loadProductBaseOn(connection.createStatement(),sql);
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//        return null;
-//    }
 
     public static List<Product> loadAllProducts() {
-        List<Product> products = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery("select * from product");
-                while (resultSet.next()) {
-                    products.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return products;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+      return loadProductFormSql("select * from product");
     }
     // Load product in shopping page
     public static List<Product> loadShoppingProducts(int start, int num) {
-        List<Product> shoppingProducts = new ArrayList<Product>();
-        try {
-            String sql = "select * from product limit ?,?";
-            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-            pe.setInt(1,start);
-            pe.setInt(2,num);
-            synchronized (pe) {
-                ResultSet resultSet = pe.executeQuery();
-                while (resultSet.next()) {
-                    shoppingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            pe.close();
-            return shoppingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        return loadProductFormSql("select * from product limit "+start+","+num);
     }
 
     public static int sumOfProduct(String sql){
@@ -193,49 +70,11 @@ public class ProductEntity {
 
     // Filter product by category
     public static List<Product> filterProductByCategory(int id, int start, int num) {
-        List<Product> shoppingProducts = new ArrayList<Product>();
-        try {
-            String sql = "SELECT * FROM product WHERE category_id = ? LIMIT ?, ?";
-            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-            pe.setInt(1, id);
-            pe.setInt(2,start);
-            pe.setInt(3,num);
-            synchronized (pe) {
-                ResultSet resultSet = pe.executeQuery();
-                while (resultSet.next()) {
-                    shoppingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            pe.close();
-            return shoppingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        return loadProductFormSql("SELECT * FROM product WHERE category_id = "+id+" LIMIT "+start+","+num);
     }
     // Filter product by type_weight
     public static List<Product> filterProductBySize(int id, int start, int num) {
-        List<Product> shoppingProducts = new ArrayList<Product>();
-        try {
-            String sql = "SELECT * FROM product WHERE type_weight = ? LIMIT ?, ?";
-            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-            pe.setInt(1, id);
-            pe.setInt(2,start);
-            pe.setInt(3,num);
-            synchronized (pe) {
-                ResultSet resultSet = pe.executeQuery();
-                while (resultSet.next()) {
-                    shoppingProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            pe.close();
-            return shoppingProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        return loadProductFormSql("SELECT * FROM product WHERE type_weight = "+id+" LIMIT "+start+","+num);
     }
 
 
@@ -275,25 +114,8 @@ public class ProductEntity {
         return null;
     }
 
-    public static List<Product> loadPriceProducts(int num) {
-        List<Product> newProducts = new ArrayList<Product>();
-        try {
-            Statement statement = DBCPDataSource.getStatement();
-            String sql = "SELECT * from product " +
-                    "order by price asc LIMIT " + num;
-            synchronized (statement) {
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    newProducts.add(getProduct(resultSet));
-                }
-                resultSet.close();
-            }
-            statement.close();
-            return newProducts;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+    public static List<Product> loadPriceProducts(int start,int num) {
+        return loadProductFormSql("select * from product order by price asc limit "+start+","+num);
     }
 
 
@@ -344,13 +166,32 @@ public class ProductEntity {
                 map.put(product.getId(),product);
         }
     }
+    public static int loadMax_MinPrice(String sql){
+        int max_price =0;
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet rs = statement.executeQuery(sql);
+                if(rs.next()){
+                    max_price=rs.getInt(1);
+                }
+                rs.close();
+            }
+            statement.close();
+            return max_price;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return max_price;
+    }
 
 
     public static void main(String[] args) {
-
-        for(Product p:searchProduct("cây ngũ gia bì")){
-            System.out.println(p.getName());
-        }
+//        String s= "Shopping_sorted_By_Price_Direct".toLowerCase();
+//        if(s.contains("shopping"))
+//            System.out.println("co chua");
+//        else System.out.println("khong chua");
+        System.out.println(loadMax_MinPrice("select min(price) from product"));
 
     }
 

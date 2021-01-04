@@ -20,6 +20,9 @@ public class HandlePaginationButton extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String sql = (String)request.getAttribute("sql");
+        String countSql = (String)request.getAttribute("sumOfItems_sql");
+        System.out.println("sql: "+sql);
         //get page index
         int pages=1;
         if(request.getAttribute("pages") !=null){
@@ -31,21 +34,25 @@ public class HandlePaginationButton extends HttpServlet {
         int last = (int)request.getAttribute("numOfItemLoad");
         String type_page = (String)request.getAttribute("type_page");
         if(type_page.contains("blog")){
-            System.out.println("vo blog");
             sumOfItems = Blog_Con_DB.sumOfBlogs();
         }else if(type_page.contains("shopping")){
-            System.out.println("vo shopping");
-            sumOfItems = ProductEntity.sumOfProduct("select count(*) from product");
+            System.out.println("co vao shopping");
+            sumOfItems = ProductEntity.sumOfProduct(countSql);
+            System.out.println("sumOfItems: "+sumOfItems);
         }
+        request.setAttribute("sumOfItems",sumOfItems);
         int sumOfPage = sumOfItems/last;
+        System.out.println("sumOfPages: "+sumOfPage);
         if(sumOfItems % last !=0)
             sumOfPage++;
+        if(sumOfPage==0)
+            sumOfPage=1;
 
         //cal first and last;
         int first = 0;
         if(pages<=0){
             pages=1;
-        }else if(pages>sumOfPage){
+        }else if(pages>sumOfPage && sumOfPage>0){
             pages=sumOfPage;
         }
         request.setAttribute("pages",pages);
@@ -53,34 +60,48 @@ public class HandlePaginationButton extends HttpServlet {
 
 
        //create List
+        sql +=first+","+last;
+        System.out.println(sql);
         if(type_page.contains("blog")){
+            System.out.println("co vo blog");
             List<Blog> list = Blog_Con_DB.loadLimitBlog(first,last);
+            System.out.println("Blog: "+list.size());
             request.setAttribute("data",list);
         }else if(type_page.contains("shopping")){
-            List<Product> list = ProductEntity.loadShoppingProducts(first,last);
+            System.out.println("co vo shopping");
+            List<Product> list = ProductEntity.loadProductFormSql(sql);
+            System.out.println("Product:; "+list.size());
             request.setAttribute("data",list);
         }
+        request.setAttribute("first",first);
+        request.setAttribute("last",last);
 
         //cal back and next button
-        request.setAttribute("back",type_page+"?pages="+(pages==1?1:pages-1));
-        request.setAttribute("next",type_page+"?pages="+(pages<sumOfPage?pages+1:pages));
+        String url = (String)request.getAttribute("url");
+        request.setAttribute("back",type_page+"?pages="+(pages==1?1:pages-1)+url);
+        request.setAttribute("next",type_page+"?pages="+(pages<sumOfPage?pages+1:pages)+url);
 
         //cal start, end num for loop and determine is still more pages
         int start =1;
         int end = 5;
-        request.setAttribute("isStill",true);
-
-        if(pages>3 && pages+2<=sumOfPage){
-            start = pages -2;
-            end = pages +2;
-        }else if(pages+1==sumOfPage || pages ==sumOfPage){
-            start = pages - (sumOfPage-pages==1?3:4);
-            end = pages+(sumOfPage-pages);
-            request.setAttribute("isStill",false);
+        if(sumOfPage>5 && pages+2<sumOfPage){
+            request.setAttribute("isStill",true);
+        }else request.setAttribute("isStill",false);
+        if(sumOfPage<=5){
+            start=1;
+            end=sumOfPage;
+        } else if(pages>3 && pages+2<=sumOfPage) {
+            start = pages - 2;
+            end = pages + 2;
+        }else if(pages+1==sumOfPage || pages ==sumOfPage) {
+            start = pages - (sumOfPage - pages == 1 ? 3 : 4);
+            end = pages + (sumOfPage - pages);
         }
         request.setAttribute("start",start);
         request.setAttribute("end",end);
-
+        System.out.println("first: "+first);
+        System.out.println("sql: "+sql);
+        System.out.println("count_sql: "+countSql);
         System.out.println("back:"+request.getAttribute("back"));
         System.out.println("next:"+request.getAttribute("next"));
         System.out.println("pages:"+request.getAttribute("pages"));
@@ -90,4 +111,5 @@ public class HandlePaginationButton extends HttpServlet {
         request.getRequestDispatcher((String)request.getAttribute("direct_to")).forward(request,response);
 
     }
+
 }

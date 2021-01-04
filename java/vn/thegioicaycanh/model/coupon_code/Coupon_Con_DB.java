@@ -10,8 +10,15 @@ import java.util.List;
 public class Coupon_Con_DB {
 
 
-
-    public static List<CouponCode> loadProductFormSql(String sql){
+    public static List<CouponCode> loadCouponCodeByCoponCodeTypeID(int id){
+        String sql = "SELECT * from coupon_code where coupon_code_type_id ="+id;
+        return loadCouponCodeFormSql(sql);
+    }
+    public static List<CouponCode> loadAllCouponCode(){
+        String sql="SELECT * from coupon_code";
+        return loadCouponCodeFormSql(sql);
+    }
+    public static List<CouponCode> loadCouponCodeFormSql(String sql){
         List<CouponCode>list = new ArrayList<CouponCode>();
         try {
             Statement statement = DBCPDataSource.getStatement();
@@ -45,5 +52,9 @@ public class Coupon_Con_DB {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(loadAllCouponCode());
     }
 }

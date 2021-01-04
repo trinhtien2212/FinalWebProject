@@ -61,19 +61,6 @@
                     <option value="">> nửa tháng</option>
                     <option value="">> 1 tháng</option>
                 </select>
-
-                <!-- Search form -->
-                <form
-                        class="form-inline d-flex justify-content-center md-form form-sm active-green mt-2 col-md-4 mx-3"
-                >
-                    <input
-                            class="form-control form-control-sm mr-3 w-75"
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                    />
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </form>
             </div>
         </div>
     </div>

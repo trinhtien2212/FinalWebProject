@@ -14,6 +14,10 @@ public class Coupon_Con_DB {
         String sql = "SELECT * from coupon_code where coupon_code_type_id ="+id;
         return loadCouponCodeFormSql(sql);
     }
+    public static List<CouponCode> loadCouponCodeLimit(int start,int num){
+        String sql = "SELECT * from coupon_code where coupon_code_type_id limit"+start+","+num;
+        return loadCouponCodeFormSql(sql);
+    }
     public static List<CouponCode> loadAllCouponCode(){
         String sql="SELECT * from coupon_code";
         return loadCouponCodeFormSql(sql);

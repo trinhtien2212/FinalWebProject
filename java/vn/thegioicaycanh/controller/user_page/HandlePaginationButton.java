@@ -4,6 +4,8 @@ import vn.thegioicaycanh.model.Product.Product;
 import vn.thegioicaycanh.model.Product.ProductEntity;
 import vn.thegioicaycanh.model.blog.Blog;
 import vn.thegioicaycanh.model.blog.Blog_Con_DB;
+import vn.thegioicaycanh.model.coupon_code.CouponCode;
+import vn.thegioicaycanh.model.coupon_code.Coupon_Con_DB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -72,6 +74,8 @@ public class HandlePaginationButton extends HttpServlet {
             List<Product> list = ProductEntity.loadProductFormSql(sql);
             System.out.println("Product:; "+list.size());
             request.setAttribute("data",list);
+        }else if(type_page.contains("discount")){
+            List<CouponCode> list= Coupon_Con_DB.loadCouponCodeLimit(first,last);
         }
         request.setAttribute("first",first);
         request.setAttribute("last",last);

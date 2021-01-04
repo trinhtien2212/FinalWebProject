@@ -35,7 +35,7 @@
 <jsp:include page="Menu.jsp"></jsp:include>
 
 <jsp:include page="search_bar.jsp"></jsp:include>
-<!-- Breadcrumb Section End -->
+
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
@@ -67,8 +67,8 @@
                             </div>
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="maxamounminamount">
-                                    <input type="text" id="t">
+                                    <input type="text" id="minamount">
+                                    <input type="text" id="maxamount">
                                 </div>
                             </div>
                         </div>

@@ -89,6 +89,8 @@
             <!-- Sửa featured__filter thành code_sale_filter -->
             <div class="code_sale_filter">
                 <div class="row">
+                    <c:forEach var="c" items="${jk}">
+
                     <div class="col-lg-6 col-md-12 col-sm-12 mix code-percen">
                         <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
                             <div class="row no-gutters">
@@ -650,6 +652,7 @@
                             </div>
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

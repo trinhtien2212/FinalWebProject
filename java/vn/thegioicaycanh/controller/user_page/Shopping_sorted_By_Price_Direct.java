@@ -21,7 +21,7 @@ public class Shopping_sorted_By_Price_Direct extends HttpServlet {
         request.setAttribute("title","mua sắm");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
-        request.setAttribute("shopping_grid_data", ProductEntity.loadPriceProducts(9));
+        request.setAttribute("data", ProductEntity.loadPriceProducts(9));
         request.getRequestDispatcher("user_page/shopping-grid.jsp").forward(request,response);
     }
 }

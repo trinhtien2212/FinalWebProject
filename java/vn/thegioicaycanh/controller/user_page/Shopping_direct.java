@@ -22,7 +22,6 @@ public class Shopping_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.setAttribute("page_menu","shopping");
         request.setAttribute("title","Mua sắm");
         request.setAttribute("home_page_data",new Home_page());

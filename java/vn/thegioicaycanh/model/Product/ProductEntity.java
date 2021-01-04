@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductEntity {
     public static List<Product> loadDiscountProducts(int num) {
@@ -184,14 +181,24 @@ public class ProductEntity {
         }
         return max_price;
     }
-
+public static void vidu(String s){
+        s +="tien";
+    System.out.println(s);
+}
 
     public static void main(String[] args) {
 //        String s= "Shopping_sorted_By_Price_Direct".toLowerCase();
 //        if(s.contains("shopping"))
 //            System.out.println("co chua");
 //        else System.out.println("khong chua");
-        System.out.println(loadMax_MinPrice("select min(price) from product"));
+//        System.out.println(loadMax_MinPrice("select min(price) from product"));
+
+//        List<Integer>list = new ArrayList<>();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        List<Integer>list1= list.subList(1,(5+1)>list.size()?list.size():5+1);
+//        System.out.println(list1);
 
     }
 

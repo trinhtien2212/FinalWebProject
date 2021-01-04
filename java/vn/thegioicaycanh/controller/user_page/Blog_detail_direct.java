@@ -25,7 +25,7 @@ public class Blog_detail_direct extends HttpServlet {
         Blog blog = Blog_Con_DB.loadBlog(id);
         request.setAttribute("page_menu","blog");
         request.setAttribute("title","Chi tiết bài viết");
-        request.setAttribute("author", LoadUser.loadUser(blog.getAdmin_id()));
+        request.setAttribute("author", LoadUser.loadUserById(blog.getAdmin_id()));
         request.setAttribute("blog",blog);
         request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));
         request.setAttribute("mostReadBlogs",Blog_Con_DB.mostReadBlogs(12));

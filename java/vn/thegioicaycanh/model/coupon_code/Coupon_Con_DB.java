@@ -50,6 +50,7 @@ public class Coupon_Con_DB {
             couponcode.setCoupon_code_type_id(resultSet.getInt(3));
             couponcode.setPercent(resultSet.getInt(4));
             couponcode.setDiscription(resultSet.getString(5));
+            couponcode.setCode(resultSet.getString(6));
             return couponcode;
 
         } catch (SQLException throwables) {

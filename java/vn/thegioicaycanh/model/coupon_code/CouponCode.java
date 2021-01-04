@@ -6,6 +6,7 @@ public class CouponCode {
     private int coupon_code_type_id;
     private int percent;
     private String discription;
+    private String code;
 
     public CouponCode() {
     }
@@ -48,5 +49,13 @@ public class CouponCode {
 
     public void setDiscription(String discription) {
         this.discription = discription;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

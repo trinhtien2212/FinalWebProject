@@ -19,10 +19,14 @@
                         <span>Danh Mục</span>
                     </div>
                     <ul>
-                        <c:forEach var="c" items="${applicationScope.category}">
-                            <li><a href="#">${c.name}</a></li>
+                        <c:forEach var="cate" items="${applicationScope.category}">
+                            <c:if test="${cate.id==cate_id}">
+                                <li><a class="set_choose" href="${type_page}?cate_id=${cate.id}${url}">${cate.name}</a></li>
+                            </c:if>
+                            <c:if test="${cate.id != cate_id}">
+                                <li><a href="${type_page}?cate_id=${cate.id}${url}">${cate.name}</a></li>
+                            </c:if>
                         </c:forEach>
-
                     </ul>
                 </div>
             </div>

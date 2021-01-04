@@ -5,6 +5,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %>
 <%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -28,64 +30,11 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
+<%--<div class="invisible_type_page">${type_page}</div>--%>
+<%--<div class="invisible_url">${url}</div>--%>
 <jsp:include page="Menu.jsp"></jsp:include>
 
-<!-- Hero Section Begin -->
-<section class="hero hero-normal">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
-                    </div>
-                    <ul>
-                        <c:forEach var="cate" items="${applicationScope.category}">
-                            <li><a href="/${cate.slug}">${cate.name}</a></li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Tên cây cảnh">
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>${applicationScope.address.get(0).phone}</h5>
-                            <span>Hỗ trợ 24/7</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Hero Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="imgs/home/bg1.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Thế Giới Cây Cảnh</h2>
-                    <div class="breadcrumb__option">
-                        <span>${title}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<jsp:include page="search_bar.jsp"></jsp:include>
 <!-- Breadcrumb Section End -->
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -97,7 +46,12 @@
                         <h4>Danh Mục</h4>
                         <ul>
                             <c:forEach var="cate" items="${applicationScope.category}">
-                                <li><a href="/${cate.slug}">${cate.name}</a></li>
+                                <c:if test="${cate.id==cate_id}">
+                                    <li><a class="set_choose" href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></li>
+                                </c:if>
+                                <c:if test="${cate.id != cate_id}">
+                                    <li><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </div>
@@ -105,45 +59,30 @@
                         <h4>Giá</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                 data-min="10" data-max="900">
+                                 data-min="${price_min}" data-max="${price_max}" data-maxi="${max_price}" data-mini="${min_price}"
+                                    data-type_page ="${type_page}" data-url="${url}">
                                 <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    <input type="text" id="maxamounminamount">
+                                    <input type="text" id="t">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="sidebar__item">
                         <h4>Kích Thước</h4>
+                        <c:forEach var="i" begin="1" end="4">
                         <div class="sidebar__item__size">
-                            <label for="large">
-                                Lớn
-                                <input type="radio" id="large">
+                            <label for="${i}" <c:if test="${type_size==i}">class="set_choose"</c:if>>
+                            <c:out value="${type_weight_map.get(i)}"></c:out>
+                                <input  type="radio" id="${i}" onclick="radio_input('${type_page}?type_size=${i}&${url}')">
                             </label>
                         </div>
-                        <div class="sidebar__item__size">
-                            <label for="medium">
-                                Trung Bình
-                                <input type="radio" id="medium">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="small">
-                                Nhỏ
-                                <input type="radio" id="small">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="tiny">
-                                Rất nhỏ
-                                <input type="radio" id="tiny">
-                            </label>
-                        </div>
+                        </c:forEach>
                     </div>
                     <div class="sidebar__item">
                         <div class="latest-product__text">
@@ -200,21 +139,49 @@
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
                                 <span>Sắp xếp</span>
-                                <select>
-                                    <option value="0">Mới Nhất</option>
-                                    <option value="0">Giá Cả</option>
+                                <select id="select_sort">
+                                    <c:if test="${sort_id==0}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==1}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}" selected>Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==2}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}" selected>Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==3}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}" selected>Giá cao đến thấp</option>
+                                    </c:if>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <div class="filter__found">
-                                <h6><span>16</span> sản phẩm đã tìm thấy</h6>
+                                <h6><span>${sumOfItems}</span> sản phẩm đã tìm thấy</h6>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-3">
                             <div class="filter__option">
-                                <a href="shop-grid.html"><span class="icon_grid-2x2"></span></a>
-                                <a href="shop-list.html"><span class="icon_ul"></span></a>
+                                <c:if test="${type_view==1}">
+                                    <a href="${type_page}?type_view=1&${url}"><span class="icon_grid-2x2 set_choose"></span></a>
+                                    <a href="${type_page}?type_view=2&${url}"><span class="icon_ul "></span></a>
+                                </c:if>
+                                <c:if test="${type_view==2}">
+                                    <a href="${type_page}?type_view=1&${url}"><span class="icon_grid-2x2 "></span></a>
+                                    <a href="${type_page}?type_view=2&${url}"><span class="icon_ul set_choose"></span></a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -240,18 +207,12 @@
                     </c:forEach>
                 </div>
                 <div class="product__pagination">
-<%--                    <a href="#" class="set_choose"><i class="fa fa-angle-left"></i></a>--%>
-<%--                    <a href="#" class="set_choose">1</a>--%>
-<%--                    <a href="#" class="noneHover">2</a>--%>
-<%--                    <a href="#">3</a>--%>
-<%--                    <a href="#" class="set_choose"><i class="fa fa-angle-right"></i></a>--%>
                     <c:if test="${pages>1}">
                         <a href="${back}"><i class="fa fa-angle-left"></i></a>
                     </c:if>
-
                     <c:forEach var="i" begin="${start}" end="${end}">
-                        <c:if test="${pages==i}"><a href="${type_page}?pages=${i}" class="set_choose">${i}</a></c:if>
-                        <c:if test="${pages!=i}"><a href="${type_page}?pages=${i}">${i}</a></c:if>
+                        <c:if test="${pages==i}"><a href="${type_page}?pages=${i}${url}" class="set_choose">${i}</a></c:if>
+                        <c:if test="${pages!=i}"><a href="${type_page}?pages=${i}${url}">${i}</a></c:if>
                     </c:forEach>
                     <c:if test="${isStill==true}"><a class="noneHover" href="">...</a></c:if>
                     <c:if test="${pages!=end}">

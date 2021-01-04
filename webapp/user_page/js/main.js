@@ -195,20 +195,25 @@
         minamount = $("#minamount"),
         maxamount = $("#maxamount"),
         minPrice = rangeSlider.data('min'),
-        maxPrice = rangeSlider.data('max');
+        maxPrice = rangeSlider.data('max'),
+        maxi = rangeSlider.data("maxi"),
+        mini = rangeSlider.data("mini"),
+        type_page = rangeSlider.data("type_page"),
+        url = rangeSlider.data("url");
         
     rangeSlider.slider({
         range: true,
-        min: minPrice,
-        max: maxPrice,
+        min: mini,
+        max: maxi,
         values: [minPrice, maxPrice],
-        slide: function (event, ui) {
-            minamount.val(ui.values[0]+'.000 VNĐ');
-            maxamount.val(ui.values[1]+'.000 VNĐ');
+        stop: function (event, ui) {
+            minamount.val(ui.values[0]+'.000 ₫');
+            maxamount.val(ui.values[1]+'.000 ₫');
+            window.location.href = type_page+"?price_min="+ui.values[0]+"&price_max="+ui.values[1]+"&"+url;
         }
     });
-    minamount.val(rangeSlider.slider("values", 0)+".000 VNĐ");
-    maxamount.val(rangeSlider.slider("values", 1)+".000 VNĐ");
+    minamount.val(rangeSlider.slider("values", 0)+".000 ₫");
+    maxamount.val(rangeSlider.slider("values", 1)+".000 ₫");
 
     /*--------------------------
         Select
@@ -379,6 +384,14 @@
         clearTimeout(timeout);
         console.log("Da close");
     });
+    $('#select_sort').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
    
 
 })(jQuery);
+function radio_input(url){
+    window.location.href = url;
+}

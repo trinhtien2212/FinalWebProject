@@ -44,22 +44,88 @@
         <div class="container">
             <div class="row">
                 <select id="selectest" class="mdb-select md-form col-md-2 mx-3">
+                    <c:if test="${cat_id==0}">
                     <option value="" disabled selected>Chọn loại</option>
-                    <option>Sản phẩm khuyến mãi</option>
-                    <option>Mã khuyến mãi</option>
+                    <option value="${type_page}?cat_id=1&${url}" >Sản phẩm khuyến mãi</option>
+                    <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+                    </c:if>
+                    <c:if test="${cat_id==1}">
+                        <option value="" disabled selected>Chọn loại</option>
+                        <option value="${type_page}?cat_id=1&${url}" selected >Sản phẩm khuyến mãi</option>
+                        <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+                    </c:if>
+                    <c:if test="${cat_id==2}">
+                        <option value="" disabled selected>Chọn loại</option>
+                        <option value="${type_page}?cat_id=1&${url}" >Sản phẩm khuyến mãi</option>
+                        <option value="${type_page}?cat_id=2&${url}" selected>Mã khuyến mãi</option>
+                    </c:if>
                 </select>
                 <select class="mdb-select md-form col-md-2 mx-3">
+                    <c:if test="${sortedprice_id==0}">
                     <option value="" disabled selected>Sắp xếp</option>
-                    <option value="2">Giá Cao xuống thấp</option>
-                    <option value="2">Giá thấp xuống cao</option>
+                    <option value="${type_page}?sortedprice_id=1&${url}">Giá Cao xuống thấp</option>
+                    <option value="${type_page}?sortedprice_id=2&${url}">Giá thấp xuống cao</option>
+                    </c:if>
+                    <c:if test="${sortedprice_id==1}">
+                        <option value="" disabled selected>Sắp xếp</option>
+                        <option value="${type_page}?sortedprice_id=1&${url}" selected>Giá Cao xuống thấp</option>
+                        <option value="${type_page}?sortedprice_id=2&${url}">Giá thấp xuống cao</option>
+                    </c:if>
+                    <c:if test="${sortedprice_id==2}">
+                        <option value="" disabled selected>Sắp xếp</option>
+                        <option value="${type_page}?sortedprice_id=1&${url}">Giá Cao xuống thấp</option>
+                        <option value="${type_page}?sortedprice_id=2&${url}" selected>Giá thấp xuống cao</option>
+                    </c:if>
                 </select>
                 <select class="mdb-select md-form col-md-2 mx-3">
+                    <c:if test="${sorteddate_id==0}">
                     <option value="" disabled selected>Ngày hết hạn</option>
-                    <option value="2">Hôm nay</option>
-                    <option value="2">> 1 ngày</option>
-                    <option value="2">> 1 Tuần</option>
-                    <option value="">> nửa tháng</option>
-                    <option value="">> 1 tháng</option>
+                    <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
+                    <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                    <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
+                    <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
+                    <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
+                    </c:if>
+                    <c:if test="${sorteddate_id==1}">
+                        <option value="" disabled selected>Ngày hết hạn</option>
+                        <option value="${type_page}?sorteddate_id=1&${url}" selected>Hôm nay</option>
+                        <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
+                    </c:if>
+                    <c:if test="${sorteddate_id==2}">
+                        <option value="" disabled selected>Ngày hết hạn</option>
+                        <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?sorteddate_id=2&${url}" selected>> 1 ngày</option>
+                        <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
+                    </c:if>
+                    <c:if test="${sorteddate_id==3}">
+                        <option value="" disabled selected>Ngày hết hạn</option>
+                        <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?sorteddate_id=3&${url}" selected>> 1 Tuần</option>
+                        <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
+                    </c:if>
+                    <c:if test="${sorteddate_id==4}">
+                        <option value="" disabled selected>Ngày hết hạn</option>
+                        <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?sorteddate_id=4&${url}" selected>> nửa tháng</option>
+                        <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
+                    </c:if>
+                    <c:if test="${sorteddate_id==5}">
+                        <option value="" disabled selected>Ngày hết hạn</option>
+                        <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?sorteddate_id=5&${url}" selected> 1 tháng</option>
+                    </c:if>
                 </select>
             </div>
         </div>

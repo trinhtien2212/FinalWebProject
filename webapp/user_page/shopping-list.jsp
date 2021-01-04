@@ -200,6 +200,7 @@
                     </c:forEach>
                 </div>
                 <div class="product__pagination">
+                <div class="product__pagination">
                     <c:if test="${pages>1}">
                         <a href="${back}"><i class="fa fa-angle-left"></i></a>
                     </c:if>

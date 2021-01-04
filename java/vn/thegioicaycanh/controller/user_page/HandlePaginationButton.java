@@ -69,13 +69,13 @@ public class HandlePaginationButton extends HttpServlet {
             List<Blog> list = Blog_Con_DB.loadLimitBlog(first,last);
             System.out.println("Blog: "+list.size());
             request.setAttribute("data",list);
-        }else if(type_page.contains("shopping")){
+        }if(type_page.contains("shopping")){
             System.out.println("co vo shopping");
             List<Product> list = ProductEntity.loadProductFormSql(sql);
             System.out.println("Product:; "+list.size());
             request.setAttribute("data",list);
         }else if(type_page.contains("discount")){
-            List<CouponCode> list= Coupon_Con_DB.loadCouponCodeLimit(first,last);
+            List<CouponCode> list= Coupon_Con_DB.loadCouponCodeFormSql(sql);
         }
         request.setAttribute("first",first);
         request.setAttribute("last",last);

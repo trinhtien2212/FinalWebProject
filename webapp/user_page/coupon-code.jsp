@@ -142,10 +142,9 @@
                     <!-- Sửa featured_controls thành code_sale_controls -->
                     <div class="code_sale_controls">
                         <ul>
-                            <li class="active" id="addShow_imme" data-filter="*">
-                                Tất cả
-                            </li>
-                            <li data-filter=".code-percen">Mã giảm giá</li>
+                            <c:if test="${coupontype_id==1}">
+                            <li class="active" id="addShow_imme" data-filter="*">Tất cả</li>
+                            <li value="${type_page}?sorteddate_id=1&${url}"> data-filter=".code-percen">Mã giảm giá</li>
                             <li data-filter=".code-momo">Mã giảm giá momo</li>
                             <li data-filter=".code-freeship">Miễn phí vận chuyển</li>
                         </ul>

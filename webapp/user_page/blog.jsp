@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog</title>
+    <title>${title}</title>
 
     <%--    <c:set var="header" scope="application" value="${applicationScope.header}"></c:set>--%>
     <link href="${applicationScope.header.shortcut}" rel="shortcut icon">
@@ -43,63 +43,7 @@
 <body>
 <jsp:include page="Menu.jsp"></jsp:include>
 
-<!-- Hero Section Begin -->
-<section class="hero hero-normal">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
-                    </div>
-                    <ul>
-                        <c:forEach var="cate" items="${applicationScope.category}">
-                            <li><a href="/${cate.slug}">${cate.name}</a></li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Tên cây cảnh">
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>${applicationScope.address.get(0).phone}</h5>
-                            <span>Hỗ trợ 24/7</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Hero Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="imgs/home/bg1.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Thế Giới Cây Cảnh</h2>
-                    <div class="breadcrumb__option">
-                        <span>${title}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
+<jsp:include page="search_bar.jsp"></jsp:include>
 
 
 <!-- Blog Section Begin -->

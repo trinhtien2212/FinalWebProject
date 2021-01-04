@@ -141,7 +141,7 @@
                                 <span>Sắp xếp</span>
                                 <select id="select_sort">
                                     <c:if test="${sort_id==0}">
-                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="" disabled selected>Chọn</option>
                                         <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
                                         <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
                                         <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>

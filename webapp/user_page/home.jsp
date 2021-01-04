@@ -57,7 +57,7 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="shopping">
                                 <input type="text" placeholder="Tên cây cảnh">
                                 <button type="submit" class="site-btn">TÌM KIẾM</button>
                             </form>

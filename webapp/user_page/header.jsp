@@ -212,8 +212,8 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Tên cây cảnh">
+                        <form action="shopping">
+                            <input type="text" name="keyword" placeholder="Tên cây cảnh">
                             <button type="submit" class="site-btn">TÌM KIẾM</button>
                         </form>
                     </div>

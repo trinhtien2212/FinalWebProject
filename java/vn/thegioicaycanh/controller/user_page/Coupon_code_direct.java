@@ -41,21 +41,21 @@ public class Coupon_code_direct extends HttpServlet {
             url +="&sorteddate_id="+sorteddate_id;
             System.out.println(url);
             if(sorteddate_id==1){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) =1":" where "+sqlCondition+"  DATEDIFF (CURRENT_DATE, date_end) 1";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) =1":" where "+sqlCondition+"  DATEDIFF (date_end,CURRENT_DATE) 1";
                 System.out.println(sqlCondition);
 
             }
             else if(sorteddate_id==2){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=1":" where "+sqlCondition+"having DATEDIFF (CURRENT_DATE, date_end) >=1";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=1":" where "+sqlCondition+"having DATEDIFF (date_end,CURRENT_DATE) >=1";
             }
             else if(sorteddate_id==3){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=7":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=7 ";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=7":" where "+sqlCondition+"DATEDIFF (date_end,CURRENT_DATE) >=7 ";
             }
             else if(sorteddate_id==4){
-                sqlCondition=sqlCondition.isEmpty()?" DATEDIFF (CURRENT_DATE, date_end) >=14":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=14";
+                sqlCondition=sqlCondition.isEmpty()?" DATEDIFF (date_end,CURRENT_DATE) >=14":" where "+sqlCondition+"DATEDIFF (date_end,CURRENT_DATE) >=14";
             }
             else{
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=30":" where "+sqlCondition+"and DATEDIFF (CURRENT_DATE, date_end) >=30 ";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=30":" where "+sqlCondition+"and DATEDIFF (date_end,CURRENT_DATE) >=30 ";
             }
         }
         //sortd for price

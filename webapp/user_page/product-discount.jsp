@@ -41,78 +41,78 @@
                     <option value="">Mã khuyến mãi</option>
                 </select>
                 <select id="select_category" class="mdb-select md-form col-md-2 mx-3">
-                    <option value="" disabled selected>Danh mục</option>--%>
-                    <c:forEach var="cate" items="${applicationScope.category}">
-                        <c:if test="${cate.id==cate_id}">
-                            <option value="" selected><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>
-                        </c:if>
-                        <c:if test="${cate.id!=cate_id}">
-                            <option value=""><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>
-                        </c:if>
-                    </c:forEach>
-<%--                    <c:if test="${cate_id==0}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==1}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}" selected>Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==2}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}" selected>Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==3}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}" selected>Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==4}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}" selected>Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==5}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}" selected>Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${cate_id==6}">--%>
-<%--                        <option value="" disabled selected>Danh mục</option>--%>
-<%--                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>--%>
-<%--                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>--%>
-<%--                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>--%>
-<%--                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>--%>
-<%--                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>--%>
-<%--                        <option value="${type_page}?cate_id=6&${url}" selected>Cây ngoài trời</option>--%>
-<%--                    </c:if>--%>
+<%--                    <option value="" disabled selected>Danh mục</option>&ndash;%&gt;--%>
+<%--                    <c:forEach var="cate" items="${applicationScope.category}">--%>
+<%--                        <c:if test="${cate.id==cate_id}">--%>
+<%--                            <option value="" selected><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${cate.id!=cate_id}">--%>
+<%--                            <option value=""><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
+                    <c:if test="${cate_id==0}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==1}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}" selected>Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==2}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}" selected>Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==3}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}" selected>Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==4}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}" selected>Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==5}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}" selected>Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}">Cây ngoài trời</option>
+                    </c:if>
+                    <c:if test="${cate_id==6}">
+                        <option value="" disabled selected>Danh mục</option>
+                        <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
+                        <option value="${type_page}?cate_id=2&${url}">Cây dây leo</option>
+                        <option value="${type_page}?cate_id=3&${url}">Cây tết</option>
+                        <option value="${type_page}?cate_id=4&${url}">Cây thủy sinh</option>
+                        <option value="${type_page}?cate_id=5&${url}">Cây trong nhà</option>
+                        <option value="${type_page}?cate_id=6&${url}" selected>Cây ngoài trời</option>
+                    </c:if>
                 </select>
                 <select id="select_sort" class="mdb-select md-form col-md-2 mx-3">
                     <c:if test="${sort_id==0}">
@@ -131,54 +131,54 @@
                         <option value="${type_page}?sort_id=2&${url}" selected>Giá cao đến thấp</option>
                     </c:if>
                 </select>
-                <select id="date_end" class="mdb-select md-form col-md-2 mx-3">
-                    <c:if test="${date_end_sale==0}">
+                <select id="select_date" class="mdb-select md-form col-md-2 mx-3">
+                    <c:if test="${date_id==0}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}"> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${date_end_sale==1}">
+                    <c:if test="${date_id==1}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}" selected>Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}" selected>Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${date_end_sale==2}">
+                    <c:if test="${date_id==2}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}" selected>> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}" selected>> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${date_end_sale==3}">
+                    <c:if test="${date_id==3}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}" selected>> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}" selected>> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${date_end_sale==4}">
+                    <c:if test="${date_id==4}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}" selected>> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}" selected>> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${date_end_sale==5}">
+                    <c:if test="${date_id==5}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?date_end_sale=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?date_end_sale=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?date_end_sale=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?date_end_sale=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?date_end_sale=5&${url}" selected>> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}" selected> 1 tháng</option>
                     </c:if>
                 </select>
             </div>
@@ -200,7 +200,7 @@
                 <div class="row">
                     <c:forEach items="${data}" var="sp">
                         <c:set var="p" value="${sp.price}"></c:set>
-                        <c:set var="ps" value="${sp.price}"></c:set>
+                        <c:set var="ps" value="${sp.price_sale}"></c:set>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"

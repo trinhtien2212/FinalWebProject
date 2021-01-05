@@ -30,7 +30,7 @@ public class Coupon_code_direct extends HttpServlet {
     private void handleParameter(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         byte cat_id = 0;
         byte sortedprice_id=0;
-        byte sorteddate_id=0;
+        byte date_id=0;
         String sql="select * from coupon_code";
         String url ="";
         String sqlCondition="";
@@ -45,22 +45,22 @@ public class Coupon_code_direct extends HttpServlet {
 
         }
 
-        if(request.getParameter("sorteddate_id") !=null){
-            sorteddate_id=Byte.parseByte(request.getParameter("sorteddate_id"));
-            url +="&sorteddate_id="+sorteddate_id;
+        if(request.getParameter("date_id") !=null){
+            date_id=Byte.parseByte(request.getParameter("date_id"));
+            url +="&date_id="+date_id;
             System.out.println(url);
-            if(sorteddate_id==1){
+            if(date_id==1){
                 sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) =1":" where "+sqlCondition+"  DATEDIFF (CURRENT_DATE, date_end) 1";
                 System.out.println(sqlCondition);
 
             }
-            else if(sorteddate_id==2){
+            else if(date_id==2){
                 sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=1":" where "+sqlCondition+"having DATEDIFF (CURRENT_DATE, date_end) >=1";
             }
-            else if(sorteddate_id==3){
+            else if(date_id==3){
                 sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=7":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=7 ";
             }
-            else if(sorteddate_id==4){
+            else if(date_id==4){
                 sqlCondition=sqlCondition.isEmpty()?" DATEDIFF (CURRENT_DATE, date_end) >=14":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=14";
             }
             else{
@@ -87,13 +87,12 @@ public class Coupon_code_direct extends HttpServlet {
         System.out.println(sql+sqlCondition);
         List<CouponCode> dataCouponCode = Coupon_Con_DB.loadCouponCodeFormSql(sql+sqlCondition);
         request.setAttribute("coupon_code_data",dataCouponCode);
-
         request.setAttribute("url",url);
         System.out.println(url);
         request.setAttribute("sort_id",sortedprice_id);
         request.setAttribute("cat_id",cat_id);
         request.setAttribute("sortedprice_id",sortedprice_id);
-        request.setAttribute("sorteddate_id",sorteddate_id);
+        request.setAttribute("date_id",date_id);
 
 }
 }

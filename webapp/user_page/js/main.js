@@ -405,6 +405,16 @@
             window.location.href = $(this).val();
         });
     });
+    $('#select_category').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $('#select_date').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
 
 })(jQuery);
 function radio_input(url){

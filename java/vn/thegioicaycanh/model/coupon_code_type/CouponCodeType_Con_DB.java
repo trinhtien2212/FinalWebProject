@@ -57,6 +57,6 @@ public class CouponCodeType_Con_DB {
     }
 
     public static void main(String[] args) {
-        System.out.println(loadAllCouponCodeType());
+        System.out.println(getLinkImage(1));
     }
 }

@@ -43,16 +43,16 @@
     <div class="sticky-top">
         <div class="container">
             <div class="row">
-                <select id="selectest" class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="cat_id">
                     <c:if test="${cat_id==0}">
-                    <option value="" disabled selected>Chọn loại</option>
+                    <option data="" disabled selected>Chọn loại</option>
                     <option value="${type_page}?cat_id=1&${url}" >Sản phẩm khuyến mãi</option>
-                    <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+                    <option value="${type_page}?cat_id=2&${url}" disabled>Mã khuyến mãi</option>
                     </c:if>
                     <c:if test="${cat_id==1}">
                         <option value="" disabled selected>Chọn loại</option>
                         <option value="${type_page}?cat_id=1&${url}" selected >Sản phẩm khuyến mãi</option>
-                        <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+                        <option value="${type_page}?cat_id=2&${url}" disabled>Mã khuyến mãi</option>
                     </c:if>
                     <c:if test="${cat_id==2}">
                         <option value="" disabled selected>Chọn loại</option>
@@ -60,7 +60,7 @@
                         <option value="${type_page}?cat_id=2&${url}" selected disabled>Mã khuyến mãi</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="sortedprice_id">
                     <c:if test="${sortedprice_id==0}">
                     <option value="" disabled selected>Sắp xếp</option>
                     <option value="${type_page}?sortedprice_id=1&${url}">Giá Cao xuống thấp</option>
@@ -77,11 +77,11 @@
                         <option value="${type_page}?sortedprice_id=2&${url}" selected>Giá thấp xuống cao</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="sorteddate_id">
                     <c:if test="${sorteddate_id==0}">
                     <option value="" disabled selected>Ngày hết hạn</option>
                     <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
-                    <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                    <option value="${type_page}?sorteddate_id=2&${url}"> 1 ngày</option>
                     <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
                     <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
                     <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
@@ -200,9 +200,9 @@
                         <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img
-                                            src="${c.getLinkImage(c.getId())}"
-                                            class="card-img full-height"
+                                    <img class="card-img full-height"
+<%--                                            src="${c.getLinkImage(c.id)}"--%>
+                                                src="img/sale/coupon-code.png"
                                             alt="..."
                                     />
                                 </div>

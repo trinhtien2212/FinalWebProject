@@ -3,6 +3,8 @@ package vn.thegioicaycanh.model.coupon_code;
 import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
 import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType_Con_DB;
 
+import java.util.Date;
+
 public class CouponCode {
     private int id;
     private String name;
@@ -10,6 +12,7 @@ public class CouponCode {
     private int percent;
     private String discription;
     private String code;
+    private Date date_end;
 
     public CouponCode() {
     }
@@ -68,5 +71,13 @@ public class CouponCode {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Date getDate_end() {
+        return date_end;
+    }
+
+    public void setDate_end(Date date_end) {
+        this.date_end = date_end;
     }
 }

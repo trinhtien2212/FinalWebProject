@@ -196,8 +196,8 @@
                     <c:forEach var="c" items="${coupon_code_data}">
                     <c:set var="imgLink" value="${c.getLinkImage(c.coupon_code_type_id)}"></c:set>
                     <c:if test="${c.coupon_code_type_id==1}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-percen"></c:if>
-                    <c:if test="${c.coupon_code_type_id==2}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-momo"></c:if>
-                    <c:if test="${c.coupon_code_type_id==3}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship"></c:if>
+                    <c:if test="${c.coupon_code_type_id==2}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship"></c:if>
+                    <c:if test="${c.coupon_code_type_id==3}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-momo"></c:if>
                         <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
                             <div class="row no-gutters">
                                 <div class="col-md-4">

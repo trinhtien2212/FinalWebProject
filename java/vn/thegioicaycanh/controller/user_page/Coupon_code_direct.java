@@ -35,15 +35,6 @@ public class Coupon_code_direct extends HttpServlet {
         String url ="";
         String sqlCondition="";
 
-        //cat_id handle
-        if(request.getParameter("cat_id")!=null){
-            cat_id=Byte.parseByte(request.getParameter("cat_id"));
-            url+="&cat_id="+cat_id;
-            if(cat_id==1){
-               url="http://localhost:8080/thegioicaycanh.vn/shopping";
-            }
-
-        }
 
         if(request.getParameter("sorteddate_id") !=null){
             sorteddate_id=Byte.parseByte(request.getParameter("sorteddate_id"));
@@ -81,6 +72,15 @@ public class Coupon_code_direct extends HttpServlet {
             sqlCondition =sqlCondition.isEmpty()?"":" where "+sqlCondition;
 
             }
+        //cat_id handle
+        if(request.getParameter("cat_id")!=null){
+            cat_id=Byte.parseByte(request.getParameter("cat_id"));
+            url+="&cat_id="+cat_id;
+            if(cat_id==1){
+                response.sendRedirect("http://localhost:8080/thegioicaycanh.vn/blog.html");
+            }
+
+        }
 
 
         //Load discount thoa dieu kien

@@ -43,24 +43,25 @@
     <div class="sticky-top">
         <div class="container">
             <div class="row">
-                <select id="selectest" class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="cat_id">
                     <c:if test="${cat_id==0}">
-                    <option value="" disabled selected>Chọn loại</option>
+                    <option data="" disabled selected>Chọn loại</option>
                     <option value="${type_page}?cat_id=1&${url}" >Sản phẩm khuyến mãi</option>
-                    <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+                    <option value="${type_page}?cat_id=2&${url}" disabled>Mã khuyến mãi</option>
                     </c:if>
                     <c:if test="${cat_id==1}">
                         <option value="" disabled selected>Chọn loại</option>
-                        <option value="${type_page}?cat_id=1&${url}" selected >Sản phẩm khuyến mãi</option>
-                        <option value="${type_page}?cat_id=2&${url}">Mã khuyến mãi</option>
+<%--                        <option value="${type_page}?cat_id=1&${url}" selected >Sản phẩm khuyến mãi</option>--%>
+                        <option value="${url}" selected >Sản phẩm khuyến mãi</option>
+                        <option value="${type_page}?cat_id=2&${url}" disabled>Mã khuyến mãi</option>
                     </c:if>
                     <c:if test="${cat_id==2}">
                         <option value="" disabled selected>Chọn loại</option>
                         <option value="${type_page}?cat_id=1&${url}" >Sản phẩm khuyến mãi</option>
-                        <option value="${type_page}?cat_id=2&${url}" selected>Mã khuyến mãi</option>
+                        <option value="${type_page}?cat_id=2&${url}" selected disabled>Mã khuyến mãi</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="sortedprice_id">
                     <c:if test="${sortedprice_id==0}">
                     <option value="" disabled selected>Sắp xếp</option>
                     <option value="${type_page}?sortedprice_id=1&${url}">Giá Cao xuống thấp</option>
@@ -77,11 +78,11 @@
                         <option value="${type_page}?sortedprice_id=2&${url}" selected>Giá thấp xuống cao</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select class="mdb-select md-form col-md-2 mx-3" id="sorteddate_id">
                     <c:if test="${sorteddate_id==0}">
                     <option value="" disabled selected>Ngày hết hạn</option>
                     <option value="${type_page}?sorteddate_id=1&${url}">Hôm nay</option>
-                    <option value="${type_page}?sorteddate_id=2&${url}">> 1 ngày</option>
+                    <option value="${type_page}?sorteddate_id=2&${url}"> 1 ngày</option>
                     <option value="${type_page}?sorteddate_id=3&${url}">> 1 Tuần</option>
                     <option value="${type_page}?sorteddate_id=4&${url}">> nửa tháng</option>
                     <option value="${type_page}?sorteddate_id=5&${url}"> 1 tháng</option>
@@ -131,6 +132,45 @@
         </div>
     </div>
     <!-- Stick element -->
+<%--    <!-- Stick element -->--%>
+<%--    <div class="sticky-top">--%>
+<%--        <div class="container">--%>
+<%--            <div class="row">--%>
+<%--                <select id="selectest" class="mdb-select md-form col-md-2 mx-3">--%>
+<%--                    <option value="" disabled selected>Chọn loại</option>--%>
+<%--                    <option>Sản phẩm khuyến mãi</option>--%>
+<%--                    <option>Mã khuyến mãi</option>--%>
+<%--                </select>--%>
+<%--                <select class="mdb-select md-form col-md-2 mx-3">--%>
+<%--                    <option value="" disabled selected>Sắp xếp</option>--%>
+<%--                    <option value="2">Giá Cao xuống thấp</option>--%>
+<%--                    <option value="2">Giá thấp xuống cao</option>--%>
+<%--                </select>--%>
+<%--                <select class="mdb-select md-form col-md-2 mx-3">--%>
+<%--                    <option value="" disabled selected>Ngày hết hạn</option>--%>
+<%--                    <option value="2">Hôm nay</option>--%>
+<%--                    <option value="2">> 1 ngày</option>--%>
+<%--                    <option value="2">> 1 Tuần</option>--%>
+<%--                    <option value="">> nửa tháng</option>--%>
+<%--                    <option value="">> 1 tháng</option>--%>
+<%--                </select>--%>
+
+<%--                <!-- Search form -->--%>
+<%--&lt;%&ndash;                <form&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        class="form-inline d-flex justify-content-center md-form form-sm active-green mt-2 col-md-4 mx-3"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                >&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <input&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            class="form-control form-control-sm mr-3 w-75"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            type="text"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            placeholder="Search"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            aria-label="Search"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <i class="fa fa-search" aria-hidden="true"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                </form>&ndash;%&gt;--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <!-- Stick element -->--%>
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -142,7 +182,6 @@
                     <!-- Sửa featured_controls thành code_sale_controls -->
                     <div class="code_sale_controls">
                         <ul>
-                            <c:if test="${coupontype_id==1}">
                             <li class="active" id="addShow_imme" data-filter="*">Tất cả</li>
                             <li data-filter=".code-percen">Mã giảm giá</li>
                             <li data-filter=".code-momo">Mã giảm giá momo</li>
@@ -154,25 +193,28 @@
             <!-- Sửa featured__filter thành code_sale_filter -->
             <div class="code_sale_filter">
                 <div class="row">
-                    <c:forEach var="c" items="${jk}">
+                    <c:forEach var="c" items="${coupon_code_data}">
+                    <c:set var="imgLink" value="${c.getLinkImage(c.coupon_code_type_id)}"></c:set>
+                    <c:if test="${c.coupon_code_type_id==1}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-percen"></c:if>
+                    <c:if test="${c.coupon_code_type_id==2}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-momo"></c:if>
+                    <c:if test="${c.coupon_code_type_id==3}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship"></c:if>
+                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img class="card-img full-height"
+<%--                                            src="${c.getLinkImage(c.id)}"--%>
 
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-percen">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/coupon-code.png"
-                                            class="card-img full-height"
+                                                src="${imgLink}"
                                             alt="..."
                                     />
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body row">
                                         <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
+                                            <h5 class="card-title none-margin">Giảm ${c.percent}%</h5>
+                                            <p class="none-margin"><i>Mã: ${c.code}</i></p>
                                             <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
+                                                    ${c.name}
                                             </p>
                                             <div
                                                     class="progress progress-style none-margin"
@@ -195,531 +237,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-percen">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/coupon-code.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-percen">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/coupon-code.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-percen">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/coupon-code.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- -------------------Viet moi -->
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-momo">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/momo.jpg"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-momo">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/momo.jpg"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-momo">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/momo.jpg"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-momo">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/momo.jpg"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-momo">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/momo.jpg"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/freeship.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/freeship.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/freeship.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/freeship.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship">
-                        <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img
-                                            src="img/sale/freeship.png"
-                                            class="card-img full-height"
-                                            alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body row">
-                                        <div class="col-md-12">
-                                            <h5 class="card-title none-margin">Giảm 8%</h5>
-                                            <p class="none-margin"><i>Mã: c683y2</i></p>
-                                            <p class="card-text none-margin">
-                                                Giảm tối đa 50.000 VNĐ cho tất cả đơn hàng
-                                            </p>
-                                            <div
-                                                    class="progress progress-style none-margin"
-                                            >
-                                                <div
-                                                        class="progress-bar bg-success"
-                                                        role="progressbar"
-                                                        style="width: 25%"
-                                                        aria-valuenow="25"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100"
-                                                ></div>
-                                                <p class="text-muted">Còn 5 ngày</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-success">Lấy mã</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </c:forEach>
                 </div>
+                  </c:forEach>
             </div>
+
         </div>
     </section>
 </div>

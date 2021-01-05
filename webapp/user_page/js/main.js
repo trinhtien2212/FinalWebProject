@@ -390,12 +390,17 @@
             window.location.href = $(this).val();
         });
     });
-    $('#select_category').change( function() {
+    $('#cat_id').change( function() {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#date_end').change( function() {
+    $('#sortedprice_id').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $('#sorteddate_id').change( function() {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });

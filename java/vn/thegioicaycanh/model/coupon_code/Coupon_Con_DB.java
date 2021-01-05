@@ -18,6 +18,9 @@ public class Coupon_Con_DB {
         String sql = "SELECT * from coupon_code where coupon_code_type_id limit"+start+","+num;
         return loadCouponCodeFormSql(sql);
     }
+    public static String getImageLink(int id){
+        return Coupon_Con_DB.getImageLink(id);
+    }
     public static List<CouponCode> loadAllCouponCode(){
         String sql="SELECT * from coupon_code";
         return loadCouponCodeFormSql(sql);
@@ -50,6 +53,7 @@ public class Coupon_Con_DB {
             couponcode.setCoupon_code_type_id(resultSet.getInt(3));
             couponcode.setPercent(resultSet.getInt(4));
             couponcode.setDiscription(resultSet.getString(5));
+            couponcode.setCode(resultSet.getString(6));
             return couponcode;
 
         } catch (SQLException throwables) {

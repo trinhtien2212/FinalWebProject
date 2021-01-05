@@ -53,6 +53,7 @@ public class HandlePaginationButton extends HttpServlet {
         String type_page = (String)request.getAttribute("type_page");
 
         //lay ra tong so blog thoa dieu kien neu type_page co chua tu blog
+
         if(type_page.contains("blog")){
             sumOfItems = Blog_Con_DB.sumOfBlogs();
         }

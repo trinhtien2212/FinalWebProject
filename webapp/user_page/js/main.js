@@ -390,7 +390,21 @@
             window.location.href = $(this).val();
         });
     });
-   
+    $('#cat_id').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $('#sortedprice_id').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $('#sorteddate_id').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
 
 })(jQuery);
 function radio_input(url){

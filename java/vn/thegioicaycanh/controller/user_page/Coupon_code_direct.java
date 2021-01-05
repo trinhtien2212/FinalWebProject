@@ -16,6 +16,7 @@ public class Coupon_code_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        handleParameter(request);
         request.setAttribute("page_menu","discount");
         request.setAttribute("title","Mã giảm giá");
         request.setAttribute("coupon_code_data", Coupon_Con_DB.loadAllCouponCode());
@@ -23,9 +24,9 @@ public class Coupon_code_direct extends HttpServlet {
 
     }
     private void handleParameter(HttpServletRequest request){
-//        byte cat_id = 0;
+        byte cat_id = 0;
         byte sortedprice_id=0;
-//        byte sorteddate_id=0;
+        byte sorteddate_id=0;
         String url ="";
         String sqlCondition="";
         if(request.getParameter("sortedprice_id") !=null) {
@@ -41,6 +42,9 @@ public class Coupon_code_direct extends HttpServlet {
         }
         request.setAttribute("url",url);
         request.setAttribute("sort_id",sortedprice_id);
+        request.setAttribute("cat_id",cat_id);
+        request.setAttribute("sortedprice_id",sortedprice_id);
+        request.setAttribute("sorteddate_id",sorteddate_id);
 
 }
 }

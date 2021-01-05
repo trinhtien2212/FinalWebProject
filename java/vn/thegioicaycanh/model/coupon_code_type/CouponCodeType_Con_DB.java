@@ -14,6 +14,14 @@ public class CouponCodeType_Con_DB {
         String sql="SELECT * from coupon_code_type";
         return loadCouponCodeTypeFormSql(sql);
     }
+    public static String getLinkImage(int id){
+        for(CouponCodeType a: loadAllCouponCodeType()){
+            if(a.getId()==id){
+                return a.getAvatar();
+            }
+        }
+        return null;
+    }
     public static List<CouponCodeType> loadCouponCodeTypeFormSql(String sql){
         List<CouponCodeType>list = new ArrayList<CouponCodeType>();
         try {

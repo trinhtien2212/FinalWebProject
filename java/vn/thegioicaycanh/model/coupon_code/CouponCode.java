@@ -1,5 +1,8 @@
 package vn.thegioicaycanh.model.coupon_code;
 
+import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
+import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType_Con_DB;
+
 public class CouponCode {
     private int id;
     private String name;
@@ -9,6 +12,14 @@ public class CouponCode {
     private String code;
 
     public CouponCode() {
+    }
+    public static String getLinkImage(int id){
+        for(CouponCodeType a: CouponCodeType_Con_DB.loadAllCouponCodeType()){
+            if(a.getId()==id){
+                return a.getAvatar();
+            }
+        }
+        return null;
     }
 
     public int getId() {

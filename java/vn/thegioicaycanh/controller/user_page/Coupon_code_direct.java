@@ -18,16 +18,29 @@ public class Coupon_code_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("page_menu","discount");
         request.setAttribute("title","Mã giảm giá");
-        request.setAttribute("coupon_code_data", Coupon_Con_DB.loadCouponCodeByCoponCodeTypeID(1));
+        request.setAttribute("coupon_code_data", Coupon_Con_DB.loadAllCouponCode());
         request.getRequestDispatcher("user_page/coupon-code.jsp").forward(request,response);
+
     }
     private void handleParameter(HttpServletRequest request){
-        byte cat_id = 0;
+//        byte cat_id = 0;
         byte sortedprice_id=0;
-        byte sorteddate_id=0;
+//        byte sorteddate_id=0;
         String url ="";
         String sqlCondition="";
-        if(request.getParameter("cat_id") !=null) {
-    }
+        if(request.getParameter("sortedprice_id") !=null) {
+           sortedprice_id=Byte.parseByte(request.getParameter("sortedprice_id"));
+            url +="&sortedprice_id="+sortedprice_id;
+            if(sortedprice_id ==1 ){
+                sqlCondition =sqlCondition.isEmpty()?" order by percent desc":" where "+sqlCondition+" order by percent desc";
+            }else{
+                sqlCondition =sqlCondition.isEmpty()?" order by percent asc":" where "+sqlCondition+" order by percent asc";
+            }
+      } else{
+            sqlCondition =sqlCondition.isEmpty()?"":" where "+sqlCondition;
+        }
+        request.setAttribute("url",url);
+        request.setAttribute("sort_id",sortedprice_id);
+
 }
 }

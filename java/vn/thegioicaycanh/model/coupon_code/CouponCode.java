@@ -17,13 +17,9 @@ public class CouponCode {
     public CouponCode() {
     }
     public static String getLinkImage(int id){
-        for(CouponCodeType a: CouponCodeType_Con_DB.loadAllCouponCodeType()){
-            if(a.getId()==id){
-                return a.getAvatar();
-            }
+        return CouponCodeType_Con_DB.getLinkImageFromCouponType(id);
         }
-        return null;
-    }
+
 
     public int getId() {
         return id;
@@ -79,5 +75,9 @@ public class CouponCode {
 
     public void setDate_end(Date date_end) {
         this.date_end = date_end;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getLinkImage(3));
     }
 }

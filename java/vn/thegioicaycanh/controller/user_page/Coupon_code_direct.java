@@ -38,9 +38,9 @@ public class Coupon_code_direct extends HttpServlet {
         //cat_id handle
         if(request.getParameter("cat_id")!=null){
             cat_id=Byte.parseByte(request.getParameter("cat_id"));
-            url+="&cat_id"+cat_id;
+            url+="&cat_id="+cat_id;
             if(cat_id==1){
-                request.getRequestDispatcher("user_page/coupon-code.jsp").forward(request,response);
+               url="http://localhost:8080/thegioicaycanh.vn/shopping";
             }
 
         }
@@ -50,7 +50,7 @@ public class Coupon_code_direct extends HttpServlet {
             url +="&sorteddate_id="+sorteddate_id;
             System.out.println(url);
             if(sorteddate_id==1){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) =1":" where "+sqlCondition+"  DATEDIFF (CURRENT_DATE, date_end) =1";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) =1":" where "+sqlCondition+"  DATEDIFF (CURRENT_DATE, date_end) 1";
                 System.out.println(sqlCondition);
 
             }

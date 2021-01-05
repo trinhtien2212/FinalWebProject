@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.controller.user_page;
 
+import vn.thegioicaycanh.model.coupon_code.CouponCode;
 import vn.thegioicaycanh.model.coupon_code.Coupon_Con_DB;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/coupon_code")
 public class Coupon_code_direct extends HttpServlet {
@@ -27,6 +29,7 @@ public class Coupon_code_direct extends HttpServlet {
         byte cat_id = 0;
         byte sortedprice_id=0;
         byte sorteddate_id=0;
+        String sql="select * from coupon_code";
         String url ="";
         String sqlCondition="";
         if(request.getParameter("sortedprice_id") !=null) {
@@ -40,6 +43,10 @@ public class Coupon_code_direct extends HttpServlet {
       } else{
             sqlCondition =sqlCondition.isEmpty()?"":" where "+sqlCondition;
         }
+        //Load discount thoa dieu kien
+        List<CouponCode> dataCouponCode = Coupon_Con_DB.loadCouponCodeFormSql(sql+sqlCondition);
+        request.setAttribute("coupon_code_data",dataCouponCode);
+
         request.setAttribute("url",url);
         request.setAttribute("sort_id",sortedprice_id);
         request.setAttribute("cat_id",cat_id);

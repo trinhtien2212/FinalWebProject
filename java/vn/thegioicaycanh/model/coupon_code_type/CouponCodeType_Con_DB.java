@@ -17,12 +17,11 @@ public class CouponCodeType_Con_DB {
     public static String getLinkImageFromCouponType(int id){
         String sql="SELECT * FROM coupon_code_type WHERE ID ="+id;
         for(CouponCodeType a: loadCouponCodeTypeFormSql(sql)){
-            if(a.getId()==id){
                 return a.getAvatar();
             }
-        }
         return null;
-    }
+        }
+
     public static List<CouponCodeType> loadCouponCodeTypeFormSql(String sql){
         List<CouponCodeType>list = new ArrayList<CouponCodeType>();
         try {

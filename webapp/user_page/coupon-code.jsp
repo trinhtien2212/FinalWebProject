@@ -176,8 +176,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <img src="img/sale/flash.gif" alt="flash sale" />
-                        <img src="img/sale/giamSoc.png" alt="gia soc" />
+                            <c:set var="imgSale" value="imgs/couponcode/flash.gif"></c:set>
+                            <c:set var="imgGiamsoc" value="imgs/couponcode/giaSoc.png"></c:set>
+                        <img alt="flash sale" src="imgs/couponcode/flash.gif" />
+                        <img alt="gia soc" src="imgs/couponcode/giaSoc.png" />
                     </div>
                     <!-- Sửa featured_controls thành code_sale_controls -->
                     <div class="code_sale_controls">
@@ -196,8 +198,8 @@
                     <c:forEach var="c" items="${coupon_code_data}">
                     <c:set var="imgLink" value="${c.getLinkImage(c.coupon_code_type_id)}"></c:set>
                     <c:if test="${c.coupon_code_type_id==1}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-percen"></c:if>
-                    <c:if test="${c.coupon_code_type_id==2}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-momo"></c:if>
-                    <c:if test="${c.coupon_code_type_id==3}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship"></c:if>
+                    <c:if test="${c.coupon_code_type_id==2}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-freeship"></c:if>
+                    <c:if test="${c.coupon_code_type_id==3}"><div class="col-lg-6 col-md-12 col-sm-12 mix code-momo"></c:if>
                         <div class="card mb-3 bg-ligh mx-2" style="max-width: 540px">
                             <div class="row no-gutters">
                                 <div class="col-md-4">

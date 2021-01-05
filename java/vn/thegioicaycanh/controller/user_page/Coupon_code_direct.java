@@ -30,41 +30,32 @@ public class Coupon_code_direct extends HttpServlet {
     private void handleParameter(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         byte cat_id = 0;
         byte sortedprice_id=0;
-        byte date_id=0;
+        byte sorteddate_id=0;
         String sql="select * from coupon_code";
         String url ="";
         String sqlCondition="";
 
-        //cat_id handle
-        if(request.getParameter("cat_id")!=null){
-            cat_id=Byte.parseByte(request.getParameter("cat_id"));
-            url+="&cat_id="+cat_id;
-            if(cat_id==1){
-               url="http://localhost:8080/thegioicaycanh.vn/shopping";
-            }
 
-        }
-
-        if(request.getParameter("date_id") !=null){
-            date_id=Byte.parseByte(request.getParameter("date_id"));
-            url +="&date_id="+date_id;
+        if(request.getParameter("sorteddate_id") !=null){
+            sorteddate_id=Byte.parseByte(request.getParameter("sorteddate_id"));
+            url +="&date_id="+sorteddate_id;
             System.out.println(url);
-            if(date_id==1){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) =1":" where "+sqlCondition+"  DATEDIFF (CURRENT_DATE, date_end) 1";
+            if(sorteddate_id==1){
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) =0":" where "+sqlCondition+"  DATEDIFF (date_end,CURRENT_DATE) 1";
                 System.out.println(sqlCondition);
 
             }
-            else if(date_id==2){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=1":" where "+sqlCondition+"having DATEDIFF (CURRENT_DATE, date_end) >=1";
+            else if(sorteddate_id==2){
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=1":" where "+sqlCondition+"having DATEDIFF (date_end,CURRENT_DATE) >=1";
             }
-            else if(date_id==3){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=7":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=7 ";
+            else if(sorteddate_id==3){
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=7":" where "+sqlCondition+"DATEDIFF (date_end,CURRENT_DATE) >=7 ";
             }
-            else if(date_id==4){
-                sqlCondition=sqlCondition.isEmpty()?" DATEDIFF (CURRENT_DATE, date_end) >=14":" where "+sqlCondition+"DATEDIFF (CURRENT_DATE, date_end) >=14";
+            else if(sorteddate_id==4){
+                sqlCondition=sqlCondition.isEmpty()?" DATEDIFF (date_end,CURRENT_DATE) >=14":" where "+sqlCondition+"DATEDIFF (date_end,CURRENT_DATE) >=14";
             }
             else{
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (CURRENT_DATE, date_end) >=30":" where "+sqlCondition+"and DATEDIFF (CURRENT_DATE, date_end) >=30 ";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) >=30":" where "+sqlCondition+"and DATEDIFF (date_end,CURRENT_DATE) >=30 ";
             }
         }
         //sortd for price
@@ -81,6 +72,15 @@ public class Coupon_code_direct extends HttpServlet {
             sqlCondition =sqlCondition.isEmpty()?"":" where "+sqlCondition;
 
             }
+        //cat_id handle
+        if(request.getParameter("cat_id")!=null){
+            cat_id=Byte.parseByte(request.getParameter("cat_id"));
+            url+="&cat_id="+cat_id;
+            if(cat_id==1){
+                response.sendRedirect("http://localhost:8080/thegioicaycanh.vn/blog.html");
+            }
+
+        }
 
 
         //Load discount thoa dieu kien
@@ -92,7 +92,7 @@ public class Coupon_code_direct extends HttpServlet {
         request.setAttribute("sort_id",sortedprice_id);
         request.setAttribute("cat_id",cat_id);
         request.setAttribute("sortedprice_id",sortedprice_id);
-        request.setAttribute("date_id",date_id);
+        request.setAttribute("sorteddate_id",sorteddate_id);
 
 }
 }

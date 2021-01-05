@@ -176,8 +176,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <img src="img/sale/flash.gif" alt="flash sale" />
-                        <img src="img/sale/giamSoc.png" alt="gia soc" />
+                            <c:set var="imgSale" value="img/sale/flash.gif"></c:set>
+                            <c:set var="imgGiamsoc" value="img/sale/giamSoc.png"></c:set>
+                        <img src="${imgSale}" alt="flash sale" />
+                        <img src=""${imgGiamsoc}"" alt="gia soc" />
                     </div>
                     <!-- Sửa featured_controls thành code_sale_controls -->
                     <div class="code_sale_controls">

@@ -41,7 +41,7 @@ public class Coupon_code_direct extends HttpServlet {
             url +="&sorteddate_id="+sorteddate_id;
             System.out.println(url);
             if(sorteddate_id==1){
-                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) =1":" where "+sqlCondition+"  DATEDIFF (date_end,CURRENT_DATE) 1";
+                sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) =0":" where "+sqlCondition+"  DATEDIFF (date_end,CURRENT_DATE) 1";
                 System.out.println(sqlCondition);
 
             }

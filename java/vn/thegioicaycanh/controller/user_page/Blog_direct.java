@@ -21,13 +21,31 @@ public class Blog_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
+        int pages =0;
+        handleParameter(request);
+        if(request.getParameter("pages") != null);
+        pages = Integer.parseInt(request.getParameter("pages"));
+        request.setAttribute("pages",pages);
+        request.setAttribute("type_page","shopping-grid");
+        request.setAttribute("numOfItemLoad",10);
+        request.setAttribute("direct_to","user_page/blog.jsp");
+        request.setAttribute("sql","select * from blog limit ");
+        request.setAttribute("countsql","select count(*) from blog");
         request.setAttribute("page_menu","blog");
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
-        request.setAttribute("blog_data", Blog_Con_DB.loadLimitBlog(1,10));
+//        request.setAttribute("blog_data", Blog_Con_DB.loadLimitBlog(1,10));
         request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));
-        request.getRequestDispatcher("user_page/blog.jsp").forward(request,response);
+        request.getRequestDispatcher("handlePagination").forward(request,response);
 
+    }
+    private void handleParameter(HttpServletRequest request){
+        String url ="";
+        String sql="select * from blog";
+        int pages = 1;
+        request.setAttribute("type_page","blog");
+        request.setAttribute("url",url);
+        request.setAttribute("pages",pages);
     }
     protected void initAttr(){
         ServletContext context = getServletContext();

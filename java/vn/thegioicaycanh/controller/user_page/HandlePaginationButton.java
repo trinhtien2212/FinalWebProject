@@ -56,6 +56,7 @@ public class HandlePaginationButton extends HttpServlet {
 
         if(type_page.contains("blog")){
             sumOfItems = Blog_Con_DB.sumOfBlogs();
+            System.out.println("sumOfItém"+sumOfItems);
         }
         //lay ra tong so product thoa dieu kien neu type_page co chua tu shopping
         else if(type_page.contains("shopping")){

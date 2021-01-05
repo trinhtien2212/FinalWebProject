@@ -123,29 +123,21 @@
                         </div>
                     </div>
                     </c:forEach>
-                    <%
-                        int first = 0, last = 0, pages = 1;
-
-                        if (request.getParameter("pages") != null) {
-                            pages = (int) Integer.parseInt(request.getParameter("pages"));
-                        }
-                        int total= Blog_Con_DB.getCount();
-                        if (total <= 10) {
-                            first = 0;
-                            last = total;
-                        } else {
-                            first = (pages - 1) * 10;
-                            last = 10;
-                        }
-
-
-                    %>
                     <div class="col-lg-12" action="pages">
                         <div class="product__pagination blog__pagination" >
-                            <a href="#" name="pages">1</a>
-                            <a href="#" name="pages">2</a>
-                            <a href="#" name="pages">3</a>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <c:if test="${pages>1}">
+                                <a href="${back}"><i class="fa fa-angle-left"></i></a>
+                            </c:if>
+                            <c:forEach var="i" begin="${start}" end="${end}">
+                                <c:if test="${pages==i}"><a href="${type_page}?pages=${i}${url}" class="set_choose">${i}</a></c:if>
+                                <c:if test="${pages!=i}"><a href="${type_page}?pages=${i}${url}">${i}</a></c:if>
+                            </c:forEach>
+                            <c:if test="${isStill==true}"><a class="noneHover" href="">...</a></c:if>
+                            <c:if test="${pages!=end}">
+                                <a href="${next}">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </c:if>
                         </div>
                     </div>
                 </div>

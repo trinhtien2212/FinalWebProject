@@ -178,8 +178,8 @@
                     <div class="section-title">
                             <c:set var="imgSale" value="imgs/couponcode/flash.gif"></c:set>
                             <c:set var="imgGiamsoc" value="imgs/couponcode/giaSoc.png"></c:set>
-                        <img src="imgs/couponcode/flash.gif" alt="flash sale" />
-                        <img src="imgs/couponcode/giaSoc.png" alt="gia soc" />
+                        <img alt="flash sale" src="imgs/couponcode/flash.gif" />
+                        <img alt="gia soc" src="imgs/couponcode/giaSoc.png" />
                     </div>
                     <!-- Sửa featured_controls thành code_sale_controls -->
                     <div class="code_sale_controls">

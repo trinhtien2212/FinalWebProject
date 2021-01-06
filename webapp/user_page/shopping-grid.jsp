@@ -28,7 +28,7 @@
 <jsp:include page="Menu.jsp"></jsp:include>
 
 <jsp:include page="search_bar.jsp"></jsp:include>
-<!-- Breadcrumb Section End -->
+
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">

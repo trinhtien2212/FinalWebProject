@@ -22,7 +22,6 @@ public class Shopping_Grid_Direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int pages =0;
         if(request.getParameter("pages") != null);
             pages = Integer.parseInt(request.getParameter("pages"));

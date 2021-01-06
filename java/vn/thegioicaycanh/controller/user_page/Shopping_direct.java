@@ -29,10 +29,8 @@ public class Shopping_direct extends HttpServlet {
         request.setAttribute("title","Mua sắm");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros",ProductEntity.loadNewProducts(9));
-
         List<Product> np = (List<Product>)request.getAttribute("new_pros");
         System.out.println(np.size());
-
         request.getRequestDispatcher("handlePagination").forward(request,response);
     }
 
@@ -208,10 +206,5 @@ public class Shopping_direct extends HttpServlet {
         //setAttribute gia tien lon nhat va nho nhat cua san pham trong database
         request.setAttribute("max_price",max_price);
         request.setAttribute("min_price",min_price);
-
-
-
-
     }
-
 }

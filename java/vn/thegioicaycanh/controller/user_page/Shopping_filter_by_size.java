@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/${Entity-Name}")
+@WebServlet(urlPatterns = "/filter-size")
 public class Shopping_filter_by_size extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -21,7 +21,7 @@ public class Shopping_filter_by_size extends HttpServlet {
         request.setAttribute("title","Mua sắm");
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("new_pros", ProductEntity.loadNewProducts(9));
-        request.setAttribute("shop_list",ProductEntity.filterProductBySize(1,1,9));
+        request.setAttribute("shop_list",ProductEntity.filterProductBySize(2,1,9));
         request.getRequestDispatcher("user_page/shopping-list.jsp").forward(request,response);
     }
 }

@@ -5139,3 +5139,13 @@ i{
 .invisible_url{
   display: none !important;
 }
+.visible{
+  display: inline-block;
+}
+.notice{
+  color: red;
+}
+.user_avatar{
+  height: 30px;
+  border-radius: 45px;
+}

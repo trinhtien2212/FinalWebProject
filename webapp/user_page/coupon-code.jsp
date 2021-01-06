@@ -161,7 +161,7 @@
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <img
-                                            src="img/sale/coupon-code.png"
+                                            src="../imgs/coupon_code_type/coupon-code.png"
                                             class="card-img full-height"
                                             alt="..."
                                     />
@@ -201,7 +201,7 @@
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <img
-                                            src="img/sale/coupon-code.png"
+                                            src="../imgs/coupon_code_type/coupon-code.png"
                                             class="card-img full-height"
                                             alt="..."
                                     />
@@ -241,7 +241,7 @@
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <img
-                                            src="img/sale/coupon-code.png"
+                                            src="../imgs/coupon_code_type/coupon-code.png"
                                             class="card-img full-height"
                                             alt="..."
                                     />
@@ -281,7 +281,7 @@
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <img
-                                            src="img/sale/coupon-code.png"
+                                            src="../imgs/coupon_code_type/coupon-code.png"
                                             class="card-img full-height"
                                             alt="..."
                                     />

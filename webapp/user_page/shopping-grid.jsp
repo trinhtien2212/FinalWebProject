@@ -1,12 +1,5 @@
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
-<%@ page import="vn.thegioicaycanh.model.home_page.Home_page" %>
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
-<%@ page import="vn.thegioicaycanh.model.header_footer.Category" %>
-<%@ page import="java.util.List" %>
-<%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %>
-<%@ page import="vn.thegioicaycanh.model.blog.Blog_Con_DB" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>

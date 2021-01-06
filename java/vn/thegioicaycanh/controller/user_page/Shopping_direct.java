@@ -75,9 +75,9 @@ public class Shopping_direct extends HttpServlet {
             request.setAttribute("resultSearch",resultSearch);
             request.setAttribute("keyword",keyword);
         }
+        System.out.println(keyword);
 
         //Phan xu li chung cua trang shopping
-        System.out.println(keyword);
 
         //Load gia tien lon nhat cua san pham co trong database
         int max_price = ProductEntity.loadMax_MinPrice("select max(price) from product")/1000;

@@ -28,6 +28,6 @@ public class Coupon_code_direct extends HttpServlet {
         String url ="";
         String sqlCondition="";
         if(request.getParameter("cat_id") !=null) {
+        }
     }
-}
 }

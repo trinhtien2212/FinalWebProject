@@ -13,7 +13,7 @@ public class tempTest {
 //        System.out.println(discounts.size());
         String email ="nhatthy1224@gmail.com";
         int id = 5;
-        String password ="123456789";
+        String password ="123456789T";
         System.out.println(id*email.hashCode()*password.hashCode());
     }
 }

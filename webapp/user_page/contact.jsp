@@ -25,63 +25,7 @@
 <body>
 <jsp:include page="Menu.jsp"></jsp:include>
 
-<!-- Hero Section Begin -->
-<section class="hero hero-normal">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
-                    </div>
-                    <ul>
-                        <c:forEach var="cate" items="${applicationScope.category}">
-                            <li><a href="/${cate.slug}">${cate.name}</a></li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Tên cây cảnh">
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>${applicationScope.address.get(0).phone}</h5>
-                            <span>Hỗ trợ 24/7</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Hero Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="imgs/home/bg1.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Thế Giới Cây Cảnh</h2>
-                    <div class="breadcrumb__option">
-                        <span>${title}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
+<jsp:include page="search_bar.jsp"></jsp:include>
 
     <!-- Contact Section Begin -->
     <section class="contact spad">
@@ -91,28 +35,28 @@
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
                         <h4>Liên hệ</h4>
-                        <p>+01-3-8888-6868</p>
+                        <p>+${applicationScope.address.get(0).phone}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Địa chỉ</h4>
-                        <p>Quận Thủ Đức,TP.HCM</p>
+                        <p>${applicationScope.address.get(0).address}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Giờ mở cửa</h4>
-                        <p>07:00 am đến 2:00 pm</p>
+                        <p>${applicationScope.address.get(0).timeOpen}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>thegioicaycanhNLU@gmail.com</p>
+                        <p>${applicationScope.address.get(0).email}</p>
                     </div>
                 </div>
             </div>

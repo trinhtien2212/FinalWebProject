@@ -36,18 +36,20 @@
         <div class="container">
             <div class="row">
                 <select id="selectest" class="mdb-select md-form col-md-2 mx-3">
-                    <c:if test="${type_view==1}">
-                        <option value="" disabled selected>Chọn loại</option>
-                        <option value="${type_page}?type_view=1&${url}" selected>Sản phẩm khuyến mãi</option>
-                        <option value="${type_page}?type_view=1&${url}">Mã khuyến mãi</option>
-                    </c:if>
-                    <c:if test="${type_view==2}">
-                        <option value="" disabled selected>Chọn loại</option>
-                        <option value="${type_page}?type_view=1&${url}">Sản phẩm khuyến mãi</option>
-                        <option value="${type_page}?type_view=1&${url}" selected>Mã khuyến mãi</option>
-                    </c:if>
+                    <option value="" disabled>Chọn loại</option>
+                    <option value="" disabled selected>Sản phẩm khuyến mãi</option>
+                    <option value="">Mã khuyến mãi</option>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select id="select_category" class="mdb-select md-form col-md-2 mx-3">
+<%--                    <option value="" disabled selected>Danh mục</option>&ndash;%&gt;--%>
+<%--                    <c:forEach var="cate" items="${applicationScope.category}">--%>
+<%--                        <c:if test="${cate.id==cate_id}">--%>
+<%--                            <option value="" selected><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${cate.id!=cate_id}">--%>
+<%--                            <option value=""><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
                     <c:if test="${cate_id==0}">
                         <option value="" disabled selected>Danh mục</option>
                         <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>
@@ -112,7 +114,7 @@
                         <option value="${type_page}?cate_id=6&${url}" selected>Cây ngoài trời</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
+                <select id="select_sort" class="mdb-select md-form col-md-2 mx-3">
                     <c:if test="${sort_id==0}">
                         <option value="" disabled selected>Sắp xếp</option>
                         <option value="${type_page}?sort_id=1&${url}">Giá thấp đến cao</option>
@@ -129,54 +131,54 @@
                         <option value="${type_page}?sort_id=2&${url}" selected>Giá cao đến thấp</option>
                     </c:if>
                 </select>
-                <select class="mdb-select md-form col-md-2 mx-3">
-                    <c:if test="${filter_date==0}">
+                <select id="select_date" class="mdb-select md-form col-md-2 mx-3">
+                    <c:if test="${date_id==0}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}"> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${filter_date==1}">
+                    <c:if test="${date_id==1}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}" selected>Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}" selected>Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${filter_date==2}">
+                    <c:if test="${date_id==2}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}" selected>> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}" selected>> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${filter_date==3}">
+                    <c:if test="${date_id==3}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}" selected>> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}" selected>> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${filter_date==4}">
+                    <c:if test="${date_id==4}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}" selected>> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}">> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}" selected>> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}"> 1 tháng</option>
                     </c:if>
-                    <c:if test="${filter_date==5}">
+                    <c:if test="${date_id==5}">
                         <option value="" disabled selected>Ngày hết hạn</option>
-                        <option value="${type_page}?filter_date=1&${url}">Hôm nay</option>
-                        <option value="${type_page}?filter_date=2&${url}">> 1 ngày</option>
-                        <option value="${type_page}?filter_date=3&${url}">> 1 tuần</option>
-                        <option value="${type_page}?filter_date=4&${url}">> nửa tháng</option>
-                        <option value="${type_page}?filter_date=5&${url}" selected>> 1 tháng</option>
+                        <option value="${type_page}?date_id=1&${url}">Hôm nay</option>
+                        <option value="${type_page}?date_id=2&${url}">> 1 ngày</option>
+                        <option value="${type_page}?date_id=3&${url}">> 1 Tuần</option>
+                        <option value="${type_page}?date_id=4&${url}">> nửa tháng</option>
+                        <option value="${type_page}?date_id=5&${url}" selected> 1 tháng</option>
                     </c:if>
                 </select>
             </div>
@@ -188,8 +190,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <img src="img/sale/flash.gif" alt="flash sale" />
-                        <img src="img/sale/giamSoc.png" alt="gia soc" />
+                        <img src="user_page/img/sale/flash.gif" alt="flash sale" />
+                        <img src="user_page/img/sale/giamSoc.png" alt="gia soc" />
                     </div>
                 </div>
             </div>
@@ -198,11 +200,11 @@
                 <div class="row">
                     <c:forEach items="${data}" var="sp">
                         <c:set var="p" value="${sp.price}"></c:set>
-                        <c:set var="ps" value="${sp.price}"></c:set>
+                        <c:set var="ps" value="${sp.price_sale}"></c:set>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
-                                 data-setbg="img/sale/cay-de-vuong-van-phong.jpg">
+                                 data-setbg="${sp.img}">
                                 <div class="product__discount__percent">-${sp.percent_sale}%</div>
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-money"></i></a></li>
@@ -211,7 +213,6 @@
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
-                                <span>Cây trong nhà</span>
                                 <h5><a href="#">${sp.name}</a></h5>
                                 <div class="product__item__price"><%= Util.formatCurrency((double)pageContext.getAttribute("ps")) %> <span><%= Util.formatCurrency((double)pageContext.getAttribute("p")) %></span></div>
                             </div>
@@ -219,7 +220,7 @@
                     </div>
                     </c:forEach>
                 </div>
-                <div class="product__pagination">
+                <div class="product__pagination" style="margin: auto; margin-top:50px">
                     <c:if test="${pages>1}">
                         <a href="${back}"><i class="fa fa-angle-left"></i></a>
                     </c:if>

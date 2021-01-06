@@ -38,7 +38,7 @@ public class Coupon_code_direct extends HttpServlet {
 
         if(request.getParameter("sorteddate_id") !=null){
             sorteddate_id=Byte.parseByte(request.getParameter("sorteddate_id"));
-            url +="&sorteddate_id="+sorteddate_id;
+            url +="&date_id="+sorteddate_id;
             System.out.println(url);
             if(sorteddate_id==1){
                 sqlCondition=sqlCondition.isEmpty()?"  DATEDIFF (date_end,CURRENT_DATE) =0":" where "+sqlCondition+"  DATEDIFF (date_end,CURRENT_DATE) 1";
@@ -87,7 +87,6 @@ public class Coupon_code_direct extends HttpServlet {
         System.out.println(sql+sqlCondition);
         List<CouponCode> dataCouponCode = Coupon_Con_DB.loadCouponCodeFormSql(sql+sqlCondition);
         request.setAttribute("coupon_code_data",dataCouponCode);
-
         request.setAttribute("url",url);
         System.out.println(url);
         request.setAttribute("sort_id",sortedprice_id);

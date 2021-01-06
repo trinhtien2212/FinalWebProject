@@ -30,66 +30,62 @@ public class Product_discount_direct extends HttpServlet {
 
     private void handleParameter(HttpServletRequest request) {
         int pages = 1;
-        byte cate_id = 0;
-        byte type_view = 1;
-        byte sort_id = 0;
-        byte filter_date = 0;
+        byte cate_id = 0; // danh muc
+        byte date_id = 0; // ngay het han
+        byte sort_id = 0; // sap xep
         String url ="";
-        String sqlCondition=" where is_sale=1 ";
+        String sqlCondition="";
         if(request.getParameter("pages") != null) {
             pages = Integer.parseInt(request.getParameter("pages"));
         }
         if(request.getParameter("cate_id") != null) {
             cate_id = Byte.parseByte(request.getParameter("cate_id"));
-            sqlCondition +=sqlCondition.isEmpty()?" category_id="+cate_id:" and category_id="+cate_id;
+            sqlCondition += " and category_id="+cate_id;
             url +="&cate_id="+cate_id;
         }
-        if(request.getParameter("type_view") != null) {
-            type_view = Byte.parseByte(request.getParameter("type_view"));
-            url +="&type_view="+type_view;
+        if(request.getParameter("date_id") !=null){
+            date_id=Byte.parseByte(request.getParameter("date_id"));
+            url +="&date_id="+date_id;
+            System.out.println(url);
+            if(date_id==1){
+                sqlCondition=sqlCondition+" and date_end_sale = CURRENT_DATE";
+                System.out.println(sqlCondition);
+            }
+            else if(date_id==2){
+                sqlCondition=sqlCondition+" and date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY)";
+            }
+            else if(date_id==3){
+                sqlCondition=sqlCondition+" and date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 14 DAY)";
+            }
+            else if(date_id==4){
+                sqlCondition=sqlCondition+" and date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)";
+            }
+            else{
+                sqlCondition=sqlCondition+" and date_end_sale > DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)";
+            }
         }
         if(request.getParameter("sort_id") !=null) {
             sort_id = Byte.parseByte(request.getParameter("sort_id"));
             url +="&sort_id="+sort_id;
             if(sort_id ==1){
-                sqlCondition =sqlCondition.isEmpty()?" order by price asc":" where "+sqlCondition+" order by price asc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price asc";
             }else{
-                sqlCondition =sqlCondition.isEmpty()?" order by price desc":" where "+sqlCondition+" order by price desc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price desc";
             }
         }else{
-            sqlCondition =sqlCondition.isEmpty()?"":" where "+sqlCondition;
+            sqlCondition =" where is_sale=1 "+sqlCondition;
         }
-        if(request.getParameter("filter_date") != null){
-            filter_date = Byte.parseByte(request.getParameter("filter_date"));
-            url += "&filter_date="+filter_date;
-            if(filter_date == 1){   // date_end_sale is today
-                sqlCondition = sqlCondition.isEmpty()?" date_end_sale = CURRENT_DATE order by date_end_sale asc" : " where "+sqlCondition+ " date_end_sale = CURRENT_DATE order by date_end_sale asc";
-            }else if(filter_date == 2){     // date_end_sale <= 1 week
-                sqlCondition = sqlCondition.isEmpty()?" date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY) order by date_end_sale asc" : " where "+sqlCondition+ " date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY) order by date_end_sale asc";
-            }else if(filter_date == 3){    // date_end_sale <= 1/2 month
-                sqlCondition = sqlCondition.isEmpty()?" date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 15 DAY) order by date_end_sale asc" : " where "+sqlCondition+ " date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 15 DAY) order by date_end_sale asc";
-            }else if(filter_date == 4) { // date_end_sale <= 1 month
-                sqlCondition = sqlCondition.isEmpty()?" date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY) order by date_end_sale asc" : " where "+sqlCondition+ " date_end_sale <= DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY) order by date_end_sale asc";
-            }else{
-                sqlCondition = sqlCondition.isEmpty()?" date_end_sale > DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY) order by date_end_sale asc" : " where "+sqlCondition+ " date_end_sale > DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY) order by date_end_sale asc";
-            }
-        }
+        // set Attribute cho request
         request.setAttribute("pages",pages);
-        request.setAttribute("type_page","shopping");
+        request.setAttribute("type_page","shopping-sale");
         request.setAttribute("cate_id",cate_id);
-        request.setAttribute("type_view",type_view);
         request.setAttribute("sort_id",sort_id);
-        request.setAttribute("filter_date", filter_date);
+        request.setAttribute("date_id", date_id);
         request.setAttribute("url",url);
-        if(type_view == 1){
-            request.setAttribute("numOfItemLoad",18);
-            request.setAttribute("direct_to","user_page/product-discount.jsp");
-        }else if(type_view == 2){
-            request.setAttribute("numOfItemLoad",10);
-            request.setAttribute("direct_to","user_page/coupon-code.jsp");
-        }
-        request.setAttribute("sql","select * from product "+sqlCondition+" limit ");
-//        request.setAttribute("sumOfItems_sql","select count(*) from product "+sqlCondition);
+        request.setAttribute("numOfItemLoad",20);
+        request.setAttribute("direct_to","user_page/product-discount.jsp");
+        request.setAttribute("sql","select * from product "+sqlCondition);
+        request.setAttribute("sumOfItems_sql","select count(*) from product "+sqlCondition);
 
     }
 }

@@ -41,7 +41,6 @@ public class HandlePaginationButton extends HttpServlet {
         int pages=1;
         if(request.getAttribute("pages") !=null){
             pages = (int)request.getAttribute("pages");
-            System.out.println("Gia tri pages hien tai:"+pages);
         }
 
 
@@ -118,28 +117,10 @@ public class HandlePaginationButton extends HttpServlet {
         //load danh sach cac blog thoa dieu kien
         if(type_page.contains("blog")){
             System.out.println("co vo blog");
-            List<Blog> list = Blog_Con_DB.loadBlogFormSql(sql);
+            List<Blog> list = Blog_Con_DB.loadLimitBlog(first,last);
             System.out.println("Blog: "+list.size());
             request.setAttribute("data",list);
             System.out.println(list);
-            if(finalProduct !=null){
-
-                //tu san pham thu first lay ra last san pham
-                //ham subList(indexFrom,toIndex): copy tu san pham thu indexFrom den san pham thu toIndex
-                //neu first+last>size(): tuc la toIndex vuot gioi han thi chi lay duoc tu san pham thu indexFrom den size()
-                //nguoc lai lay tu san pham thu indexFrom den san pham thu first+last
-                finalBlog = finalBlog.subList(first,(first+last)>finalBlog.size()?finalBlog.size():(first+last));
-                request.setAttribute("data",finalBlog);
-            }
-            //Phan nay danh cho request khong co parameter search
-            else {
-                System.out.println("co vo blog");
-
-                //loc ra san pham thoa dieu kien tu cau sql
-                List<Blog> listb = Blog_Con_DB.loadBlogFormSql(sql);
-                System.out.println("Blogs: " + listb.size());
-                request.setAttribute("data", listb);
-            }
         }
         //load danh sach cac product thoa dieu kien
         else if(type_page.contains("shopping")){
@@ -196,7 +177,6 @@ public class HandlePaginationButton extends HttpServlet {
         request.setAttribute("start",start);
         request.setAttribute("end",end);
         System.out.println("first: "+first);
-        System.out.println("last:"+ last);
         System.out.println("sql: "+sql);
         System.out.println("count_sql: "+countSql);
         System.out.println("back:"+request.getAttribute("back"));

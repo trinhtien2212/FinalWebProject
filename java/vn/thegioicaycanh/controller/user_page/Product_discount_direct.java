@@ -68,9 +68,9 @@ public class Product_discount_direct extends HttpServlet {
             sort_id = Byte.parseByte(request.getParameter("sort_id"));
             url +="&sort_id="+sort_id;
             if(sort_id ==1){
-                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price asc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price_sale asc";
             }else{
-                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price desc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price_sale desc";
             }
         }else{
             sqlCondition =" where is_sale=1 "+sqlCondition;

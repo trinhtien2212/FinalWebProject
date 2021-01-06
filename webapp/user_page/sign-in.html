@@ -202,15 +202,16 @@
     <section class="sign-in spad">
         <div class="container">
             <div class="row sign__in">
-                <div class="col-lg">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="sign__in__form">
-                        <form action="">
+                        <form action="" id="login-form">
                             <button><a href="sign-in.html" class="btn-dn">ĐĂNG NHẬP</a></button>
                             <button><a href="sign-up.html" class="btn-dk">ĐĂNG KÝ</a></button>
                             <br>
-                            <input type="email" name="mail" id="mail" placeholder="Nhập email" required>
+                            <input type="email" name="mail" id="email" placeholder="Nhập email" required>
                             <br>
                             <input type="password" name="pass" id="pass" placeholder="Mật khẩu" required>
+
                             <br>
                             <input type="submit" name="submit" id="submit" value="ĐĂNG NHẬP"><br>
                             <button type="button" class=" forget-pass" data-toggle="modal" data-target="#change-pass">Quên Mật Khẩu</button>
@@ -229,31 +230,33 @@
 
     <!-- Dialog Forget Password -->
     <!-- Dialog Email -->
-    <div class="modal fade" id="change-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="change-pass" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog forget-dialog" role="document">
         <div class="modal-content forget-content">
             <div class="modal-header forget-header">
-            <h5 class="modal-title forget-title" id="exampleModalLongTitle">Quên Mật Khẩu?</h5>
+            <h5 class="modal-title forget-title" id="forget_password">Quên Mật Khẩu?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="x">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <div class="modal-body forget-body">
-                <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5>
-                <input type="email" name="mail" id="mail" class="forget-mail" placeholder="thegioicaycanhNLU@gmail.com">
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-primary forget-send" data-toggle="modal" data-target="#notify-forget">GỬI</button>
-            </div>
+<!--            <form action="" method="post">-->
+                <div class="modal-body forget-body">
+                    <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5>
+                    <input type="email" name="mail" id="mail" class="forget-mail" placeholder="thegioicaycanhNLU@gmail.com">
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary forget-send" data-toggle="modal" data-target="#notify-forget">GỬI</button>
+                </div>
+<!--            </form>-->
         </div>
         </div>
     </div>
     <!-- Dialog Notify -->
-    <div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog forget-dialog" role="document">
         <div class="modal-content forget-content">
             <div class="modal-header forget-header">
-            <h5 class="modal-title forget-title" id="exampleModalLongTitle">Quên Mật Khẩu?</h5>
+            <h5 class="modal-title forget-title">Quên Mật Khẩu?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="x">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -265,12 +268,34 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary forget-send">ĐÓNG</button>
+            <button type="button" class="btn btn-primary forget-send"  data-dismiss="modal">ĐÓNG</button>
             </div>
         </div>
         </div>
     </div>
     <!-- Dialog Forget Password End -->
+
+    <div class="modal fade" id="wrong_info_login" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog forget-dialog" role="document">
+            <div class="modal-content forget-content">
+                <div class="modal-header forget-header">
+                    <h5 class="modal-title forget-title">Sai thông tin đăng nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="x">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body forget-body">
+                    <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
+                    <div>
+                        <p>Email hoặc password sai. Vui lòng nhập lại!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary forget-send" data-dismiss="modal">ĐÓNG</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Popup footer -->
     <div class="popup-footer">

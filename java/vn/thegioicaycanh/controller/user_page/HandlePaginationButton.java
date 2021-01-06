@@ -50,7 +50,7 @@ public class HandlePaginationButton extends HttpServlet {
         //so product/blog se hien thi trang 1 trang
         int last = (int)request.getAttribute("numOfItemLoad");
 
-        //lay ra loai trang, type_page cung chinh la url_pattern cu servlet se xu li cac su kien thi clien gui ve
+        //lay ra loai trang, type_page cung chinh la url_pattern cua servlet se xu li cac su kien khi client gui ve
         String type_page = (String)request.getAttribute("type_page");
 
         //lay ra tong so blog thoa dieu kien neu type_page co chua tu blog
@@ -80,7 +80,6 @@ public class HandlePaginationButton extends HttpServlet {
             //phan nay dung cho request khong co search, chi co loc, sap xep
             else {
                 System.out.println("co vao shopping");
-
                 //tong so product thoa dieu kien sql
                 sumOfItems = ProductEntity.sumOfProduct(countSql);
                 System.out.println("sumOfItems: " + sumOfItems);
@@ -134,10 +133,9 @@ public class HandlePaginationButton extends HttpServlet {
                 finalProduct = finalProduct.subList(first,(first+last)>finalProduct.size()?finalProduct.size():(first+last));
                 request.setAttribute("data",finalProduct);
             }
-            //Phan nay danh cho request khong co parameter search
+            //Phan nay danh cho request KHONG co parameter search
             else {
                 System.out.println("co vo shopping");
-
                 //loc ra san pham thoa dieu kien tu cau sql
                 List<Product> list = ProductEntity.loadProductFormSql(sql);
                 System.out.println("Product:; " + list.size());

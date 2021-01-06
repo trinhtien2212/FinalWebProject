@@ -380,8 +380,7 @@
             countdown();
         }
         
-    });
-    $("#momo-payment").on("hidden.bs.modal", function () {
+    });$("#momo-payment").on("hidden.bs.modal", function () {
         clearTimeout(timeout);
         console.log("Da close");
     });
@@ -389,6 +388,22 @@
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
+    });
+    $('#login-mobile').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $('#login-web').change( function() {
+        $(this).find(":selected").each(function () {
+            window.location.href = $(this).val();
+        });
+    });
+    $(window).on('load', function() {
+        $('#wrong_info_login').modal('show');
+    });
+    $(window).on('load', function() {
+        $('#notify-forget').modal('show');
     });
     $('#cat_id').change( function() {
         $(this).find(":selected").each(function () {
@@ -420,3 +435,32 @@
 function radio_input(url){
     window.location.href = url;
 }
+$(document).ready(function () {
+    $('#login-form').submit(function (e) {
+        e.preventDefault();
+        let pass = $('#pass').val();
+        if(pass.length < 8){
+            $('#pw-notice').addClass("visible");
+            $('#pw-notice').removeClass("invisible");
+            return;
+        }
+        let up=false,
+            num=false;
+        for(let j=0;j<pass.length;j++){
+            let c = pass.charCodeAt(j);
+            if(c>65 && c<=90){
+                up=true;
+            }
+            if(c>=48 && c<=57){
+                num=true;
+            }
+        }
+
+        if(num==false || up==false){
+            $('#pw-notice').addClass("visible");
+            $('#pw-notice').removeClass("invisible");
+
+        }else
+            $(this).unbind('submit').submit()
+    });
+});

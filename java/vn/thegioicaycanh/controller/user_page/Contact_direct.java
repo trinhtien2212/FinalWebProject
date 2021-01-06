@@ -18,22 +18,8 @@ public class Contact_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        initAttr();
         request.setAttribute("page_menu","contact");
         request.setAttribute("title","Liên hệ");
         request.getRequestDispatcher("user_page/contact.jsp").forward(request,response);
-    }
-    protected void initAttr(){
-        ServletContext context = getServletContext();
-        if(context.getAttribute("header") == null) {
-            context.setAttribute("header", LoadHeaderFooter.loadHeader());
-            context.setAttribute("category",LoadHeaderFooter.loadCategories());
-        }
-        if(context.getAttribute("address") == null){
-            context.setAttribute("address",LoadHeaderFooter.loadAdress());
-        }
-        if(context.getAttribute("social_media") == null){
-            context.setAttribute("social_media",new Social_media());
-        }
     }
 }

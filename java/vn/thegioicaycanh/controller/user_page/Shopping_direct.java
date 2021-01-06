@@ -206,10 +206,5 @@ public class Shopping_direct extends HttpServlet {
         //setAttribute gia tien lon nhat va nho nhat cua san pham trong database
         request.setAttribute("max_price",max_price);
         request.setAttribute("min_price",min_price);
-
-
-
-
     }
-
 }

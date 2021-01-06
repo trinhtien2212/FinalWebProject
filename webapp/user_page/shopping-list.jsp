@@ -44,7 +44,12 @@
                         <h4>Danh Mục</h4>
                         <ul>
                             <c:forEach var="cate" items="${applicationScope.category}">
-                                <li><a href="filter-category-shopping?id=${cate.id}&pages=1">${cate.name}</a></li>
+                                <c:if test="${cate.id==cate_id}">
+                                    <li><a class="set_choose" href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></li>
+                                </c:if>
+                                <c:if test="${cate.id != cate_id}">
+                                    <li><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </div>
@@ -52,7 +57,8 @@
                         <h4>Giá</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                 data-min="10" data-max="900">
+                                 data-min="${price_min}" data-max="${price_max}" data-maxi="${max_price}" data-mini="${min_price}"
+                                 data-type_page ="${type_page}" data-url="${url}">
                                 <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -67,32 +73,14 @@
                     </div>
                     <div class="sidebar__item">
                         <h4>Kích Thước</h4>
-                        <a href="">
+                        <c:forEach var="i" begin="1" end="4">
                             <div class="sidebar__item__size">
-                                <label for="large">
-                                    Lớn
-                                    <input type="radio" id="large">
+                                <label for="${i}" <c:if test="${type_size==i}">class="set_choose"</c:if>>
+                                    <c:out value="${type_weight_map.get(i)}"></c:out>
+                                    <input  type="radio" id="${i}" onclick="radio_input('${type_page}?type_size=${i}&${url}')">
                                 </label>
                             </div>
-                        </a>
-                        <div class="sidebar__item__size">
-                            <label for="medium">
-                                Trung Bình
-                                <input type="radio" id="medium">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="small">
-                                Nhỏ
-                                <input type="radio" id="small">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="tiny">
-                                Rất nhỏ
-                                <input type="radio" id="tiny">
-                            </label>
-                        </div>
+                        </c:forEach>
                     </div>
                     <div class="sidebar__item">
                         <div class="latest-product__text">
@@ -149,21 +137,49 @@
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
                                 <span>Sắp xếp</span>
-                                <select>
-                                    <option value="0">Mới Nhất</option>
-                                    <option value="0">Giá Cả</option>
+                                <select id="select_sort">
+                                    <c:if test="${sort_id==0}">
+                                        <option value="" disabled selected>Chọn</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==1}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}" selected>Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==2}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}" selected>Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}">Giá cao đến thấp</option>
+                                    </c:if>
+                                    <c:if test="${sort_id==3}">
+                                        <option value="" disabled selected>Chọn sắp xếp</option>
+                                        <option value="${type_page}?sort_id=1&${url}">Mới Nhất</option>
+                                        <option value="${type_page}?sort_id=2&${url}">Giá thấp đến cao</option>
+                                        <option value="${type_page}?sort_id=3&${url}" selected>Giá cao đến thấp</option>
+                                    </c:if>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <div class="filter__found">
-                                <h6><span>16</span> sản phẩm đã tìm thấy</h6>
+                                <h6><span>${sumOfItems}</span> sản phẩm đã tìm thấy</h6>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-3">
                             <div class="filter__option">
-                                <a href="shop-grid.html"><span class="icon_grid-2x2"></span></a>
-                                <a href="shop-list.html"><span class="icon_ul"></span></a>
+                                <c:if test="${type_view==1}">
+                                    <a href="${type_page}?type_view=1&${url}"><span class="icon_grid-2x2 set_choose"></span></a>
+                                    <a href="${type_page}?type_view=2&${url}"><span class="icon_ul "></span></a>
+                                </c:if>
+                                <c:if test="${type_view==2}">
+                                    <a href="${type_page}?type_view=1&${url}"><span class="icon_grid-2x2 "></span></a>
+                                    <a href="${type_page}?type_view=2&${url}"><span class="icon_ul set_choose"></span></a>
+                                </c:if>
                             </div>
                         </div>
                     </div>

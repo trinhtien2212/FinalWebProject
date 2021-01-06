@@ -28,7 +28,6 @@ public class HandlePaginationButton extends HttpServlet {
         //finalProduct la danh sach san pham sau khi da xu li
         //finalProduct CHI DUOC DUNG DE XU LI SEARCH
         List<Product> finalProduct=null;
-        List<Blog> finalBlog=null;
 
         //lay chuoi sql
         String sql = (String)request.getAttribute("sql");
@@ -36,6 +35,7 @@ public class HandlePaginationButton extends HttpServlet {
         //lay chuoi countSql: chinh la cau lenh de lay ra TONG so san pham thoa dieu kien
         String countSql = (String)request.getAttribute("sumOfItems_sql");
         System.out.println("sql: "+sql);
+        System.out.println("sc");
 
         //lay ra chi so trang hien tai de hien thi
         int pages=1;
@@ -56,7 +56,7 @@ public class HandlePaginationButton extends HttpServlet {
         //lay ra tong so blog thoa dieu kien neu type_page co chua tu blog
 
         if(type_page.contains("blog")){
-            sumOfItems = Blog_Con_DB.getCount();
+            sumOfItems = Blog_Con_DB.sumOfBlogs();
             System.out.println("sumOfItém"+sumOfItems);
         }
         //lay ra tong so product thoa dieu kien neu type_page co chua tu shopping
@@ -120,7 +120,6 @@ public class HandlePaginationButton extends HttpServlet {
             List<Blog> list = Blog_Con_DB.loadLimitBlog(first,last);
             System.out.println("Blog: "+list.size());
             request.setAttribute("data",list);
-            System.out.println(list);
         }
         //load danh sach cac product thoa dieu kien
         else if(type_page.contains("shopping")){

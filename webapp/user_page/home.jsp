@@ -18,6 +18,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
     <title>${title}</title>
     <link href="${applicationScope.header.shortcut}" rel="shortcut icon">
 
@@ -34,7 +37,8 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 
-<body>
+<body onunload="javascript:history.go(1)">
+
     <jsp:include page="Menu.jsp"></jsp:include>
 
     <!-- Hero Section Begin -->
@@ -133,8 +137,8 @@
 
                         </div>
                         <div  class="progress-style progress none-margin">
-                            <div class="progress-bar bg-success progress-past" role="progressbar" style="width: ${dp.percent_sale_past}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            <p class="progress-text text-muted">Còn ${dp.dayRest} ngày</p>
+                            <div class="progress-bar bg-success progress-past" role="progressbar" style="width:${dp.percent_sale_past}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <p class="progress-text">Còn ${dp.dayRest} ngày</p>
                         </div>
                     </div>
                 </div>
@@ -191,7 +195,6 @@
                         </div>
                     </div>
                 </c:forEach>
-
             </div>
         </div>
 

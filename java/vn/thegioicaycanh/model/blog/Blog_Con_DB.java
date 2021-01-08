@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.model.blog;
 
+import vn.thegioicaycanh.model.coupon_code.CouponCode;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
 import java.sql.PreparedStatement;
@@ -170,6 +171,24 @@ public class Blog_Con_DB {
             throwables.printStackTrace();
         }
         return 0;
+    }
+    public static List<Blog> loadBlogFormSql(String sql){
+        List<Blog>list = new ArrayList<Blog>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()) {
+                    list.add(getBlog(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return list;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
 }

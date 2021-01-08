@@ -5139,3 +5139,56 @@ i{
 .invisible_url{
   display: none !important;
 }
+.visible{
+  display: inline-block;
+}
+.notice{
+  color: red;
+}
+.user_avatar{
+  height: 30px;
+  border-radius: 45px;
+}
+
+/*Cho google login*/
+#customBtn {
+  display: inline-block;
+
+  color: #444;
+
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
+  background: #1877f2;
+  height: 42px;
+  width: 266px;
+  margin-bottom: 10px;
+}
+#customBtn:hover {
+  cursor: pointer;
+}
+span.label {
+  font-family: serif;
+  font-weight: normal;
+}
+span.icon {
+  background: url('/thegioicaycanh.vn/imgs/login/search.jpg') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  margin-left: -40px;
+}
+span.buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+
+
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-size: 16px;
+}

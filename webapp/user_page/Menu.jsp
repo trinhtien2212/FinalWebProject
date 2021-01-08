@@ -30,7 +30,27 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
-            <a href="sign-in.html"><i class="fa fa-user"></i>Đăng Nhập</a>
+            <c:if test="${sessionScope.user_name !=null}">
+                <div class="filter__sort" style="margin-bottom: 0px;">
+                    <img class="user_avatar" src="${sessionScope.user_avatar}" alt="avatar">
+                    <select id="login-mobile">
+                        <option selected disabled>${sessionScope.user_name}</option>
+                        <option value="">Quản lí tài khoản</option>
+                        <c:if test="${isAdmin !=null}">
+                            <option value="handle-login?login=admin">Vào trang Admin</option>
+                        </c:if>
+                        <option value="handle-login?logout=true">Đăng xuất</option>
+                    </select>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.user_name ==null}">
+                <div class="header__top__right__auth">
+                    <a href="handle-login?login=user"><i class="fa fa-user"></i>
+                        Đăng nhập
+                    </a>
+                </div>
+            </c:if>
+
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -72,7 +92,13 @@
                     <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
                     <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
                 </c:when>
-
+                <c:otherwise>
+                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
+                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
+                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
+                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
+                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                </c:otherwise>
             </c:choose>
         </ul>
     </nav>
@@ -112,8 +138,29 @@
                             <a href="${applicationScope.social_media.pi}"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="sign-in.html"><i class="fa fa-user"></i> Đăng Nhập</a>
+                            <c:if test="${sessionScope.user_name !=null}">
+                                <div class="filter__sort" style="margin-bottom: 0px;">
+                                    <img class="user_avatar" src="${sessionScope.user_avatar}" alt="avatar">
+                                    <select id="login-web">
+                                        <option selected disabled>${sessionScope.user_name}</option>
+                                        <option value="">Quản lí tài khoản</option>
+                                        <c:if test="${isAdmin !=null}">
+                                            <option value="handle-login?login=admin">Vào trang Admin</option>
+                                        </c:if>
+                                        <option value="handle-login?logout=true">Đăng xuất</option>
+                                    </select>
+                                </div>
+                            </c:if>
+                            <c:if test="${sessionScope.user_name ==null}">
+                                <div class="header__top__right__auth">
+                                    <a href="handle-login?login=user"><i class="fa fa-user"></i>
+                                        Đăng nhập
+                                    </a>
+                                </div>
+                            </c:if>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -166,7 +213,13 @@
                                 <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
                                 <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
                             </c:when>
-
+                            <c:otherwise>
+                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
+                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
+                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
+                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
+                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                            </c:otherwise>
                         </c:choose>
                     </ul>
                 </nav>

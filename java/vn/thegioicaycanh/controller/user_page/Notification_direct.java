@@ -23,8 +23,8 @@ public class Notification_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if(request.getParameter("type")!=null){
-//            String name = request.getParameter("name");
-            String name = "day_la_name";
+            String name = request.getParameter("name");
+//            String name = "day_la_name";
             String type= request.getParameter("type");
             String listEmail= new Notifications().getListEmail();
                 if(type.equalsIgnoreCase("coupon_code")){

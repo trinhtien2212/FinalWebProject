@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+    <meta >
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
@@ -16,32 +16,12 @@
 <body>
 <h2>Servlet OAuth example</h2>
 <br>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-<script>
-    //google callback. This function will redirect to our login servlet
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        console.log('id_token: ' + googleUser.getAuthResponse().id_token);
+<%--<div id="fb-root"></div>--%>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/v_VN/sdk.js#xfbml=1&version=v9.0&appId=314699199867660&autoLogAppEvents=1" nonce="R7aMF3NX"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<%--<div class="fb-login-button" data-width="500px" style="height: 500px" data-size="small" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState()"></div>--%>
+<div class="fb-login-button" data-login-text="Sign in with FaceBook" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-        //do not post all above info to the server because that is not secure.
-        //just send the id_token
-
-        var redirectUrl = '../handle-google-login';
-
-        //using jquery to post data dynamically
-        var form = $('<form action="' + redirectUrl + '" method="post">' +
-            '<input type="text" name="id_token" value="' +
-            googleUser.getAuthResponse().id_token + '" />' +
-            '</form>');
-        $('body').append(form);
-        form.submit();
-    }
-
-</script>
 </body>
 </html>

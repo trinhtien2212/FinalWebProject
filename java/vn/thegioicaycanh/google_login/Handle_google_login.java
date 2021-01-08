@@ -184,10 +184,10 @@ public class Handle_google_login extends HttpServlet {
 //            System.out.println("Invalid ID token.");
 //        }
         System.out.println(request.getParameter("name"));
-        System.out.println(request.getParameter("avatar"));
+//        System.out.println(request.getParameter("avatar"));
         System.out.println(request.getParameter("email"));
         request.setAttribute("name",request.getParameter("name"));
-        request.setAttribute("avatar",request.getParameter("avatar"));
+//        request.setAttribute("avatar",request.getParameter("avatar"));
         request.setAttribute("email",request.getParameter("email"));
         request.getRequestDispatcher("user_page/tien.jsp").forward(request,response);
     }

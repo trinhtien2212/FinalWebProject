@@ -92,7 +92,13 @@
                     <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
                     <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
                 </c:when>
-
+                <c:otherwise>
+                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
+                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
+                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
+                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
+                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                </c:otherwise>
             </c:choose>
         </ul>
     </nav>
@@ -207,7 +213,13 @@
                                 <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
                                 <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
                             </c:when>
-
+                            <c:otherwise>
+                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
+                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
+                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
+                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
+                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                            </c:otherwise>
                         </c:choose>
                     </ul>
                 </nav>

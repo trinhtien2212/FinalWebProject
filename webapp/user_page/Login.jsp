@@ -20,8 +20,10 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
-<%--<div class="invisible_type_page">${type_page}</div>--%>
-<%--<div class="invisible_url">${url}</div>--%>
+<form id="form" method="get" class="invisible_type_page" action="handle-google-login" accept-charset="UTF-8">
+    <input type="text" name="name" id="name-form">
+    <input type="text" name="email" id="email-form">
+</form>
 <jsp:include page="Menu.jsp"></jsp:include>
 
 <jsp:include page="search_bar.jsp"></jsp:include>
@@ -32,7 +34,7 @@
         <div class="row sign__in">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="sign__in__form">
-                    <form action="handle-login" id="login-form" method="post" accept-charset="UTF-8">
+                    <form action="handle-login" id="login-form" method="get" accept-charset="UTF-8">
                         <button><a href="sign-in.html" class="btn-dn">ĐĂNG NHẬP</a></button>
                         <button><a href="sign-up.html" class="btn-dk">ĐĂNG KÝ</a></button>
                         <br>
@@ -42,14 +44,17 @@
                         <label id="pw-notice" class="invisible notice">Mật khẩu phải dài từ 8 - 25 kí tự và phải chứa cả số và chữ in hoa</label>
                         <br>
                         <input type="submit" name="submit" id="submit" value="Đăng nhập"><br>
-                        <button type="button" class=" forget-pass" data-toggle="modal" data-target="#change-pass">Quên Mật Khẩu</button>
-                        <h4>Hoặc đăng nhập với</h4>
-                        <a href="#" class="face"><i class="fa fa-facebook"></i></a>
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/thegioicaycanh.vn/handle-google-login&response_type=code
-    &client_id=838091777445-oa4q61sod4fqgt5arqnk16nddhhak0v8.apps.googleusercontent.com&approval_prompt=force" class="google"><i class="fa fa-google"></i></a>
-                        <!-- <a href="#"><i class="fa fa-instagram"></i></a> -->
-                        <a href=""></a>
                     </form>
+                    <button type="button" class=" forget-pass" data-toggle="modal" data-target="#change-pass">Quên Mật Khẩu</button>
+                    <h4>Hoặc</h4>
+                    <div id="gSignInWrapper">
+                        <div id="customBtn" class="customGPlusSignIn">
+                            <span class="icon"></span>
+                            <span class="buttonText">Đăng nhập bằng Google</span>
+                        </div>
+                    </div>
+                    <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState()"></div>
+
                 </div>
             </div>
         </div>
@@ -70,10 +75,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="handle-login" method="get">
+            <form action="handle-login" method="post">
                 <div class="modal-body forget-body">
                     <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5>
-                    <input type="email" name="email" id="mail" class="forget-mail" placeholder="thegioicaycanhNLU@gmail.com">
+                    <input type="email" name="email_forget_pass" id="mail" class="forget-mail" placeholder="thegioicaycanhNLU@gmail.com">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary forget-send" data-toggle="modal" data-target="#notify-forget">GỬI</button>
@@ -97,7 +102,7 @@
             <div class="modal-body forget-body">
                 <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
                 <div>
-                    <p>Email đã được gửi, bạn vui lòng kiểm tra hộp thư để cập nhật thông tin</p>
+                    <p>Email đã được gửi, nếu email đã đăng kí, vui lòng kiểm tra hộp thư!</p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -138,6 +143,87 @@
 <jsp:include page="footer.jsp"></jsp:include>
 
 <!-- Js Plugins -->
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=314699199867660&autoLogAppEvents=1" nonce="R7aMF3NX"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script>
+    var googleUser = {};
+    var startApp = function() {
+        gapi.load('auth2', function(){
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '838091777445-oa4q61sod4fqgt5arqnk16nddhhak0v8.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                scope: 'profile email'
+            });
+            attachSignin(document.getElementById('customBtn'));
+        });
+    };
+
+    function attachSignin(element) {
+        // console.log(element.id);
+        console.log("Co vao attachSignIn");
+        auth2.attachClickHandler(element, {},
+            function(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                $('#name-form').val(profile.getName());
+                $('#email-form').val(profile.getEmail());
+                $('#form').submit();
+            }, function(error) {
+                // alert(JSON.stringify(error, undefined, 2));
+            });
+    }
+
+
+    //FACEBOOK
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '314699199867660',
+            cookie     : true,                     // Enable cookies to allow the server to access the session.
+            xfbml      : true,                     // Parse social plugins on this webpage.
+            version    : 'v9.0'           // Use this Graph API version for this call.
+        });
+
+        FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+            statusChangeCallback(response);        // Returns the login status.
+        });
+    };
+    function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+        // console.log('statusChangeCallback');
+        // console.log(response);                   // The current login status of the person.
+        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+            testAPI();
+        }
+        // else {                                 // Not logged into your webpage or we are unable to tell.
+        // document.getElementById('status').innerHTML = 'Please log ' +
+        //     'into this webpage.';
+        // }
+    }
+
+
+    function checkLoginState() {               // Called when a person is finished with the Login Button.
+        FB.getLoginStatus(function(response) {   // See the onlogin handler
+            statusChangeCallback(response);
+        });
+    }
+
+
+
+
+    function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+        FB.api('/me', 'get', { fields: 'id,name,email,gender,birthday,picture' }, function(response) {
+            $('#name-form').val(response.name);
+            $('#email-form').val(response.email);
+            $('#form').submit();
+
+        });
+    };
+    startApp();
+</script>
+<%--<script></script>--%>
+<%--<script src="js/jquery-3.3.1.min.js"></script>--%>
 <script src="user_page/js/jquery-3.3.1.min.js"></script>
 <script src="user_page/js/bootstrap.min.js"></script>
 <script src="user_page/js/jquery.nice-select.min.js"></script>

@@ -1,6 +1,10 @@
 package vn.thegioicaycanh.controller.user_page;
 
+import vn.thegioicaycanh.model.home_page.Home_page;
+import vn.thegioicaycanh.model.mail.Mail;
+import vn.thegioicaycanh.model.user.ForgetPass;
 import vn.thegioicaycanh.model.user.LoadUser;
+import vn.thegioicaycanh.model.user.Load_ForgetPass;
 import vn.thegioicaycanh.model.user.User;
 
 import javax.servlet.ServletException;
@@ -19,6 +23,31 @@ public class Login_handle extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.setAttribute("page_menu","login");
+        request.setAttribute("title","Đăng nhập");
+        //Xu li nhan link doi mat khau
+
+        //Xu li nhan form quen mat khau
+        if(request.getParameter("email_forget_pass")!=null){
+            User user = LoadUser.loadAUserByEmail(request.getParameter("email_forget_pass"));
+            if(user !=null){
+                ForgetPass fp= new ForgetPass(user.getId(),user.getEmail(),user.getPassword());
+                boolean succSave=Load_ForgetPass.saveForgetPass(fp);
+                if(succSave){
+                    String link = "http://localhost:8080/thegioicaycanh.vn/handle-login?conform-fp=true&id="+fp.getUser_id()+"&email"+fp.getEmail()+"&key="+fp.getKey_forget();
+                    String subject="Lấy lại mật khẩu";
+                    String content= "Chào "+user.getName()+"!,"
+                    + "\n Đây là link lấy lại mật khẩu! Link có thời hạn 3 ngày kể từ ngày nhận. Bấm vào để xác nhận\n"
+                    +link;
+
+                    Mail.sendMail(content,subject,user.getEmail());
+
+                }
+            }
+            request.setAttribute("status",3);
+            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            return;
+        }
 
         //xu li chuyen trang khi nguoi dung bam vao nut dang nhap
         if(request.getParameter("login") !=null){

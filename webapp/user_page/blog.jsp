@@ -105,7 +105,7 @@
             </div>
             <div class="col-lg-8 col-md-7">
                 <div class="row">
-                    <c:forEach var="b" items="${blog_data}">
+                    <c:forEach var="b" items="${data}">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     </c:forEach>
-                    <div class="col-lg-12" action="pages">
+                    <div class="col-lg-12">
                         <div class="product__pagination blog__pagination" >
                             <c:if test="${pages>1}">
                                 <a href="${back}"><i class="fa fa-angle-left"></i></a>

@@ -35,6 +35,7 @@ public class HandlePaginationButton extends HttpServlet {
         //lay chuoi countSql: chinh la cau lenh de lay ra TONG so san pham thoa dieu kien
         String countSql = (String)request.getAttribute("sumOfItems_sql");
         System.out.println("sql: "+sql);
+        System.out.println("sc");
 
         //lay ra chi so trang hien tai de hien thi
         int pages=1;

@@ -464,3 +464,44 @@ $(document).ready(function () {
             $(this).unbind('submit').submit()
     });
 });
+// bắt lỗi Đổi mật khẩu
+$(document).ready(function () {
+    $('#formAcount').submit(function (e) {
+        e.preventDefault();
+        let pass = $('#pass').val();
+        if(pass.length < 8){
+            $('#mk-notice').addClass("visible");
+            $('#mk-notice').removeClass("invisible");
+            return;
+        }
+        let up=false,
+            num=false;
+        for(let j=0;j<pass.length;j++){
+            let c = pass.charCodeAt(j);
+            if(c>65 && c<=90){
+                up=true;
+            }
+            if(c>=48 && c<=57){
+                num=true;
+            }
+        }
+
+        if(num==false || up==false){
+            $('#mk-notice').addClass("visible");
+            $('#mk-notice').removeClass("invisible");
+
+        }else
+            $(this).unbind('submit').submit()
+    });
+    $('#formAcount').submit(function (e) {
+        e.preventDefault();
+        let pass = $('pass').val();
+        let pass_again = $('#pass-again').val();
+        if(pass == pass_again){
+            $(this).unbind('submit').submit();
+        } else{
+            $('#pw-notice').addClass("visible");
+            $('#pw-notice').removeClass("invisible");
+        }
+    });
+});

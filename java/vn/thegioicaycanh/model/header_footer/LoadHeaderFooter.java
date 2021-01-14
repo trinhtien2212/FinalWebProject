@@ -65,7 +65,8 @@ public class LoadHeaderFooter {
                     long phone = resultSet.getLong(3);
                     String email = resultSet.getString(4);
                     String time = resultSet.getString(5);
-                    adds.add(new Address(address, phone, email, time));
+                    String map = resultSet.getString(6);
+                    adds.add(new Address(address, phone, email, time, map));
                 }
                 resultSet.close();
             }

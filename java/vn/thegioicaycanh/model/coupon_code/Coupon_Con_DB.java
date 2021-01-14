@@ -43,6 +43,14 @@ public class Coupon_Con_DB {
         }
         return null;
     }
+    // Load coupon code by user_id
+    public static List<CouponCode> loadCouponCodeByUser(int id){
+        String sql = "SELECT c.name, c.date_end_sale " +
+                "     FROM user u INNER JOIN user_code uc ON u.id = uc.user_id " +
+                "     INNER JOIN coupon_code c ON uc.coupon_code_id = c.id " +
+                "     WHERE u.id = " + id;
+        return loadCouponCodeFormSql(sql);
+    }
     public static CouponCode getCouponCode(ResultSet resultSet) {
         if (resultSet == null)
             return null;
@@ -63,6 +71,6 @@ public class Coupon_Con_DB {
     }
 
     public static void main(String[] args) {
-        System.out.println(loadAllCouponCode());
+        System.out.println(loadCouponCodeByUser(2));
     }
 }

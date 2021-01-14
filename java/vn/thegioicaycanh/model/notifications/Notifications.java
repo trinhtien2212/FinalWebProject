@@ -9,6 +9,9 @@ public class Notifications {
     public String getEmail() {
         return email;
     }
+    public String getListEmail(){
+        return Notification_Con_DB.getStringsNotifications();
+    }
 
     public void setEmail(String email) {
         this.email = email;

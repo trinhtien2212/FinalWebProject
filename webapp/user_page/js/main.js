@@ -463,4 +463,23 @@ $(document).ready(function () {
         }else
             $(this).unbind('submit').submit()
     });
+    $('#login-form').submit(function (e) {
+        e.preventDefault();
+        let pass = $('#pass').val();
+        let con_pass =$('#con-pass').val();
+
+        if(pass==con_pass){
+            $(this).unbind('submit').submit()
+        }else{
+            $('#pw-notice').addClass("visible");
+            $('#pw-notice').removeClass("invisible");
+        }
+
+        if(num==false || up==false){
+            $('#pw-notice').addClass("visible");
+            $('#pw-notice').removeClass("invisible");
+
+        }else
+            $(this).unbind('submit').submit()
+    });
 });

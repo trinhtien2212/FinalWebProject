@@ -74,6 +74,7 @@ public class Login_handle extends HttpServlet {
             }
             return;
         }
+        //Xu li dang xuat
         if(request.getParameter("logout") !=null){
             if(request.getParameter("logout").equalsIgnoreCase("true")){
                 if(request.getSession(false) !=null) {
@@ -127,6 +128,8 @@ public class Login_handle extends HttpServlet {
             if(user.getRole_id() == 2 || user.getRole_id() ==3){
                 session.setAttribute("isAdmin",true);
             }
+            HttpSession s = request.getSession();
+            int id = (int)s.getAttribute("user_id");
             System.out.println("Dan chuyen den home sau khi dang nhap");
             request.getRequestDispatcher("home").forward(request,response);
         }

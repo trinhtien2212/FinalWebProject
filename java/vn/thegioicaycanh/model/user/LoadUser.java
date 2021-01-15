@@ -75,7 +75,7 @@ public class LoadUser {
         return false;
     }
 //   ,
-    public static boolean updateUser(String name, Date birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
+    public static boolean updateUser(String name, String birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
         String sql= "Update user set address = '"+detailaddress+","+ward+","+distric+","+city+"', name ='"+name+"', phone= "+phone+",email='"+email+"'birthday='"+birthday+"' where id="+user_id;
         return excuteSql(sql);
     }

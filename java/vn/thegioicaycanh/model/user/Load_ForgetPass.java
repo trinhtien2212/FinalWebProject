@@ -26,9 +26,26 @@ public class Load_ForgetPass {
         }
         return false;
     }
+    public static boolean updateNewPass(int np,int user_id){
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement) {
+                String sql = " update user set password="+np+" where id="+user_id;
+                System.out.println(sql);
+                statement.executeUpdate(sql);
+            }
+            statement.close();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        ForgetPass fp = new ForgetPass(2,"trinhtien2212@gmail.com",677364694);
-        System.out.println(saveForgetPass(fp));
+//        ForgetPass fp = new ForgetPass(2,"trinhtien2212@gmail.com",677364694);
+//        System.out.println(saveForgetPass(fp));
+        updateNewPass(-801806291,1);
+
     }
 }

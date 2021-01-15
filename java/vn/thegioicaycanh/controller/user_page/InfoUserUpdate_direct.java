@@ -22,8 +22,7 @@ public class InfoUserUpdate_direct extends HttpServlet {
         int user_id = (int)session.getAttribute("user_id");
         if(request.getParameter("name")!=null && request.getParameter("email")!=null&&request.getParameter("district")!=null){
             String name=request.getParameter("name");
-            long d= Date.parse(request.getParameter("birthday"));
-            Date birthday=new Date(d);
+            String birthday=request.getParameter("birthday");
             int phone= Integer.parseInt(request.getParameter("phone"));
             String email=request.getParameter("email");
             String city=request.getParameter("city");

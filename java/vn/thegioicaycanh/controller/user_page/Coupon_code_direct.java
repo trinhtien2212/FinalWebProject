@@ -31,6 +31,7 @@ public class Coupon_code_direct extends HttpServlet {
         byte cat_id = 0;
         byte sortedprice_id = 0;
         byte sorteddate_id = 0;
+        byte new_code=0;
         String sql = "select * from coupon_code";
         String url = "";
         String sqlCondition = "";
@@ -56,11 +57,14 @@ public class Coupon_code_direct extends HttpServlet {
         if (request.getParameter("sortedprice_id") != null) {
             sortedprice_id = Byte.parseByte(request.getParameter("sortedprice_id"));
             url += "&sortedprice_id=" + sortedprice_id;
+            if(request.getParameter("new_code") !=null)
+                new_code = 1;
+            else new_code = 0;
             System.out.println(url);
             if (sortedprice_id == 1) {
-                sqlCondition = sqlCondition.isEmpty() ? " order by percent desc" : " where " + sqlCondition + " order by percent desc";
+                sqlCondition = sqlCondition.isEmpty() ? " order by percent desc"+(new_code==1?",date_start desc,":"") : " where " + sqlCondition + " order by percent desc"+(new_code==1?",date_start desc,":"");
             } else {
-                sqlCondition = sqlCondition.isEmpty() ? " order by percent asc" : " where " + sqlCondition + " order by percent asc";
+                sqlCondition = sqlCondition.isEmpty() ? " order by percent asc"+(new_code==1?",date_start desc,":"") : " where " + sqlCondition + " order by percent asc"+(new_code==1?",date_start desc,":"");
             }
         } else {
             sqlCondition = sqlCondition.isEmpty() ? "" : " where " + sqlCondition;

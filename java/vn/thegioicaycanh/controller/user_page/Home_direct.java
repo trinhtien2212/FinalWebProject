@@ -5,6 +5,7 @@ import vn.thegioicaycanh.model.Product.ProductEntity;
 import vn.thegioicaycanh.model.header_footer.LoadHeaderFooter;
 import vn.thegioicaycanh.model.header_footer.Social_media;
 import vn.thegioicaycanh.model.home_page.Home_page;
+import vn.thegioicaycanh.model.user.Cart;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/home")
@@ -34,6 +36,7 @@ public class Home_direct extends HttpServlet {
     }
     protected void initAttr(){
         ServletContext context = getServletContext();
+
         if(context.getAttribute("header") == null) {
             context.setAttribute("header",LoadHeaderFooter.loadHeader());
             context.setAttribute("category",LoadHeaderFooter.loadCategories());

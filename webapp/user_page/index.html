@@ -22,9 +22,9 @@
 
 <body>
 <!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+<!--<div id="preloder">-->
+<!--    <div class="loader"></div>-->
+<!--</div>-->
 
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
@@ -229,7 +229,7 @@
         </h4>
     </div>
     <div class="row sale">
-        <div class="categories__slider owl-carousel">
+        <div id="hoi" class="categories__slider owl-carousel">
             <div class="col-lg-3">
                 <div class="product__discount__item">
                     <div class="product__discount__item__pic set-bg"
@@ -324,7 +324,7 @@
                         <ul class="product__item__pic__hover">
                             <li><a href="#"><i class="fa fa-money"></i></a></li>
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li onclick="getScrollPosSlider()"><a><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product__discount__item__text">

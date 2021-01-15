@@ -509,4 +509,26 @@ $(document).ready(function () {
             $('#pw-notice').removeClass("invisible");
         }
     });
+    $('.addCart').click(function (e){
+        var scroll = $(window).scrollTop();
+        let curentUrl = window.location.href;
+        let arrCondition = curentUrl.split("?");
+        // console.log("length: "+arrCondition.length)
+        let condition;
+        if(arrCondition.length == 1){
+            // console.log("co vo dk if")
+            condition = "";
+        }else condition = arrCondition[1];
+
+        let currentPage = $('.addCart').data('current_page');
+        let id = $('.addCart').data('pro_id');
+        let directUrl = "cart-handle?current-page="+currentPage+"&id="+id+"&position="+scroll+"&action=add"+"&"+condition;
+        window.location.href=directUrl;
+        // console.log(directUrl);
+    });
 });
+
+function load(position){
+    // $(window).scrollTop(position);
+    window.scrollBy(0, position);
+}

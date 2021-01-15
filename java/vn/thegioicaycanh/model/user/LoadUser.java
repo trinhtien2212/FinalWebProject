@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.model.user;
 
+import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LoadUser {
@@ -57,6 +59,25 @@ public class LoadUser {
             throwables.printStackTrace();
         }
         return null;
+    }
+    public static boolean excuteSql(String sql){
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement) {
+                System.out.println(sql);
+                statement.executeUpdate(sql);
+            }
+            statement.close();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+//   ,
+    public static boolean updateUser(String name, String birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
+        String sql= "Update user set address = '"+detailaddress+","+ward+","+distric+","+city+"', name ='"+name+"', phone= "+phone+",email='"+email+"'birthday='"+birthday+"' where id="+user_id;
+        return excuteSql(sql);
     }
     public static User getUser(ResultSet rs){
         User user = new User();

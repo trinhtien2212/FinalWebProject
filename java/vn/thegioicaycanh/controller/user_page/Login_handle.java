@@ -74,6 +74,7 @@ public class Login_handle extends HttpServlet {
             }
             return;
         }
+        //Xu li dang xuat
         if(request.getParameter("logout") !=null){
             if(request.getParameter("logout").equalsIgnoreCase("true")){
                 if(request.getSession(false) !=null) {

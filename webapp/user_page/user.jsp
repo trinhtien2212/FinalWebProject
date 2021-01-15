@@ -167,7 +167,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Mật khẩu mới: </label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="password" id="pass" name="passwd"
+                                            <input type="password" id="passwd" name="passwd"
                                                    class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
                                             <label id="mk-notice" class="invisible notice">Mật khẩu phải dài từ 8 - 25
                                                 kí tự và phải chứa cả số và chữ in hoa</label>
@@ -189,7 +189,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label"></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <button type="submit" class="btn-update" id="submit">LƯU
+                                            <button type="submit" class="btn-update">LƯU
                                             </button>
                                         </div>
                                     </div>

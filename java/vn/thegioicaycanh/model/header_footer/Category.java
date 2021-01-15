@@ -5,8 +5,16 @@ public class Category {
     private String name;
     private boolean active;
     private String slug;
-
+    private int numOfProduct;
     public Category() {
+    }
+
+    public int getNumOfProduct() {
+        return numOfProduct;
+    }
+
+    public void setNumOfProduct(int numOfProduct) {
+        this.numOfProduct = numOfProduct;
     }
 
     public String getSlug() {
@@ -48,6 +56,7 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", active=" + active +
                 ", slug='" + slug + '\'' +
+                ", pros='" + numOfProduct + '\'' +
                 '}';
     }
 }

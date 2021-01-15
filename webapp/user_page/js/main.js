@@ -58,7 +58,7 @@
             var mixer = mixitup(containerEl1);
         }
     });
-   
+
 
     /*------------------
         Background Set
@@ -200,21 +200,21 @@
         mini = rangeSlider.data("mini"),
         type_page = rangeSlider.data("type_page"),
         url = rangeSlider.data("url");
-        
+
     rangeSlider.slider({
         range: true,
         min: mini,
         max: maxi,
         values: [minPrice, maxPrice],
         stop: function (event, ui) {
-            minamount.val(ui.values[0]+'.000 ₫');
-            maxamount.val(ui.values[1]+'.000 ₫');
-            window.location.href = type_page+"?price_min="+ui.values[0]+"&price_max="+ui.values[1]+"&"+url;
-            console.log(type_page+"?price_min="+ui.values[0]+"&price_max="+ui.values[1]+"&"+url);
+            minamount.val(ui.values[0] + '.000 ₫');
+            maxamount.val(ui.values[1] + '.000 ₫');
+            window.location.href = type_page + "?price_min=" + ui.values[0] + "&price_max=" + ui.values[1] + "&" + url;
+            console.log(type_page + "?price_min=" + ui.values[0] + "&price_max=" + ui.values[1] + "&" + url);
         }
     });
-    minamount.val(rangeSlider.slider("values", 0)+".000 ₫");
-    maxamount.val(rangeSlider.slider("values", 1)+".000 ₫");
+    minamount.val(rangeSlider.slider("values", 0) + ".000 ₫");
+    maxamount.val(rangeSlider.slider("values", 1) + ".000 ₫");
 
     /*--------------------------
         Select
@@ -259,32 +259,32 @@
 
     // Header sale
     var ww = $(window).width();
-    $(window).on("resize",function(){
+    $(window).on("resize", function () {
         ww = $(window).width();
-        if(ww < 980) {
+        if (ww < 980) {
             $("#sys_mod_filter").removeClass("fix-top");
             $("#sys_tmp_height_filter").remove();
         }
     });
     var sys_mod_filter = $("#sys_mod_filter");
-    if(sys_mod_filter.length>0) {
+    if (sys_mod_filter.length > 0) {
         var filterOffTop = $("#sys_mod_filter").offset().top;
-        $(window).on("scroll",function(){
+        $(window).on("scroll", function () {
             if (ww > 980) {
                 var getOffTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-                if(getOffTop>filterOffTop) {
+                if (getOffTop > filterOffTop) {
                     sys_mod_filter.addClass("fix-top");
-                    if($("#sys_tmp_height_filter").length<=0) {
+                    if ($("#sys_tmp_height_filter").length <= 0) {
                         $("<div id='sys_tmp_height_filter'></div>").height($("#sys_mod_filter").outerHeight(true)).insertAfter("#sys_mod_filter");
                     }
-                }else{
+                } else {
                     sys_mod_filter.removeClass("fix-top");
                     $("#sys_tmp_height_filter").remove();
                 }
             }
         });
     }
-    $("#sys_apply_filter").on("click",function(){
+    $("#sys_apply_filter").on("click", function () {
         var paramAjax = {
             keyword: $("#sys_txt_search").val(),
             cateId: $("#sys_selected_val").children("span").attr("data-cate-id"),
@@ -293,22 +293,22 @@
         };
         console.log(paramAjax);
     });
-    $("#sys_selected_val").on("click",function(e){
+    $("#sys_selected_val").on("click", function (e) {
         $("#sys_list_dd_cate").fadeToggle(300);
-        $("body").on("click.hideDropCate",function(){
+        $("body").on("click.hideDropCate", function () {
             $("#sys_list_dd_cate").fadeOut(300);
             $("body").off("click.hideDropCate");
         });
         e.stopPropagation();
     });
-    $("#sys_list_dd_cate").on("click","a",function(e) {
+    $("#sys_list_dd_cate").on("click", "a", function (e) {
         $("#sys_selected_val").children("span").html($(this).html()).attr("data-cate-id", $(this).attr("data-cate-id"));
         $("#sys_list_dd_cate").fadeOut(300);
         $("body").off("click.hideDropCate");
         e.stopPropagation();
         return false;
     });
-    $("#sys_apply_filter").on("click",function(){
+    $("#sys_apply_filter").on("click", function () {
         var paramAjax = {
             keyword: $("#sys_txt_search").val(),
             cateId: $("#sys_selected_val").children("span").attr("data-cate-id"),
@@ -318,155 +318,160 @@
         console.log(paramAjax);
     });
     // Scroll top
-    $("#scroll-top").click(function (e) { 
+    $("#scroll-top").click(function (e) {
         e.preventDefault();
         $(window).scrollTop(0);
     });
 
     // Them======================
     $('#order-place').prop("checked", false).trigger("change");
-    $('#order-place').change(function (e) { 
+    $('#order-place').change(function (e) {
         e.preventDefault();
         console.log('co vo');
-        var conditionVal=$('#order-place').val();
-        if($('#order-place').is(':checked'))
-            $('#order-place-input-required').prop('required',true);
-            
+        var conditionVal = $('#order-place').val();
+        if ($('#order-place').is(':checked'))
+            $('#order-place-input-required').prop('required', true);
+
         else
-        $('#order-place-input-required').prop('required',false);
-       
+            $('#order-place-input-required').prop('required', false);
+
     });
-    
-    var timeout=null;
+
+    var timeout = null;
     $('#cash').prop("checked", true).trigger("change");
-    $('#cash').change(function (e) { 
+    $('#cash').change(function (e) {
         e.preventDefault();
-        if($('#cash').is(':checked')){
-            $('#momo').prop('checked',false);
-            $('#cash').prop('checked',true);
+        if ($('#cash').is(':checked')) {
+            $('#momo').prop('checked', false);
+            $('#cash').prop('checked', true);
             $("#checkout-btn").removeAttr("data-toggle");
             $("#checkout-btn").removeAttr("data-target");
             $("#checkout-btn").removeClass("hasModal");
-        } 
-        if($("#momo-code").hasClass("show")){
+        }
+        if ($("#momo-code").hasClass("show")) {
             $("#momo-code").removeClass("show");
         }
     });
     $('#momo').prop("checked", false).trigger("change");
-    $('#momo').change(function (e) { 
+    $('#momo').change(function (e) {
         e.preventDefault();
-        if($('#momo').is(':checked')){
+        if ($('#momo').is(':checked')) {
             console.log("Vo--------------");
-            $('#momo').prop('checked',true);
-            $('#cash').prop('checked',false);
+            $('#momo').prop('checked', true);
+            $('#cash').prop('checked', false);
             $("#checkout-btn").attr("data-toggle", "modal");
-            $("#checkout-btn").attr("data-target","#momo-payment");
+            $("#checkout-btn").attr("data-target", "#momo-payment");
             $("#checkout-btn").addClass("hasModal");
-        } 
+        }
     });
 
 
-    function countdown(){
-        var times =$('#count-down-time').text();
-        var time=parseInt(times);
+    function countdown() {
+        var times = $('#count-down-time').text();
+        var time = parseInt(times);
         time--;
-        console.log("time"+time)
+        console.log("time" + time)
         $("#count-down-time").text(time);
-        timeout=setTimeout(countdown,1000);
+        timeout = setTimeout(countdown, 1000);
     }
-    $("#checkout-btn").click(function (e) { 
+
+    $("#checkout-btn").click(function (e) {
         e.preventDefault();
-        if($(this).hasClass("hasModal")){
+        if ($(this).hasClass("hasModal")) {
             countdown();
         }
-        
-    });$("#momo-payment").on("hidden.bs.modal", function () {
+
+    });
+    $("#momo-payment").on("hidden.bs.modal", function () {
         clearTimeout(timeout);
         console.log("Da close");
     });
-    $('#select_sort').change( function() {
+    $('#select_sort').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#login-mobile').change( function() {
+    $('#login-mobile').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#login-web').change( function() {
+    $('#login-web').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('#wrong_info_login').modal('show');
     });
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('#notify-forget').modal('show');
     });
-    $('#cat_id').change( function() {
+    $('#cat_id').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#sortedprice_id').change( function() {
+    $('#sortedprice_id').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#sorteddate_id').change( function() {
+    $('#sorteddate_id').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#select_category').change( function() {
+    $('#select_category').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
-    $('#select_date').change( function() {
+    $('#select_date').change(function () {
         $(this).find(":selected").each(function () {
             window.location.href = $(this).val();
         });
     });
 
 })(jQuery);
-function radio_input(url){
+
+function radio_input(url) {
     window.location.href = url;
 }
+
 $(document).ready(function () {
     $('#login-form').submit(function (e) {
         e.preventDefault();
         let pass = $('#pass').val();
-        if(pass.length < 8){
+        if (pass.length < 8) {
             $('#pw-notice').addClass("visible");
             $('#pw-notice').removeClass("invisible");
             return;
         }
-        let up=false,
-            num=false;
-        for(let j=0;j<pass.length;j++){
+        let up = false,
+            num = false;
+        for (let j = 0; j < pass.length; j++) {
             let c = pass.charCodeAt(j);
-            if(c>65 && c<=90){
-                up=true;
+            if (c > 65 && c <= 90) {
+                up = true;
             }
-            if(c>=48 && c<=57){
-                num=true;
+            if (c >= 48 && c <= 57) {
+                num = true;
             }
         }
 
-        if(num==false || up==false){
+        if (num == false || up == false) {
             $('#pw-notice').addClass("visible");
             $('#pw-notice').removeClass("invisible");
 
-        }else
+        } else
             $(this).unbind('submit').submit()
     });
+
 });
 // bắt lỗi Đổi mật khẩu
 $(document).ready(function (){
-   $('#formPass').click(function (e){
+   $('#formPass').submit(function (e){
        e.preventDefault();
        let passwd = $('#passwd').val();
        if(passwd.length < 8){
@@ -491,19 +496,7 @@ $(document).ready(function (){
        }else
            $(this).unbind('submit').submit();
    });
-   // $('#formPass').click(function (e) {
-   //      e.preventDefault();
-   //      let pass = $('#passwd').val();
-   //      let pass_again = $('#pass-again').val();
-   //      if(pass == pass_again){
-   //          $(this).unbind('submit').submit();
-   //      } else
-   //          $('#mka-notice').addClass("visible");
-   //          $('#mka-notice').removeClass("invisible");
-   //  });
-});
-$(document).ready(function (){
-    $('#formPass').click(function (e) {
+   $('#formPass').submit(function (e) {
         e.preventDefault();
         let pass = $('#passwd').val();
         let pass_again = $('#pass-again').val();
@@ -511,10 +504,21 @@ $(document).ready(function (){
             $(this).unbind('submit').submit();
         } else
             $('#mka-notice').addClass("visible");
-        $('#mka-notice').removeClass("invisible");
+            $('#mka-notice').removeClass("invisible");
     });
 });
-
+// $(document).ready(function (){
+//     $('#formPass').click(function (e) {
+//         e.preventDefault();
+//         let pass = $('#passwd').val();
+//         let pass_again = $('#pass-again').val();
+//         if (pass == pass_again) {
+//             $(this).unbind('submit').submit();
+//         } else
+//             $('#mka-notice').addClass("visible");
+//         $('#mka-notice').removeClass("invisible");
+//     });
+// });
 
 
 // $(document).ready(function () {

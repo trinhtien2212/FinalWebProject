@@ -33,6 +33,7 @@ public class Product_discount_direct extends HttpServlet {
         byte cate_id = 0; // danh muc
         byte date_id = 0; // ngay het han
         byte sort_id = 0; // sap xep
+        byte new_sale = 0;
         String url ="";
         String sqlCondition="";
         if(request.getParameter("pages") != null) {
@@ -67,14 +68,19 @@ public class Product_discount_direct extends HttpServlet {
         if(request.getParameter("sort_id") !=null) {
             sort_id = Byte.parseByte(request.getParameter("sort_id"));
             url +="&sort_id="+sort_id;
+            if(request.getParameter("new_sale") !=null)
+                new_sale = 1;
+            else new_sale = 0;
             if(sort_id ==1){
-                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price_sale asc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by "+(new_sale==1?"date_start_sale desc,":"") +" price_sale asc";
             }else{
-                sqlCondition =" where is_sale=1 "+sqlCondition+" order by price_sale desc";
+                sqlCondition =" where is_sale=1 "+sqlCondition+" order by "+(new_sale==1?"date_start_sale desc,":"") +" price_sale desc";
             }
         }else{
             sqlCondition =" where is_sale=1 "+sqlCondition;
         }
+
+
         // set Attribute cho request
         request.setAttribute("pages",pages);
         request.setAttribute("type_page","shopping-sale");

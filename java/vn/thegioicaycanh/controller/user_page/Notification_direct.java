@@ -26,7 +26,7 @@ public class Notification_direct extends HttpServlet {
             String type= request.getParameter("type");
             String listEmail= new Notifications().getListEmail();
                 if(type.equalsIgnoreCase("coupon_code")){
-                    String link = "http://localhost:8080/thegioicaycanh.vn/coupon_code?type="+type+"& new_code=1";
+                    String link = "http://localhost:8080/thegioicaycanh.vn/coupon_code?new_code=1";
                     String subject="Thông báo mới từ thế giới cây cảnh";
                     String content= "Chào bạn"
                             + "\n Đây là link mã khuyến mãi mới nhất. Bấm vào để đến mã khuyến mãi mới nhất\n"
@@ -36,7 +36,7 @@ public class Notification_direct extends HttpServlet {
                     System.out.println(listEmail);
 
                 }else if(type.equalsIgnoreCase("shopping_sale")){
-                    String link = "http://localhost:8080/thegioicaycanh.vn/shopping_sale?type="+type+"& new_sale=1";
+                    String link = "http://localhost:8080/thegioicaycanh.vn/shopping_sale?new_sale=1";
                     String subject="Thông báo mới từ thế giới cây cảnh";
                     String content= "Chào bạn"
                             + "\n Đây là link sản phẩm giảm giá mới nhất. Bấm vào để đến sản phẩm giảm giá mới nhất\n"

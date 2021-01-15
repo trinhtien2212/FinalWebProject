@@ -23,7 +23,13 @@ public class ProductEntity {
                 "order by date_created desc LIMIT " + num;
         return loadProductFormSql(sql);
     }
-
+    public static Product loadProductById(int id){
+        String sql = "select * from product where id="+id;
+        List<Product>products = loadProductFormSql(sql);
+        if(products.isEmpty())
+            return null;
+        return products.get(0);
+    }
     public static List<Product> loadMostRating(int num) {
         String sql = "SELECT * from product p join rating r on p.id=r.pro_id where r.rating_type_id  = (SELECT  max(r1.rating_type_id) from rating r1) LIMIT " + num;
         return loadProductFormSql(sql);

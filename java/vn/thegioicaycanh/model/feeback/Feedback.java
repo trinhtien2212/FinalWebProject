@@ -1,30 +1,38 @@
 package vn.thegioicaycanh.model.feeback;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 public class Feedback {
-    private int id;
-    private int user_id;
+    private String email;
+    private String name;
     private String content;
     private Date date_created;
 
     public Feedback() {
     }
 
-    public int getId() {
-        return id;
+    public Feedback(String email, String name, String content) {
+        this.email = email;
+        this.name = name;
+        this.content = content;
+        this.date_created = new Date();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getEmail() {
+        return email;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContent() {

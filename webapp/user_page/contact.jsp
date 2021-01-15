@@ -68,15 +68,15 @@
     <div class="col-lg-12">
         <div class="map">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.258927212624!2d106.78567238152027!3d10.86790033428018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9672b7efd0893fc4!2zxJDhuqFpIEjhu41jIE7DtG5nIEzDom0!5e0!3m2!1svi!2s!4v1604126585524!5m2!1svi!2s"
+                src="${applicationScope.address.get(0).map}"
                 height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             <div class="map-inside">
                 <i class="icon_pin"></i>
                 <div class="inside-widget">
                     <h4>TP.HCM</h4>
                     <ul>
-                        <li>Liên hệ: +12-345-6789</li>
-                        <li>Địa chỉ:Trường ĐH Nông Lâm,Quận Thủ Đức, TP.HCM</li>
+                        <li>Liên hệ: +${applicationScope.address.get(0).phone}</li>
+                        <li>Địa chỉ: ${applicationScope.address.get(0).address}</li>
                     </ul>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                     </div>
                 </div>
             </div>
-            <form action="#">
+            <form action="contact" method="post" accept-charset="UTF-8">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Họ tên:">
+                        <input type="text" placeholder="Họ tên:" name="fullname">
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Email:">
+                        <input type="text" placeholder="Email:" name="emailaddress">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="Ý kiến của bạn là:"></textarea>
+                        <textarea placeholder="Ý kiến của bạn là:" name="content"></textarea>
                         <button type="submit" class="site-btn">Gửi</button>
                     </div>
                 </div>
@@ -111,6 +111,32 @@
         </div>
     </div>
     <!-- Contact Form End -->
+
+<%--status notification--%>
+
+<c:if test="${status==1}">
+    <div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog forget-dialog" role="document">
+            <div class="modal-content forget-content">
+                <div class="modal-header forget-header">
+                    <h5 class="modal-title forget-title" >Đóng góp ý kiến được gửi thành công</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="x">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body forget-body">
+                    <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
+                    <div>
+                        <p>Đóng góp ý kiến của bạn được gửi thành công. Cảm ơn bạn đã đóng góp ý kiến!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary forget-send" data-dismiss="modal">ĐÓNG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 
 <jsp:include page="footer.jsp"></jsp:include>
 

@@ -187,6 +187,14 @@ public class ProductEntity {
         }
         return max_price;
     }
+    // Load san pham yeu thich
+    public static List<Product> loadFavoriteProduct(int user_id){
+        String sql = "SELECT u.`name`, p.`name`\n" +
+                "FROM `user` u INNER JOIN favorist_list f ON u.id = f.user_id\n" +
+                "INNER JOIN product p ON f.pro_id = p.id\n" +
+                "WHERE u.id = " + user_id;
+        return loadProductFormSql(sql);
+    }
 public static void vidu(String s){
         s +="tien";
     System.out.println(s);

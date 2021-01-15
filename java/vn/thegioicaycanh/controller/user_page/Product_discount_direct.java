@@ -24,7 +24,7 @@ public class Product_discount_direct extends HttpServlet {
         handleParameter(request);
         request.setAttribute("page_menu","discount");
         request.setAttribute("title","Giảm giá");
-        request.setAttribute("home_page_data",new Home_page());
+//        request.setAttribute("home_page_data",new Home_page());
         request.getRequestDispatcher("handlePagination").forward(request,response);
     }
 

@@ -5,12 +5,14 @@ public class Address {
     private long phone;
     private String email;
     private String timeOpen;
+    private String map;
 
-    public Address(String address, long phone, String email, String timeOpen) {
+    public Address(String address, long phone, String email, String timeOpen, String map) {
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.timeOpen = timeOpen;
+        this.map = map;
     }
 
     public String getAddress() {
@@ -43,5 +45,13 @@ public class Address {
 
     public void setTimeOpen(String timeOpen) {
         this.timeOpen = timeOpen;
+    }
+
+    public String getMap() {
+        return map;
+    }
+
+    public void setMap(String map) {
+        this.map = map;
     }
 }

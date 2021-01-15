@@ -26,23 +26,30 @@ public class User_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.setAttribute("title","Trang của tôi");
         int user_id = (int)session.getAttribute("user_id");
         User user = LoadUser.loadUserById(user_id);
+//        getDetailAddress(user.getAddress(),request);
         // Ma giam gia
         List<CouponCode> dataCouponCode = Coupon_Con_DB.loadCouponCodeByUser((int) session.getAttribute("user_id"));
         session.setAttribute("coupon_code_data", dataCouponCode);
         // San pham yeu thich
         List<Product> data = ProductEntity.loadFavoriteProduct((int) session.getAttribute("user_id"));
         session.setAttribute("data",data);
-        session.setAttribute("title","Trang của tôi");
         request.getRequestDispatcher("user_page/user.jsp").forward(request,response);
     }
     protected void getDetailAddress(String address, HttpServletRequest request){
-        String tp = "";
-        String q;
-        String p;
-        String ct;
-        request.setAttribute("tp",tp);
-
+        String [] arr = address.split(",");
+        String city = arr[arr.length-1];
+        String district = arr[arr.length-2];
+        String ward = arr[arr.length-3];
+        String detail = "";
+        for(int i=0; i< arr.length-3;i++){
+            detail += arr[i] + " ";
+        }
+        request.setAttribute("city", city);
+        request.setAttribute("district", district);
+        request.setAttribute("ward", ward);
+        request.setAttribute("detail", detail);
     }
 }

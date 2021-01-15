@@ -465,43 +465,97 @@ $(document).ready(function () {
     });
 });
 // bắt lỗi Đổi mật khẩu
-$(document).ready(function () {
-    $('#formAcount').submit(function (e) {
-        e.preventDefault();
-        let pass = $('#pass').val();
-        if(pass.length < 8){
-            $('#mk-notice').addClass("visible");
-            $('#mk-notice').removeClass("invisible");
-            return;
-        }
-        let up=false,
-            num=false;
-        for(let j=0;j<pass.length;j++){
-            let c = pass.charCodeAt(j);
-            if(c>65 && c<=90){
-                up=true;
-            }
-            if(c>=48 && c<=57){
-                num=true;
-            }
-        }
+$(document).ready(function (){
+   $('#formPass').click(function (e){
+       e.preventDefault();
+       let passwd = $('#passwd').val();
+       if(passwd.length < 8){
+           $('#mk-notice').addClass("visible");
+           $('#mk-notice').removeClass("invisible");
+       }
+       let up=false,
+           num=false;
+       for(let j=0;j<passwd.length;j++){
+           let c = passwd.charCodeAt(j);
+           if(c>65 && c<=90){
+               up=true;
+           }
+           if(c>=48 && c<=57){
+               num=true;
+           }
+       }
+       if(num==false || up==false){
+           $('#mk-notice').addClass("visible");
+           $('#mk-notice').removeClass("invisible");
 
-        if(num==false || up==false){
-            $('#mk-notice').addClass("visible");
-            $('#mk-notice').removeClass("invisible");
-
-        }else
-            $(this).unbind('submit').submit()
-    });
-    $('#formAcount').submit(function (e) {
+       }else
+           $(this).unbind('submit').submit();
+   });
+   // $('#formPass').click(function (e) {
+   //      e.preventDefault();
+   //      let pass = $('#passwd').val();
+   //      let pass_again = $('#pass-again').val();
+   //      if(pass == pass_again){
+   //          $(this).unbind('submit').submit();
+   //      } else
+   //          $('#mka-notice').addClass("visible");
+   //          $('#mka-notice').removeClass("invisible");
+   //  });
+});
+$(document).ready(function (){
+    $('#formPass').click(function (e) {
         e.preventDefault();
-        let pass = $('pass').val();
+        let pass = $('#passwd').val();
         let pass_again = $('#pass-again').val();
         if(pass == pass_again){
             $(this).unbind('submit').submit();
-        } else{
-            $('#pw-notice').addClass("visible");
-            $('#pw-notice').removeClass("invisible");
-        }
+        } else
+            $('#mka-notice').addClass("visible");
+        $('#mka-notice').removeClass("invisible");
     });
 });
+
+
+
+// $(document).ready(function () {
+//     $('.tab li').click(function (){
+//         $('#formPass').submit(function (e) {
+//             e.preventDefault();
+//             let passwd = $('#passwd').val();
+//             if(passwd.length < 8){
+//                 $('#mk-notice').addClass("visible");
+//                 $('#mk-notice').removeClass("invisible");
+//             }
+//             let up=false,
+//                 num=false;
+//             for(let j=0;j<passwd.length;j++){
+//                 let c = passwd.charCodeAt(j);
+//                 if(c>65 && c<=90){
+//                     up=true;
+//                 }
+//                 if(c>=48 && c<=57){
+//                     num=true;
+//                 }
+//             }
+//             if(num==false || up==false){
+//                 $('#mk-notice').addClass("visible");
+//                 $('#mk-notice').removeClass("invisible");
+//
+//             }else
+//                 $(this).unbind('submit','#submit1').submit();
+//         });
+//     });
+// });
+// $(document).ready(function () {
+//     $('#formPass').submit(function (e) {
+//         e.preventDefault();
+//         let pass = $('pass').val();
+//         let pass_again = $('#pass-again').val();
+//         if(pass == pass_again){
+//             $(this).unbind('submit').submit();
+//         } else{
+//             $('#mka-notice').addClass("visible");
+//             $('#mka-notice').removeClass("invisible");
+//         }
+//     });
+// });

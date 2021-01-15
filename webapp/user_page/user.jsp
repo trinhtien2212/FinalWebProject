@@ -30,22 +30,22 @@
 <div class="container">
     <div class="row my-2 user__border">
         <div class="col-lg-8 order-lg-2">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs tab">
                 <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active nav-link-2">Tài Khoản</a>
+                    <a href="#profile" data-target="#profile" data-toggle="tab" class="nav-link active nav-link-2">Tài Khoản</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link nav-link-2">Đổi Mật Khẩu</a>
+                    <a href="#messages" data-target="#messages" data-toggle="tab" class="nav-link nav-link-2">Đổi Mật Khẩu</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link nav-link-2">Đơn Hàng</a>
+                    <a href="#edit" data-target="#edit" data-toggle="tab" class="nav-link nav-link-2">Đơn Hàng</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#my-coupon-code" data-toggle="tab" class="nav-link nav-link-2">Mã khuyến
+                    <a href="#my-coupon-code" data-target="#my-coupon-code" data-toggle="tab" class="nav-link nav-link-2">Mã khuyến
                         mãi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#like" data-toggle="tab" class="nav-link nav-link-2">Yêu Thích</a>
+                    <a href="#like" data-target="#like" data-toggle="tab" class="nav-link nav-link-2">Yêu Thích</a>
                 </li>
             </ul>
             <div class="tab-content py-4">
@@ -102,72 +102,9 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label">Tỉnh/Thành phố : <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <select name="cityID" id="cityID">
-                                                <option value="">Tỉnh/Thành phố</option>
-                                                <option value="254">An Giang</option>
-                                                <option value="255">Bà Rịa - Vũng Tàu</option>
-                                                <option value="256">Bắc Giang</option>
-                                                <option value="257">Bắc Kạn</option>
-                                                <option value="258">Bạc Liêu</option>
-                                                <option value="259">Bắc Ninh</option>
-                                                <option value="260">Bến Tre</option>
-                                                <option value="261">Bình Định</option>
-                                                <option value="262">Bình Dương</option>
-                                                <option value="263">Bình Phước</option>
-                                                <option value="264">Bình Thuận</option>
-                                                <option value="265">Cần Thơ</option>
-                                                <option value="266">Cà Mau</option>
-                                                <option value="267">Cao Bằng</option>
-                                                <option value="268">Đà Nẵng</option>
-                                                <option value="269">Đắk Lắk</option>
-                                                <option value="270">Đắk Nông</option>
-                                                <option value="271">Điện Biên</option>
-                                                <option value="272">Đồng Nai</option>
-                                                <option value="273">Đồng Tháp</option>
-                                                <option value="274">Gia Lai</option>
-                                                <option value="275">Hải Phòng</option>
-                                                <option value="276">Hà Nội</option>
-                                                <option value="277">Hà Giang</option>
-                                                <option value="278">Hà Nam</option>
-                                                <option value="279">Hà Tĩnh</option>
-                                                <option value="280">Hải Dương</option>
-                                                <option value="281">Hậu Giang</option>
-                                                <option value="282">Hòa Bình</option>
-                                                <option value="283">Hưng Yên</option>
-                                                <option value="284">Khánh Hòa</option>
-                                                <option value="285">Kiên Giang</option>
-                                                <option value="286">Kon Tum</option>
-                                                <option value="287">Lai Châu</option>
-                                                <option value="288">Lâm Đồng</option>
-                                                <option value="289">Lạng Sơn</option>
-                                                <option value="290">Lào Cai</option>
-                                                <option value="291">Long An</option>
-                                                <option value="292">Nam Định</option>
-                                                <option value="293">Nghệ An</option>
-                                                <option value="294">Ninh Bình</option>
-                                                <option value="295">Ninh Thuận</option>
-                                                <option value="296">Phú Thọ</option>
-                                                <option value="297">Quảng Bình</option>
-                                                <option value="298">Quảng Nam</option>
-                                                <option value="299">Quảng Ngãi</option>
-                                                <option value="300">Quảng Ninh</option>
-                                                <option value="301">Quảng Trị</option>
-                                                <option value="302">Sóc Trăng</option>
-                                                <option value="303">Sơn La</option>
-                                                <option value="304">Thành phố Hồ Chí Minh</option>
-                                                <option value="305">Tây Ninh</option>
-                                                <option value="306">Thái Bình</option>
-                                                <option value="307">Thái Nguyên</option>
-                                                <option value="308">Thanh Hóa</option>
-                                                <option value="309">Thừa Thiên Huế</option>
-                                                <option value="310">Tiền Giang</option>
-                                                <option value="312">Trà Vinh</option>
-                                                <option value="313">Tuyên Quang</option>
-                                                <option value="314">Vĩnh Long</option>
-                                                <option value="315">Vĩnh Phúc</option>
-                                                <option value="316">Yên Bái</option>
-                                                <option value="317">Phú Yên</option>
-                                            </select>
+                                            <input type="text" id="city" name="city" value="${sessionScope.city}"
+                                                   placeholder="Tỉnh/ Thành phố"
+                                                   class="validate[required,custom[email]] form-control input-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +112,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label">Quận/ Huyện: <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="district" name="district" value=""
+                                            <input type="text" id="district" name="district" value="${sessionScope.district}"
                                                    placeholder="Quận/ Huyện"
                                                    class="validate[required,custom[email]] form-control input-sm">
                                         </div>
@@ -186,7 +123,7 @@
                                         <label class="col-md-3 control-label">Xã/ Phường/ Thị trấn:
                                             <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="ward" name="ward" value=""
+                                            <input type="text" id="ward" name="ward" value="${sessionScope.ward}"
                                                    placeholder="Xã/ Phường/ Thị trấn"
                                                    class="validate[required,custom[email]] form-control input-sm">
                                         </div>
@@ -196,7 +133,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label">Địa chỉ chi tiết: <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="address" name="address" value=""
+                                            <input type="text" id="address" name="address" value="${sessionScope.detail}"
                                                    placeholder="Địa chỉ chi tiết"
                                                    class="validate[required] form-control input-sm">
                                         </div>
@@ -225,12 +162,12 @@
                                 <h1>THAY ĐỔI MẬT KHẨU</h1>
                                 <div class="content">Bạn nên cập nhật mật khẩu thường xuyên vì lí do bảo mật</div>
                             </header>
-                            <form id="formAcount" class="formAcount validate clearfix">
+                            <form id="formPass" class="formAcount validate clearfix">
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Mật khẩu mới: </label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="password" id="pass" name="pass"
+                                            <input type="password" id="pass" name="passwd"
                                                    class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
                                             <label id="mk-notice" class="invisible notice">Mật khẩu phải dài từ 8 - 25
                                                 kí tự và phải chứa cả số và chữ in hoa</label>
@@ -241,7 +178,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Xác nhận mật khẩu: </label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="password" id="pass-again" name="pass"
+                                            <input type="password" id="pass-again" name="pass-again"
                                                    class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
                                             <label id="mka-notice" class="invisible notice">Mật khẩu phải trùng khớp với
                                                 mật khẩu mới đã nhập</label>
@@ -252,7 +189,7 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label"></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <button type="submit" class="btn-update">LƯU
+                                            <button type="submit" class="btn-update" id="submit">LƯU
                                             </button>
                                         </div>
                                     </div>
@@ -323,7 +260,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${coupon_code_data}" var="cd">
+                            <c:forEach items="${sessionScope.coupon_code_data}" var="cd">
                                 <tr>
                                     <td>${cd.name}</td>
                                     <td>Miễn phí vận chuyển</td>
@@ -337,7 +274,7 @@
 
                 <div class="tab-pane " id="like">
                     <div class="row">
-                        <c:forEach items="${data}" var="d">
+                        <c:forEach items="${sessionScope.data}" var="d">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="${d.img}">
@@ -362,14 +299,14 @@
         </div>
         <div class="col-lg-4 order-lg-1 text-center img-2">
             <div class="img-ava">
-                <img src="${sessionScope.user_avatar}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                <img src="${sessionScope.user_avatar}" class="mx-auto img-fluid img-circle d-block" alt="Ảnh đại diện">
                 <label class="load-ava">
                     <span class="custom-file-control">Đổi Ảnh</span>
                     <input type="file" id="file" class="custom-file-input">
 
                 </label>
             </div>
-            <h6 class="mt-2">Nhật Thy</h6>
+            <h6 class="mt-2">${sessionScope.user_name}</h6>
 
         </div>
     </div>

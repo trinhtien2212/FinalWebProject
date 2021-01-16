@@ -33,13 +33,13 @@
         <div class="guarantee_wrap sign__in sign__up">
 
             <div class="sign__in__form sign__up__form">
-                <form action="">
+                <form action="warranty" method="post">
                     <input type="email" name="mail" id="mail" placeholder="Email (*)" required><br>
                     <input type="number" name="order-id" id="order-id" placeholder="Mã đơn hàng" required><br>
-                    <input type="text" name="guarantee-title" id="guarantee-title" placeholder="Tiêu đề">
+                    <input type="text" name="guarantee_title" id="guarantee-title" placeholder="Tiêu đề">
                     <textarea name="description" id="description" cols="30" rows="10" placeholder="Mô tả"
                               required></textarea>
-                    <button id="add-img" type="button">Thêm ảnh</button>
+                    <button id="add-img" type="button" name="war_img">Thêm ảnh</button>
                     <input type="submit" name="submit" id="submit" value="Gửi"><br>
                 </form>
             </div>

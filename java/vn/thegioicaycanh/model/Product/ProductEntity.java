@@ -189,10 +189,8 @@ public class ProductEntity {
     }
     // Load san pham yeu thich
     public static List<Product> loadFavoriteProduct(int user_id){
-        String sql = "SELECT u.`name`, p.`name`\n" +
-                "FROM `user` u INNER JOIN favorist_list f ON u.id = f.user_id\n" +
-                "INNER JOIN product p ON f.pro_id = p.id\n" +
-                "WHERE u.id = " + user_id;
+        String sql = "SELECT * FROM product\n" +
+                "WHERE id IN (SELECT pro_id FROM favorist_list WHERE user_id = " + user_id + ")";
         return loadProductFormSql(sql);
     }
 public static void vidu(String s){

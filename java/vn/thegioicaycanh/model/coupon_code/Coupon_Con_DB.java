@@ -1,6 +1,7 @@
 package vn.thegioicaycanh.model.coupon_code;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,11 +45,9 @@ public class Coupon_Con_DB {
         return null;
     }
     // Load coupon code by user_id
-    public static List<CouponCode> loadCouponCodeByUser(int id){
-        String sql = "SELECT c.name, c.date_end_sale " +
-                "     FROM user u INNER JOIN user_code uc ON u.id = uc.user_id " +
-                "     INNER JOIN coupon_code c ON uc.coupon_code_id = c.id " +
-                "     WHERE u.id = " + id;
+    public static List<CouponCode> loadCouponCodeByUser(int user_id){
+        String sql = "SELECT * FROM coupon_code\n" +
+                "WHERE id IN (SELECT uc.coupon_code_id FROM user_code uc JOIN `user` u ON uc.user_id=u.id WHERE uc.user_id = " + user_id +")";
         return loadCouponCodeFormSql(sql);
     }
     public static CouponCode getCouponCode(ResultSet resultSet) {
@@ -71,6 +70,9 @@ public class Coupon_Con_DB {
     }
 
     public static void main(String[] args) {
-        System.out.println(loadCouponCodeByUser(2));
+        for (CouponCode c: loadCouponCodeByUser(2)
+             ) {
+            System.out.println(c.getName());
+        }
     }
 }

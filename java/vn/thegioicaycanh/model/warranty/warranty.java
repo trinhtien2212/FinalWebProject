@@ -12,7 +12,15 @@ public class warranty {
     private Date date_created;
     private int status;
 
-    public warranty() {
+    public warranty(int order_id, int user_id, int pro_id, String message, String img, int status) {
+        this.id = id;
+        this.order_id = order_id;
+        this.user_id = user_id;
+        this.pro_id = pro_id;
+        this.message = message;
+        this.img = img;
+        this.status = status;
+        this.date_created = new Date();
     }
 
     public int getId() {

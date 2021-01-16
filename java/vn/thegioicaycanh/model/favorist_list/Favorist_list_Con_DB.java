@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.model.favorist_list;
 
+import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.notifications.Notifications;
 import vn.thegioicaycanh.model.util.Util;

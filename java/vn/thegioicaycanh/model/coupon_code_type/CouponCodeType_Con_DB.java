@@ -10,25 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CouponCodeType_Con_DB {
-    public static List<CouponCodeType> loadAllCouponCodeType(){
-        String sql="SELECT * from coupon_code_type";
+    public static List<CouponCodeType> loadAllCouponCodeType() {
+        String sql = "SELECT * from coupon_code_type";
         return loadCouponCodeTypeFormSql(sql);
     }
-    public static String getLinkImageFromCouponType(int id){
-        String sql="SELECT * FROM coupon_code_type WHERE ID ="+id;
-        for(CouponCodeType a: loadCouponCodeTypeFormSql(sql)){
-                return a.getAvatar();
-            }
-        return null;
-        }
 
-    public static List<CouponCodeType> loadCouponCodeTypeFormSql(String sql){
-        List<CouponCodeType>list = new ArrayList<CouponCodeType>();
+    public static String getLinkImageFromCouponType(int id) {
+        String sql = "SELECT * FROM coupon_code_type WHERE ID =" + id;
+        for (CouponCodeType a : loadCouponCodeTypeFormSql(sql)) {
+            return a.getAvatar();
+        }
+        return null;
+    }
+    // lay ra ten loai ma giam gia nho Id
+    public static List<CouponCodeType> getNameCouponType() {
+        String sql = "SELECT * FROM coupon_code_type WHERE ID =";
+        return loadAllCouponCodeType();
+    }
+    public static List<CouponCodeType> loadCouponCodeTypeFormSql(String sql) {
+        List<CouponCodeType> list = new ArrayList<CouponCodeType>();
         try {
             Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement){
+            synchronized (statement) {
                 ResultSet resultSet = statement.executeQuery(sql);
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     list.add(getCouponCodeType(resultSet));
                 }
                 resultSet.close();
@@ -40,6 +45,7 @@ public class CouponCodeType_Con_DB {
         }
         return null;
     }
+
     public static CouponCodeType getCouponCodeType(ResultSet resultSet) {
         if (resultSet == null)
             return null;

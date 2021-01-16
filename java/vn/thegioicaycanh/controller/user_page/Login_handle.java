@@ -126,10 +126,7 @@ public class Login_handle extends HttpServlet {
             session.setAttribute("user_id",user.getId());
             session.setAttribute("user_name",user.getName());
             // them
-            session.setAttribute("user_birth", user.getBirthday());
-            session.setAttribute("user_phone", user.getPhone());
             session.setAttribute("user_mail", user.getEmail());
-            getDetailAddress(user.getAddress(), session);
             if(user.getRole_id() == 2 || user.getRole_id() ==3){
                 session.setAttribute("isAdmin",true);
             }
@@ -146,18 +143,5 @@ public class Login_handle extends HttpServlet {
 //        System.out.println("Da nhan phan hoi");
 //        request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
     }
-    protected void getDetailAddress(String address, HttpSession session){
-        String [] arr = address.split(",");
-        String city = arr[arr.length-1];
-        String district = arr[arr.length-2];
-        String ward = arr[arr.length-3];
-        String detail = "";
-        for(int i=0; i< arr.length-3;i++){
-            detail += arr[i] + " ";
-        }
-        session.setAttribute("city", city);
-        session.setAttribute("district", district);
-        session.setAttribute("ward", ward);
-        session.setAttribute("detail", detail);
-    }
+
 }

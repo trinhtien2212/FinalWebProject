@@ -260,11 +260,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${sessionScope.coupon_code_data}" var="cd">
+                            <c:forEach items="${sessionScope.coupon_code}" var="cd">
                                 <tr>
                                     <td>${cd.name}</td>
-                                    <td>Miễn phí vận chuyển</td>
-                                    <td>Còn 8 ngày</td>
+                                    <td>${cd.coupon_code_type_id}</td>
+                                    <td>${cd.date_end}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -274,10 +274,10 @@
 
                 <div class="tab-pane " id="like">
                     <div class="row">
-                        <c:forEach items="${sessionScope.data}" var="d">
+                        <c:forEach items="${sessionScope.favorite}" var="f">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="${d.img}">
+                                <div class="product__item__pic set-bg" data-setbg="${f.img}">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -285,8 +285,8 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">${d.name}</a></h6>
-                                    <h5>${d.price}</h5>
+                                    <h6><a href="#">${f.name}</a></h6>
+                                    <h5>${f.price}</h5>
                                 </div>
                             </div>
                         </div>

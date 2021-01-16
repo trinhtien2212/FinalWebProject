@@ -126,8 +126,6 @@ public class Login_handle extends HttpServlet {
             session.setAttribute("user_id",user.getId());
             session.setAttribute("user_name",user.getName());
             // them
-            session.setAttribute("user_birth", user.getBirthday());
-            session.setAttribute("user_phone", user.getPhone());
             session.setAttribute("user_mail", user.getEmail());
             if(user.getRole_id() == 2 || user.getRole_id() ==3){
                 session.setAttribute("isAdmin",true);
@@ -145,4 +143,5 @@ public class Login_handle extends HttpServlet {
 //        System.out.println("Da nhan phan hoi");
 //        request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
     }
+
 }

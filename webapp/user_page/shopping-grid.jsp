@@ -22,7 +22,12 @@
     <link rel="stylesheet" href="user_page/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
-<body>
+<body
+    <c:if test="${position != null}">
+        <c:out value="Co vo"></c:out>
+        onload="load(${position})"
+    </c:if>
+>
 <%--<div class="invisible_type_page">${type_page}</div>--%>
 <%--<div class="invisible_url">${url}</div>--%>
 <jsp:include page="Menu.jsp"></jsp:include>
@@ -188,7 +193,7 @@
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-money"></i></a></li>
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="add-cart?id=${sgd.id}"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li class="addCart cursor-pointer" data-current_page="shopping" data-pro_id="${sgd.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">

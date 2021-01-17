@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.thegioicaycanh.model.util.Util" %><%--
   Created by IntelliJ IDEA.
   User: Trinh Quang Tien
   Date: 26/12/2020
@@ -24,9 +24,10 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="user.html"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>${sessionScope.cart.size}</span></a></li>
         </ul>
-        <div class="header__cart__price">Tổng:<span>150.000 VNĐ</span></div>
+        <c:set var="totalPrice" value="${sessionScope.cart.totalPrice}"></c:set>
+        <div class="header__cart__price">Tổng: <span><%= Util.formatCurrency((double)pageContext.getAttribute("totalPrice")) %> </span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
@@ -228,9 +229,10 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="user.html"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>${sessionScope.cart.size}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">Tổng:<span>150.000 VNĐ</span></div>
+                    <c:set var="totalPrice" value="${sessionScope.cart.totalPrice}"></c:set>
+                    <div class="header__cart__price">Tổng: <span><%= Util.formatCurrency((double)pageContext.getAttribute("totalPrice")) %> </span></div>
                 </div>
             </div>
         </div>

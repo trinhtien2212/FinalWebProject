@@ -7,12 +7,14 @@ import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
     private Map<Integer, Cart_item> products;
-
+    private int size = 0;
+    private double totalPrice = 0;
     //Da dang nhap:
     public Cart(int user_id) {
         this.products = new HashMap<Integer, Cart_item>();
@@ -26,9 +28,19 @@ public class Cart {
         } else {
             Product product = ProductEntity.loadProductById(id);
             if (product != null) {
-                products.put(product.getId(), new Cart_item(product.getId(), product.getImg(), product.getName(), product.getPrice(), product.getPrice_sale(), 1));
+                Cart_item cart_item = new Cart_item(product.getId(), product.getImg(), product.getName(), product.getPrice(), product.getPrice_sale(), 1);
+                products.put(product.getId(), cart_item);
                 insert(id, 1, user_id);
             }
+        }
+        calTotalPrice_Size();
+    }
+    public void calTotalPrice_Size(){
+        this.size=0;
+        this.totalPrice = 0;
+        for(Cart_item item:products.values()){
+            this.size +=item.getQuantity();
+            this.totalPrice +=item.getTotalPrice();
         }
     }
 
@@ -43,6 +55,7 @@ public class Cart {
                 updateQuantity(id, products.get(id).getQuantity(), user_id);
             }
         }
+        calTotalPrice_Size();
     }
 
     //Chua dang nhap
@@ -59,6 +72,7 @@ public class Cart {
                 products.put(product.getId(), new Cart_item(product.getId(), product.getImg(), product.getName(), product.getPrice(), product.getPrice_sale(), 1));
             }
         }
+       calTotalPrice_Size();
     }
 
     public void subProduct(int id) {
@@ -70,6 +84,7 @@ public class Cart {
                 products.get(id).subQuantity();
             }
         }
+        calTotalPrice_Size();
     }
 
 
@@ -149,5 +164,29 @@ public class Cart {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public Map<Integer, Cart_item> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Map<Integer, Cart_item> products) {
+        this.products = products;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

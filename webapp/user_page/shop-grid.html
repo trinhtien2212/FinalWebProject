@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<body>
+<body onload="load()">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -260,7 +260,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="sidebar__item">
+                        <div id="met" class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Mới Nhất</h4>
                                 <div class="latest-product__slider owl-carousel">
@@ -400,14 +400,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6" >
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/cay-de-ban/cay-mong-rong.jpg">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-money"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li ><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li class="addCart" data-pro_id="1"><a ><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -416,7 +415,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6" data-pro_id="2">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/cay-de-ban/sen-da-mini.jpg">
                                     <ul class="product__item__pic__hover">

@@ -468,98 +468,66 @@ $(document).ready(function () {
             $(this).unbind('submit').submit()
     });
 
-});
 // bắt lỗi Đổi mật khẩu
-$(document).ready(function (){
-   $('#formPass').submit(function (e){
-       e.preventDefault();
-       let passwd = $('#passwd').val();
-       if(passwd.length < 8){
-           $('#mk-notice').addClass("visible");
-           $('#mk-notice').removeClass("invisible");
-       }
-       let up=false,
-           num=false;
-       for(let j=0;j<passwd.length;j++){
-           let c = passwd.charCodeAt(j);
-           if(c>65 && c<=90){
-               up=true;
-           }
-           if(c>=48 && c<=57){
-               num=true;
-           }
-       }
-       if(num==false || up==false){
-           $('#mk-notice').addClass("visible");
-           $('#mk-notice').removeClass("invisible");
+    $(document).ready(function () {
+        $('#formPass').submit(function (e) {
+            e.preventDefault();
+            let passwd = $('#passwd').val();
+            if (passwd.length < 8) {
+                $('#mk-notice').addClass("visible");
+                $('#mk-notice').removeClass("invisible");
+            }
+            let up = false,
+                num = false;
+            for (let j = 0; j < passwd.length; j++) {
+                let c = passwd.charCodeAt(j);
+                if (c > 65 && c <= 90) {
+                    up = true;
+                }
+                if (c >= 48 && c <= 57) {
+                    num = true;
+                }
+            }
+            if (num == false || up == false) {
+                $('#mk-notice').addClass("visible");
+                $('#mk-notice').removeClass("invisible");
 
-       }else
-           $(this).unbind('submit').submit();
-   });
-   $('#formPass').submit(function (e) {
-        e.preventDefault();
-        let pass = $('#passwd').val();
-        let pass_again = $('#pass-again').val();
-        if(pass == pass_again){
-            $(this).unbind('submit').submit();
-        } else
-            $('#mka-notice').addClass("visible");
+            } else
+                $(this).unbind('submit').submit();
+        });
+        $('#formPass').submit(function (e) {
+            e.preventDefault();
+            let pass = $('#passwd').val();
+            let pass_again = $('#pass-again').val();
+            if (pass == pass_again) {
+                $(this).unbind('submit').submit();
+            } else
+                $('#mka-notice').addClass("visible");
             $('#mka-notice').removeClass("invisible");
+        });
+    });
+
+    //add cart
+    $('.addCart').click(function (e){
+        var scroll = $(window).scrollTop();
+        let curentUrl = window.location.href;
+        let arrCondition = curentUrl.split("?");
+        // console.log("length: "+arrCondition.length)
+        let condition;
+        if(arrCondition.length == 1){
+            // console.log("co vo dk if")
+            condition = "";
+        }else condition = arrCondition[1];
+
+        let currentPage = $('.addCart').data('current_page');
+        let id = $('.addCart').data('pro_id');
+        let directUrl = "cart-handle?current-page="+currentPage+"&id="+id+"&position="+scroll+"&action=add"+"&"+condition;
+        window.location.href=directUrl;
+        // console.log(directUrl);
     });
 });
-// $(document).ready(function (){
-//     $('#formPass').click(function (e) {
-//         e.preventDefault();
-//         let pass = $('#passwd').val();
-//         let pass_again = $('#pass-again').val();
-//         if (pass == pass_again) {
-//             $(this).unbind('submit').submit();
-//         } else
-//             $('#mka-notice').addClass("visible");
-//         $('#mka-notice').removeClass("invisible");
-//     });
-// });
 
+function load(position){
+    $(window).scrollTop(position);
 
-// $(document).ready(function () {
-//     $('.tab li').click(function (){
-//         $('#formPass').submit(function (e) {
-//             e.preventDefault();
-//             let passwd = $('#passwd').val();
-//             if(passwd.length < 8){
-//                 $('#mk-notice').addClass("visible");
-//                 $('#mk-notice').removeClass("invisible");
-//             }
-//             let up=false,
-//                 num=false;
-//             for(let j=0;j<passwd.length;j++){
-//                 let c = passwd.charCodeAt(j);
-//                 if(c>65 && c<=90){
-//                     up=true;
-//                 }
-//                 if(c>=48 && c<=57){
-//                     num=true;
-//                 }
-//             }
-//             if(num==false || up==false){
-//                 $('#mk-notice').addClass("visible");
-//                 $('#mk-notice').removeClass("invisible");
-//
-//             }else
-//                 $(this).unbind('submit','#submit1').submit();
-//         });
-//     });
-// });
-// $(document).ready(function () {
-//     $('#formPass').submit(function (e) {
-//         e.preventDefault();
-//         let pass = $('pass').val();
-//         let pass_again = $('#pass-again').val();
-//         if(pass == pass_again){
-//             $(this).unbind('submit').submit();
-//         } else{
-//             $('#mka-notice').addClass("visible");
-//             $('#mka-notice').removeClass("invisible");
-//         }
-//     });
-// });
+}

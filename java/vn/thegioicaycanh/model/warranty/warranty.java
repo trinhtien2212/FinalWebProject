@@ -7,20 +7,24 @@ public class warranty {
     private int order_id;
     private int user_id;
     private int pro_id;
+    private String title;
     private String message;
     private String img;
     private Date date_created;
     private int status;
+    private String email;
 
-    public warranty(int order_id, int user_id, int pro_id, String message, String img, int status) {
+    public warranty(int id, int order_id, int user_id, int pro_id,String title, String message, String img, int status,String email) {
         this.id = id;
         this.order_id = order_id;
         this.user_id = user_id;
         this.pro_id = pro_id;
+        this.title = title;
         this.message = message;
         this.img = img;
         this.status = status;
         this.date_created = new Date();
+        this.email = email;
     }
 
     public int getId() {
@@ -85,5 +89,21 @@ public class warranty {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

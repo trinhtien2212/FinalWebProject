@@ -9,10 +9,12 @@ public class CouponCode {
     private int id;
     private String name;
     private int coupon_code_type_id;
+    private String coupon_code_type_name;
     private int percent;
     private String discription;
     private String code;
     private Date date_end;
+    private int date_number; // so ngay giam gia con lai
 
     public CouponCode() {
     }
@@ -79,5 +81,21 @@ public class CouponCode {
 
     public static void main(String[] args) {
         System.out.println(getLinkImage(3));
+    }
+
+    public String getCoupon_code_type_name() {
+        return coupon_code_type_name;
+    }
+
+    public void setCoupon_code_type_name(String coupon_code_type_name) {
+        this.coupon_code_type_name = coupon_code_type_name;
+    }
+
+    public int getDate_number() {
+        return date_number;
+    }
+
+    public void setDate_number(int date_number) {
+        this.date_number = date_number;
     }
 }

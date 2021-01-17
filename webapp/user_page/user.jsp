@@ -263,8 +263,8 @@
                             <c:forEach items="${sessionScope.coupon_code}" var="cd">
                                 <tr>
                                     <td>${cd.name}</td>
-                                    <td>${cd.coupon_code_type_id}</td>
-                                    <td>${cd.date_end}</td>
+                                    <td>${cd.coupon_code_type_name}</td>
+                                    <td>Còn ${cd.date_number} ngày</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

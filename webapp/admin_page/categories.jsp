@@ -64,7 +64,7 @@
             <!-- Notifications -->
             <li class="nav-item dropdown noti-dropdown">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <i class="far fa-bell"></i>  <span class="badge badge-pill"></span>
+                    <i class="far fa-bell"></i> <span class="badge badge-pill"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right notifications">
                     <div class="topnav-dropdown-header">
@@ -76,9 +76,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="" src="assets/img/customer/ong.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt=""
+                                                 src="assets/img/customer/ong.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Ung Thành Vũ đã gửi phản hồi</span>
@@ -93,9 +94,10 @@
                             <li class="notification-message">
                                 <a href="notification-detail.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="" src="assets/img/customer/user21.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt=""
+                                                 src="assets/img/customer/user21.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Nguyễn Hoàng Sơn đã gửi phản hồi</span>
@@ -110,9 +112,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="" src="assets/img/customer/user22.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt=""
+                                                 src="assets/img/customer/user22.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Biên Bá Hiền đã gửi phản hồi</span>
@@ -127,9 +130,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/customer/user23.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt="User Image"
+                                                 src="assets/img/customer/user23.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Ngô Thế Huân đã gửi phản hồi</span>
@@ -144,9 +148,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/customer/user24.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt="User Image"
+                                                 src="assets/img/customer/user24.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Dương Dĩnh đã gửi phản hồi</span>
@@ -161,9 +166,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/customer/user25.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt="User Image"
+                                                 src="assets/img/customer/user25.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Lưu Thi Thi đã gửi phản hồi</span>
@@ -178,9 +184,10 @@
                             <li class="notification-message">
                                 <a href="admin-notification.html">
                                     <div class="media">
-															<span class="avatar avatar-sm">
-																<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/customer/user26.jpg">
-															</span>
+                                        <span class="avatar avatar-sm">
+                                            <img class="avatar-img rounded-circle" alt="User Image"
+                                                 src="assets/img/customer/user26.jpg">
+                                        </span>
                                         <div class="media-body">
                                             <p class="noti-details">
                                                 <span class="noti-title">Trương Tân Thành đã gửi phản hồi</span>
@@ -232,9 +239,10 @@
                         <a href="dashboard.html"><i class="fas fa-columns"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="submenu">
-                        <a href="#"><i class="fas fa-tasks"></i> <span>Quản lí</span> <span class="menu-arrow"></span></a>
+                        <a href="#"><i class="fas fa-tasks"></i> <span>Quản lí</span> <span
+                                class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li ><a href="categories.html" class="active">Danh mục</a></li>
+                            <li><a href="categories.html" class="active">Danh mục</a></li>
                             <li><a href="product.html">Sản phẩm</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="coupon-code-type.html">Loại mã giảm giá</a></li>
@@ -246,7 +254,8 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fas fa-shopping-cart"></i><span>Bán hàng</span> <span class="menu-arrow"></span></a>
+                        <a href="#"><i class="fas fa-shopping-cart"></i><span>Bán hàng</span> <span
+                                class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="total-report.html">Danh sách đặt hàng</a></li>
                             <li><a href="shipments.html">Vận chuyển</a></li>
@@ -363,25 +372,28 @@
                                     </thead>
                                     <tbody>
                                     <c:forEach var="c_view" items="${c_view}">
-                                    <tr>
-                                        <td>${c_view.id}</td>
-                                        <td>${c_view.name}</td>
+                                        <tr>
+                                            <td>${c_view.id}</td>
+                                            <td>${c_view.name}</td>
 
-                                        <td>${c_view.numOfProduct}</td>
-                                        <td>
-                                            <div class="status-toggle">
-                                                <input id="category_1" class="check" type="checkbox"
-                                                       <c:if test="${c_view.active==true}">checked</c:if>
-                                                >
-                                                <label for="category_1" class="checktoggle">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="edit-category.html" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Sửa</a>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>
+                                            <td>${c_view.numOfProduct}</td>
+                                            <td>
+                                                <div class="status-toggle">
+                                                    <input id="category_1" class="check" type="checkbox"
+                                                           <c:if test="${c_view.active==true}">checked</c:if>
+                                                    >
+                                                    <label for="category_1" class="checktoggle">checkbox</label>
+                                                </div>
+                                            </td>
+                                            <td class="text-right">
+                                                <a href="edit-category.html" class="btn btn-sm bg-success-light mr-2">
+                                                    <i class="far fa-edit mr-1"></i> Sửa</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm"><i
+                                                        class="fa fa-trash-o"></i> Xóa
+                                                </button>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>

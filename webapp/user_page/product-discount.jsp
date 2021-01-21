@@ -41,15 +41,6 @@
                     <option value="">Mã khuyến mãi</option>
                 </select>
                 <select id="select_category" class="mdb-select md-form col-md-2 mx-3">
-<%--                    <option value="" disabled selected>Danh mục</option>&ndash;%&gt;--%>
-<%--                    <c:forEach var="cate" items="${applicationScope.category}">--%>
-<%--                        <c:if test="${cate.id==cate_id}">--%>
-<%--                            <option value="" selected><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${cate.id!=cate_id}">--%>
-<%--                            <option value=""><a href="${type_page}?cate_id=${cate.id}&${url}">${cate.name}</a></option>--%>
-<%--                        </c:if>--%>
-<%--                    </c:forEach>--%>
                     <c:if test="${cate_id==0}">
                         <option value="" disabled selected>Danh mục</option>
                         <option value="${type_page}?cate_id=1&${url}">Cây để bàn </option>

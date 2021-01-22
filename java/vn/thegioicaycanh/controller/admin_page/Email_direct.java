@@ -1,5 +1,7 @@
 package vn.thegioicaycanh.controller.admin_page;
 
+import vn.thegioicaycanh.model.notifications.Notification_Con_DB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ public class Email_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("current_page","email");
+        request.setAttribute("emails", Notification_Con_DB.loadNotificationsFormSql("select * from notifications"));
         request.getRequestDispatcher("email.jsp").forward(request,response);
 
     }

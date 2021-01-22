@@ -55,6 +55,9 @@ public class Notification_Con_DB {
     }
 
     public static void main(String[] args) {
-        System.out.println(getStringsNotifications());
+//        System.out.println(loadNotificationsFormSql("select * from notifications"));
+        for(Notifications a:loadNotificationsFormSql("select * from notifications")){
+            System.out.println(a.getId());
+        }
     }
 }

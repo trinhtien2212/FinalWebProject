@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <!DOCTYPE html>
@@ -64,17 +66,20 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>NguyenVanA@gmail.com</td>
-                                                <td>12 Tháng 11 2020</td>
-<%--                                                <td>--%>
-<%--                                                    <div class="status-toggle">--%>
-<%--                                                        <input id="rating_1" class="check" type="checkbox" checked>--%>
-<%--                                                        <label for="rating_1" class="checktoggle">checkbox</label>--%>
-<%--                                                    </div>--%>
-<%--                                                </td>--%>
-                                            </tr>
+                                            <c:forEach var="e" items="${emails}">
+<%--                                                <c:set var="date" value="${e.getDate()}"></c:set>--%>
+                                                <tr>
+                                                    <td>${e.id}</td>
+                                                    <td>${e.email}</td>
+<%--                                                    <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date"))%></td>--%>
+    <%--                                                <td>--%>
+    <%--                                                    <div class="status-toggle">--%>
+    <%--                                                        <input id="rating_1" class="check" type="checkbox" checked>--%>
+    <%--                                                        <label for="rating_1" class="checktoggle">checkbox</label>--%>
+    <%--                                                    </div>--%>
+    <%--                                                </td>--%>
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

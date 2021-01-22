@@ -13,6 +13,24 @@ import java.util.List;
 
 public class LoadUser {
 
+    public static boolean saveUserLoginByFb_GG(String email,String name){
+        boolean isSaved = false;
+        String sql = "insert into user(name,email,avatar,`password`,active,role_id,date_created) values(?,?,'imgs/user/default_avarta',-1,1,1,CURRENT_DATE);";
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,email);
+            synchronized (preparedStatement){
+                int row = preparedStatement.executeUpdate();
+                if(row == 1)
+                    isSaved=true;
+            }
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return isSaved;
+    }
     public static User loadAUserByEmail(String email){
         try {
             PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select * from user where email=?");
@@ -103,4 +121,7 @@ public class LoadUser {
        return null;
     }
 
+    public static void main(String[] args) {
+        System.out.println(saveUserLoginByFb_GG("tien123@","trinhtien"));
+    }
 }

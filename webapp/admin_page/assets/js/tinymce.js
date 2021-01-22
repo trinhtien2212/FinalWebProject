@@ -25,6 +25,7 @@ tinymce.init({
         { title: 'Some class', value: 'class-name' }
     ],
     importcss_append: true,
+    block_unsupported_drop:false,
     file_picker_callback: function (callback, value, meta) {
         /* Provide file and text for the link dialog */
         if (meta.filetype === 'file') {

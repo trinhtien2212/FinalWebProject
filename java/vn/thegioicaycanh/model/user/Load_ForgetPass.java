@@ -3,6 +3,7 @@ package vn.thegioicaycanh.model.user;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.util.Util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,35 +12,76 @@ import java.util.List;
 
 public class Load_ForgetPass {
     public static boolean saveForgetPass(ForgetPass fp){
+        boolean isSave = false;
         try {
-            Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement) {
-                String sql = "INSERT INTO forget_pass " +
-                        "VALUES ('" + fp.getEmail() + "'," + fp.getUser_id() + "," + fp.getKey_forget() + ",'" + Util.dateFormat(fp.getDate_end()) + "')";
-                System.out.println(sql);
-                statement.executeUpdate(sql);
+
+            String sql = "insert into forget_pass values (?,?,?,?)";
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1,fp.getEmail());
+            preparedStatement.setInt(2,fp.getUser_id());
+            preparedStatement.setString(3,fp.getKey_forget());
+            preparedStatement.setString(4,Util.dateFormat(fp.getDate_end()));
+            synchronized (preparedStatement) {
+                isSave = preparedStatement.executeUpdate()==1;
             }
-            statement.close();
-            return true;
+            preparedStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return isSave;
     }
-    public static boolean updateNewPass(int np,int user_id){
+    public static ForgetPass loadForgetPassByKey(String key){
+        ForgetPass fp=null;
         try {
-            Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement) {
-                String sql = " update user set password="+np+" where id="+user_id;
-                System.out.println(sql);
-                statement.executeUpdate(sql);
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select * from forget_pass where key_forget=?");
+            preparedStatement.setString(1,key);
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    fp = new ForgetPass();
+                    fp.setEmail(resultSet.getString(1));
+                    fp.setUser_id(resultSet.getInt(2));
+                    fp.setKey_forget(resultSet.getString(3));
+                    fp.setDate_end(resultSet.getDate(4));
+                }
+                resultSet.close();
             }
-            statement.close();
-            return true;
+            preparedStatement.close();
+            return fp;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return null;
+    }
+    public static boolean deleteForgetPassByKey(String key){
+        boolean isDeleted=false;
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("delete from forget_pass where key_forget=?");
+            preparedStatement.setString(1,key);
+            synchronized (preparedStatement){
+                isDeleted = preparedStatement.executeUpdate()==1;
+            }
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return isDeleted;
+    }
+    public static boolean updateNewPass(long np,int user_id){
+        boolean isUpdate = false;
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("update user set password=? where id = ?");
+            preparedStatement.setLong(1,np);
+            preparedStatement.setInt(2,user_id);
+
+            synchronized (preparedStatement) {
+                isUpdate = preparedStatement.executeUpdate()==1;
+            }
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return isUpdate;
     }
 
     public static void main(String[] args) {

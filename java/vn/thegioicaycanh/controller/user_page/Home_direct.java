@@ -24,6 +24,10 @@ public class Home_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
+
+        if(request.getSession().getAttribute("user_id")!=null){
+            System.out.println("Day la user_id: "+request.getSession().getAttribute("user_id"));
+        }
         request.setAttribute("page_menu","home");
         request.setAttribute("title","Trang chủ");
         request.setAttribute("home_page_data",new Home_page());

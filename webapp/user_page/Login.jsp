@@ -170,6 +170,7 @@
                 var profile = googleUser.getBasicProfile();
                 $('#name-form').val(profile.getName());
                 $('#email-form').val(profile.getEmail());
+
                 $('#form').submit();
             }, function(error) {
                 // alert(JSON.stringify(error, undefined, 2));

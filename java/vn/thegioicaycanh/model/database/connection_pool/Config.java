@@ -10,6 +10,6 @@ public class Config {
     public static final int DB_MIN_CONNECTIONS = 50;
     public static final int DB_MAX_CONNECTIONS = 100;
     // jdbc:mysql://hostname:port/dbname
-    public static final String CONNECTION_URL = "jdbc:mysql://" + HOST_NAME + ":" + DB_PORT + "/" + DB_NAME;
+    public static final String CONNECTION_URL = "jdbc:mysql://" + HOST_NAME + ":" + DB_PORT + "/" + DB_NAME+"?useUnicode=yes&characterEncoding=UTF-8";
 
 }

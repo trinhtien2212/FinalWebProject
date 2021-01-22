@@ -27,7 +27,7 @@ public class Load_Feedback {
     }
 
     public static void main(String[] args) {
-        System.out.println(saveFeedback(new Feedback("342@gami.com","Thy","bi sai")));
+        System.out.println(saveFeedback(new Feedback("342@gami.com","Thy","Tôi tên là Tiến")));
     }
 
 }

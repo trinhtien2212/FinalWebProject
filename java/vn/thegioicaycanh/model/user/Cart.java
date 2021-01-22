@@ -19,6 +19,7 @@ public class Cart {
     public Cart(int user_id) {
         this.products = new HashMap<Integer, Cart_item>();
         loadCart(user_id);
+        calTotalPrice_Size();
     }
 
     public void addProduct(int id, int user_id) {

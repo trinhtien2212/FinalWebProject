@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 
-<body onunload="javascript:history.go(1)">
+<body >
 
     <jsp:include page="Menu.jsp"></jsp:include>
 

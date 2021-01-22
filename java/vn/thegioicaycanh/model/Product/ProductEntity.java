@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.model.Product;
 
+import com.mysql.jdbc.JDBC4PreparedStatement;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
 import java.sql.PreparedStatement;
@@ -193,6 +194,32 @@ public class ProductEntity {
                 "WHERE id IN (SELECT pro_id FROM favorist_list WHERE user_id = " + user_id + ")";
         return loadProductFormSql(sql);
     }
+
+    public static List<Product> loadProductBy(String product_id, String product_name, String category, String from_date, String to_date) {
+        List<Product> productList = new ArrayList<Product>();
+
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select * from product where id like ? and name like ? and category_id like ? and date_created between ? and ?");
+
+            pe.setString(1,product_id);
+            pe.setString(2,product_name);
+            pe.setString(3,category);
+            pe.setString(4,from_date);
+            pe.setString(5,to_date);
+//            System.out.println((JDBC4PreparedStatement)pe.asSql());
+            synchronized (pe){
+                ResultSet resultSet = pe.executeQuery();
+                System.out.println(resultSet.getStatement().toString());
+                while(resultSet.next()) productList.add(getProduct(resultSet));
+                resultSet.close();
+            }
+            pe.close();
+            return productList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return productList;
+    }
 public static void vidu(String s){
         s +="tien";
     System.out.println(s);
@@ -211,6 +238,7 @@ public static void vidu(String s){
 //        list.add(3);
 //        List<Integer>list1= list.subList(1,(5+1)>list.size()?list.size():5+1);
 //        System.out.println(list1);
+        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
 
     }
 

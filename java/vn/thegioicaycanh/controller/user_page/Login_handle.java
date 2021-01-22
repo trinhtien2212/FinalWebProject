@@ -2,10 +2,7 @@ package vn.thegioicaycanh.controller.user_page;
 
 import vn.thegioicaycanh.model.home_page.Home_page;
 import vn.thegioicaycanh.model.mail.Mail;
-import vn.thegioicaycanh.model.user.ForgetPass;
-import vn.thegioicaycanh.model.user.LoadUser;
-import vn.thegioicaycanh.model.user.Load_ForgetPass;
-import vn.thegioicaycanh.model.user.User;
+import vn.thegioicaycanh.model.user.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +23,14 @@ public class Login_handle extends HttpServlet {
         request.setAttribute("page_menu","login");
         request.setAttribute("title","Đăng nhập");
         //Xu li nhan link doi mat khau
+        if(request.getParameter("conform-login")!=null){
+            String key =request.getParameter("key");
+            ForgetPass fp = Load_ForgetPass.loadForgetPassByKey(key);
+            if(fp !=null){
 
+            }
+
+        }
         //Xu li nhan form quen mat khau
         if(request.getParameter("email_forget_pass")!=null){
             User user = LoadUser.loadAUserByEmail(request.getParameter("email_forget_pass"));
@@ -34,7 +38,7 @@ public class Login_handle extends HttpServlet {
                 ForgetPass fp= new ForgetPass(user.getId(),user.getEmail(),user.getPassword());
                 boolean succSave=Load_ForgetPass.saveForgetPass(fp);
                 if(succSave){
-                    String link = "http://localhost:8080/thegioicaycanh.vn/handle-login?conform-fp=true&id="+fp.getUser_id()+"&email"+fp.getEmail()+"&key="+fp.getKey_forget();
+                    String link = "http://localhost:8080/thegioicaycanh.vn/handle-login?conform-fp=true&key="+ fp.getKey_forget();
                     String subject="Lấy lại mật khẩu";
                     String content= "Chào "+user.getName()+"!,"
                     + "\n Đây là link lấy lại mật khẩu! Link có thời hạn 3 ngày kể từ ngày nhận. Bấm vào để xác nhận\n"
@@ -44,8 +48,7 @@ public class Login_handle extends HttpServlet {
 
                 }
             }
-            request.setAttribute("status",3);
-            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            notifyError(2,"Email đã được gửi, nếu email đã đăng kí, vui lòng kiểm tra email",request,response);
             return;
         }
 
@@ -55,8 +58,8 @@ public class Login_handle extends HttpServlet {
             if(request.getParameter("login").equalsIgnoreCase("user")){
                 //set status cho trang jsp de hieu la dang o trang thai nao
                 //status = 1: đang nhap
-                //status = 2: Sai tai khoan
-                //status =3: hien thi thong bao xac thuc quen mat khau
+                //status = 2: Sai tai khoan, co loi khac xay ra
+
                 request.setAttribute("status",1);
                 request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
             }
@@ -77,9 +80,7 @@ public class Login_handle extends HttpServlet {
         //Xu li dang xuat
         if(request.getParameter("logout") !=null){
             if(request.getParameter("logout").equalsIgnoreCase("true")){
-                if(request.getSession(false) !=null) {
-                    request.getSession(false).invalidate();
-                }
+                deleteAvailableSession(request);
                 request.getRequestDispatcher("home").forward(request, response);
             }
             return;
@@ -87,9 +88,7 @@ public class Login_handle extends HttpServlet {
 
         //Kiem tra xem nguoi dung da dang nhap va chua dang xuat hay khong
         //Neu dung thi xoa session do va tao sesion khac
-        if(request.getSession(false) !=null){
-            request.getSession(false).invalidate();
-        }
+        deleteAvailableSession(request);
 
         //xu li xac thuc thong tin tai khoan
         String email="";
@@ -101,47 +100,50 @@ public class Login_handle extends HttpServlet {
             pass = request.getParameter("pass");
         }
         if(email.isEmpty() || pass.isEmpty()){
-            request.setAttribute("status",2);
-
-            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            notifyError(2,"Phải nhập cả email va password",request,response);
             return;
         }
         System.out.println(email);
         System.out.println(pass);
         User user = LoadUser.loadAUserByEmail(email);
         if(user == null){
-            request.setAttribute("status",2);
-
-            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            notifyError(2,"Sai email hoặc mật khẩu",request,response);
             return;
         }
         long passHashCode = user.getId()*email.hashCode()*pass.hashCode();
         if(passHashCode != user.getPassword()){
-            request.setAttribute("status",2);
-            System.out.println("Sai mat khau");
-            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            notifyError(2,"Sai email hoặc mật khẩu",request,response);
         }else {
-            HttpSession session = request.getSession();
-            session.setAttribute("user_avatar",user.getAvatar());
-            session.setAttribute("user_id",user.getId());
-            session.setAttribute("user_name",user.getName());
-            // them
-            session.setAttribute("user_mail", user.getEmail());
-            if(user.getRole_id() == 2 || user.getRole_id() ==3){
-                session.setAttribute("isAdmin",true);
-            }
-            System.out.println("Dan chuyen den home sau khi dang nhap");
-            request.getRequestDispatcher("home").forward(request,response);
+            System.out.println("Vao success");
+            successLogin(request, response, user);
         }
+    }
 
-//        if(request.getParameter("email")!=null){
-//            System.out.println(request.getParameter("email"));
-//        }
-//        if(request.getParameter("pass") !=null){
-//            System.out.println(request.getParameter("pass"));
-//        }
-//        System.out.println("Da nhan phan hoi");
-//        request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+    public static void deleteAvailableSession(HttpServletRequest request) {
+        if (request.getSession(false) != null) {
+            request.getSession(false).invalidate();
+        }
+    }
+
+    public static void successLogin(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("user_avatar", user.getAvatar());
+        session.setAttribute("user_id", user.getId());
+        session.setAttribute("user_name", user.getName());
+        // them
+        session.setAttribute("user_mail", user.getEmail());
+        Cart cart = new Cart(user.getId());
+        session.setAttribute("cart",cart);
+        if(user.getRole_id() == 2 || user.getRole_id() ==3){
+            session.setAttribute("isAdmin",true);
+        }
+        System.out.println("Dan chuyen den home sau khi dang nhap");
+        request.getRequestDispatcher("home").forward(request, response);
+    }
+    public static void notifyError(int status_id,String status_content,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("status",status_id);
+        request.setAttribute("status_content",status_content);
+        request.getRequestDispatcher("user_page/login.jsp").forward(request,response);
     }
 
 }

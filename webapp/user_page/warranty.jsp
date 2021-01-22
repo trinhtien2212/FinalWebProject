@@ -34,13 +34,15 @@
 
             <div class="sign__in__form sign__up__form">
                 <form action="warranty" method="post">
-                    <input type="email" name="mail" id="mail" placeholder="Email (*)" required><br>
-                    <input type="number" name="order-id" id="order-id" placeholder="Mã đơn hàng" required><br>
-                    <input type="text" name="guarantee_title" id="guarantee-title" placeholder="Tiêu đề">
+                    <input type="number" name="user_id" id="user_id" placeholder="Mã khách hàng" value="${user_id}" disabled>
+                    <input type="number" name="pro_id" id="pro_id" placeholder="Mã sản phẩm" value="${pro_id}" disabled>
+                    <input type="email" name="mail" id="mail" placeholder="Email (*)" value="${email}" required><br>
+                    <input type="number" name="order-id" id="order-id" placeholder="Mã đơn hàng" disabled value="${order_id}"><br>
+                    <input type="text" name="war_title" id="war-title" placeholder="Tiêu đề">
                     <textarea name="description" id="description" cols="30" rows="10" placeholder="Mô tả"
                               required></textarea>
                     <button id="add-img" type="button" name="war_img">Thêm ảnh</button>
-                    <input type="submit" name="submit" id="submit" value="Gửi"><br>
+                    <input type="submit" name="submit" id="submit" value="Gửi" href="warrantity_update"><br>
                 </form>
             </div>
 
@@ -48,9 +50,34 @@
     </div>
 </section>
 <!-- Sign In Section End -->
+<!-- End Bao hanh -->
 
-<!-- End Bao hang -->
-
+<%--status notification--%>
+<c:if test="${status==1}">
+    <div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog forget-dialog" role="document">
+            <div class="modal-content forget-content">
+                <div class="modal-header forget-header">
+                    <h5 class="modal-title forget-title" >Yêu cầu bảo hành đã thành công</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="x">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body forget-body">
+                    <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
+                    <div>
+                        <p>Yêu cầu bảo hành sản phẩm của bạn đã thành công. Bạn vui lòng chờ bên cửa hàng xem xét.
+                        Hãy đợi phản hồi từ chúng tôi qua mail của bạn. Cảm ơn bạn đã sử dụng dịch vụ!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary forget-send" data-dismiss="modal">ĐÓNG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 <jsp:include page="footer.jsp"></jsp:include>
 
 <!-- Js Plugins -->

@@ -41,15 +41,11 @@ public class User_direct extends HttpServlet {
             session.setAttribute("user_id", user.getId());
             getDetailAddress(user.getAddress(), session);
             // Ma giam gia
-            List<CouponCode> couponCode = Coupon_Con_DB.loadCouponCodeByUser(user.getId());
-            session.setAttribute("coupon_code", couponCode);
-            // Loai ma giam gia
-//            List<CouponCodeType> couponCodeTypes = CouponCodeType_Con_DB.getNameCouponType()
-//            Map<Integer,String>map =new HashMap<Integer, String>();
-//            map.put(1,"Giảm giá");
-//            map.put(2,"Miễn phí vận chuyển");
-//            map.put(3,"Giảm giá momo");
-//            session.setAttribute("coupon_code_type_id",map);
+            List<CouponCode> couponCodes = Coupon_Con_DB.loadCouponCodeByUserId(user.getId());
+            session.setAttribute("coupon_code", couponCodes);
+            for(CouponCode c: couponCodes){
+                System.out.println(c.getName());
+            }
             // San pham yeu thich
             List<Product> favoristLists = ProductEntity.loadFavoriteProduct(user.getId());
             session.setAttribute("favorite", favoristLists);

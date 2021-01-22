@@ -190,5 +190,25 @@ public class Blog_Con_DB {
         }
         return null;
     }
-
+    public static List<Blog> loadBlog_view(){
+        List<Blog> blogList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT id, `name`, date_created, active FROM blog WHERE active=?");
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    Blog blog = new Blog();
+                    blog.setId(resultSet.getInt(1));
+                    blog.setName(resultSet.getString(2));
+                    blog.setDate_created(resultSet.getDate(3));
+                    blog.setActive(resultSet.getBoolean(4));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return blogList;
+    }
 }

@@ -113,7 +113,7 @@
                             </div>
                             <div class="blog__item__text">
                                 <ul>
-                                    <li><i class="fa fa-calendar-o"></i>${b.date_created}</li>
+                                    <li><i class="fa fa-calendar-o"></i> ${b.date_created}</li>
                                     <li><i class="fa fa-comment-o"></i> ${b.id}</li>
                                 </ul>
                                 <h5><a href="blog-details.html">${b.name}</a></h5>

@@ -91,6 +91,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
+                <c:set var="page_menu" scope="request" value="${requestScope.page_menu}"></c:set>
                 <c:choose>
                     <c:when test="${page_menu=='dashboard'}">
                         <li class="active">

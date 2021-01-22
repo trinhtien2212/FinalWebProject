@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -35,6 +36,8 @@
 </head>
 
 <body>
+<c:set var="m" value="emails"></c:set>
+<%System.out.println(pageContext.getAttribute("m"));%>
 <div class="main-wrapper">
     <jsp:include page="menu.jsp"></jsp:include>
         <div class="page-wrapper">
@@ -67,11 +70,11 @@
                                             </thead>
                                             <tbody>
                                             <c:forEach var="e" items="${emails}">
-<%--                                                <c:set var="date" value="${e.getDate()}"></c:set>--%>
+                                                <c:set var="date" value="${e.date}"></c:set>
                                                 <tr>
                                                     <td>${e.id}</td>
                                                     <td>${e.email}</td>
-<%--                                                    <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date"))%></td>--%>
+                                                    <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date"))%></td>
     <%--                                                <td>--%>
     <%--                                                    <div class="status-toggle">--%>
     <%--                                                        <input id="rating_1" class="check" type="checkbox" checked>--%>

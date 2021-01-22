@@ -18,6 +18,7 @@ public class Email_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("current_page","email");
         request.setAttribute("emails", Notification_Con_DB.loadNotificationsFormSql("select * from notifications"));
+        System.out.println(request.getAttribute("emails"));
         request.getRequestDispatcher("email.jsp").forward(request,response);
 
     }

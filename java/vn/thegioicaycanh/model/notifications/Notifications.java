@@ -45,4 +45,14 @@ public class Notifications {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Notifications{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", date=" + date +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-@WebServlet(name = "Add_blog_direct")
+@WebServlet(urlPatterns = "/admin_page/add-blog")
 public class Add_blog_direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

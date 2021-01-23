@@ -120,8 +120,27 @@ public class LoadUser {
         }
        return null;
     }
-
+    // Dem co bao nhieu user
+    public static int sumOfUser(String sql){
+        int sum = 0;
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet rs = statement.executeQuery(sql);
+                if(rs.next()){
+                    sum = rs.getInt(1);
+                }
+                rs.close();
+            }
+            statement.close();
+            return sum;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
     public static void main(String[] args) {
-        System.out.println(saveUserLoginByFb_GG("tien123@","trinhtien"));
+//        System.out.println(saveUserLoginByFb_GG("tien123@","trinhtien"));
+//        System.out.println(countUser());
     }
 }

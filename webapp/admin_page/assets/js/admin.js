@@ -187,3 +187,41 @@
 	});
 
 })(jQuery);
+// bắt lỗi Đổi mật khẩu
+$(document).ready(function () {
+	$('#formPass').submit(function (e) {
+		e.preventDefault();
+		let passwd = $('#passwd').val();
+		if (passwd.length < 8) {
+			$('#mk-notice').addClass("visible");
+			$('#mk-notice').removeClass("invisible");
+		}
+		let up = false,
+			num = false;
+		for (let j = 0; j < passwd.length; j++) {
+			let c = passwd.charCodeAt(j);
+			if (c > 65 && c <= 90) {
+				up = true;
+			}
+			if (c >= 48 && c <= 57) {
+				num = true;
+			}
+		}
+		if (num == false || up == false) {
+			$('#mk-notice').addClass("visible");
+			$('#mk-notice').removeClass("invisible");
+
+		} else
+			$(this).unbind('submit').submit();
+	});
+	$('#formPass').submit(function (e) {
+		e.preventDefault();
+		let pass = $('#passwd').val();
+		let pass_again = $('#pass-again').val();
+		if (pass == pass_again) {
+			$(this).unbind('submit').submit();
+		} else
+			$('#mka-notice').addClass("visible");
+		$('#mka-notice').removeClass("invisible");
+	});
+});

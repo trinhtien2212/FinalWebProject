@@ -82,16 +82,16 @@ public class Product_discount_direct extends HttpServlet {
 
 
         // set Attribute cho request
-        request.setAttribute("pages",pages); // chỗ này đánh số trang
+        request.setAttribute("pages",pages);
         request.setAttribute("type_page","shopping-sale");
-        request.setAttribute("cate_id",cate_id); // chô này Q có nè
+        request.setAttribute("cate_id",cate_id);
         request.setAttribute("sort_id",sort_id);
         request.setAttribute("date_id", date_id);
-        request.setAttribute("url",url); // chỗ này cũng cần
+        request.setAttribute("url",url);
         request.setAttribute("numOfItemLoad",20);
-        request.setAttribute("direct_to","user_page/product-discount.jsp"); // chỗ này chuyển qua trang sp
-        request.setAttribute("sql","select * from product "+sqlCondition); // chỗ này viết câu lệnh giống vậy
-        request.setAttribute("sumOfItems_sql","select count(*) from product "+sqlCondition); // chỗ này là bên phần phân trang
+        request.setAttribute("direct_to","user_page/product-discount.jsp");
+        request.setAttribute("sql","select * from product "+sqlCondition);
+        request.setAttribute("sumOfItems_sql","select count(*) from product "+sqlCondition);
 
     }
 }

@@ -112,8 +112,32 @@ public class Coupon_Con_DB {
         return couponCode;
     }
 
+    public static List<CouponCode> loadCouponCode_view(){
+        List<CouponCode> couponCodes = new ArrayList<>();
+        try{
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet resultSet = statement.executeQuery("SELECT cp.id, cp.`name`, ct.`name`, cp.percent, cp.date_end_sale FROM coupon_code cp JOIN coupon_code_type ct ON cp.coupon_code_type_id = ct.id");
+                while(resultSet.next()){
+                    CouponCode couponCode = new CouponCode();
+                    couponCode.setId(resultSet.getInt(1));
+                    couponCode.setName(resultSet.getString(2));
+                    couponCode.setCoupon_code_type_name(resultSet.getString(3));
+                    couponCode.setPercent(resultSet.getInt(4));
+                    couponCode.setDate_end(resultSet.getDate(5));
+                    couponCodes.add(couponCode);
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return couponCodes;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return couponCodes;
+    }
     public static void main(String[] args) {
-        for (CouponCode c : loadCouponCodeByUserId(1)
+        for (CouponCode c : loadCouponCode_view()
         ) {
             System.out.println(c.getCoupon_code_type_name());
         }

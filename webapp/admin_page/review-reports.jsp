@@ -44,9 +44,11 @@
 
 </head>
 <body>
+<c:set var="m" value="ratings"></c:set>
+<%System.out.println("tat ca rating"+pageContext.getAttribute("m"));%>
 <% System.out.println("Co dang vao product.jsp");%>
 <div class="main-wrapper">
-    <jsp:include page="menu.jsp"></jsp:include>
+<%--    <jsp:include page="menu.jsp"></jsp:include>--%>
     <div class="page-wrapper">
         <div class="content container-fluid">
 
@@ -59,9 +61,6 @@
                     <div class="col-auto text-right">
                         <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
                             <i class="fas fa-filter"></i>
-                        </a>
-                        <a href="admin-page/add-product?type=add" class="btn btn-primary add-button ml-3">
-                            <i class="fas fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -82,15 +81,14 @@
                             <!-- Thay đổi theo danh sách đề mục -->
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group">
-                                    <label>Category</label>
-                                    <select class="form-control select" name="category">
-                                        <option disabled>Chọn Danh Mục</option>
-                                        <option value="cay-de-ban">Cây để bàn</option>
-                                        <option value="cay-day-leo">Cây dây leo</option>
-                                        <option value="cay-tet">Cây tết</option>
-                                        <option value="cay-thuy-sinh">Cây thủy sinh</option>
-                                        <option value="cay-trong-nha">Cây trong nhà</option>
-                                        <option value="cay-ngoai-troi">Cây ngoài vườn</option>
+                                    <label>TypeRate</label>
+                                    <select class="form-control select" name="typerate">
+                                        <option disabled>Chọn loại/option>
+                                        <option>Rất tốt</option>
+                                        <option>Tốt</option>
+                                        <option>Được</option>
+                                        <option>Tệ</option>
+                                        <option>Rất tệ</option>
                                     </select>
                                 </div>
                             </div>
@@ -130,38 +128,32 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>Ảnh</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Ngày nhập</th>
-                                        <th>Giá bán</th>
-                                        <th>Số lượng</th>
-                                        <th>ID nhà cung cấp</th>
-                                        <th class="text-right">Hành Động</th>
+                                        <th>Ngày</th>
+                                        <th>Người dùng</th>
+                                        <th>Tên loại đánh giá</th>
+                                        <th>Bình luận</th>
                                     </tr>
                                     </thead>
 
                                     <!-- Thêm vào nội dung ở đây -->
                                     <tbody>
-<%--                                    <c:forEach var="p" items="${product}">--%>
-<%--                                        <c:set var="price" value="${p.price}"></c:set>--%>
-<%--                                        <c:set var="date_created" value="${p.date_created}"></c:set>--%>
-<%--                                        <tr>--%>
-<%--                                            <td>${p.id}</td>--%>
-<%--                                            <td><img class="rounded service-img mr-1" src="${p.img}" alt="Hình ảnh danh mục"></td>--%>
-<%--                                            <td>${p.name}</td>--%>
-<%--                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>--%>
+                                    <c:forEach var="p" items="${ratings}">
+                                        <c:set var="date_created" value="${p.date_created}"></c:set>
 
-<%--                                            <td><%= Util.formatCurrency((double)pageContext.getAttribute("price"))%></td>--%>
-<%--                                            <td>${p.quantity}</td>--%>
+                                        <tr>
+                                            <td>${p.id}</td>
+                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
+                                            <td><img class="rounded service-img mr-1" src="${p.getAvatarUserById(p.user_id)}" alt="Hình ảnh khách hàng"></td>
+<%--                                            <td>${p.getAvatarUserById(p.user_id)}</td>--%>
+                                            <td>${p.Rating_Con_DB.getNameRatingTypeById(p.rating_type_id)}</td>
 
-<%--                                            <td>${p.supplier_id}</td>--%>
-<%--                                            <td class="text-right">--%>
-<%--                                                <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>--%>
-<%--                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
-<%--                                    </c:forEach>--%>
-<%--                                    <%System.out.println("DA xuong toi day");%>--%>
+                                            <td>${p.comment}</td>
+                                            <td class="text-right">
+                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <%System.out.println("DA xuong toi day");%>
                                     </tbody>
                                 </table>
                             </div>

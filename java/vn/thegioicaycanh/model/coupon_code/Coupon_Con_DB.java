@@ -117,7 +117,7 @@ public class Coupon_Con_DB {
         try{
             Statement statement = DBCPDataSource.getStatement();
             synchronized (statement){
-                ResultSet resultSet = statement.executeQuery("SELECT cp.id, cp.`name`, ct.`name`, cp.percent, cp.date_end_sale FROM coupon_code cp JOIN coupon_code_type ct ON cp.coupon_code_type_id = ct.id");
+                ResultSet resultSet = statement.executeQuery("SELECT cp.id, cp.`name`, ct.`name`, cp.percent, cp.date_end FROM coupon_code cp JOIN coupon_code_type ct ON cp.coupon_code_type_id = ct.id");
                 while(resultSet.next()){
                     CouponCode couponCode = new CouponCode();
                     couponCode.setId(resultSet.getInt(1));

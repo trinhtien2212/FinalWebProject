@@ -31,9 +31,9 @@ public class Blog_direct extends HttpServlet {
         if(request.getParameter("blog-name")!=null)
             name = request.getParameter("blog-name").isEmpty() ? "%" : request.getParameter("blog-name");
         if(request.getParameter("from-date")!=null)
-            from_date = request.getParameter("from-date").isEmpty() ? "20190101" : request.getParameter("from-date");
+            from_date = request.getParameter("from-date").isEmpty() ? "20190101" : Util.revertDate(request.getParameter("from-date"));
         if(request.getParameter("to-date")!=null)
-            to_date = request.getParameter("to-date").isEmpty() ? Util.dateFormat(new Date()) : request.getParameter("to-date");
+            to_date = request.getParameter("to-date").isEmpty() ? Util.dateFormat(new Date()) : Util.revertDate(request.getParameter("to-date"));
 
         List<Blog>blogs = Blog_Con_DB.loadBlogBy(name,from_date,to_date);
         request.setAttribute("blog",blogs);

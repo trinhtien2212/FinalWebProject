@@ -1,24 +1,27 @@
 package vn.thegioicaycanh.controller.admin_page;
 
+import vn.thegioicaycanh.model.notifications.Notification_Con_DB;
+import vn.thegioicaycanh.model.user.LoadUser;
+import vn.thegioicaycanh.model.user.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/nhan")
-public class Receive extends HttpServlet {
+    @WebServlet(urlPatterns = "/admin_page/users")
+public class Users_direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        if(request.getParameter("date")!=null)
-//            System.out.println("day la date: "+request.getParameter("date"));
-//        else System.out.println("khong co tham so editor");
-        if(request.getParameter("checkbox")!=null){
-            System.out.println(request.getParameter("checkbox"));
-        }else System.out.println("Khong co");
+        request.setAttribute("current_page","user");
+        List<User> users=LoadUser.loadUserFormSql("select * from user");
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("users.jsp").forward(request,response);
     }
 }

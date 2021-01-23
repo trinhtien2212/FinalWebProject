@@ -60,4 +60,20 @@ public class Rating {
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
+    public static String getNameById(int id){
+        String result=Rating_Con_DB.getNameUserById(id);
+        return result;
+    }
+    public static String getNameRatingById(int id){
+        String result=Rating_Con_DB.getNameRatingTypeById(id);
+        return result;
+    }
+    public static String getAvatarUserById(int id){
+        String result=Rating_Con_DB.getImgaeUserById(id);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getAvatarUserById(1));
+    }
 }

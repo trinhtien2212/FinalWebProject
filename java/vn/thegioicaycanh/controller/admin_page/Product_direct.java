@@ -29,15 +29,15 @@ public class Product_direct extends HttpServlet {
         String to_date = Util.dateFormat(new Date());
 
         if(request.getParameter("product-id") !=null)
-            product_id = request.getParameter("product-id");
+            product_id = request.getParameter("product-id").isEmpty()?product_id:request.getParameter("product-id");
         if(request.getParameter("product-name")!=null)
-            product_name = request.getParameter("product-name");
+            product_name = request.getParameter("product-name").isEmpty()?product_name:request.getParameter("product-name");
         if(request.getParameter("category")!=null)
             category=request.getParameter("category");
         if(request.getParameter("from-date")!=null)
-            from_date= request.getParameter("from-date");
+            from_date= request.getParameter("from-date").isEmpty()?from_date:request.getParameter("from-date");
         if(request.getParameter("to-date")!=null)
-            to_date= request.getParameter("to-date");
+            to_date= request.getParameter("to-date").isEmpty()?to_date:request.getParameter("to-date");
 
         if(category.equalsIgnoreCase("cay-de-ban")) category = "1";
         if(category.equalsIgnoreCase("cay-day-leo")) category = "2";

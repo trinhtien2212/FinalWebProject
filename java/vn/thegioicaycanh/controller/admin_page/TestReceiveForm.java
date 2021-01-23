@@ -25,10 +25,6 @@ public class TestReceiveForm extends HttpServlet {
     private int maxMemSize = 4 * 1024;
     private File file ;
 
-    public void init( ){
-        // Get the file location where it would be stored.
-        filePath = getServletContext().getInitParameter("file-upload");
-    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, java.io.IOException {
@@ -86,7 +82,11 @@ public class TestReceiveForm extends HttpServlet {
                     String contentType = fi.getContentType();
                     boolean isInMemory = fi.isInMemory();
                     long sizeInBytes = fi.getSize();
-
+                    System.out.println("FileName: "+fileName);
+                    System.out.println("FieldName: "+fieldName);
+                    System.out.println("ContentType: "+contentType);
+                    System.out.println("isInMemory: "+isInMemory);
+                    System.out.println("sizeInByte: "+sizeInBytes);
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
                         file = new File( "..\\webapps\\thegioicaycanh.vn\\imgs\\temp_imgs\\" + fileName.substring( fileName.lastIndexOf("\\"))) ;

@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.Normalizer;
 import java.util.List;
 
 public class tempTest {
@@ -92,14 +93,19 @@ public class tempTest {
 //    }
 
 
-        File file = new File(".\\src\\main\\webapp\\imgs\\temp_imgs");
-        try {
-            System.out.println(file.getCanonicalPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(file.exists())
-            System.out.println("Ton tai");
+//        File file = new File(".\\src\\main\\webapp\\imgs\\temp_imgs");
+//        try {
+//            System.out.println(file.getCanonicalPath());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        if(file.exists())
+//            System.out.println("Ton tai");
+        String convertedString =
+                Normalizer
+                        .normalize("Trịnh Quang Tiến", Normalizer.Form.NFD)
+                        .replaceAll("[^\\p{ASCII}]", "").replaceAll(" ","-");
+        System.out.println(convertedString);
     }
 
 }

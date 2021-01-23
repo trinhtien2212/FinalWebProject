@@ -1,6 +1,15 @@
 package vn.thegioicaycanh.model.order;
 
+import vn.thegioicaycanh.model.Product.Product;
+import vn.thegioicaycanh.model.Product.ProductEntity;
+import vn.thegioicaycanh.model.order_product.OrderProduct;
+import vn.thegioicaycanh.model.order_product.OrderProduct_Con_DB;
+import vn.thegioicaycanh.model.rating.Rating;
+import vn.thegioicaycanh.model.user.LoadUser;
+import vn.thegioicaycanh.model.user.User;
+
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
     private int id;
@@ -11,7 +20,7 @@ public class Order {
     private String note;
     private long phone;
     private String address;
-    private boolean status;
+    private int status;
     private Date date_created;
 
     public Order() {
@@ -81,11 +90,11 @@ public class Order {
         this.address = address;
     }
 
-    public boolean isStatus() {
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -95,5 +104,35 @@ public class Order {
 
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
+    }
+    public static String getNameUserById(int id){
+        return new Rating().getNameById(new Order().getUser_id());
+    }
+    public static String getNameProductByOrderId(int id){
+        List<OrderProduct> orderProducts= OrderProduct_Con_DB.loadOrderProductFormSql("select * from order_product");
+        for(OrderProduct o:orderProducts){
+            if(o.getOrder_id()==id){
+                return OrderProduct_Con_DB.getNameProductById(o.getPro_id());
+            }
+        }
+        return null;
+    }
+    public static String getNameUserByUserId(int id){
+        return new Rating().getNameById(id);
+    }
+    public static double getPriceByOrderId(int id){
+        List<OrderProduct> orderProducts= OrderProduct_Con_DB.loadOrderProductFormSql("select * from order_product");
+        for(OrderProduct o:orderProducts){
+            if(o.getOrder_id()==id){
+                return OrderProduct_Con_DB.getPriceProductById(o.getPro_id());
+            }
+        }
+        return 0.0;
+    }
+//    public static String getNamStatusById(int status){
+//
+//    }
+    public static void main(String[] args) {
+        System.out.println(getPriceByOrderId(3));
     }
 }

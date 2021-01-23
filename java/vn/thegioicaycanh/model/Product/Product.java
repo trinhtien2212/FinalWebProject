@@ -33,6 +33,7 @@ public class Product {
         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         Date now = Calendar.getInstance().getTime();
         long timePast = TimeUnit.DAYS.convert(now.getTime()-date_start_sale.getTime(),TimeUnit.MILLISECONDS);
+        diff=diff==0?1:diff;
         return (int)(timePast*100/diff);
     }
     public int dayRest(){
@@ -41,26 +42,26 @@ public class Product {
 
         return (int)dateRest;
     }
-    public static int percent(Date start,Date end){
-        long diffInMillies = Math.abs(start.getTime() - end.getTime());
-        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        Date now = Calendar.getInstance().getTime();
-        long timePast = TimeUnit.DAYS.convert(now.getTime()-start.getTime(),TimeUnit.MILLISECONDS);
-        return (int)(timePast*100/diff);
-    }
+//    public static int percent(Date start,Date end){
+//        long diffInMillies = Math.abs(start.getTime() - end.getTime());
+//        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+//        Date now = Calendar.getInstance().getTime();
+//        long timePast = TimeUnit.DAYS.convert(now.getTime()-start.getTime(),TimeUnit.MILLISECONDS);
+//        return (int)(timePast*100/diff);
+//    }
     public static void main(String[] args) {
-        Calendar c = Calendar.getInstance();
-        c.set(2020,11,28);
+//        Calendar c = Calendar.getInstance();
+//        c.set(2020,11,28);
 //        Date d = c.getTime();
 //        Date now = Calendar.getInstance().getTime();
 //        System.out.println(now);
 //        System.out.println(d);
 //        long dateRest = TimeUnit.DAYS.convert(now.getTime()-d.getTime(),TimeUnit.MILLISECONDS);
 //        System.out.println(dateRest);
-        Date s = c.getTime();
-        c.set(2021,0,10);
-        Date e =c.getTime();
-        System.out.println(percent(s,e));
+//        Date s = c.getTime();
+//        c.set(2021,0,10);
+//        Date e =c.getTime();
+//        System.out.println(percent(s,e));
     }
     public int getCategory_id() {
         return category_id;

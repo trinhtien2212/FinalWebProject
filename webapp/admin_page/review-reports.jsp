@@ -48,7 +48,7 @@
 <%System.out.println("tat ca rating"+pageContext.getAttribute("m"));%>
 <% System.out.println("Co dang vao product.jsp");%>
 <div class="main-wrapper">
-<%--    <jsp:include page="menu.jsp"></jsp:include>--%>
+    <jsp:include page="menu.jsp"></jsp:include>
     <div class="page-wrapper">
         <div class="content container-fluid">
 
@@ -143,9 +143,10 @@
                                         <tr>
                                             <td>${p.id}</td>
                                             <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
-                                            <td><img class="rounded service-img mr-1" src="${p.getAvatarUserById(p.user_id)}" alt="Hình ảnh khách hàng"></td>
+<%--                                            <td><img class="rounded service-img mr-1" src="${p.getAvatarUserById(p.user_id)}" alt="Hình ảnh khách hàng"></td>--%>
 <%--                                            <td>${p.getAvatarUserById(p.user_id)}</td>--%>
-                                            <td>${p.Rating_Con_DB.getNameRatingTypeById(p.rating_type_id)}</td>
+                                            <td>${p.getNameById(p.user_id)}</td>
+                                            <td>${p.getNameRatingById(p.rating_type_id)}</td>
 
                                             <td>${p.comment}</td>
                                             <td class="text-right">

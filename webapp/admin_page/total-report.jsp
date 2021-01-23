@@ -111,34 +111,31 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>Ảnh</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Ngày nhập</th>
-                                        <th>Giá bán</th>
-                                        <th>Số lượng</th>
-                                        <th>ID nhà cung cấp</th>
+                                        <th>Ngày đặt hàng</th>
+                                        <th>Khách hàng</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Thành tiền</th>
+                                        <th>Trạng thái</th>
                                         <th class="text-right">Hành Động</th>
                                     </tr>
                                     </thead>
 
                                     <!-- Thêm vào nội dung ở đây -->
                                     <tbody>
-                                    <c:forEach var="p" items="${product}">
-                                        <c:set var="price" value="${p.price}"></c:set>
+                                    <c:forEach var="p" items="${totalreports}">
+                                        <c:set var="price" value="${p.getPriceByOrderId(p.id)}"></c:set>
                                         <c:set var="date_created" value="${p.date_created}"></c:set>
                                         <tr>
                                             <td>${p.id}</td>
-                                            <td><img class="rounded service-img mr-1" src="${p.img}" alt="Hình ảnh danh mục"></td>
-                                            <td>${p.name}</td>
                                             <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
-
+                                            <td>${p.getNameUserByUserId(p.id)}</td>
+                                            <td>${p.getNameProductByOrderId(p.id)}</td>
                                             <td><%= Util.formatCurrency((double)pageContext.getAttribute("price"))%></td>
-                                            <td>${p.quantity}</td>
-
-                                            <td>${p.supplier_id}</td>
+<%--                                            <td>${p.quantity}</td>--%>
                                             <td class="text-right">
-                                                <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>
-                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>
+<%--                                                <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>--%>
+<%--                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>--%>
+                                                <a href="service-details.html" class="btn btn-sm bg-info-light"><i class="far fa-eye mr-1"></i> Chi tiết</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

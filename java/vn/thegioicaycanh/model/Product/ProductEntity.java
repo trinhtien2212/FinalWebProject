@@ -220,6 +220,24 @@ public class ProductEntity {
         }
         return productList;
     }
+    public static String getNameProductById(int id){
+        List<Product> products=loadProductFormSql("select * from product");
+        for( Product p:products){
+            if(p.getId()==id){
+                return p.getName();
+            }
+        }
+        return null;
+    }
+    public static double getPriceProductById(int id){
+        List<Product> products=loadProductFormSql("select * from product");
+        for( Product p:products){
+            if(p.getId()==id){
+                return p.getPrice();
+            }
+        }
+        return 0.0;
+    }
 public static void vidu(String s){
         s +="tien";
     System.out.println(s);
@@ -238,8 +256,8 @@ public static void vidu(String s){
 //        list.add(3);
 //        List<Integer>list1= list.subList(1,(5+1)>list.size()?list.size():5+1);
 //        System.out.println(list1);
-        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
-
+//        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
+        System.out.println(getNameProductById(3));
     }
 
 

@@ -61,13 +61,16 @@ public class Rating {
         this.date_created = date_created;
     }
     public static String getNameById(int id){
-        return Rating_Con_DB.getNameUserById(id);
+        String result=Rating_Con_DB.getNameUserById(id);
+        return result;
     }
     public static String getNameRatingById(int id){
-        return Rating_Con_DB.getNameRatingTypeById(id);
+        String result=Rating_Con_DB.getNameRatingTypeById(id);
+        return result;
     }
     public static String getAvatarUserById(int id){
-        return Rating_Con_DB.getImgaeUserById(id);
+        String result=Rating_Con_DB.getImgaeUserById(id);
+        return result;
     }
 
     public static void main(String[] args) {

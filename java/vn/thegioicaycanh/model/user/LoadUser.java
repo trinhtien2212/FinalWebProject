@@ -2,6 +2,7 @@ package vn.thegioicaycanh.model.user;
 
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
+import vn.thegioicaycanh.model.notifications.Notifications;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,6 +99,8 @@ public class LoadUser {
         return excuteSql(sql);
     }
     public static User getUser(ResultSet rs){
+        if (rs == null)
+            return null;
         User user = new User();
         try {
             user.setId(rs.getInt(1));
@@ -113,15 +116,33 @@ public class LoadUser {
             user.setAbout(rs.getString(11));
             user.setRole_id(rs.getInt(12));
             user.setDate_created(rs.getDate(13));
-            rs.close();
             return  user;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
        return null;
     }
-
+    public static List<User> loadUserFormSql(String sql){
+        List<User>list = new ArrayList<User>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()) {
+                    list.add(getUser(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return list;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static void main(String[] args) {
-        System.out.println(saveUserLoginByFb_GG("tien123@","trinhtien"));
+
+//        System.out.println(saveUserLoginByFb_GG("tien123@","trinhtien"));
+        System.out.println(loadUserFormSql("select * from user"));
     }
 }

@@ -42,7 +42,10 @@ public class Notification_Con_DB {
             return null;
         Notifications notifications = new Notifications();
         try {
-            notifications.setEmail(resultSet.getString(1));
+            notifications.setId(resultSet.getInt(1));
+            notifications.setEmail(resultSet.getString(2));
+            notifications.setDate(resultSet.getDate(3));
+            notifications.setStatus(resultSet.getInt(4));
             return notifications;
 
         } catch (SQLException throwables) {
@@ -52,6 +55,9 @@ public class Notification_Con_DB {
     }
 
     public static void main(String[] args) {
-        System.out.println(getStringsNotifications());
+//        System.out.println(loadNotificationsFormSql("select * from notifications"));
+        for(Notifications a:loadNotificationsFormSql("select * from notifications")){
+            System.out.println(a.getId());
+        }
     }
 }

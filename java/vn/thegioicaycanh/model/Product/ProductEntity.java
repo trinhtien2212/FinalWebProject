@@ -233,11 +233,28 @@ public class ProductEntity {
         return productList;
     }
 
-    public static void vidu(String s) {
-        s += "tien";
-        System.out.println(s);
+    public static String getNameProductById(int id){
+        List<Product> products=loadProductFormSql("select * from product");
+        for( Product p:products){
+            if(p.getId()==id){
+                return p.getName();
+            }
+        }
+        return null;
     }
-
+    public static double getPriceProductById(int id){
+        List<Product> products=loadProductFormSql("select * from product");
+        for( Product p:products){
+            if(p.getId()==id){
+                return p.getPrice();
+            }
+        }
+        return 0.0;
+    }
+public static void vidu(String s){
+        s +="tien";
+    System.out.println(s);
+}
 
     public static boolean insertProduct(String name, double price,
                                         String img, String description,
@@ -333,10 +350,14 @@ public class ProductEntity {
 //        list.add(3);
 //        List<Integer>list1= list.subList(1,(5+1)>list.size()?list.size():5+1);
 //        System.out.println(list1);
+
 //        List<Product> products = loadProductBy("%", "cay thuong xuan", "%", "2020-01-15", "2021-01-22");
             Statement statement = DBCPDataSource.getStatement();
             int i=statement.executeUpdate("insert into product(name,price,discription,content,supplier_id,type_weight,active,percent_sale,price_sale,category_id,quantity,is_sale,date_start_sale,date_end_sale,slug,img,date_created) value('cây ng? hành',23659.0,'','<p>&nbsp;</p>\\r\\n\\r\\n<div class=\"eJOY__extension_root_class\" id=\"eJOY__extension_root\" style=\"all:unset\">&nbsp;</div>',23,1,1,0,0.0,1,15,0,'20200221','20200221','cay-ngu-hanh','imgs/products/default_img.png','2021-01-23 16:10:59')");
         System.out.println(i);
+
+//        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
+        System.out.println(getNameProductById(3));
     }
 
 }

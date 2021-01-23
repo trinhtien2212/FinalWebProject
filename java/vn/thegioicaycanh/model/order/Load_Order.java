@@ -1,10 +1,12 @@
 package vn.thegioicaycanh.model.order;
 
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
+import vn.thegioicaycanh.model.rating.Rating;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +30,27 @@ public class Load_Order {
         }
         return orderList;
     }
-
+    public static List<Order> loadOrderFormSql(String sql){
+        List<Order>list = new ArrayList<Order>();
+        try {
+            Statement statement = DBCPDataSource.getStatement();
+            synchronized (statement){
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()) {
+                    list.add(getOrder(resultSet));
+                }
+                resultSet.close();
+            }
+            statement.close();
+            return list;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     private static Order getOrder(ResultSet resultSet) {
+        if (resultSet == null)
+            return null;
         Order order = new Order();
         try{
             order.setId(resultSet.getInt(1));
@@ -40,6 +61,8 @@ public class Load_Order {
             order.setNote(resultSet.getString(6));
             order.setPhone(resultSet.getInt(7));
             order.setAddress(resultSet.getString(8));
+            order.setStatus(resultSet.getInt(9));
+            order.setDate_created(resultSet.getDate(10));
         } catch (SQLException throwables){
             throwables.printStackTrace();
         }
@@ -47,8 +70,7 @@ public class Load_Order {
     }
 
     public static void main(String[] args) {
-//        for (Order o : loadOderByUserId(1)) {
-//            System.out.println(o.getId());
-//        }
+        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
+//        System.out.println(loadOderByUserId(5));
     }
 }

@@ -4,6 +4,7 @@ import vn.thegioicaycanh.model.blog.Blog;
 import vn.thegioicaycanh.model.blog.Blog_Con_DB;
 import vn.thegioicaycanh.model.header_footer.Category;
 import vn.thegioicaycanh.model.header_footer.Load_Category;
+import vn.thegioicaycanh.model.util.Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/blogadmin")
@@ -20,32 +22,13 @@ public class Blog_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //type = 1: xem ds
-        //type = 2: chinh sua categories
-        //type = 3: them categories
-        //type =4: xoa category
-        int pages=1;
-        if(request.getParameter("pages") != null){
-            pages = Integer.parseInt(request.getParameter("pages"));
-        }
-        //xu li hien thi danh sach
-        String type = request.getParameter("type");
-        if(type ==null){
-            type ="1";
-        }
-        if(Integer.parseInt(type) == 1){
-            List<Blog> blog_view = Blog_Con_DB.loadBlog_view();
-            request.setAttribute("b_view",blog_view);
-            request.getRequestDispatcher("handlePagination").forward(request,response);
-        }else if(Integer.parseInt(type) == 2){
-            int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("current_page", "blog");
 
-        }
-        request.setAttribute("sumOfItems_sql","SELECT COUNT(*) FROM blog ");
-        request.setAttribute("numOfItemLoad",10);
-        request.setAttribute("page_menu","blogadmin");
-        request.setAttribute("type_page","blog");
-        request.setAttribute("direct_to","admin_page/blog.jsp");
-        request.setAttribute("title","Bài viết");
-            }
+        String name = request.getParameter("name").isEmpty() ? "%" : request.getParameter("name");
+        String from_date = request.getParameter("from-date").isEmpty() ? "20190101" : request.getParameter("from-date");
+        String to_date = request.getParameter("to-date").isEmpty() ? Util.dateFormat(new Date()) : request.getParameter("to-date");
+        List<Blog>blogs = Blog_Con_DB.loadBlogBy(name,from_date,to_date);
+        request.setAttribute("blog",blogs);
+        request.getRequestDispatcher("blog.jsp").forward(request,response);
+    }
 }

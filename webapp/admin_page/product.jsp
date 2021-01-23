@@ -3,6 +3,7 @@
 <%@ page import="vn.thegioicaycanh.model.Product.Product" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%--
   Created by IntelliJ IDEA.
   User: Trinh Quang Tien
@@ -60,7 +61,7 @@
                         <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
                             <i class="fas fa-filter"></i>
                         </a>
-                        <a href="admin-page/add-product?type=add" class="btn btn-primary add-button ml-3">
+                        <a href="add-product?type=enterAdd" class="btn btn-primary add-button ml-3">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -71,7 +72,7 @@
             <!-- Search Filter -->
             <div class="card filter-card" id="filter_inputs">
                 <div class="card-body pb-0">
-                    <form action="admin-page/product" method="post">
+                    <form action="product" method="post" accept-charset="UTF-8">
                         <div class="row filter-row">
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group">
@@ -90,7 +91,7 @@
                                 <div class="form-group">
                                     <label>Category</label>
                                     <select class="form-control select" name="category">
-                                        <option disabled>Chọn Danh Mục</option>
+                                        <option disabled selected>Chọn Danh Mục</option>
                                         <option value="cay-de-ban">Cây để bàn</option>
                                         <option value="cay-day-leo">Cây dây leo</option>
                                         <option value="cay-tet">Cây tết</option>
@@ -135,7 +136,7 @@
                                     <!-- Thay đổi code ở đây Thay đổi theo file word -->
                                     <thead>
                                     <tr>
-                                        <th>id</th>
+                                        <th>ID</th>
                                         <th>Ảnh</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Ngày nhập</th>
@@ -151,21 +152,33 @@
                                     <c:forEach var="p" items="${product}">
                                         <c:set var="price" value="${p.price}"></c:set>
                                         <c:set var="date_created" value="${p.date_created}"></c:set>
-                                    <tr>
-                                        <td>${p.id}</td>
-                                        <td><img class="rounded service-img mr-1" src="${p.img}" alt="Hình ảnh danh mục"></td>
-                                        <td>${p.name}</td>
-                                        <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
 
-                                        <td><%= Util.formatCurrency((double)pageContext.getAttribute("price"))%></td>
-                                        <td>${p.quantity}</td>
+                                        <tr>
+                                            <td>${p.id}</td>
+                                            <td><img class="rounded service-img mr-1"
 
-                                        <td>${p.supplier_id}</td>
-                                        <td class="text-right">
-                                            <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>
-                                            <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>
-                                        </td>
-                                    </tr>
+                                                    <c:if test="${fn:startsWith(p.img, 'imgs')}"> src="../${p.img}"</c:if>
+                                                    <c:if test="${fn:startsWith(p.img, 'http')}">src="${p.img}"</c:if>
+
+                                                     alt="Hình ảnh danh mục"></td>
+                                            <td>${p.name}</td>
+                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%>
+                                            </td>
+
+                                            <td><%= Util.formatCurrency((double) pageContext.getAttribute("price"))%>
+                                            </td>
+                                            <td>${p.quantity}</td>
+
+                                            <td>${p.supplier_id}</td>
+                                            <td class="text-right">
+                                                <a href="add-product?type=enterEdit&id=${p.id}"
+                                                   class="btn btn-sm bg-success-light "> <i
+                                                        class="far fa-edit mr-1"></i> Sửa</a>
+                                                <a href="edit-product.html" style="margin-top: 5px;color: red "
+                                                   class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i>
+                                                    Xóa</a>
+                                            </td>
+                                        </tr>
                                     </c:forEach>
                                     <%System.out.println("DA xuong toi day");%>
                                     </tbody>

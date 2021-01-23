@@ -14,8 +14,11 @@ public class Receive extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("date")!=null)
-            System.out.println("day la date: "+request.getParameter("date"));
-        else System.out.println("khong co tham so editor");
+//        if(request.getParameter("date")!=null)
+//            System.out.println("day la date: "+request.getParameter("date"));
+//        else System.out.println("khong co tham so editor");
+        if(request.getParameter("checkbox")!=null){
+            System.out.println(request.getParameter("checkbox"));
+        }else System.out.println("Khong co");
     }
 }

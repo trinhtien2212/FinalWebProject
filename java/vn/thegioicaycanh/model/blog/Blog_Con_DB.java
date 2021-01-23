@@ -1,5 +1,6 @@
 package vn.thegioicaycanh.model.blog;
 
+import vn.thegioicaycanh.model.Product.Product;
 import vn.thegioicaycanh.model.coupon_code.CouponCode;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
@@ -210,5 +211,93 @@ public class Blog_Con_DB {
             throwables.printStackTrace();
         }
         return blogList;
+    }
+
+    public static List<Blog> loadBlogBy(String name, String from_date, String to_date) {
+        List<Blog> blogs = new ArrayList<Blog>();
+
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select * from blog where name like ? and date_created between ? and ?");
+
+            pe.setString(1, name);
+            pe.setString(2, from_date);
+            pe.setString(3, to_date);
+//            System.out.println((JDBC4PreparedStatement)pe.asSql());
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                System.out.println(resultSet.getStatement().toString());
+                while (resultSet.next()) blogs.add(getBlog(resultSet));
+                resultSet.close();
+            }
+            pe.close();
+            return blogs;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return blogs;
+    }
+
+    public static boolean insertBlog(String name, String description, String content, int active, String slug, String date_created, int admin_id, int numOfRead,String img) {
+        String sql = "insert into blog(name,description,content,active,slug,date_created,admin_id,numOfRead,avatar) value(?,?,?,?,?,?,?,?,?)";
+        int update = 0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+
+            peSetAttribute(pe, name,description, content,
+                   active,slug);
+            pe.setString(6, date_created);
+            pe.setInt(7, admin_id);
+            pe.setInt(8, numOfRead);
+            pe.setString(9,img);
+            System.out.println(pe.toString());
+            synchronized (pe) {
+                update = pe.executeUpdate();
+            }
+            pe.close();
+            return update == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    private static void peSetAttribute(PreparedStatement pe, String name, String description, String content, int active, String slug) {
+        try {
+            pe.setString(1, name);
+            pe.setString(2, description);
+            pe.setString(3, content);
+            pe.setInt(4, active);
+            pe.setString(5, slug);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean updateBlog(int id, String name, String description, String content, int active, String slug, String img) {
+        String sql = "update blog set name = ?,description=?,content=?,active=?,slug=? ";
+        if (img == null) {
+            sql += " where id = ? ";
+        } else sql += " , avatar=? where id = ? ";
+        int update = 0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            peSetAttribute(pe, name,description,content,active,slug);
+
+            if (img == null)
+                pe.setInt(6, id);
+            else {
+                pe.setString(6, img);
+                pe.setInt(7, id);
+            }
+            System.out.println("Day la query update: " + pe.toString());
+            synchronized (pe) {
+                update = pe.executeUpdate();
+            }
+            pe.close();
+            return update == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

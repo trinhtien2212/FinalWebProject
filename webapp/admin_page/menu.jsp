@@ -66,7 +66,10 @@
         <li class="nav-item dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
 						<span class="user-img">
-							<img class="rounded-circle" src="../${sessionScope.user_avatar}" width="40" alt="Admin">
+							<img class="rounded-circle" src="
+<c:if test="${fn:startsWith(sessionScope.user_avatar, 'http')}">${sessionScope.user_avatar}</c:if>
+<c:if test="${fn:startsWith(sessionScope.user_avatar,'imgs')}">../${sessionScope.user_avatar}</c:if>" width="40"
+                                 alt="Admin">
 						</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -93,7 +96,7 @@
                 <li>
                     <a href="admin-page?direct-to=dashboard"
                        <c:if test="${current_page=='dashboard'}">class="active"</c:if>>
-                    <i class="fas fa-columns"></i> <span>Dashboard</span></a>
+                        <i class="fas fa-columns"></i> <span>Dashboard</span></a>
                 </li>
                 <li class="submenu">
                     <a href="#"><i class="fas fa-tasks"></i> <span>Quản lí</span> <span class="menu-arrow"></span></a>
@@ -105,7 +108,8 @@
                         <li><a href="admin-page?direct-to=blog"
                                <c:if test="${current_page=='blog'}">class="active"</c:if>>Blog</a></li>
                         <li><a href="admin-page?direct-to=coupon-code-type"
-                               <c:if test="${current_page=='coupon-code-type'}">class="active"</c:if>>Loại mã giảm giá</a></li>
+                               <c:if test="${current_page=='coupon-code-type'}">class="active"</c:if>>Loại mã giảm
+                            giá</a></li>
                         <li><a href="admin-page?direct-to=coupon-code"
                                <c:if test="${current_page=='coupon-code'}">class="active"</c:if>>Mã giảm giá</a></li>
                         <li><a href="admin-page?direct-to=rating-type"
@@ -121,13 +125,15 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="admin-page?direct-to=total-report"
-                               <c:if test="${current_page=='total-report'}">class="active"</c:if>>Danh sách đặt hàng</a></li>
+                               <c:if test="${current_page=='total-report'}">class="active"</c:if>>Danh sách đặt hàng</a>
+                        </li>
                         <li><a href="admin-page?direct-to=shipment"
                                <c:if test="${current_page=='shipment'}">class="active"</c:if>>Vận chuyển</a></li>
                         <li><a href="admin-page?direct-to=dashboard"
                                <c:if test="${current_page=='warranty'}">class="active"</c:if>>Bảo hành</a></li>
                         <li><a href="admin-page?direct-to=dashboard"
-                               <c:if test="${current_page=='review-report'}">class="active"</c:if>>Đánh giá sản phẩm</a></li>
+                               <c:if test="${current_page=='review-report'}">class="active"</c:if>>Đánh giá sản phẩm</a>
+                        </li>
 
 
                     </ul>
@@ -147,7 +153,8 @@
                 </li>
                 <li>
                     <a href="admin-page?direct-to=dashboard"
-                       <c:if test="${current_page=='user-info'}">class="active"</c:if>><i class="fas fa-user-plus"></i> <span>Thông tin cá nhân</span></a>
+                       <c:if test="${current_page=='user-info'}">class="active"</c:if>><i class="fas fa-user-plus"></i>
+                        <span>Thông tin cá nhân</span></a>
                 </li>
                 <li>
                     <a href="admin-page?direct-to=dashboard"

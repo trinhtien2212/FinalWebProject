@@ -34,13 +34,13 @@
         <div class="row sign__in">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="sign__in__form">
-                    <form action="handle-login" id="login-form" method="get" accept-charset="UTF-8">
+                    <form action="handle-login" id="login-form" method="post" accept-charset="UTF-8">
                         <button><a href="sign-in.html" class="btn-dn">ĐĂNG NHẬP</a></button>
                         <button><a href="sign-up.html" class="btn-dk">ĐĂNG KÝ</a></button>
                         <br>
                         <input type="email" name="email" id="email" placeholder="Nhập email" required>
                         <br>
-                        <input type="text" name="pass" id="pass" placeholder="Mật khẩu" required>
+                        <input type="password" name="pass" id="pass" placeholder="Mật khẩu" required>
                         <label id="pw-notice" class="invisible notice">Mật khẩu phải dài từ 8 - 25 kí tự và phải chứa cả số và chữ in hoa</label>
                         <br>
                         <input type="submit" name="submit" id="submit" value="Đăng nhập"><br>

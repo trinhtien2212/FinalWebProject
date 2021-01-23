@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi-VN">
 <head>
@@ -58,7 +58,7 @@
                         <h3 class="page-title">Danh mục</h3>
                     </div>
                     <div class="col-auto text-right">
-                        <a href="add-category.html" class="btn btn-primary add-button ml-3">
+                        <a href="add-category?type=enterAdd" class="btn btn-primary add-button ml-3">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -87,7 +87,8 @@
                                             <td>${c_view.name}</td>
                                             <td>${c_view.numOfProduct}</td>
                                             <td class="text-right">
-                                                <a href="edit-category.html" class="btn btn-sm bg-success-light mr-2">
+                                                <a href="add-category?type=enterEdit&id=${c_view.id}"
+                                                   class="btn btn-sm bg-success-light mr-2">
                                                     <i class="far fa-edit mr-1"></i> Sửa</a>
                                                 <button type="button" class="btn btn-outline-danger btn-sm"><i
                                                         class="fa fa-trash-o"></i> Xóa

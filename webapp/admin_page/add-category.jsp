@@ -37,10 +37,10 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col">
-                                <h3 class="page-title">Thêm danh mục</h3>
+                                <h3 class="page-title">${title}</h3>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="categories.html">Danh mục</a></li>
-                                    <li class="breadcrumb-item active">Thêm danh mục</li>
+                                    <li class="breadcrumb-item active">${title}</li>
                                 </ul>
                             </div>
                         </div>
@@ -69,20 +69,14 @@
                                             <input type="text" class="form-control" name="slug">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-2">Số lượng</label>
-                                        <div class="col-md-10">
-                                            <input type="number" class="form-control" name="quantity" disabled>
-                                        </div>
-                                    </div>
                                     <div class="status-toggle">
                                         <label>Hiển thị</label>
-                                        <input id="rating_2" class="check" type="checkbox" name="active" value="true"
+                                        <input id="rating_2" class="check" type="checkbox" name="active"
                                                checked>
                                         <label for="rating_2" class="checktoggle">checkbox</label>
                                     </div>
                                     <div class="mt-4">
-                                        <button class="btn btn-primary" type="submit">Thêm</button>
+                                        <button class="btn btn-primary" type="submit">Lưu</button>
                                         <a href="add-admin.html" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
@@ -121,7 +115,7 @@
                                         <label for="rating_2" class="checktoggle">checkbox</label>
                                     </div>
                                     <div class="mt-4">
-                                        <button class="btn btn-primary" type="submit">Thêm</button>
+                                        <button class="btn btn-primary" type="submit">Lưu</button>
                                         <a href="add-admin.html" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>

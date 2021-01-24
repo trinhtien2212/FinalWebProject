@@ -134,6 +134,6 @@ public class Load_Category {
         return false;
     }
     public static void main(String[] args) {
-        System.out.println(loadCategoryById(1));
+//        System.out.println(insertCategory("Cây ăn quả",0,"cay-an-qua"));
     }
 }

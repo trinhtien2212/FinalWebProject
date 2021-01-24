@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Mã giảm giá</title>
+	<title>${title}</title>
 	<link href="assets/img/icon/icon-logo.png" rel="shortcut icon">
 
 	<!-- Bootstrap CSS -->
@@ -44,7 +44,7 @@
 							<h3 class="page-title">Mã giảm giá</h3>
 						</div>
 						<div class="col-auto text-right">
-							<a href="add-coupon-code.html" class="btn btn-primary add-button ml-3">
+							<a href="add-coupon-code?type=enterAdd" class="btn btn-primary add-button ml-3">
 								<i class="fas fa-plus"></i>
 							</a>
 						</div>
@@ -77,7 +77,7 @@
 													<td>${cp.percent}%</td>
 													<td>${cp.date_end}</td>
 													<td class="text-right">
-														<a href="edit-coupon-code.html" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Sửa</a>
+														<a href="add-coupon-code?type=enterEdit&id=${cp.id}" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Sửa</a>
 														<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>
 
 													</td>

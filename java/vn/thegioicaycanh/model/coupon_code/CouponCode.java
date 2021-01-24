@@ -11,8 +11,9 @@ public class CouponCode {
     private int coupon_code_type_id;
     private String coupon_code_type_name;
     private int percent;
-    private String discription;
+    private String description;
     private String code;
+    private Date date_start;
     private Date date_end;
     private int date_number; // so ngay giam gia con lai
 
@@ -55,12 +56,12 @@ public class CouponCode {
         this.percent = percent;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCode() {
@@ -69,6 +70,14 @@ public class CouponCode {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Date getDate_start() {
+        return date_start;
+    }
+
+    public void setDate_start(Date date_start) {
+        this.date_start = date_start;
     }
 
     public Date getDate_end() {
@@ -97,5 +106,21 @@ public class CouponCode {
 
     public void setDate_number(int date_number) {
         this.date_number = date_number;
+    }
+
+    @Override
+    public String toString() {
+        return "CouponCode{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", coupon_code_type_id=" + coupon_code_type_id +
+                ", coupon_code_type_name='" + coupon_code_type_name + '\'' +
+                ", percent=" + percent +
+                ", description='" + description + '\'' +
+                ", code='" + code + '\'' +
+                ", date_start=" + date_start +
+                ", date_end=" + date_end +
+                ", date_number=" + date_number +
+                '}';
     }
 }

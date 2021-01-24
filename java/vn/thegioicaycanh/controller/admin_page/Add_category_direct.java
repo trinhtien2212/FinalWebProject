@@ -36,18 +36,21 @@ public class Add_category_direct extends HttpServlet {
             }
         }
 
-        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int active = request.getParameter("active")==null?0:1;
         String slug= request.getParameter("slug");
+
         if(type.equalsIgnoreCase("add")){
             request.setAttribute("type", "add");
             request.setAttribute("title", "Thêm danh mục");
             boolean isInsert = Load_Category.insertCategory(name,active,slug);
             if(isInsert){
+                System.out.println("Đã thực hiện câu lệnh sql");
                 request.getRequestDispatcher("add-category.jsp").forward(request, response);
             }
+            request.getRequestDispatcher("add-category.jsp").forward(request,response);
         } else if(type.equalsIgnoreCase("edit")){
+            int id = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("type", "edit");
             request.setAttribute("title","Chỉnh sửa danh mục");
             System.out.println("da vao edit danh muc");

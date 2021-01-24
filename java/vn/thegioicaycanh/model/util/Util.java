@@ -39,6 +39,12 @@ public class Util {
                         .replaceAll("[^\\p{ASCII}]", "").replaceAll(" ", "-");
         return convertedString;
     }
+    public static String revertDate(String date){
+        String day = date.substring(0,date.indexOf("-"));
+        String month = date.substring(date.indexOf("-")+1,date.lastIndexOf("-"));
+        String year = date.substring(date.lastIndexOf("-")+1,date.length());
+        return year+"-"+month+"-"+day;
+    }
 
     public static void main(String[] args) {
 

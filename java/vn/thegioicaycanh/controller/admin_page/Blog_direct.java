@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/blogadmin")
+@WebServlet(urlPatterns = "/admin_page/blog-admin")
 public class Blog_direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -24,9 +24,17 @@ public class Blog_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("current_page", "blog");
 
-        String name = request.getParameter("name").isEmpty() ? "%" : request.getParameter("name");
-        String from_date = request.getParameter("from-date").isEmpty() ? "20190101" : request.getParameter("from-date");
-        String to_date = request.getParameter("to-date").isEmpty() ? Util.dateFormat(new Date()) : request.getParameter("to-date");
+        String name = "%";
+        String from_date = "20190101";
+        String to_date = Util.dateFormat(new Date());
+
+        if(request.getParameter("blog-name")!=null)
+            name = request.getParameter("blog-name").isEmpty() ? "%" : request.getParameter("blog-name");
+        if(request.getParameter("from-date")!=null)
+            from_date = request.getParameter("from-date").isEmpty() ? "20190101" : Util.revertDate(request.getParameter("from-date"));
+        if(request.getParameter("to-date")!=null)
+            to_date = request.getParameter("to-date").isEmpty() ? Util.dateFormat(new Date()) : Util.revertDate(request.getParameter("to-date"));
+
         List<Blog>blogs = Blog_Con_DB.loadBlogBy(name,from_date,to_date);
         request.setAttribute("blog",blogs);
         request.getRequestDispatcher("blog.jsp").forward(request,response);

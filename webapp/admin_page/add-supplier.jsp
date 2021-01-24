@@ -59,31 +59,31 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="add-product" method="post" enctype="multipart/form-data"
+                            <form action="add-supplier" method="post"
                                   accept-charset="UTF-8">
                                 <c:if test="${type=='add'}">
                                     <div class="form-group" style="display: none">
                                         <input class="form-control" type="text" value="add" name="type">
                                     </div>
-                                    <div class="form-group">
-                                        <label>Ảnh</label>
-                                        <input class="form-control" type="file" name="img">
-                                    </div>
+<%--                                    <div class="form-group">--%>
+<%--                                        <label>Ảnh</label>--%>
+<%--                                        <input class="form-control" type="file" name="img">--%>
+<%--                                    </div>--%>
                                     <div class="form-group">
                                         <label>Nhà cung cấp</label>
-                                        <input class="form-control" type="text" value="" name="supplier_id">
+                                        <input id="name_supplier"class="form-control" type="text" value="" name="supplier_id">
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ</label>
-                                        <input class="form-control" type="text" value="" name="adđress">
+                                        <input id="address" class="form-control" type="text" value="" name="adđress">
                                     </div>
                                     <div class="form-group">
                                         <label>Điện thoại</label>
-                                        <input class="form-control" type="text" value="" name="phone">
+                                        <input id="phone" class="form-control" type="text" value="" name="phone">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input class="form-control" type="text" value="" name="email">
+                                        <input id="email" class="form-control" type="text" value="" name="email">
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>

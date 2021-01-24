@@ -1,7 +1,9 @@
 package vn.thegioicaycanh.model.supplier;
 
+import vn.thegioicaycanh.model.blog.Blog;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,11 +55,98 @@ public class Load_Supplier {
         }
         return 0;
     }
+    private static void peSetAttribute(PreparedStatement pe, String logo,String name, String address, int phone, String email) {
+        try {
+            pe.setString(1, logo);
+            pe.setString(2, name);
+            pe.setString(3, address);
+            pe.setInt(4, phone);
+            pe.setString(5, email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static boolean insertSupplier(String logo,String name, String address, int phone, String email) {
+        String sql = "insert into supplier(logo,name,address,phone,email) values(?,?,?,?,?)";
+        int update = 0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
 
+            peSetAttribute(pe,logo,name,address,phone,email);
+            System.out.println(pe.toString());
+            synchronized (pe) {
+                update = pe.executeUpdate();
+            }
+            pe.close();
+            return update == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean updateSupplier(int id,String logo,String name, String address, int phone, String email) {
+        String sql = "update supplier set logo=?,name=?,address=?,phone=?,email=? where id= ?";
+        int update = 0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+
+            peSetAttribute(pe,logo,name,address,phone,email);
+            pe.setInt(6,id);
+            System.out.println(pe.toString());
+            synchronized (pe) {
+                update = pe.executeUpdate();
+            }
+            pe.close();
+            return update == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    public static Supplier loadSupplier(int id){
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select * from supplier where id=?");
+            pe.setInt(1,id);
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                Supplier supplier = null;
+                if(rs.next()) {
+                    supplier = getSupplier(rs);
+                }
+                rs.close();
+                pe.close();
+                return supplier;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public static Supplier getSupplier(ResultSet resultSet){
+        if(resultSet == null)
+            return null;
+        Supplier supplier = new Supplier();
+        try {
+            supplier.setId(resultSet.getInt(1));
+            supplier.setLogo(resultSet.getString(2));
+            supplier.setName(resultSet.getString(3));
+            supplier.setAddress(resultSet.getString(4));
+            supplier.setPhone(resultSet.getString(5));
+            supplier.setEmail(resultSet.getString(6));
+            return supplier;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  null;
+
+    }
     public static void main(String[] args) {
 //        for(Supplier s: loadSupplier_view()){
 //            System.out.println(s.getName());
 //        }
-        System.out.println(sumOfSupplier("select count(id) from supplier"));
+//        System.out.println(sumOfSupplier("select count(id) from supplier"));
+//        System.out.println(insertSupplier("https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797954,"yuknp22@gmail.com"));
+//        System.out.println(updateSupplier(302,"https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797955,"yuknp22@gmail.com"));
+        System.out.println(loadSupplier(302));
     }
 }

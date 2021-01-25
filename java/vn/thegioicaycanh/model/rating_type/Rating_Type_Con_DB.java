@@ -106,8 +106,8 @@ public class Rating_Type_Con_DB {
 //        for(Rating_Type a:loadrating_typeFormSql("select * from rating_type")){
 //            System.out.println(a.getId()+"/"+a.getName()+"/"+a.getStatus());
 //        }
-//        System.out.println(loadRating_TypeById(3));
+        System.out.println(loadRating_TypeById(6));
 //        insertRating_Type("ok",1);
-        updateRating_Type(6,"okla",1);
+//        updateRating_Type(6,"okla",1);
     }
 }

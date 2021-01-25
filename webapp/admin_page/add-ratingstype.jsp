@@ -51,7 +51,7 @@
                         <div class="card-body">
 
                             <!-- Form -->
-                            <form action="add-category" method="post"
+                            <form action="add_ratingstype" method="post"
                                   accept-charset="UTF-8">
                                 <c:if test="${type=='add'}">
                                     <div class="form-group" style="display: none">
@@ -93,7 +93,7 @@
                                     <div class="status-toggle">
                                         <label>Hiển thị</label>
                                         <input id="rating_2" class="check" type="checkbox" name="active" value="true"
-                                               <c:if test="${ratingstype.status}">checked</c:if>>
+                                               <c:if test="${ratingstype.status==1}">checked</c:if>>
                                         <label for="rating_2" class="checktoggle">checkbox</label>
                                     </div>
                                     <div class="mt-4">

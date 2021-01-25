@@ -47,7 +47,7 @@
                         <h3 class="page-title">Loại đánh giá</h3>
                     </div>
                     <div class="col-auto text-right">
-                        <a href="add-ratingstype.html" class="btn btn-primary add-button">
+                        <a href="add_ratingstype?type=enteradd" class="btn btn-primary add-button">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -81,7 +81,7 @@
 <%--                                            </div>--%>
 <%--                                        </td>--%>
                                         <td class="text-right">
-                                            <a href="edit-ratingtyle.html" class="table-action-btn btn btn-sm bg-success-light">
+                                            <a href="add_ratingstype?type=enterEdit&id=${r.id}"class="table-action-btn btn btn-sm bg-success-light">
                                                 <i class="far fa-edit mr-1"></i>Sửa
                                             </a>
                                             <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>

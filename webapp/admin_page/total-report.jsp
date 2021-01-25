@@ -17,7 +17,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Sản phẩm</title>
+    <title>${title}</title>
     <link href="assets/img/icon/icon-logo.png" rel="shortcut icon">
 
 
@@ -54,14 +54,11 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col">
-                        <h3 class="page-title">Sản phẩm</h3>
+                        <h3 class="page-title">${title}</h3>
                     </div>
                     <div class="col-auto text-right">
                         <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
                             <i class="fas fa-filter"></i>
-                        </a>
-                        <a href="admin-page/add-product?type=add" class="btn btn-primary add-button ml-3">
-                            <i class="fas fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -71,10 +68,9 @@
             <!-- Search Filter -->
             <div class="card filter-card" id="filter_inputs">
                 <div class="card-body pb-0">
-                    <form action="admin-page/product" method="post">
+                    <form action="total-report" method="post">
                         <div class="row filter-row">
                             <!-- Thay đổi theo danh sách đề mục -->
-
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group">
                                     <label>Từ Ngày</label>
@@ -110,11 +106,10 @@
                                     <!-- Thay đổi code ở đây Thay đổi theo file word -->
                                     <thead>
                                     <tr>
-                                        <th>id</th>
+                                        <th>ID</th>
                                         <th>Ngày đặt hàng</th>
                                         <th>Khách hàng</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Thành tiền</th>
+                                        <th>Tổng tiền</th>
                                         <th>Trạng thái</th>
                                         <th class="text-right">Hành Động</th>
                                     </tr>
@@ -122,19 +117,23 @@
 
                                     <!-- Thêm vào nội dung ở đây -->
                                     <tbody>
-                                    <c:forEach var="p" items="${totalreports}">
-                                        <c:set var="price" value="${p.getPriceByOrderId(p.id)}"></c:set>
-                                        <c:set var="date_created" value="${p.date_created}"></c:set>
+                                    <c:forEach var="o" items="${total_report}">
+                                        <c:set var="price" value="${o.total_pay}"></c:set>
+                                        <c:set var="date_created" value="${o.date_created}"></c:set>
                                         <tr>
-                                            <td>${p.id}</td>
+                                            <td>${o.id}</td>
                                             <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
-                                            <td>${p.getNameUserByUserId(p.id)}</td>
-                                            <td>${p.getNameProductByOrderId(p.id)}</td>
+                                            <td>${o.user_name}</td>
                                             <td><%= Util.formatCurrency((double)pageContext.getAttribute("price"))%></td>
-<%--                                            <td>${p.quantity}</td>--%>
+                                            <td>
+                                                <c:if test="${o.status==1}"><span class="badge badge-danger">Đã hủy</span></c:if>
+                                                <c:if test="${o.status==2}"><span class="badge badge-warning">Bị từ chối</span></c:if>
+                                                <c:if test="${o.status==3}"><span class="badge badge-dark">Đang xử lí</span></c:if>
+                                                <c:if test="${o.status==4}"><span class="badge badge-primary">Đang đóng gói</span></c:if>
+                                                <c:if test="${o.status==5}"><span class="badge badge-info">Đang vận chuyển</span></c:if>
+                                                <c:if test="${o.status==6}"><span class="badge badge-success">Hoàn thành</span></c:if>
+                                            </td>
                                             <td class="text-right">
-<%--                                                <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>--%>
-<%--                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>--%>
                                                 <a href="service-details.html" class="btn btn-sm bg-info-light"><i class="far fa-eye mr-1"></i> Chi tiết</a>
                                             </td>
                                         </tr>

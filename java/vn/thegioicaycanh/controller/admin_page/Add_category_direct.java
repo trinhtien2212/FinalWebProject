@@ -48,7 +48,6 @@ public class Add_category_direct extends HttpServlet {
                 System.out.println("Đã thực hiện câu lệnh sql");
                 request.getRequestDispatcher("add-category.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("add-category.jsp").forward(request,response);
         } else if(type.equalsIgnoreCase("edit")){
             int id = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("type", "edit");

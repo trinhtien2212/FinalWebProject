@@ -69,8 +69,65 @@ public class Load_Order {
         return order;
     }
 
+    // Load lên dashboard
+    public static List<Order> loadOrderNear(int limit){
+        List<Order> list = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT o.id, o.date_created, u.name, o.`status`, (sum(p.price * op.quantity) + s.price) AS total FROM `order` o JOIN order_product op ON o.id = op.order_id JOIN product p ON op.pro_id=p.id JOIN shipment s ON s.id=o.ship_id JOIN `user` u ON u.id = o.user_id " +
+                    "GROUP BY o.id, o.date_created, u.name, o.`status` " +
+                    "ORDER BY date_created " +
+                    "LIMIT ?");
+            preparedStatement.setInt(1,limit);
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    Order order = new Order();
+                    order.setId(resultSet.getInt(1));
+                    order.setDate_created(resultSet.getDate(2));
+                    order.setUser_name(resultSet.getString(3));
+                    order.setStatus(resultSet.getInt(4));
+                    order.setTotal_pay(resultSet.getDouble(5));
+                    list.add(order);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return list;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+    // load lên trang danh sách đơn hàng
+    public static List<Order> loadOrder_view(){
+        List<Order> orderList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT o.id, o.date_created, u.name, o.`status`, (sum(p.price * op.quantity) + s.price) AS total " +
+                    "FROM `order` o JOIN order_product op ON o.id = op.order_id JOIN product p ON op.pro_id=p.id JOIN shipment s ON s.id=o.ship_id JOIN `user` u ON u.id = o.user_id " +
+                    "GROUP BY o.id, o.date_created, u.name, o.`status`");
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Order order = new Order();
+                    order.setId(resultSet.getInt(1));
+                    order.setDate_created(resultSet.getDate(2));
+                    order.setUser_name(resultSet.getString(3));
+                    order.setStatus(resultSet.getInt(4));
+                    order.setTotal_pay(resultSet.getDouble(5));
+                    orderList.add(order);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return orderList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return orderList;
+    }
     public static void main(String[] args) {
-        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
+//        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
+        System.out.println(loadOrder_view());
     }
 }

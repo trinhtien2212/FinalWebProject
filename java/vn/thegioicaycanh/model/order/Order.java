@@ -23,8 +23,9 @@ public class Order {
     private String address;
     private int status;
     private Date date_created;
-    private Double total_pay;
-
+    private double total_pay;
+    private int count_id;
+    private double ship_price;
     public Order() {
     }
 
@@ -154,6 +155,26 @@ public class Order {
 
     public static void main(String[] args) {
         System.out.println(getPriceByOrderId(3));
+    }
+
+    public int getCount_id() {
+        return count_id;
+    }
+
+    public void setCount_id(int count_id) {
+        this.count_id = count_id;
+    }
+
+    public void setTotal_pay(double total_pay) {
+        this.total_pay = total_pay;
+    }
+
+    public double getShip_price() {
+        return ship_price;
+    }
+
+    public void setShip_price(double ship_price) {
+        this.ship_price = ship_price;
     }
 
     @Override

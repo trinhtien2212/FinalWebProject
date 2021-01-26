@@ -123,4 +123,10 @@ public class User {
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
+    public boolean isMan(){
+        if(getSex().equals("Nam")){
+            return true;
+        }
+        return false;
+    }
 }

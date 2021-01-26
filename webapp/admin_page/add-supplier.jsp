@@ -65,25 +65,67 @@
                                     <div class="form-group" style="display: none">
                                         <input class="form-control" type="text" value="add" name="type">
                                     </div>
-<%--                                    <div class="form-group">--%>
-<%--                                        <label>Ảnh</label>--%>
-<%--                                        <input class="form-control" type="file" name="img">--%>
-<%--                                    </div>--%>
+                                    <div class="form-group">
+                                        <label>Ảnh</label>
+                                        <input class="form-control" type="file" name="img">
+                                    </div>
                                     <div class="form-group">
                                         <label>Nhà cung cấp</label>
                                         <input id="name_supplier"class="form-control" type="text" value="" name="supplier_id">
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ</label>
-                                        <input id="address" class="form-control" type="text" value="" name="adđress">
+                                        <input id="address" class="form-control" type="text" name="adđress">
                                     </div>
                                     <div class="form-group">
                                         <label>Điện thoại</label>
-                                        <input id="phone" class="form-control" type="text" value="" name="phone">
+                                        <input id="phone" class="form-control" type="text"  name="phone">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input id="email" class="form-control" type="text" value="" name="email">
+                                        <input id="email" class="form-control" type="text"  name="email">
+                                    </div>
+                                    <div class="mt-4">
+                                        <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${type=='edit'}">
+                                    <div class="form-group" style="display: none">
+                                        <input class="form-control" type="text" value="edit" name="type">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input class="form-control" type="text" name="id" value="${supplier.id}"
+                                               readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ảnh</label>
+                                        <input class="form-control" type="file" value="${supplier.logo}" name="img">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="avatar">
+                                            <img class="avatar-img rounded" alt="avatar"
+                                            <c:if test="${fn:startsWith(supplier.logo, 'imgs')}"> src="../${supplier.logo}"</c:if>
+                                                 <c:if test="${fn:startsWith(supplier.logo, 'http')}">src="${supplier.logo}"</c:if>
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nhà cung cấp</label>
+                                        <input id="name_supplier"class="form-control" type="text" value="${supplier.name}" name="suppliername">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input id="address" class="form-control" type="text" value="${supplier.address}" name="adđress">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Điện thoại</label>
+                                        <input id="phone" class="form-control" type="text" value="${supplier.phone}" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input id="email" class="form-control" type="text" value="${supplier.email}" name="email">
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>

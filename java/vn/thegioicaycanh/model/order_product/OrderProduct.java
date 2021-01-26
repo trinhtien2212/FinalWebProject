@@ -3,6 +3,7 @@ package vn.thegioicaycanh.model.order_product;
 public class OrderProduct {
     private int order_id;
     private int pro_id;
+    private String pro_name;
     private int quantity;
     private double price;
 
@@ -39,5 +40,13 @@ public class OrderProduct {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getPro_name() {
+        return pro_name;
+    }
+
+    public void setPro_name(String pro_name) {
+        this.pro_name = pro_name;
     }
 }

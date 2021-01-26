@@ -1,3 +1,4 @@
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -104,74 +105,29 @@
 											<tr>
 												<th>Tên khách hàng</th>
 												<th>Ngày đặt</th>
-												<th>Tên sản phẩm</th>
 												<th>Trạng thái</th>
 												<th>Tổng tiền</th>
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach items="${orderlist}" var="ol">
+											<c:set var="total_pay" value="${ol.total_pay}"></c:set>
 											<tr>
-												<td class="text-nowrap">
-													<img class="avatar-xs rounded-circle" src="assets/img/customer/user5.jpg" alt="User Image"> Annette Silva
-												</td>
-												<td class="text-nowrap">9 Sep 2020</td>
-												<td>Cây Móng Rồng</td>
+												<td>${ol.user_name}</td>
+												<td class="text-nowrap">${ol.date_created}</td>
 												<td>
-													<span class="badge bg-danger inv-badge">chờ xử lý</span>
+													<c:if test="${ol.status==1}"><span class="badge badge-danger">Đã hủy</span></c:if>
+													<c:if test="${ol.status==2}"><span class="badge badge-warning">Bị từ chối</span></c:if>
+													<c:if test="${ol.status==3}"><span class="badge badge-dark">Đang xử lí</span></c:if>
+													<c:if test="${ol.status==4}"><span class="badge badge-primary">Đang đóng gói</span></c:if>
+													<c:if test="${ol.status==5}"><span class="badge badge-info">Đang vận chuyển</span></c:if>
+													<c:if test="${ol.status==6}"><span class="badge badge-success">Hoàn thành</span></c:if>
 												</td>
 												<td>
-													<div class="font-weight-600">64.000 VNĐ</div>
+													<div class="font-weight-600"><%= Util.formatCurrency((double)pageContext.getAttribute("total_pay")) %></div>
 												</td>
 											</tr>
-											<tr>
-												<td class="text-nowrap">
-													<img class="avatar-xs rounded-circle" src="assets/img/customer/user6.jpg" alt="User Image"> Stephen Wilson</td>
-												<td class="text-nowrap">8 Sep 2020</td>
-												<td>Sen Đá Mini Kèm Chậu</td>
-												<td>
-													<span class="badge bg-danger inv-badge">chờ xử lý</span>
-												</td>
-												<td>
-													<div class="font-weight-600">50.000 VNĐ</div>
-												</td>
-											</tr>
-											<tr>
-												<td class="text-nowrap">
-													<img class="avatar-xs rounded-circle" src="assets/img/customer/user7.jpg" alt="User Image"> Ryan Rodriguez</td>
-												<td class="text-nowrap">7 Sep 2020</td>
-												<td>Cây Cẩm Nhung</td>
-												<td>
-													<span class="badge bg-danger inv-badge">chờ xử lý</span>
-												</td>
-												<td>
-													<div class="font-weight-600">39.000 VNĐ</div>
-												</td>
-											</tr>
-											<tr>
-												<td class="text-nowrap">
-													<img class="avatar-xs rounded-circle" src="assets/img/customer/user8.jpg" alt="User Image"> Lucile Devera
-												</td>
-												<td class="text-nowrap">6 Sep 2020</td>
-												<td>Xương Rồng Tai Thỏ</td>
-												<td>
-													<span class="badge bg-danger inv-badge">chờ xử lý</span>
-												</td>
-												<td>
-													<div class="font-weight-600">36.000 VNĐ</div>
-												</td>
-											</tr>
-											<tr>
-												<td class="text-nowrap">
-													<img class="avatar-xs rounded-circle" src="assets/img/customer/user9.jpg" alt="User Image"> Roland Storey</td>
-												<td class="text-nowrap">5 Sep 2020</td>
-												<td>Xương Rồng Astro</td>
-												<td>
-													<span class="badge bg-danger inv-badge">chờ xử lý</span>
-												</td>
-												<td>
-													<div class="font-weight-600">79.000 VNĐ</div>
-												</td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>

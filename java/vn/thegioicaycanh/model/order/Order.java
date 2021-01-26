@@ -14,6 +14,7 @@ import java.util.List;
 public class Order {
     private int id;
     private int user_id;
+    private String user_name;
     private int sale_id;
     private int ship_id;
     private boolean payment;
@@ -22,7 +23,9 @@ public class Order {
     private String address;
     private int status;
     private Date date_created;
-
+    private double total_pay;
+    private int count_id;
+    private double ship_price;
     public Order() {
     }
 
@@ -129,10 +132,66 @@ public class Order {
         }
         return 0.0;
     }
-//    public static String getNamStatusById(int status){
-//
-//    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public Double getTotal_pay() {
+        return total_pay;
+    }
+
+    public void setTotal_pay(Double total_pay) {
+        this.total_pay = total_pay;
+    }
+
     public static void main(String[] args) {
         System.out.println(getPriceByOrderId(3));
+    }
+
+    public int getCount_id() {
+        return count_id;
+    }
+
+    public void setCount_id(int count_id) {
+        this.count_id = count_id;
+    }
+
+    public void setTotal_pay(double total_pay) {
+        this.total_pay = total_pay;
+    }
+
+    public double getShip_price() {
+        return ship_price;
+    }
+
+    public void setShip_price(double ship_price) {
+        this.ship_price = ship_price;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", user_name='" + user_name + '\'' +
+                ", sale_id=" + sale_id +
+                ", ship_id=" + ship_id +
+                ", payment=" + payment +
+                ", note='" + note + '\'' +
+                ", phone=" + phone +
+                ", address='" + address + '\'' +
+                ", status=" + status +
+                ", date_created=" + date_created +
+                ", total_pay=" + total_pay +
+                '}';
     }
 }

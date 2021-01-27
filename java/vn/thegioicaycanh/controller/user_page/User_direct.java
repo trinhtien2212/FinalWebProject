@@ -34,6 +34,18 @@ public class User_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        if(session.getAttribute("city")!=null){
+            int user_id = (int)session.getAttribute("user_id");
+            String name=request.getParameter("fullName");
+            String birthday=request.getParameter("birthday");
+            int phone= Integer.parseInt(request.getParameter("mobile"));
+            String email=request.getParameter("email");
+            String city=request.getParameter("city");
+            String district=request.getParameter("district");
+            String ward=request.getParameter("ward");
+            String detailadddresss=request.getParameter("address");
+            LoadUser.updateUser(name,birthday,phone,email,city,district,ward,detailadddresss,user_id);
+        }
         if(session != null){
             System.out.println(LoadUser.loadAUserByEmail((String) session.getAttribute("user_mail")));
             User user = LoadUser.loadAUserByEmail((String) session.getAttribute("user_mail"));

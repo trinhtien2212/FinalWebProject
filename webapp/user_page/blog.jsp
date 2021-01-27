@@ -51,32 +51,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-5">
-                <div class="blog__sidebar">
-                    <div class="blog__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Tìm kiếm...">
-                            <button type="submit"><span class="icon_search"></span></button>
-                        </form>
-                    </div>
-                    <div class="blog__sidebar__item">
-                        <h4>Danh Mục</h4>
-                        <ul>
-                            <li><a href="#">Tất Cả</a></li>
-                            <li><a href="#">Chăm Sóc Cây (20)</a></li>
-                            <li><a href="#">Trồng Cây (5)</a></li>
-                            <li><a href="#">Lợi Ích Của Cây (9)</a></li>
-                            <li><a href="#">Trang Trí Cây (10)</a></li>
-                        </ul>
-                    </div>
-                    <div class="blog__sidebar__item">
-                        <h4>Tin Tức Mới</h4>
+                <div class="sidebar__item">
+                    <div class="latest-product__text">
+                        <h4>Bài viết mới nhất</h4>
                         <div class="latest-product__slider owl-carousel">
                             <c:forEach var="i" begin="0" end="2" step="1">
                                 <div class="latest-prdouct__slider__item">
                                     <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
                                         <c:set var="nb" value="${newBlog.get(j)}"></c:set>
 
-                                        <a href="#" class="latest-product__item">
+                                        <a href="blog-detail?id=${nb.id}" class="latest-product__item">
                                             <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
                                                 <img src="${nb.avatar}" alt="blog-avatar">
                                             </div>
@@ -90,15 +74,28 @@
                             </c:forEach>
                         </div>
                     </div>
-                    <div class="blog__sidebar__item">
-                        <h4>Tìm Kiếm Nhiều</h4>
-                        <div class="blog__sidebar__item__tags">
-                            <a href="#">Bạch Mã Hoàng Tử</a>
-                            <a href="#">Dâu Tây</a>
-                            <a href="#">Kim Tiền</a>
-                            <a href="#">Lưỡi Hổ</a>
-                            <a href="#">Mai</a>
-                            <a href="#">Đẹp</a>
+                </div>
+                <div class="sidebar__item">
+                    <div class="latest-product__text">
+                        <h4>Đọc nhiều nhất</h4>
+                        <div class="latest-product__slider owl-carousel">
+                            <c:forEach var="i" begin="0" end="2" step="1">
+                                <div class="latest-prdouct__slider__item">
+                                    <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
+                                        <c:set var="nb" value="${mostReadBlogs.get(j)}"></c:set>
+
+                                        <a href="blog-detail?id=${nb.id}" class="latest-product__item">
+                                            <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
+                                                <img src="${nb.avatar}" alt="blog-avatar">
+                                            </div>
+                                            <div class="blog__sidebar__recent__item__text">
+                                                <h6>${nb.name}</h6>
+                                                <span>${nb.date_created}</span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -114,11 +111,11 @@
                             <div class="blog__item__text">
                                 <ul>
                                     <li><i class="fa fa-calendar-o"></i> ${b.date_created}</li>
-                                    <li><i class="fa fa-comment-o"></i> ${b.id}</li>
+<%--                                    <li><i class="fa fa-comment-o"></i> ${b.id}</li>--%>
                                 </ul>
                                 <h5><a href="blog-details.html">${b.name}</a></h5>
                                     <%--                    <p>Trong nhà của bạn không thể thiếu cây xanh phải không. Cây xanh mang đến không gian sống trong lành, thư thái và thoải mái. Cây xanh còn giúp…</p>--%>
-                                <a href="blog-details.html" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+                                <a href="blog-detail?id=${b.id}" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>

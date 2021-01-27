@@ -51,7 +51,7 @@
                         <input type="text" placeholder="Email">
                         <button type="submit" class="site-btn">Gửi</button>
                     </form>
-                    <a class="term" href="terms-and-conditions.html">Xem thêm chính sách và điều khoản <i class="fa fa-arrow-right"></i></a>
+                    <a class="term" href="TermAndCondition_direct">Xem thêm chính sách và điều khoản <i class="fa fa-arrow-right"></i></a>
                     <div class="footer__widget__social">
                         <a href="${applicationScope.social_media.fb}"><i class="fa fa-facebook"></i></a>
                         <a href="${applicationScope.social_media.in}"><i class="fa fa-instagram"></i></a>

@@ -53,7 +53,7 @@
                                             <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
                                                 <c:set var="nb" value="${newBlog.get(j)}"></c:set>
 
-                                                <a href="#" class="latest-product__item">
+                                                <a href="blog-detail?id=${nb.id}" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
                                                         <img src="${nb.avatar}" alt="blog-avatar">
                                                     </div>
@@ -77,7 +77,7 @@
                                             <c:forEach var="j" begin="${i*4}" end="${i*4+3}" step="1">
                                                 <c:set var="nb" value="${mostReadBlogs.get(j)}"></c:set>
 
-                                                <a href="#" class="latest-product__item">
+                                                <a href="blog-detail?id=${nb.id}" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size blog__sidebar__recent__item__pic">
                                                         <img src="${nb.avatar}" alt="blog-avatar">
                                                     </div>

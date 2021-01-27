@@ -61,7 +61,10 @@
                                 <h1>HỒ SƠ CỦA TÔI</h1>
                                 <div class="content">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
                             </header>
-                            <form id="formAcount" class="formAcount validate clearfix">
+                            <div class="form-group" style="display: none">
+                                <input class="form-control" type="text" value="edit" name="type">
+                            </div>
+                            <form id="formAcount" class="formAcount validate clearfix" >
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Họ tên: <span>(*)</span></label>

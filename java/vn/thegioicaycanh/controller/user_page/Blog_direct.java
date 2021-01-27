@@ -20,7 +20,6 @@ public class Blog_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        initAttr();
         int pages = 1;
         String sqlCondition="";
         String url="";
@@ -38,22 +37,11 @@ public class Blog_direct extends HttpServlet {
         request.setAttribute("home_page_data",new Home_page());
         request.setAttribute("pages",pages);
         request.setAttribute("url",url);
+        request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));
+        request.setAttribute("mostReadBlogs",Blog_Con_DB.mostReadBlogs(12));
 //        request.setAttribute("data", Blog_Con_DB.loadLimitBlog(1,10));
         request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));
         request.getRequestDispatcher("handlePagination").forward(request,response);
 
-    }
-    protected void initAttr(){
-        ServletContext context = getServletContext();
-        if(context.getAttribute("header") == null) {
-            context.setAttribute("header", LoadHeaderFooter.loadHeader());
-            context.setAttribute("category",LoadHeaderFooter.loadCategories());
-        }
-        if(context.getAttribute("address") == null){
-            context.setAttribute("address",LoadHeaderFooter.loadAdress());
-        }
-        if(context.getAttribute("social_media") == null){
-            context.setAttribute("social_media",new Social_media());
-        }
     }
 }

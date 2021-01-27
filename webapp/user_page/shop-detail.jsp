@@ -509,9 +509,17 @@
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="${rl.img}">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-money"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+<%--                            <li><a href="#"><i class="fa fa-money"></i></a></li>--%>
+<%--                            <c:if test="${sessionScope.user_id!=null}">--%>
+<%--                            <li><a href="#"><i class="fa fa-heart"></i></a></li>--%>
+<%--                            </c:if>--%>
+<%--                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>--%>
+
+                            <li class="fast-checkout cursor-pointer" data-pro_id="${rl.id}"><a ><i class="fa fa-money"></i></a></li>
+                            <c:if test="${sessionScope.user_id!=null}">
+                                <li class="addFa cursor-pointer" data-current_page="shop-detail" data-pro_id="${rl.id}"><a><i class="fa fa-heart"></i></a></li>
+                            </c:if>
+                            <li class="addCart cursor-pointer" data-current_page="shop-detail" data-pro_id="${rl.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product__item__text">

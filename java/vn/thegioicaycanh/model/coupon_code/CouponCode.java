@@ -1,6 +1,5 @@
 package vn.thegioicaycanh.model.coupon_code;
 
-import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
 import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType_Con_DB;
 
 import java.util.Date;
@@ -17,6 +16,16 @@ public class CouponCode {
     private Date date_end;
     private int date_number; // so ngay giam gia con lai
 
+
+
+    private int tongsongay;
+    public int getTongsongay() {
+        return tongsongay;
+    }
+
+    public void setTongsongay(int tongsongay) {
+        this.tongsongay = tongsongay;
+    }
     public CouponCode() {
     }
     public static String getLinkImage(int id){
@@ -107,6 +116,18 @@ public class CouponCode {
     public void setDate_number(int date_number) {
         this.date_number = date_number;
     }
+    //con lai
+    public int daysBetween(){
+        Date d3=new java.util.Date();
+        return (int)( ( date_end.getTime()-d3.getTime()) / (1000 * 60 * 60 * 24));
+    }
+    //tong so ngay
+    public int daysB(){
+        return  (int)( (date_end.getTime() - date_start.getTime()) / (1000 * 60 * 60 * 24));
+    }
+    public double getpecent(){
+        return (daysBetween()*100/daysB());
+    }
 
     @Override
     public String toString() {
@@ -123,4 +144,5 @@ public class CouponCode {
                 ", date_number=" + date_number +
                 '}';
     }
+
 }

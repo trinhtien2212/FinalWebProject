@@ -101,7 +101,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fas fa-tasks"></i> <span>Quản lí</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="admin-page?direct-to=category"
+                        <li><a href="category"
                                <c:if test="${current_page=='category'}">class="active"</c:if>>Danh mục</a></li>
                         <li><a href="admin-page?direct-to=product"
                                <c:if test="${current_page=='product'}">class="active"</c:if>>Sản phẩm</a></li>
@@ -110,7 +110,7 @@
                         <li><a href="admin-page?direct-to=coupon-code-type"
                                <c:if test="${current_page=='coupon-code-type'}">class="active"</c:if>>Loại mã giảm
                             giá</a></li>
-                        <li><a href="admin-page?direct-to=coupon-code"
+                        <li><a href="coupon_code"
                                <c:if test="${current_page=='coupon-code'}">class="active"</c:if>>Mã giảm giá</a></li>
                         <li><a href="admin-page?direct-to=rating-type"
                                <c:if test="${current_page=='rating-type'}">class="active"</c:if>>Loại đánh giá</a></li>
@@ -124,7 +124,7 @@
                     <a href="#"><i class="fas fa-shopping-cart"></i><span>Bán hàng</span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="admin-page?direct-to=total-report"
+                        <li><a href="total_report"
                                <c:if test="${current_page=='total-report'}">class="active"</c:if>>Danh sách đặt hàng</a>
                         </li>
                         <li><a href="admin-page?direct-to=shipment"
@@ -154,7 +154,7 @@
                     </ul>
                 </li>
                 <li <c:if test="${current_page=='user-info'}">class="active"</c:if>>
-                    <a href="admin-page?direct-to=dashboard"><i class="fas fa-user-plus"></i>
+                    <a href="admin"><i class="fas fa-user-plus"></i>
                         <span>Thông tin cá nhân</span></a>
                 </li>
                 <li <c:if test="${current_page=='setting'}">class="active"</c:if>>

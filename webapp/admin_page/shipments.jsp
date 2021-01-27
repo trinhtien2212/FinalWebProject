@@ -126,7 +126,7 @@
 													<td>${sv.order_id}</td>
 													<td>${sv.date_created}</td>
 													<td>${sv.type_weight}</td>
-													<td><%= Util.formatCurrency((double)pageContext.getAttribute("pricesale")) %></td>
+													<td><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></td>
 <%--													<td class="text-right">--%>
 <%--														<a href="view-shipments.html" class="btn btn-sm bg-info-light">--%>
 <%--															<i class="far fa-eye mr-1"></i> Chi tiết--%>

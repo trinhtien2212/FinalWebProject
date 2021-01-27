@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="col-auto profile-btn">
-                                <a href="edit-admin-profile.html" class="btn btn-primary">
+                                <a href="edit-admin?type=enterEdit&id=${sessionScope.user_id}" class="btn btn-primary">
                                     Sửa
                                 </a>
                             </div>
@@ -135,73 +135,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <form>
-                                                        <div class="row form-row">
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Họ tên</label>
-                                                                    <input type="text" class="form-control"
-                                                                           value="${sessionScope.user_name}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Ngày sinh</label>
-                                                                    <div class="cal-icon">
-                                                                        <input type="text" class="form-control"
-                                                                               value="${sessionScope.user_birth}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class=" col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Địa chỉ Email</label>
-                                                                    <input type="email" class="form-control"
-                                                                           value="${sessionScope.user_mail}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Điện thoại</label>
-                                                                    <input type="text"
-                                                                           value="+84 ${sessionScope.user_phone}"
-                                                                           class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <h5 class="form-title"><span>Địa chỉ</span></h5>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Số nhà</label>
-                                                                    <input type="text" class="form-control"
-                                                                           value="${sessionScope.detail}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Phường/ Xã</label>
-                                                                    <input type="text" class="form-control"
-                                                                           value="${sessionScope.ward}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Quận/ Huyện</label>
-                                                                    <input type="text" class="form-control"
-                                                                           value="${sessionScope.district}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Tỉnh/ Thành phố</label>
-                                                                    <input type="text" class="form-control"
-                                                                           value="${sessionScope.city}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-block">
-                                                            Lưu
-                                                        </button>
+
                                                     </form>
                                                 </div>
                                             </div>

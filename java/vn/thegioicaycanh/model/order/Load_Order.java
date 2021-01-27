@@ -180,10 +180,40 @@ public class Load_Order {
         }
         return false;
     }
+    // Load don hang tren trang user bang user_id
+    public static List<Order> loadOrderByUserId(int user_id){
+        List<Order> orderList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT o.id, o.date_created, u.name, o.`status`, (sum(p.price * op.quantity) + s.price) AS total " +
+                    "FROM `order` o JOIN order_product op ON o.id = op.order_id JOIN product p ON op.pro_id=p.id JOIN shipment s ON s.id=o.ship_id JOIN `user` u ON u.id = o.user_id  " +
+                    "WHERE u.id = ? " +
+                    "GROUP BY o.id, o.date_created, u.name, o.`status`");
+            preparedStatement.setInt(1, user_id);
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Order order = new Order();
+                    order.setId(resultSet.getInt(1));
+                    order.setDate_created(resultSet.getDate(2));
+                    order.setUser_name(resultSet.getString(3));
+                    order.setStatus(resultSet.getInt(4));
+                    order.setTotal_pay(resultSet.getDouble(5));
+                    orderList.add(order);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return orderList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return orderList;
+    }
     public static void main(String[] args) {
 //        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
-        System.out.println(loadOrder_view(2));
+//        System.out.println(loadOrder_view(2));
 //        System.out.println(loadOrderByStatus("2","2019-01-01","2020-05-08"));
+        System.out.println(loadOrderByUserId(1));
     }
 }

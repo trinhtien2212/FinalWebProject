@@ -209,11 +209,28 @@ public class Load_Order {
         }
         return orderList;
     }
+    // Update status của order bang id
+    public static boolean updateStatusById(int order_id, String status){
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("UPDATE `order` SET `status` = ? WHERE id=?");
+            preparedStatement.setString(1,status);
+            preparedStatement.setInt(2,order_id);
+            synchronized (preparedStatement){
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return true;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public static void main(String[] args) {
 //        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
 //        System.out.println(loadOrder_view(2));
 //        System.out.println(loadOrderByStatus("2","2019-01-01","2020-05-08"));
-        System.out.println(loadOrderByUserId(1));
+//        System.out.println(loadOrderByUserId(1));
+        System.out.println(updateStatusById(6,"1"));
     }
 }

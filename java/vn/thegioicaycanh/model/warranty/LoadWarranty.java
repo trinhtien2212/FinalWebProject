@@ -12,16 +12,16 @@ import java.util.List;
 
 public class LoadWarranty {
     // Insert warranty
-    public static boolean saveWarranty(warranty warranty){
+    public static boolean insertWarranty(int order_id, int user_id, int pro_id){
         try {
-            Statement statement = DBCPDataSource.getStatement();
-            synchronized (statement) {
-                String sql = "INSERT INTO warranty(order_id, user_id, pro_id) VALUES ("+warranty.getOrder_id() + "," +
-                        warranty.getUser_id() + "," + warranty.getPro_id() + ")";
-                System.out.println(sql);
-                statement.executeUpdate(sql);
-            }
-            statement.close();
+           PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("INSERT INTO warranty(order_id, user_id, pro_id) VALUES (?,?,?)");
+           preparedStatement.setInt(1,order_id);
+           preparedStatement.setInt(2,user_id);
+           preparedStatement.setInt(3,pro_id);
+           synchronized (preparedStatement){
+               preparedStatement.executeQuery();
+           }
+           preparedStatement.close();
             return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

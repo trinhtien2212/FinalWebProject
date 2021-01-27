@@ -52,12 +52,14 @@ public class OrderProduct_Con_DB {
     public static double getPriceProductById(int proid){
         return new ProductEntity().getPriceProductById(proid);
     }
+    // Load san pham trong trang chi tiet don hang o admin
     public static List<OrderProduct> loadOrderProductByOrderId(int order_id){
         List<OrderProduct> productList = new ArrayList<>();
         try{
-            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT p.id, p.`name`, op.quantity, p.price, o.id, o.date_created, u.id, o.`status`, (sum(p.price * op.quantity) + s.price) AS total, o.payment, o.address, o.phone, o.note, u.`name`, s.price " +
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT p.id, p.`name`, op.quantity, p.price, o.id, o.date_created, u.id, o.`status`, (sum(p.price * op.quantity) + s.price) AS total, o.payment, o.address, o.phone, o.note, u.`name`, s.price , p.percent_sale, p.img " +
                     "FROM `order` o JOIN order_product op ON o.id = op.order_id JOIN product p ON op.pro_id=p.id JOIN shipment s ON s.id=o.ship_id JOIN `user` u ON u.id = o.user_id " +
-                    "WHERE o.id = ? " + "GROUP BY o.id, o.date_created, u.name, o.`status`, o.payment, o.address, o.phone, o.note, u.`name`, s.price, p.id, p.`name`, op.quantity, p.price");
+                    "WHERE o.id = ? " +
+                    "GROUP BY o.id, o.date_created, u.name, o.`status`, o.payment, o.address, o.phone, o.note, u.`name`, s.price, p.id, p.`name`, op.quantity, p.price, p.percent_sale, p.img");
             preparedStatement.setInt(1,order_id);
             synchronized (preparedStatement){
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -67,6 +69,10 @@ public class OrderProduct_Con_DB {
                     orderProduct.setPro_name(resultSet.getString(2));
                     orderProduct.setQuantity(resultSet.getInt(3));
                     orderProduct.setPrice(resultSet.getDouble(4));
+                    orderProduct.setPercent(resultSet.getInt(16));
+                    orderProduct.setImg(resultSet.getString(17));
+                    orderProduct.setSale(resultSet.getDouble(4),resultSet.getInt(16),resultSet.getInt(3));
+                    orderProduct.setTotal(resultSet.getDouble(4),resultSet.getInt(16),resultSet.getInt(3));
                     productList.add(orderProduct);
                 }
                 resultSet.close();
@@ -77,5 +83,9 @@ public class OrderProduct_Con_DB {
             throwables.printStackTrace();
         }
         return productList;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(loadOrderProductByOrderId(1));
     }
 }

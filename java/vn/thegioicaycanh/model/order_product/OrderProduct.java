@@ -4,8 +4,12 @@ public class OrderProduct {
     private int order_id;
     private int pro_id;
     private String pro_name;
+    private String img;
     private int quantity;
     private double price;
+    private int percent;
+    private double sale;
+    private double total;
 
     public OrderProduct() {
     }
@@ -48,5 +52,53 @@ public class OrderProduct {
 
     public void setPro_name(String pro_name) {
         this.pro_name = pro_name;
+    }
+
+    public int getPercent() {
+        return percent;
+    }
+
+    public void setPercent(int percent) {
+        this.percent = percent;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    // Giảm giá
+    public void setSale(double price, int percent, int quantity) {
+        this.sale = price * percent * quantity/100;
+    }
+
+    public double getSale() {
+        return sale;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double price, int percent, int quantity  ) {
+        this.total = price * quantity - (price * percent * quantity/100);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "order_id=" + order_id +
+                ", pro_id=" + pro_id +
+                ", pro_name='" + pro_name + '\'' +
+                ", img='" + img + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", percent=" + percent +
+                ", sale=" + sale +
+                ", total=" + total +
+                '}';
     }
 }

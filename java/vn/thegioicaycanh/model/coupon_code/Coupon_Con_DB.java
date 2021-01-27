@@ -79,7 +79,7 @@ public class Coupon_Con_DB {
 
     public static List<CouponCode> loadCouponCodeByUserId(int user_id) {
         List<CouponCode> list = new ArrayList<>();
-        String sql = "SELECT c.name, DATEDIFF(c.date_end_sale,CURRENT_DATE), ct.`name` " +
+        String sql = "SELECT c.name, DATEDIFF(c.date_end,CURRENT_DATE), ct.`name` " +
                 "FROM user u INNER JOIN user_code uc ON u.id = uc.user_id " +
                 "INNER JOIN coupon_code c ON uc.coupon_code_id = c.id " +
                 "INNER JOIN coupon_code_type ct ON ct.id = c.coupon_code_type_id " +

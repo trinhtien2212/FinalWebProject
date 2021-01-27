@@ -1,5 +1,9 @@
 package vn.thegioicaycanh.controller.admin_page;
 
+import vn.thegioicaycanh.model.Product.Product;
+import vn.thegioicaycanh.model.Product.ProductEntity;
+import vn.thegioicaycanh.model.order.Load_Order;
+import vn.thegioicaycanh.model.order.Order;
 import vn.thegioicaycanh.model.rating_type.Rating_Type;
 import vn.thegioicaycanh.model.rating_type.Rating_Type_Con_DB;
 import vn.thegioicaycanh.model.user.LoadUser;
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/admin_page/edit_user")
 public class Edit_user_direct extends HttpServlet {
@@ -29,7 +34,13 @@ public class Edit_user_direct extends HttpServlet {
         if (type.equalsIgnoreCase("enteredit")) {
             int id = Integer.parseInt(request.getParameter("id"));
             User user = LoadUser.loadUserById(id);
+            List<Order> order= Load_Order.loadOrderByIdUser(id);
+            List<Product> fproduct= ProductEntity.loadFavorateByIdUser(id);
+            List<Order> ordproduct= Load_Order.loadOrderStatusByIdUser(id);
             request.setAttribute("user", user);
+            request.setAttribute("productadd",order);
+            request.setAttribute("favproduct",fproduct);
+            request.setAttribute("ordproduct",ordproduct);
             request.getRequestDispatcher("edit-users.jsp").forward(request, response);
             return;
         }
@@ -52,7 +63,13 @@ public class Edit_user_direct extends HttpServlet {
 //            request.setAttribute("ratingstype", rating_type);
 //            request.getRequestDispatcher("add-ratingstype.jsp").forward(request, response);
             User user = LoadUser.loadUserById(id);
+            List<Order> order= Load_Order.loadOrderByIdUser(id);
+            List<Product> fproduct= ProductEntity.loadFavorateByIdUser(id);
+            List<Order> ordproduct= Load_Order.loadOrderStatusByIdUser(id);
             request.setAttribute("user", user);
+            request.setAttribute("productadd",order);
+            request.setAttribute("favproduct",fproduct);
+            request.setAttribute("ordproduct",ordproduct);
             System.out.println(email+name+address+sex+password+birthday+createddate);
             request.getRequestDispatcher("edit-users.jsp").forward(request, response);
 

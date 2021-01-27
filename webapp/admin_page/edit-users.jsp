@@ -131,104 +131,113 @@
                                     </form>
                                 </div>
                             </div>
-<%--                            <div class="card">--%>
-<%--                                <div class="card-header">--%>
-<%--                                    <h4 class="card-title">Danh sách giỏ hàng</h4>--%>
-<%--                                </div>--%>
-<%--                                <div class="card-body">--%>
-<%--                                    <div class="table-responsive">--%>
-<%--                                        <table class="table table-hover table-center mb-0 datatable">--%>
-<%--                                            <thead>--%>
-<%--                                            <tr>--%>
-<%--                                                <th>Id</th>--%>
-<%--                                                <th>Tên sản phẩm</th>--%>
-<%--                                                <th>Ngày thêm</th>--%>
-<%--                                                <th>Số lượng</th>--%>
-<%--                                            </tr>--%>
-<%--                                            </thead>--%>
-<%--                                            <tbody>--%>
-<%--                                            <c:forEach items="${productadd}" var="pa">--%>
-<%--                                            <tr>--%>
-<%--                                                <td>001</td>--%>
-<%--                                                <td>Cây bạch mã hoàng tử</td>--%>
-<%--                                                <td>31 Tháng mười 2020</td>--%>
-<%--                                                <td>1</td>--%>
-<%--                                            </tr>--%>
-<%--                                            </c:forEach>--%>
-<%--                                            </tbody>--%>
-<%--                                        </table>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="card">--%>
-<%--                                <div class="card-header">--%>
-<%--                                    <h4 class="card-title">Danh sách yêu thích</h4>--%>
-<%--                                </div>--%>
-<%--                                <div class="card-body">--%>
-<%--                                    <div class="table-responsive">--%>
-<%--                                        <table class="table table-hover table-center mb-0 datatable">--%>
-<%--                                            <thead>--%>
-<%--                                            <tr>--%>
-<%--                                                <th>Id</th>--%>
-<%--                                                <th>Tên sản phẩm</th>--%>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Danh sách giỏ hàng</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0 datatable">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Ngày thêm</th>
+                                                <th>Số lượng</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${productadd}" var="pa">
+                                            <tr>
+                                                <td>${pa.id}</td>
+                                                <td>${pa.name_product}</td>
+                                                <td>${pa.date_created}</td>
+                                                <td>${pa.number_product}</td>
+                                            </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Danh sách yêu thích</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0 datatable">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Tên sản phẩm</th>
 <%--                                                <th>Ngày thêm</th>--%>
 
-<%--                                            </tr>--%>
-<%--                                            </thead>--%>
-<%--                                            <tbody>--%>
-<%--                                            <c:forEach items="${favproduct}" var="pr">--%>
-<%--                                            <tr>--%>
-<%--                                                <td>001</td>--%>
-<%--                                                <td>Cây bạch mã hoàng tử</td>--%>
-<%--                                                <td>31 Tháng mười 2020</td>--%>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${favproduct}" var="pr">
+                                            <tr>
+                                                <td>${pr.id}</td>
+                                                <td>${pr.name}</td>
+<%--                                                <td>${pr.date_created}</td>--%>
 
-<%--                                            </tr>--%>
-<%--                                            </c:forEach>--%>
-<%--                                            </tbody>--%>
-<%--                                        </table>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="card">--%>
-<%--                                <div class="card-header">--%>
-<%--                                    <h4 class="card-title">Danh sách đặt hàng</h4>--%>
-<%--                                </div>--%>
-<%--                                <div class="card-body">--%>
-<%--                                    <div class="table-responsive">--%>
-<%--                                        <table class="table table-hover table-center mb-0 datatable">--%>
-<%--                                            <thead>--%>
-<%--                                            <tr>--%>
-<%--                                                <th>Id</th>--%>
-<%--                                                <th>Tên sản phẩm</th>--%>
-<%--                                                <th>Trạng thái</th>--%>
-<%--                                                <th>Tổng tiền</th>--%>
+                                            </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Danh sách đặt hàng</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0 datatable">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Trạng thái</th>
+                                                <th>Tổng tiền</th>
 <%--                                                <th>Phương thức thanh toán</th>--%>
-<%--                                                <th>Ngày tạo</th>--%>
-<%--                                                <th class="text-right">Xem chi tiết</th>--%>
-<%--                                            </tr>--%>
-<%--                                            </thead>--%>
-<%--                                            <tbody>--%>
-<%--                                            <c:forEach items="${ordproduct}" var="op">--%>
-<%--                                            <tr>--%>
-<%--                                                <td>121</td>--%>
-<%--                                                <td>Cây kim tiền</td>--%>
-<%--                                                <td>--%>
-<%--                                                    <label class="badge badge-dark">Đang xử lí</label>--%>
-<%--                                                </td>--%>
+                                                <th>Ngày tạo</th>
+                                                <th class="text-right">Xem chi tiết</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${ordproduct}" var="op">
+                                            <tr>
+                                                <td>${op.id}</td>
+                                                <td>${op.name_product}</td>
+                                                <td>
+                                                    <c:if test="${op.status==1}"><span
+                                                            class="badge badge-danger">Đã hủy</span></c:if>
+                                                    <c:if test="${op.status==2}"><span
+                                                            class="badge badge-warning">Bị từ chối</span></c:if>
+                                                    <c:if test="${op.status==3}"><span
+                                                            class="badge badge-dark">Đang xử lí</span></c:if>
+                                                    <c:if test="${op.status==4}"><span class="badge badge-primary">Đang đóng gói</span></c:if>
+                                                    <c:if test="${op.status==5}"><span class="badge badge-info">Đang vận chuyển</span></c:if>
+                                                    <c:if test="${op.status==6}"><span
+                                                            class="badge badge-success">Hoàn thành</span></c:if>
+                                                </td>
 
-<%--                                                <td>140.000</td>--%>
+                                                <td>${op.name_product}</td>
 <%--                                                <td>Tiền mặt</td>--%>
-<%--                                                <td>31 Tháng mười 2020</td>--%>
-<%--                                                <td class="text-right">--%>
-<%--                                                    <a href="edit-category.html" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Chi tiết</a>--%>
-<%--                                                </td>--%>
-<%--                                            </tr>--%>
-<%--                                            </c:forEach>--%>
-<%--                                            </tbody>--%>
-<%--                                        </table>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                                                <td>${op.date_created}</td>
+                                                <td class="text-right">
+                                                    <a href="view_order?id=${op.id}" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Chi tiết</a>
+                                                </td>
+                                            </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
         </div>

@@ -25,9 +25,38 @@ public class Product {
     private Date date_created;
     private int percent_sale_past;
     private int dayRest;
+    private int countstar;
+    private int contcomment;
+    private double avgstar;
+
 
     public Product() {
     }
+
+    public int getContcomment() {
+        return contcomment;
+    }
+
+    public void setContcomment(int contcomment) {
+        this.contcomment = contcomment;
+    }
+
+    public double getAvgstar() {
+        return avgstar;
+    }
+
+    public void setAvgstar(double avgstar) {
+        this.avgstar = avgstar;
+    }
+
+    public int getCountstar() {
+        return countstar;
+    }
+
+    public void setCountstar(int countstar) {
+        this.countstar = countstar;
+    }
+
     public int percent_sale_past(){
         long diffInMillies = Math.abs(date_start_sale.getTime() - date_end_sale.getTime());
         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);

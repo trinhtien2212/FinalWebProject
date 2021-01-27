@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/admin_page/add_ratingstype")
 public class Add_ratingstype_direct extends HttpServlet {
@@ -61,6 +62,16 @@ public class Add_ratingstype_direct extends HttpServlet {
             Rating_Type rating_type= Rating_Type_Con_DB.loadRating_TypeById(id);
             request.setAttribute("ratingstype", rating_type);
             request.getRequestDispatcher("add-ratingstype.jsp").forward(request, response);
-        }
+        } else if(type.equalsIgnoreCase("delete")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            request.setAttribute("type", "ratingstype");
+            request.setAttribute("title","Chỉnh sửa loại đánh giá");
+            System.out.println("da vao edit loại danh gia");
+            boolean isDelete=Rating_Type_Con_DB.deleteRating_Type(id);
+            request.setAttribute("current_page","rating-type");
+            List<Rating_Type> ratingtypes=Rating_Type_Con_DB.loadrating_typeFormSql("select * from rating_type");
+            request.setAttribute("ratingtype", ratingtypes);
+            System.out.println(request.getAttribute("ratingtype"));
+            request.getRequestDispatcher("ratingstype.jsp").forward(request,response);
     }
-}
+}}

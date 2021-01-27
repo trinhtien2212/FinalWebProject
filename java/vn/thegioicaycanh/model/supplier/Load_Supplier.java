@@ -66,13 +66,16 @@ public class Load_Supplier {
             e.printStackTrace();
         }
     }
-    public static boolean insertSupplier(String logo,String name, String address, int phone, String email) {
+    public static boolean insertSupplier(String name, String address, int phone, String email) {
         String sql = "insert into supplier(logo,name,address,phone,email) values(?,?,?,?,?)";
         int update = 0;
         try {
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-
-            peSetAttribute(pe,logo,name,address,phone,email);
+            pe.setString(1,"imgs/default");
+            pe.setString(2, name);
+            pe.setString(3, address);
+            pe.setInt(4, phone);
+            pe.setString(5, email);
             System.out.println(pe.toString());
             synchronized (pe) {
                 update = pe.executeUpdate();
@@ -84,14 +87,16 @@ public class Load_Supplier {
         }
         return false;
     }
-    public static boolean updateSupplier(int id,String logo,String name, String address, int phone, String email) {
-        String sql = "update supplier set logo=?,name=?,address=?,phone=?,email=? where id= ?";
+    public static boolean updateSupplier(int id,String name, String address, int phone, String email) {
+        String sql = "update supplier set name=?,address=?,phone=?,email=? where id= ?";
         int update = 0;
         try {
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-
-            peSetAttribute(pe,logo,name,address,phone,email);
-            pe.setInt(6,id);
+            pe.setString(1, name);
+            pe.setString(2, address);
+            pe.setInt(3, phone);
+            pe.setString(4, email);
+            pe.setInt(5,id);
             System.out.println(pe.toString());
             synchronized (pe) {
                 update = pe.executeUpdate();
@@ -145,8 +150,8 @@ public class Load_Supplier {
 //            System.out.println(s.getName());
 //        }
 //        System.out.println(sumOfSupplier("select count(id) from supplier"));
-//        System.out.println(insertSupplier("https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797954,"yuknp22@gmail.com"));
-//        System.out.println(updateSupplier(302,"https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797955,"yuknp22@gmail.com"));
-        System.out.println(loadSupplier(302).getAddress());
+        System.out.println(insertSupplier("Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",87979,"yuknp22@gmail.com"));
+//        System.out.println(updateSupplier(302,"Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797955,"yuknp22@gmail.com"));
+//        System.out.println(loadSupplier(302).getAddress());
     }
 }

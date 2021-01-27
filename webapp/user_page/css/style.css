@@ -4750,9 +4750,9 @@ i.fa.fa-star{
 }
 /*///////////////////////////////// css cho comment reviews/////////////////////////////////////////////////// */
 .product-rating-overview {
-  background-color:  #7fad3938;
+  background-color: #e0f3c138;
   min-height: 5rem;
-  border: 1px solid #7fad39;
+  border: 1px solid #141513;
   margin-bottom: 1rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -4771,7 +4771,7 @@ i.fa.fa-star{
   width: 85%;
   margin: auto;
   border-radius: 6px;
-  box-shadow: 10px 7px 12px -2px#7fad39;
+  box-shadow: 10px 7px 5px -2px#7fad39;
 }
 .product-rating-overview__briefing {
   text-align: center;

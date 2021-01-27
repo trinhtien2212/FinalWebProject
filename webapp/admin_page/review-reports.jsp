@@ -58,11 +58,11 @@
                     <div class="col">
                         <h3 class="page-title">Đánh giá sản phẩm</h3>
                     </div>
-                    <div class="col-auto text-right">
-                        <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
-                            <i class="fas fa-filter"></i>
-                        </a>
-                    </div>
+<%--                    <div class="col-auto text-right">--%>
+<%--                        <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">--%>
+<%--                            <i class="fas fa-filter"></i>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <!-- /Page Header -->
@@ -129,8 +129,10 @@
                                     <tr>
                                         <th>id</th>
                                         <th>Ngày</th>
-                                        <th>Người dùng</th>
-                                        <th>Tên loại đánh giá</th>
+
+                                        <th>Mã người dùng</th>
+                                        <th>Mã sản phẩm</th>
+<%--                                        <th>Mã đánh giá</th>--%>
                                         <th>Bình luận</th>
                                     </tr>
                                     </thead>
@@ -139,22 +141,22 @@
                                     <tbody>
                                     <c:forEach var="p" items="${ratings}">
                                         <c:set var="date_created" value="${p.date_created}"></c:set>
-
                                         <tr>
                                             <td>${p.id}</td>
-                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
+                                            <td>${p.date_created}</td>
+<%--                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>--%>
 <%--                                            <td><img class="rounded service-img mr-1" src="${p.getAvatarUserById(p.user_id)}" alt="Hình ảnh khách hàng"></td>--%>
 <%--                                            <td>${p.getAvatarUserById(p.user_id)}</td>--%>
-                                            <td>${p.getNameById(p.user_id)}</td>
-                                            <td>${p.getNameRatingById(p.rating_type_id)}</td>
-
+                                            <td style="margin-right: 50px">${p.user_id}</td>
+<%--                                            <td>${p.p.rating_type_id}</td>--%>
+                                            <td>${p.pro_id}</td>
                                             <td>${p.comment}</td>
-                                            <td class="text-right">
-                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>
-                                            </td>
+<%--                                            <td class="text-right">--%>
+<%--                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>--%>
+<%--                                            </td>--%>
                                         </tr>
                                     </c:forEach>
-                                    <%System.out.println("DA xuong toi day");%>
+<%--                                    <%System.out.println("DA xuong toi day");%>--%>
                                     </tbody>
                                 </table>
                             </div>
@@ -185,4 +187,5 @@
 <!-- Custom JS -->
 <script src="assets/js/admin.js"></script>
 </body>
+
 </html>

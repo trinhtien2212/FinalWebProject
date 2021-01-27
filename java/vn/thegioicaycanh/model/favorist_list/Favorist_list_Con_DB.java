@@ -63,8 +63,26 @@ public class Favorist_list_Con_DB {
         }
         return null;
     }
+    public static boolean insertFavorist(int userid,int proid){
+        String sql = "insert into favorist_list VALUES (?,?)";
+        int update=0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setInt(1,userid );
+            preparedStatement.setInt(2, proid);
+            synchronized (preparedStatement){
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        System.out.println( deleteFavoristList(1995,156));
+//        System.out.println( deleteFavoristList(1995,156));
+        System.out.println(insertFavorist(5,6));
     }
 }

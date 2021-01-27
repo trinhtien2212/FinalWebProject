@@ -58,11 +58,11 @@
                     <div class="col">
                         <h3 class="page-title">Khách hàng</h3>
                     </div>
-                    <div class="col-auto text-right">
-                        <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
-                            <i class="fas fa-filter"></i>
-                        </a>
-                    </div>
+<%--                    <div class="col-auto text-right">--%>
+<%--                        <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">--%>
+<%--                            <i class="fas fa-filter"></i>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <!-- /Page Header -->
@@ -120,10 +120,11 @@
                                             <td>${p.id}</td>
                                             <td>${p.name}</td>
                                             <td>${p.email}</td>
-                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>
+                                            <td>${p.date_created}</td>
+<%--                                            <td><%= Util.dateFormatNoTime((Date) pageContext.getAttribute("date_created"))%></td>--%>
                                             <td class="text-right">
-                                                <a href="edit-product.html" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>
-                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>
+                                                <a href="edit_user?type=enteredit&id=${p.id}" class="btn btn-sm bg-success-light ">	<i class="far fa-edit mr-1"></i> Sửa</a>
+<%--                                                <a href="edit-product.html" style="margin-top: 5px;color: red " class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</a>--%>
                                             </td>
                                         </tr>
                                     </c:forEach>

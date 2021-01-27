@@ -102,6 +102,22 @@ public class Rating_Type_Con_DB {
         }
         return false;
     }
+    public static boolean deleteRating_Type(int id){
+        String sql = "DELETE FROM rating_type WHERE id=?";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setInt(1, id);
+            synchronized (preparedStatement){
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public static void main(String[] args) {
 //        for(Rating_Type a:loadrating_typeFormSql("select * from rating_type")){
 //            System.out.println(a.getId()+"/"+a.getName()+"/"+a.getStatus());
@@ -109,5 +125,6 @@ public class Rating_Type_Con_DB {
         System.out.println(loadRating_TypeById(6));
 //        insertRating_Type("ok",1);
 //        updateRating_Type(6,"okla",1);
+        System.out.println(deleteRating_Type(14));
     }
 }

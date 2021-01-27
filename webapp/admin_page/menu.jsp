@@ -127,7 +127,7 @@
                         <li><a href="total_report"
                                <c:if test="${current_page=='total-report'}">class="active"</c:if>>Danh sách đặt hàng</a>
                         </li>
-                        <li><a href="admin-page?direct-to=shipment"
+                        <li><a href="shipment"
                                <c:if test="${current_page=='shipment'}">class="active"</c:if>>Vận chuyển</a></li>
                         <li><a href="admin-page?direct-to=dashboard"
                                <c:if test="${current_page=='warranty'}">class="active"</c:if>>Bảo hành</a></li>

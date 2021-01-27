@@ -103,18 +103,18 @@
                     <ul style="display: none;">
                         <li><a href="category"
                                <c:if test="${current_page=='category'}">class="active"</c:if>>Danh mục</a></li>
-                        <li><a href="admin-page?direct-to=product"
+                        <li><a href="product"
                                <c:if test="${current_page=='product'}">class="active"</c:if>>Sản phẩm</a></li>
-                        <li><a href="admin-page?direct-to=blog"
+                        <li><a href="blog-admin"
                                <c:if test="${current_page=='blog'}">class="active"</c:if>>Blog</a></li>
-                        <li><a href="admin-page?direct-to=coupon-code-type"
+                        <li><a href="coupon-code-type"
                                <c:if test="${current_page=='coupon-code-type'}">class="active"</c:if>>Loại mã giảm
                             giá</a></li>
                         <li><a href="coupon_code"
                                <c:if test="${current_page=='coupon-code'}">class="active"</c:if>>Mã giảm giá</a></li>
-                        <li><a href="admin-page?direct-to=rating-type"
+                        <li><a href="ratingstype"
                                <c:if test="${current_page=='rating-type'}">class="active"</c:if>>Loại đánh giá</a></li>
-                        <li><a href="admin-page?direct-to=email"
+                        <li><a href="email"
                                <c:if test="${current_page=='email'}">class="active"</c:if>>Email</a></li>
 
                     </ul>
@@ -127,11 +127,11 @@
                         <li><a href="total_report"
                                <c:if test="${current_page=='total-report'}">class="active"</c:if>>Danh sách đặt hàng</a>
                         </li>
-                        <li><a href="admin-page?direct-to=shipment"
+                        <li><a href="shipment"
                                <c:if test="${current_page=='shipment'}">class="active"</c:if>>Vận chuyển</a></li>
-                        <li><a href="admin-page?direct-to=dashboard"
+                        <li><a href="warranty"
                                <c:if test="${current_page=='warranty'}">class="active"</c:if>>Bảo hành</a></li>
-                        <li><a href="admin-page?direct-to=dashboard"
+                        <li><a href="reviewreport"
                                <c:if test="${current_page=='review-report'}">class="active"</c:if>>Đánh giá sản phẩm</a>
                         </li>
 
@@ -142,13 +142,13 @@
                 <li class="submenu">
                     <a href="#"><i class="fas fa-users"></i><span>Người dùng</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="admin-page?direct-to=dashboard"
+                        <li><a href="users"
                                <c:if test="${current_page=='user'}">class="active"</c:if>>Khách hàng</a></li>
                         <c:if test="${sessionScope.role_id==3}">
-                        <li><a href="admin-page?direct-to=dashboard"
+                        <li><a href="list-admin"
                                <c:if test="${current_page=='admin-list'}">class="active"</c:if>>Danh sách admin</a></li>
                         </c:if>
-                            <li><a href="admin-page?direct-to=dashboard"
+                            <li><a href="supplier"
                                <c:if test="${current_page=='supplier'}">class="active"</c:if>>Nhà cung cấp</a></li>
 
                     </ul>
@@ -158,7 +158,7 @@
                         <span>Thông tin cá nhân</span></a>
                 </li>
                 <li <c:if test="${current_page=='setting'}">class="active"</c:if>>
-                    <a href="admin-page?direct-to=dashboard"><i class="fas fa-cog"></i> <span>Thiết lập</span></a>
+                    <a href="setting"><i class="fas fa-cog"></i> <span>Thiết lập</span></a>
                 </li>
             </ul>
         </div>

@@ -1,3 +1,4 @@
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -45,14 +46,14 @@
 						<div class="col">
 							<h3 class="page-title">Vận chuyển</h3>
 						</div>
-						<div class="col-auto text-right">
-							<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
-								<i class="fas fa-filter"></i>
-							</a>
-							<a href="add-shipments.html" class="btn btn-primary add-button ml-3">
-								<i class="fas fa-plus"></i>
-							</a>
-						</div>
+<%--						<div class="col-auto text-right">--%>
+<%--							<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">--%>
+<%--								<i class="fas fa-filter"></i>--%>
+<%--							</a>--%>
+<%--							<a href="add-shipments.html" class="btn btn-primary add-button ml-3">--%>
+<%--								<i class="fas fa-plus"></i>--%>
+<%--							</a>--%>
+<%--						</div>--%>
 					</div>
 				</div>
 				<!-- /Page Header -->
@@ -110,26 +111,27 @@
 												<th>ID</th>
 												<th>Mã đơn hàng</th>
 												<th>Ngày vận chuyển</th>
-												<th>Khối lượng</th>
+												<th>Loại khối lượng</th>
 												<th>Giá</th>
-												<th class="text-right">Hành Động</th>
+<%--												<th class="text-right">Hành Động</th>--%>
 											</tr>
                                         </thead>
                                         
                                         <!-- Thêm vào nội dung ở đây -->
 										<tbody>
 											<c:forEach items="${s_view}" var="sv">
+												<c:set var="price" value="${sv.price}"></c:set>
 												<tr>
 													<td>${sv.id}</td>
 													<td>${sv.order_id}</td>
 													<td>${sv.date_created}</td>
-													<td>${sv.type_weight} kg</td>
-													<td>${sv.price}</td>
-													<td class="text-right">
-														<a href="view-shipments.html" class="btn btn-sm bg-info-light">
-															<i class="far fa-eye mr-1"></i> Chi tiết
-														</a>
-													</td>
+													<td>${sv.type_weight}</td>
+													<td><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></td>
+<%--													<td class="text-right">--%>
+<%--														<a href="view-shipments.html" class="btn btn-sm bg-info-light">--%>
+<%--															<i class="far fa-eye mr-1"></i> Chi tiết--%>
+<%--														</a>--%>
+<%--													</td>--%>
 												</tr>
 											</c:forEach>
 										</tbody>

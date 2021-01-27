@@ -98,6 +98,31 @@ public class LoadUser {
         String sql= "Update user set address = '"+detailaddress+","+ward+","+distric+","+city+"', name ='"+name+"', phone= "+phone+",email='"+email+"'birthday='"+birthday+"' where id="+user_id;
         return excuteSql(sql);
     }
+    public  static boolean updateUserInAdimin(int id,String email,long password,String name,String sex,String birthday,String address,String datecreated){
+        sex = sex.equalsIgnoreCase("Nam")?"1":"0";
+        String sql = "UPDATE user SET email = ?, password= ?,name=?,sex=?,birthday=?,address=?,date_created=? WHERE id = ?";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, email);
+            preparedStatement.setLong(2,password);
+            preparedStatement.setString(3,name);
+            preparedStatement.setString(4,sex);
+            preparedStatement.setString(5,birthday);
+            preparedStatement.setString(6,address);
+            preparedStatement.setString(7,datecreated);
+            preparedStatement.setInt(8,id);
+            synchronized (preparedStatement) {
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            System.out.println(preparedStatement.toString());
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public static User getUser(ResultSet rs){
         if (rs == null)
             return null;
@@ -160,6 +185,7 @@ public class LoadUser {
         return null;
     }
 
+
     public static boolean updateUserById(String name, String img, String birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
         String sql = "UPDATE user SET name = ?, img = ?, birthday = ?, phone = ?, email = ?, address = ?  WHERE id = ?";
         int update = 0;
@@ -181,6 +207,12 @@ public class LoadUser {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+
+    public static void main(String[] args) {
+//        Syzstem.out.println(updateUserInAdimin(1,"sfdsa",324234,"name","Nam","20/12/2010","hung vuong","20/12/2020"));
+        System.out.println(loadUserById(6));
     }
 
 }

@@ -147,6 +147,6 @@ public class Load_Supplier {
 //        System.out.println(sumOfSupplier("select count(id) from supplier"));
 //        System.out.println(insertSupplier("https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797954,"yuknp22@gmail.com"));
 //        System.out.println(updateSupplier(302,"https://cf.shopee.vn/file/d6598df02a6a92b58286ba0860f5ca42_tn","Trần Thị Lan","152/63 Lý Chính Thắng P.7 Q.3",8797955,"yuknp22@gmail.com"));
-        System.out.println(loadSupplier(302));
+        System.out.println(loadSupplier(302).getAddress());
     }
 }

@@ -65,9 +65,9 @@
                             </div>
                             <div class="collapse card-body" id="gener-info">
                                 <form action="view_order" method="post">
-
+                                    <c:if test="${type==null}">
                                     <div class="form-group" style="display: none">
-                                        <input class="form-control" type="text" value="add" name="type">
+                                        <input class="form-control" type="text" value="" name="type">
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-3">Mã đơn hàng</label>
@@ -91,17 +91,6 @@
                                         <label class="col-md-3">Người mua</label>
                                         <div class="col-md-9">
                                             ${view_order.user_name}
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Trạng thái</label>
-                                        <div class="col-md-9">
-                                            <c:if test="${view_order.status==1}">Đã hủy</c:if>
-                                            <c:if test="${view_order.status==2}">Bị từ chối</c:if>
-                                            <c:if test="${view_order.status==3}">Đang xử lí</c:if>
-                                            <c:if test="${view_order.status==4}">Đang đóng gói</c:if>
-                                            <c:if test="${view_order.status==5}">Đang vận chuyển</c:if>
-                                            <c:if test="${view_order.status==6}">Thành công</c:if>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -156,6 +145,88 @@
                                     <div class="col-md-3">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
                                     </div>
+                                    </c:if>
+                                    <c:if test="${type=='edit'}">
+                                        <div class="form-group" style="display: none">
+                                            <input class="form-control" type="text" value="edit" name="type">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Mã đơn hàng</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.id}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Ngày tạo</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.date_created}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Mã người mua</label>
+                                            <div class="col-md-9">
+                                                customer-${view_order.user_id}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Người mua</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.user_name}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Tổng tiền</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.total_pay}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Tiền vận chuyển</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.ship_price}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Thành tiền</label>
+                                            <div class="col-md-9">
+                                                    ${view_order.total_pay+view_order.ship_price}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Phương thức thanh toán</label>
+                                            <div class="col-md-9">
+                                                <c:if test="${view_order.payment==true}">Tiền mặt</c:if>
+                                                <c:if test="${view_order.payment==false}">Thanh toán qua Momo</c:if>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Trạng thái đơn hàng</label>
+                                            <select class="form-control select col-md-9" name="status">
+                                                <option disabled>Tình trạng đơn hàng</option>
+                                                <option value="1" <c:if test="${view_order.status==1}">selected</c:if>>
+                                                    Đã hủy
+                                                </option>
+                                                <option value="2" <c:if test="${view_order.status==2}">selected</c:if>>
+                                                    Bị từ chối
+                                                </option>
+                                                <option value="3" <c:if test="${view_order.status==3}">selected</c:if>>
+                                                    Đang xử lí
+                                                </option>
+                                                <option value="4" <c:if test="${view_order.status==4}">selected</c:if>>
+                                                    Đang đóng gói
+                                                </option>
+                                                <option value="5" <c:if test="${view_order.status==5}">selected</c:if>>
+                                                    Đang vận chuyển
+                                                </option>
+                                                <option value="6" <c:if test="${view_order.status==6}">selected</c:if>>
+                                                    Thành công
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                                        </div>
+                                    </c:if>
                                 </form>
                             </div>
                     </div>

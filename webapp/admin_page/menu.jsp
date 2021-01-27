@@ -12,7 +12,7 @@
 <!-- Header -->
 <div class="header">
     <div class="header-left">
-        <a href="dashboard.html" class="logo logo-small">
+        <a href="dashboard" class="logo logo-small">
             <img src="../${applicationScope.header.logo}" alt="Logo" width="30" height="30">
         </a>
     </div>
@@ -73,7 +73,7 @@
 						</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="admin-profile.html">Thông tin cá nhân</a>
+                <a class="dropdown-item" href="admin">Thông tin cá nhân</a>
                 <a class="dropdown-item" href="../handle-login?logout=true">Đăng xuất</a>
             </div>
         </li>
@@ -86,7 +86,7 @@
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <a href="dashboard.html">
+        <a href="dashboard">
             <img src="../${applicationScope.header.logo}" class="img-fluid" alt="">
         </a>
     </div>
@@ -94,7 +94,7 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="admin-page?direct-to=dashboard"
+                    <a href="dashboard"
                        <c:if test="${current_page=='dashboard'}">class="active"</c:if>>
                         <i class="fas fa-columns"></i> <span>Dashboard</span></a>
                 </li>

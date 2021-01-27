@@ -50,7 +50,9 @@ public class User_direct extends HttpServlet {
             }
             // Don hang cua toi
             List<Order> orders = Load_Order.loadOderByUserId(user.getId());
-            session.setAttribute("order",orders);
+            request.setAttribute("order",orders);
+
+            System.out.println(user.getId());
             // San pham yeu thich
             List<Product> favoristLists = ProductEntity.loadFavoriteProduct(user.getId());
             session.setAttribute("favorite", favoristLists);

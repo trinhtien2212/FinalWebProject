@@ -263,16 +263,27 @@ public class Load_Order {
         }
         return orderList;
     }
+    // Update status của order bang id
+    public static boolean updateStatusById(int order_id, String status){
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("UPDATE `order` SET `status` = ? WHERE id=?");
+            preparedStatement.setString(1,status);
+            preparedStatement.setInt(2,order_id);
+            synchronized (preparedStatement){
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return true;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public static void main(String[] args) {
 //        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
 //        System.out.println(loadOrder_view(2));
 //        System.out.println(loadOrderByStatus("2","2019-01-01","2020-05-08"));
-//        System.out.println(loadOderByUserId(3).size());
-        for(Order o:loadOrderByIdUser(3)){
-            System.out.println(o.getId()+"/"+o.getName_product()+"/"+o.getDate_created()+"/"+o.getNumber_product());
-        }
-
     }
     public static int addOrder(int user_id, int coupon_code_id, int type_weight, String note, String phone, String address, int status, String date_created, double total_price) {
         int shipment_id= Load_Shipment.addShipment(type_weight);

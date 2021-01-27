@@ -218,10 +218,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${sessionScope.order}" var="o">
+                            <c:forEach items="${order}" var="o">
                                 <tr>
                                     <td>
-                                        <a href="order-detail.html">${o.id}</a>
+                                        <a href="order_detail?id=${o.id}">${o.id}</a>
                                     </td>
                                     <td>${o.date_created}</td>
                                     <td>${o.total_pay}</td>
@@ -266,6 +266,7 @@
                 <div class="tab-pane " id="like">
                     <div class="row">
                         <c:forEach items="${sessionScope.favorite}" var="f">
+                            <c:set var="price" value="${f.price}"></c:set>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="${f.img}">
@@ -277,7 +278,7 @@
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="#">${f.name}</a></h6>
-                                        <h5>${f.price}</h5>
+                                        <h5><%= Util.formatCurrency((double) pageContext.getAttribute("price"))%></h5>
                                     </div>
                                 </div>
                             </div>

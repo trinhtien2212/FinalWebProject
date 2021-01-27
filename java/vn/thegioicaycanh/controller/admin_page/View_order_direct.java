@@ -22,13 +22,28 @@ public class View_order_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("current_page", "total-report");
         request.setAttribute("title", "Chi tiết đơn hàng");
-        int id = Integer.parseInt(request.getParameter("id"));
-        Order order = Load_Order.loadOrder_view(id);
-        request.setAttribute("view_order",order);
-        List<OrderProduct> productList = OrderProduct_Con_DB.loadOrderProductByOrderId(id);
-        request.setAttribute("list_pro", productList);
+        System.out.println("Đã vào đây");
+        String type = request.getParameter("type");
+        if(type == null){
+            int id = Integer.parseInt(request.getParameter("id"));
+            Order order = Load_Order.loadOrder_view(id);
+            request.setAttribute("view_order",order);
+            List<OrderProduct> productList = OrderProduct_Con_DB.loadOrderProductByOrderId(id);
+            request.setAttribute("list_pro", productList);
+            request.getRequestDispatcher("view-order.jsp").forward(request,response);
+            return;
+        }
+        System.out.println("Đã vào");
         String status = request.getParameter("status");
-        boolean isUpdate = Load_Order.updateStatus(id,status);
-        request.getRequestDispatcher("view-order.jsp").forward(request, response);
+        if(type.equalsIgnoreCase("edit")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            boolean isUpdate = Load_Order.updateStatusById(id,status);
+            Order order = Load_Order.loadOrder_view(id);
+            request.setAttribute("view_order",order);
+            List<OrderProduct> productList = OrderProduct_Con_DB.loadOrderProductByOrderId(id);
+            request.setAttribute("list_pro", productList);
+            request.getRequestDispatcher("view-order.jsp").forward(request, response);
+        }
+
     }
 }

@@ -2,6 +2,7 @@ package vn.thegioicaycanh.model.header_footer;
 
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,27 @@ public class Social_media {
     public Social_media(){
         load();
     }
+
+    public static boolean update(String fb, String tw, String in, String pi) {
+        int updated=0;
+        String sql = "update social_media set facebook=?,intagram=?,twitter=?,pinterest=? where id=1";
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setString(1,fb);
+            pe.setString(2,in);
+            pe.setString(3,tw);
+            pe.setString(4,pi);
+            synchronized (pe){
+               updated = pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
     public void load(){
         try {
             Statement statement = DBCPDataSource.getStatement();

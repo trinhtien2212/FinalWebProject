@@ -20,8 +20,11 @@ public class Cart_filter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request1 = (HttpServletRequest) request;
-        HttpSession session = request1.getSession();
-        if (session != null) {
+        HttpSession session = request1.getSession(false);
+        System.out.println("Co dang vao cart_filter");
+        if (session == null) {
+            System.out.println("co vo cart_filter session==null");
+             session =request1.getSession();
             session.setAttribute("cart", new Cart());
         }
 //        try {

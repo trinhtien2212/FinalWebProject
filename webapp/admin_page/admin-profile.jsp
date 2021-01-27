@@ -122,27 +122,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Edit Details Modal -->
-                                    <div class="modal fade" id="edit_personal_details" aria-hidden="true" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Chi tiết</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- /Edit Details Modal -->
                                 <div class="col-lg-3">
 
                                     <!-- Account Status -->
@@ -175,14 +155,14 @@
                                                     <label>Mật khẩu mới</label>
                                                     <input type="password" id="passwd" name="passwd"
                                                            class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
-                                                    <label id="mk-notice" class="invisible notice">Mật khẩu phải dài từ 8 - 25
+                                                    <label id="mk-notice" class="invisible notice" style="color: red">Mật khẩu phải dài từ 8 - 25
                                                         kí tự và phải chứa cả số và chữ in hoa</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Xác nhận mật khẩu</label>
                                                     <input type="password" id="pass-again" name="pass-again"
                                                            class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
-                                                    <label id="mka-notice" class="invisible notice">Mật khẩu phải trùng khớp với
+                                                    <label id="mka-notice" class="invisible notice" style="color: red">Mật khẩu phải trùng khớp với
                                                         mật khẩu mới đã nhập</label>
                                                 </div>
                                                 <button class="btn btn-primary" type="submit">Lưu</button>

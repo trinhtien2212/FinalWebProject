@@ -1,7 +1,9 @@
+
 package vn.thegioicaycanh.model.order;
 
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.rating.Rating;
+import vn.thegioicaycanh.model.shipment.Load_Shipment;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -261,15 +263,82 @@ public class Load_Order {
         }
         return orderList;
     }
+    // Update status của order bang id
+    public static boolean updateStatusById(int order_id, String status){
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("UPDATE `order` SET `status` = ? WHERE id=?");
+            preparedStatement.setString(1,status);
+            preparedStatement.setInt(2,order_id);
+            synchronized (preparedStatement){
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return true;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public static void main(String[] args) {
 //        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
 //        System.out.println(loadOrder_view(2));
 //        System.out.println(loadOrderByStatus("2","2019-01-01","2020-05-08"));
-//        System.out.println(loadOderByUserId(3).size());
-        for(Order o:loadOrderByIdUser(3)){
-            System.out.println(o.getId()+"/"+o.getName_product()+"/"+o.getDate_created()+"/"+o.getNumber_product());
-        }
+    }
+    public static int addOrder(int user_id, int coupon_code_id, int type_weight, String note, String phone, String address, int status, String date_created, double total_price) {
+        int shipment_id= Load_Shipment.addShipment(type_weight);
+        int updated=0;
+        int id = getNextOrderId();
+        String sql = "insert into `order`(user_id,ship_id,payment,note,phone,address,status,date_created,total_price,id ";
+        if(coupon_code_id!=0)
+            sql+=" , sale_id) values(?,?,?,?,?,?,?,?,?,?,?)";
+        else sql+=") values(?,?,?,?,?,?,?,?,?,?)";
 
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setInt(1,user_id);
+            pe.setInt(2,shipment_id);
+            pe.setInt(3,0);
+            pe.setString(4,note);
+            pe.setString(5,phone);
+            pe.setString(6,address);
+            pe.setInt(7,status);
+            pe.setString(8,date_created);
+            pe.setDouble(9,total_price);
+            pe.setInt(10,id);
+            if(coupon_code_id!=0)
+                pe.setInt(11,coupon_code_id);
+            System.out.println(pe.toString());
+            synchronized (pe){
+                updated=pe.executeUpdate();
+            }
+            pe.close();
+            if(updated==1)
+                return id ;
+            else return 0;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+    public static int getNextOrderId(){
+        int result=0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select max(id) from `order`");
+            synchronized (pe){
+                ResultSet re = pe.executeQuery();
+                if(re.next())
+                    result=re.getInt(1)+1;
+                re.close();
+            }
+            pe.close();
+            return result;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  result;
     }
 }
+

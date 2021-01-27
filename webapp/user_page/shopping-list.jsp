@@ -201,10 +201,12 @@
                                         <h6><%= Util.formatCurrency((double)pageContext.getAttribute("p"))%></h6>
                                     </div>
                                     <div class="add-action-listview d-flex">
-                                        <ul class="product__item__pic__hover-1">
-                                            <li><a href="#"><i class="fa fa-money"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <ul class="product__item__pic__hover">
+                                            <li class="fast-checkout cursor-pointer" data-pro_id="${sl.id}"><a ><i class="fa fa-money"></i></a></li>
+                                            <c:if test="${sessionScope.user_id!=null}">
+                                                <li class="addFa cursor-pointer" data-current_page="shopping" data-pro_id="${sl.id}"><a><i class="fa fa-heart"></i></a></li>
+                                            </c:if>
+                                            <li class="addCart cursor-pointer" data-current_page="shopping" data-pro_id="${sl.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <p class="desc-content">

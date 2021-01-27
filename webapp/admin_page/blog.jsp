@@ -125,7 +125,7 @@
 											</td>
 
 											<td class="text-right">
-												<a href="add-blog?type=enterEdit&id=${p.id}"
+												<a href="add-blog?type=enterEdit&id=${b.id}"
 												   class="btn btn-sm bg-success-light "> <i
 														class="far fa-edit mr-1"></i> Sửa</a>
 												<a href="edit-product.html" style="margin-top: 5px;color: red "

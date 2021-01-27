@@ -46,12 +46,6 @@ public class Util {
         return year+"-"+month+"-"+day;
     }
 
-    public static void main(String[] args) {
-
-        System.out.println(Util.formatCurrency(5334323));
-        System.out.println(dateFormat(new Date()));
-    }
-
     public static Iterator<FileItem> uploadFile(HttpServletRequest request, HttpServletResponse response) {
         int maxMemSize = 1024 * 1024;//1MB
         int maxFileSize = 1024 * 1024;
@@ -102,6 +96,7 @@ public class Util {
         long sizeInBytes = fi.getSize();
         String ext;
         // Write the file
+        name=name.replaceAll("\\?|!|\\.|,","");
         String fileNameSave = name;
         if (fileName.lastIndexOf(".") >= 0 && !fileName.isEmpty()) {
             ext = fileName.substring(fileName.lastIndexOf("."));
@@ -121,5 +116,11 @@ public class Util {
         }
 //                    out.println("Uploaded Filename: " + fileName + "<br>");
         return url + "/" + fileNameSave;
+    }
+
+
+    public static boolean hasMoreParameter(HttpServletRequest request) {
+        Enumeration<String> parameterNames = request.getParameterNames();
+       return  parameterNames.hasMoreElements();
     }
 }

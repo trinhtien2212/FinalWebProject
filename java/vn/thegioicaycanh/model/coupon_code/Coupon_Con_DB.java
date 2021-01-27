@@ -79,7 +79,7 @@ public class Coupon_Con_DB {
 
     public static List<CouponCode> loadCouponCodeByUserId(int user_id) {
         List<CouponCode> list = new ArrayList<>();
-        String sql = "SELECT c.name, DATEDIFF(c.date_end_sale,CURRENT_DATE), ct.`name` " +
+        String sql = "SELECT c.name, DATEDIFF(c.date_end,CURRENT_DATE), ct.`name` " +
                 "FROM user u INNER JOIN user_code uc ON u.id = uc.user_id " +
                 "INNER JOIN coupon_code c ON uc.coupon_code_id = c.id " +
                 "INNER JOIN coupon_code_type ct ON ct.id = c.coupon_code_type_id " +
@@ -213,5 +213,43 @@ public class Coupon_Con_DB {
 
     public static void main(String[] args) {
         System.out.println(loadCouponCodeById(1));
+    }
+
+    public static int[] checkSubMoney(int user_id, String code,int coupon_code_type_id) {
+        int[] checkCouponcode = null ;//0:percent,1:coupon_code_id;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select c.percent,c.id from coupon_code c join user_code u on  c.id = u.coupon_code_id where c.CODE=? and c.coupon_code_type_id=? and u.user_id =?");
+            pe.setString(1,code);
+            pe.setInt(2,coupon_code_type_id);
+            pe.setInt(3,user_id);
+            System.out.println("Cau query: "+pe.toString());
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                if(rs.next()) {
+                    checkCouponcode=new int[2];
+                    checkCouponcode[0] = rs.getInt(1);
+                    checkCouponcode[1] = rs.getInt(2);
+                }
+            }
+            pe.close();
+            return checkCouponcode;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    return checkCouponcode;
+    }
+
+    public static void deleteCouponCode(int user_id, int coupon_code_id) {
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("delete from user_code where user_id=? and coupon_code_id=?");
+            pe.setInt(1,user_id);
+            pe.setInt(2,coupon_code_id);
+            synchronized (pe){
+                pe.executeUpdate();
+            }
+            pe.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

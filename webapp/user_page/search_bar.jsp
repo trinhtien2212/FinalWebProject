@@ -49,6 +49,7 @@
                     </div>
                 </div>
             </div>
+            <%System.out.println("Da ra search_bar.jsp");%>
         </div>
     </div>
 </section>

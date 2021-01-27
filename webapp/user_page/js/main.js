@@ -238,6 +238,7 @@
     /*-------------------
         Quantity change
     --------------------- */
+    //todo
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
@@ -245,7 +246,11 @@
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
         if ($button.hasClass('inc')) {
+            var scroll = $(window).scrollTop();
             var newVal = parseFloat(oldValue) + 1;
+            let id = $(this).parent().data("pro_id");
+            let directUrl = "cart-handle?current-page=cart"+"&id="+id+"&action=add&position="+scroll;
+            window.location.href=directUrl;
         } else {
             // Don't allow decrementing below zero
             if (oldValue > 0) {
@@ -253,8 +258,14 @@
             } else {
                 newVal = 0;
             }
+            var scroll = $(window).scrollTop();
+            let id = $(this).parent().data("pro_id");
+            let directUrl = "cart-handle?current-page=cart"+"&id="+id+"&action=sub&position="+scroll;
+            window.location.href=directUrl;
         }
         $button.parent().find('input').val(newVal);
+
+
     });
 
     // Header sale
@@ -529,12 +540,38 @@ $(document).ready(function () {
             condition = "";
         }else condition = arrCondition[1];
 
-        let currentPage = $('.addCart').data('current_page');
-        let id = $('.addCart').data('pro_id');
+        let currentPage = $(this).data('current_page');
+        let id = $(this).data('pro_id');
         let directUrl = "cart-handle?current-page="+currentPage+"&id="+id+"&position="+scroll+"&action=add"+"&"+condition;
         window.location.href=directUrl;
         // console.log(directUrl);
     });
+    //add favouristlist
+    $('.addFa').click(function (e){
+        var scroll = $(window).scrollTop();
+        let curentUrl = window.location.href;
+        let arrCondition = curentUrl.split("?");
+        // console.log("length: "+arrCondition.length)
+        let condition;
+        if(arrCondition.length == 1){
+            // console.log("co vo dk if")
+            condition = "";
+        }else condition = arrCondition[1];
+
+        let currentPage = $(this).data('current_page');
+        let id = $(this).data('pro_id');
+        let directUrl = "add-favourist?current-page="+currentPage+"&id="+id+"&position="+scroll+"&action=add"+"&"+condition;
+        window.location.href=directUrl;
+        // console.log(directUrl);
+    });
+    //fast checkout
+    $('.fast-checkout').click(function (e){
+        let id = $(this).data('pro_id');
+        let directUrl = "checkout?fast-checkout=true&pro_id="+id;
+        window.location.href=directUrl;
+        // console.log(directUrl);
+    });
+
 });
 
 function load(position){

@@ -1,8 +1,10 @@
+
 package vn.thegioicaycanh.model.Product;
 
 import com.mysql.jdbc.JDBC4PreparedStatement;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.order.Order;
+import vn.thegioicaycanh.model.order_product.OrderProduct_Con_DB;
 import vn.thegioicaycanh.model.user.User;
 
 import java.sql.PreparedStatement;
@@ -482,5 +484,21 @@ public static void vidu(String s){
 
         }
     }
+    public static void deleteProductById(int id){
+        try {
+            OrderProduct_Con_DB.deleteOrderWithProductId(id);
+            PreparedStatement pe = DBCPDataSource.preparedStatement("delete from product where id=?");
+            synchronized (pe){
+                pe.setInt(1,id);
+                pe.executeUpdate();
+
+            }
+            pe.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 
 }
+

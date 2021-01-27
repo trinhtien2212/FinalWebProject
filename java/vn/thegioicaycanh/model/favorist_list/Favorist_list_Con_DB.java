@@ -1,3 +1,4 @@
+
 package vn.thegioicaycanh.model.favorist_list;
 
 import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
@@ -85,4 +86,37 @@ public class Favorist_list_Con_DB {
 //        System.out.println( deleteFavoristList(1995,156));
         System.out.println(insertFavorist(5,6));
     }
+    public static boolean saveFavoristList(int user_id,int pro_id){
+        int updated =0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("insert into favorist_list values(?,?)");
+            pe.setInt(1,user_id);
+            pe.setInt(2,pro_id);
+            synchronized (pe){
+                updated= pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean deleteProductFavoristList(int user_id,int pro_id){
+        int updated =0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("delete from favorist_list where user_id=? and pro_id=?");
+            pe.setInt(1,user_id);
+            pe.setInt(2,pro_id);
+            synchronized (pe){
+                updated= pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 }
+

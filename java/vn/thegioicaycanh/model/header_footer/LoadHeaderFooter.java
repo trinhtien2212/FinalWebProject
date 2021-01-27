@@ -78,4 +78,57 @@ public class LoadHeaderFooter {
         }
         return null;
     }
+
+    public static boolean update(String name, String logo, String shortcut) {
+        int updated=0;
+        String sql = "update header set name =?  ";
+        if(logo!=null) sql +=", logo=? ";
+        if(shortcut!=null) sql +=" , shortcut=? ";
+        sql+=" where id=1 ";
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setString(1,name);
+            boolean isLogo =false;
+            if(logo!=null) {
+                pe.setString(2,logo);
+                isLogo=true;
+            }
+            if(shortcut!=null){
+                if(isLogo) pe.setString(3,shortcut);
+                else pe.setString(2,shortcut);
+            }
+            synchronized (pe){
+                updated=pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean updateAddress(String type, String address, String phone, String email, String timeOpen, String mapAddress) {
+        int updated = 0;
+        String sql = "update address set address=?,phone=?,email=?,time_open=?,map=? ";
+        if(type.equalsIgnoreCase("main-address")) sql+=" where id=1";
+        if(type.equalsIgnoreCase("sub-address")) sql+=" where id=2";
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            pe.setString(1,address);
+            pe.setString(2,phone);
+            pe.setString(3,email);
+            pe.setString(4,timeOpen);
+            pe.setString(5,mapAddress);
+            synchronized (pe){
+                updated=pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+
+    }
 }

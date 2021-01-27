@@ -2,7 +2,7 @@ package vn.thegioicaycanh.model.warranty;
 
 import java.util.Date;
 
-public class warranty {
+public class Warranty {
     private int id;
     private int order_id;
     private int user_id;
@@ -13,8 +13,12 @@ public class warranty {
     private Date date_created;
     private int status;
     private String email;
+    private String user_name;
+    private String product_name;
+    public Warranty() {
+    }
 
-    public warranty(int id, int order_id, int user_id, int pro_id,String title, String message, String img, int status,String email) {
+    public Warranty(int id, int order_id, int user_id, int pro_id, String title, String message, String img, int status, String email) {
         this.id = id;
         this.order_id = order_id;
         this.user_id = user_id;
@@ -23,8 +27,25 @@ public class warranty {
         this.message = message;
         this.img = img;
         this.status = status;
+
         this.date_created = new Date();
         this.email = email;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public int getId() {

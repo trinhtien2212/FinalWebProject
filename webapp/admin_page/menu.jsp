@@ -74,7 +74,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="admin-profile.html">Thông tin cá nhân</a>
-                <a class="dropdown-item" href="login.html">Đăng xuất</a>
+                <a class="dropdown-item" href="../handle-login?logout=true">Đăng xuất</a>
             </div>
         </li>
         <!-- /User Menu -->
@@ -144,21 +144,21 @@
                     <ul style="display: none;">
                         <li><a href="admin-page?direct-to=dashboard"
                                <c:if test="${current_page=='user'}">class="active"</c:if>>Khách hàng</a></li>
+                        <c:if test="${sessionScope.role_id==3}">
                         <li><a href="admin-page?direct-to=dashboard"
                                <c:if test="${current_page=='admin-list'}">class="active"</c:if>>Danh sách admin</a></li>
-                        <li><a href="admin-page?direct-to=dashboard"
+                        </c:if>
+                            <li><a href="admin-page?direct-to=dashboard"
                                <c:if test="${current_page=='supplier'}">class="active"</c:if>>Nhà cung cấp</a></li>
 
                     </ul>
                 </li>
-                <li>
-                    <a href="admin-page?direct-to=dashboard"
-                       <c:if test="${current_page=='user-info'}">class="active"</c:if>><i class="fas fa-user-plus"></i>
+                <li <c:if test="${current_page=='user-info'}">class="active"</c:if>>
+                    <a href="admin-page?direct-to=dashboard"><i class="fas fa-user-plus"></i>
                         <span>Thông tin cá nhân</span></a>
                 </li>
-                <li>
-                    <a href="admin-page?direct-to=dashboard"
-                       <c:if test="${current_page=='setting'}">class="active"</c:if>><i class="fas fa-cog"></i> <span>Thiết lập</span></a>
+                <li <c:if test="${current_page=='setting'}">class="active"</c:if>>
+                    <a href="admin-page?direct-to=dashboard"><i class="fas fa-cog"></i> <span>Thiết lập</span></a>
                 </li>
             </ul>
         </div>

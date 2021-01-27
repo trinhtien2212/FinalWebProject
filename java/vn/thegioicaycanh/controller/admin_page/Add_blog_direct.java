@@ -26,7 +26,7 @@ public class Add_blog_direct extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("current_page","product");
+        request.setAttribute("current_page","blog");
         String type = request.getParameter("type");
         if(type !=null) {
             if (type.equalsIgnoreCase("enterAdd")) {
@@ -66,7 +66,7 @@ public class Add_blog_direct extends HttpServlet {
         String date_created = Util.dateFormat(new Date());
         int id = pair.get("id")==null?0:Integer.parseInt(pair.get("id"));
         HttpSession session = request.getSession();
-        int admin_id = (int)session.getAttribute("id");
+        int admin_id = (int)session.getAttribute("user_id");
         int numOfRead = 0;
 
         String img = null;

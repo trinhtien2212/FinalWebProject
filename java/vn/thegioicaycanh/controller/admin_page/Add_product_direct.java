@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 @WebServlet(urlPatterns = "/admin_page/add-product")
@@ -28,7 +29,9 @@ public class Add_product_direct extends HttpServlet {
             if (type.equalsIgnoreCase("enterAdd")) {
                 request.setAttribute("type", "add");
                 request.setAttribute("title", "Thêm sản phẩm");
+                System.out.println("Co vo enterAdd");
                 request.getRequestDispatcher("add-product.jsp").forward(request, response);
+                System.out.println("Da qua khoi qua trinh chuyen trang ****");
                 return;
             } else if (type.equalsIgnoreCase("enterEdit")) {
                 request.setAttribute("type", "edit");
@@ -38,7 +41,11 @@ public class Add_product_direct extends HttpServlet {
                 request.setAttribute("product", product);
                 request.getRequestDispatcher("add-product.jsp").forward(request, response);
                 return;
+//            }else if(type.equalsIgnoreCase("delete")){
+//                int id =Integer.parseInt(request.getParameter("id"));
+//                request.getRequestDispatcher("product").forward(request,response);
             }
+                //todo
         }
         Iterator<FileItem> i = Util.uploadFile(request,response);
 

@@ -1,3 +1,4 @@
+
 package vn.thegioicaycanh.model.user;
 
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
@@ -243,5 +244,90 @@ public class LoadUser {
             System.out.println(u.getComment()+"/"+u.getRating_type_id());
         }
     }
+    public static int getMaxUserId() {
+        int id = 0;
+        Statement statement = null;
+        try {
+            statement = DBCPDataSource.getStatement();
+            synchronized (statement) {
+                ResultSet resultSet = statement.executeQuery("select max(id) from user");
+                if (resultSet.next())
+                    id = resultSet.getInt(1);
+                resultSet.close();
+            }
+            statement.close();
+            return id;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+    public static boolean insertUser(String name, String email, String pass, String phone, int sex, String birthday, String address, int active, int role_id, String date_created) {
+        int isInserted = 0;
+        String sql = "insert into user(name,email,phone,sex,birthday,address,active,role_id,password,id,date_created,avatar) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            int id = getMaxUserId() + 1;
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+            long passKey = id * name.hashCode() * pass.hashCode();
+            peSetAttribute(pe, name, email, phone, sex, birthday, address, active, role_id);
+            pe.setLong(9,passKey);
+            pe.setInt(10, id);
+            pe.setString(11, date_created);
+            pe.setString(12,"imgs/user/default_avatar.png");
+            synchronized (pe) {
+                isInserted = pe.executeUpdate();
+            }
+            pe.close();
+            return isInserted == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    private static void peSetAttribute(PreparedStatement pe, String name, String email, String phone, int sex, String birthday, String address, int active, int role_id) {
+        try {
+            pe.setString(1, name);
+            pe.setString(2, email);
+            pe.setString(3, phone);
+            pe.setInt(4, sex);
+            pe.setString(5, birthday);
+            pe.setString(6, address);
+            pe.setInt(7, active);
+            pe.setInt(8, role_id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public static boolean updateUser(int id, String name, String email, String pass, String phone, int sex, String birthday, String address, int active, int role_id) {
+        int updated = 0;
+        String sql = "update user set name = ? , email= ? , phone= ? , sex =? , birthday =? , address = ? , active= ? , role_id = ? ";
+        if(pass!=null)
+            sql +=" , password = ?  where id = ?";
+        else sql+=" where id = ?";
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
+
+            peSetAttribute(pe, name, email, phone, sex, birthday, address, active, role_id);
+            if(pass !=null){
+                long passkey = id * email.hashCode() * pass.hashCode();
+                pe.setLong(9,passkey);
+                pe.setInt(10, id);
+            }else{
+                pe.setInt(9, id);
+            }
+            System.out.println("pass: "+pass);
+            System.out.println(pe.toString());
+            synchronized (pe) {
+                updated = pe.executeUpdate();
+            }
+            pe.close();
+            return updated == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 
 }
+

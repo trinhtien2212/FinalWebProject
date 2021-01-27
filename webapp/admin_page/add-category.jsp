@@ -71,13 +71,13 @@
                                     </div>
                                     <div class="status-toggle">
                                         <label>Hiển thị</label>
-                                        <input id="rating_2" class="check" type="checkbox" name="active"
+                                        <input id="rating" class="check" type="checkbox" name="active"
                                                checked>
-                                        <label for="rating_2" class="checktoggle">checkbox</label>
+                                        <label for="rating" class="checktoggle">checkbox</label>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
-                                        <a href="add-admin.html" class="btn btn-link">Hủy</a>
+                                        <a href="category" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='edit'}">
@@ -110,13 +110,14 @@
                                     </div>
                                     <div class="status-toggle">
                                         <label>Hiển thị</label>
-                                        <input id="rating_2" class="check" type="checkbox" name="active" value="true"
-                                               <c:if test="${category.active}">checked</c:if>>
-                                        <label for="rating_2" class="checktoggle">checkbox</label>
+                                        <input id="rating_4" class="check" type="checkbox" name="active" value="true"
+                                               <c:if test="${category.active}">checked</c:if>
+                                        >
+                                        <label for="rating_4" class="checktoggle">checkbox</label>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
-                                        <a href="add-admin.html" class="btn btn-link">Hủy</a>
+                                        <a href="category" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                             </form>

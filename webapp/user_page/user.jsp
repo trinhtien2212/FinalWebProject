@@ -213,7 +213,7 @@
                             <tr>
                                 <th>Mã đơn hàng</th>
                                 <th>Ngày mua</th>
-                                <th>Tổng tiền</th>
+                                <th>Thanh toán</th>
                                 <th>Trạng thái đơn hàng</th>
                             </tr>
                             </thead>
@@ -224,7 +224,10 @@
                                         <a href="order_detail?id=${o.id}">${o.id}</a>
                                     </td>
                                     <td>${o.date_created}</td>
-                                    <td>${o.total_pay}</td>
+                                    <td>
+                                        <c:if test="${o.payment==true}">Tiền mặt</c:if>
+                                        <c:if test="${o.payment==false}">Ví momo</c:if>
+                                    </td>
                                     <td>
                                         <c:if test="${o.status==1}">Đã hủy </c:if>
                                         <c:if test="${o.status==2}">Bị từ chối </c:if>

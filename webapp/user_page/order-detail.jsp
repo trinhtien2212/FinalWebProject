@@ -93,7 +93,7 @@
                                         <div class="product-review">
                                             <a id="btn-comment" href="#" data-toggle="modal"
                                                data-target="#exampleModalCenter">Viết nhận xét</a>
-                                            <a href="warranty?order_id=${order.id}&pro_id=${pl.pro_id}" target="_blank">Bảo hành</a>
+                                            <a href="warranty?order_id=${order.id}&pro_id=${pl.pro_id}&user_id=${sessionScope.user_id}" target="_blank">Bảo hành</a>
                                         </div>
                                     </div>
                                 </div>

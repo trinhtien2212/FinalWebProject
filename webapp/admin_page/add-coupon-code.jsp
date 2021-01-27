@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="mt-4">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="categories.html" class="btn btn-link">Hủy</a>
+                                    <a href="coupon_code" class="btn btn-link">Hủy</a>
                                 </div>
                                 </c:if>
                                 <c:if test="${type=='edit'}">
@@ -176,7 +176,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="coupon_code" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                             </form>

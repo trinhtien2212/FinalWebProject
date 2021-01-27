@@ -185,8 +185,34 @@ public class LoadUser {
         return null;
     }
 
+
+    public static boolean updateUserById(String name, String img, String birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
+        String sql = "UPDATE user SET name = ?, img = ?, birthday = ?, phone = ?, email = ?, address = ?  WHERE id = ?";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, img);
+            preparedStatement.setString(3, birthday);
+            preparedStatement.setInt(4,phone);
+            preparedStatement.setString(5,email);
+            preparedStatement.setString(6, detailaddress + ", " + ward + ", " + distric + ", " + city);
+            preparedStatement.setInt(7,user_id);
+            synchronized (preparedStatement) {
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+
     public static void main(String[] args) {
 //        Syzstem.out.println(updateUserInAdimin(1,"sfdsa",324234,"name","Nam","20/12/2010","hung vuong","20/12/2020"));
         System.out.println(loadUserById(6));
     }
+
 }

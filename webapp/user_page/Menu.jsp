@@ -228,7 +228,9 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="user.html"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                        <c:if test="${sessionScope.favourist!=null}">
+                        <li><a href="user.html"><i class="fa fa-heart"></i> <span>${sessionScope.favourist.size}</span></a></li>
+                        </c:if>
                         <li><a href="shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>${sessionScope.cart.size}</span></a></li>
                     </ul>
                     <c:set var="totalPrice" value="${sessionScope.cart.totalPrice}"></c:set>

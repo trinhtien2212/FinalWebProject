@@ -1,5 +1,10 @@
 package vn.thegioicaycanh.model.order_product;
 
+import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class OrderProduct {
     private int order_id;
     private int pro_id;
@@ -8,6 +13,9 @@ public class OrderProduct {
 
     public OrderProduct() {
     }
+
+
+
 
     public int getOrder_id() {
         return order_id;

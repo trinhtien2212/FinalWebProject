@@ -70,7 +70,7 @@ public class Login_handle extends HttpServlet {
                     int user_id = (int)session.getAttribute("user_id");
                     User user = LoadUser.loadUserById(user_id);
                     if(user.getRole_id() == 2 || user.getRole_id() == 3){
-                        request.getRequestDispatcher("admin_page/Login.jsp").forward(request,response);
+                        request.getRequestDispatcher("handle-login?login=user").forward(request,response);
                     }
                 }
 
@@ -80,7 +80,10 @@ public class Login_handle extends HttpServlet {
         //Xu li dang xuat
         if(request.getParameter("logout") !=null){
             if(request.getParameter("logout").equalsIgnoreCase("true")){
+
                 deleteAvailableSession(request);
+                HttpSession session = request.getSession();
+                session.setAttribute("cart",new Cart());
                 request.getRequestDispatcher("home").forward(request, response);
             }
             return;
@@ -88,7 +91,7 @@ public class Login_handle extends HttpServlet {
 
         //Kiem tra xem nguoi dung da dang nhap va chua dang xuat hay khong
         //Neu dung thi xoa session do va tao sesion khac
-        deleteAvailableSession(request);
+//        deleteAvailableSession(request);
 
         //xu li xac thuc thong tin tai khoan
         String email="";
@@ -127,18 +130,30 @@ public class Login_handle extends HttpServlet {
 
     public static void successLogin(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("user_avatar", user.getAvatar());
-        session.setAttribute("user_id", user.getId());
-        session.setAttribute("user_name", user.getName());
-        // them
-        session.setAttribute("user_mail", user.getEmail());
-        Cart cart = new Cart(user.getId());
-        session.setAttribute("cart",cart);
-        if(user.getRole_id() == 2 || user.getRole_id() ==3){
-            session.setAttribute("isAdmin",true);
+        if(session.getAttribute("isAdmin")==null) {
+            session.setAttribute("favourist",new FavouriteListMap(user.getId()));
+            session.setAttribute("user_avatar", user.getAvatar());
+            session.setAttribute("user_id", user.getId());
+            session.setAttribute("user_name", user.getName());
+            // them
+            session.setAttribute("user_mail", user.getEmail());
+            session.setAttribute("user_address",user.getAddress());
+            Cart cart = new Cart(user.getId());
+            session.setAttribute("cart", cart);
+            if (user.getRole_id() == 2 || user.getRole_id() == 3) {
+                session.setAttribute("isAdmin", true);
+            }
+            System.out.println("Dan chuyen den home sau khi dang nhap");
+            request.getRequestDispatcher("home").forward(request, response);
+        }else{
+            if(user.getRole_id() == 2 || user.getRole_id() == 3){
+                session.setAttribute("role_id", user.getRole_id());
+                session.setAttribute("loginedAdmin",true);
+                System.out.println("Sap sua vao admin_page/product");
+                response.sendRedirect("admin_page/product"); //TODO
+            }
         }
-        System.out.println("Dan chuyen den home sau khi dang nhap");
-        request.getRequestDispatcher("home").forward(request, response);
+
     }
     public static void notifyError(int status_id,String status_content,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("status",status_id);

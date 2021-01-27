@@ -1,9 +1,7 @@
 package vn.thegioicaycanh.model.favorist_list;
 
-import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
-import vn.thegioicaycanh.model.notifications.Notifications;
-import vn.thegioicaycanh.model.util.Util;
+import vn.thegioicaycanh.model.user.FavouriteListMap;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,6 +60,38 @@ public class Favorist_list_Con_DB {
             throwables.printStackTrace();
         }
         return null;
+    }
+    public static boolean saveFavoristList(int user_id,int pro_id){
+        int updated =0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("insert into favorist_list values(?,?)");
+            pe.setInt(1,user_id);
+            pe.setInt(2,pro_id);
+            synchronized (pe){
+                updated= pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean deleteProductFavoristList(int user_id,int pro_id){
+        int updated =0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("delete from favorist_list where user_id=? and pro_id=?");
+            pe.setInt(1,user_id);
+            pe.setInt(2,pro_id);
+            synchronized (pe){
+                updated= pe.executeUpdate();
+            }
+            pe.close();
+            return updated==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
     public static void main(String[] args) {

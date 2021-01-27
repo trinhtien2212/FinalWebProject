@@ -47,7 +47,7 @@
                     <div class="col">
                         <h3 class="page-title">${title}</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="product.html">Sản phẩm</a></li>
+                            <li class="breadcrumb-item"><a href="product.html">Bài viết</a></li>
                             <li class="breadcrumb-item active">${title}</li>
                         </ul>
                     </div>
@@ -62,6 +62,9 @@
                             <form action="add-blog" method="post" enctype="multipart/form-data"
                                   accept-charset="UTF-8">
                                 <c:if test="${type=='add'}">
+                                    <div class="form-group" style="display: none">
+                                        <input class="form-control" type="text" value="add" name="type">
+                                    </div>
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input class="form-control" type="text" value="" name="name">
@@ -70,11 +73,6 @@
                                         <label>Ảnh</label>
                                         <input class="form-control" type="file" name="img">
                                     </div>
-                                    <%--                                        <div class="form-group">--%>
-                                    <%--                                            <div class="avatar">--%>
-                                    <%--                                                <img class="avatar-img rounded" alt="" src="">--%>
-                                    <%--                                            </div>--%>
-                                    <%--                                        </div>--%>
 
                                     <div class="form-group">
                                         <label>Tóm tắt</label>
@@ -95,14 +93,21 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="blog-admin" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <%--                        edit--%>
                                 <c:if test="${type=='edit'}">
 
                                     <c:set var="date_created" value="${blog.date_created}"></c:set>
-
+                                    <div class="form-group" style="display: none">
+                                        <input class="form-control" type="text" value="edit" name="type">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input class="form-control" type="text" name="id" value="${blog.id}"
+                                               readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input class="form-control" type="text" value="${blog.name}" name="name">
@@ -113,7 +118,10 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="avatar">
-                                            <img class="avatar-img rounded" alt="" src="${blog.img}">
+                                            <img class="avatar-img rounded" alt="avatar"
+                                            <c:if test="${fn:startsWith(blog.avatar, 'imgs')}"> src="../${blog.avatar}"</c:if>
+                                             <c:if test="${fn:startsWith(blog.avatar, 'http')}">src="${blog.avatar}"</c:if>
+                                            >
                                         </div>
                                     </div>
 
@@ -136,7 +144,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="blog-admin" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                             </form>

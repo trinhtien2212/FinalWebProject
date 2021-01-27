@@ -1,7 +1,7 @@
 package vn.thegioicaycanh.controller.user_page;
 
 import vn.thegioicaycanh.model.warranty.LoadWarranty;
-import vn.thegioicaycanh.model.warranty.warranty;
+import vn.thegioicaycanh.model.warranty.Warranty;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +28,7 @@ public class Warranty_update extends HttpServlet {
         int status = Integer.parseInt(request.getParameter("status"));
         String email = request.getParameter("email");
 
-        warranty warranty = new warranty(warranty_id, order_id, user_id, pro_id,title, message,img,status,email);
+        Warranty warranty = new Warranty(warranty_id, order_id, user_id, pro_id,title, message,img,status,email);
         boolean saved = LoadWarranty.updateWarranty(warranty);
         if(saved){
             request.setAttribute("status", 1);

@@ -37,6 +37,7 @@
     <script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
 </head>
 <body>
+<%System.out.println("co vao add product.jsp");%>
 <div class="main-wrapper">
     <jsp:include page="menu.jsp"></jsp:include>
     <div class="page-wrapper">
@@ -45,10 +46,10 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col">
-                        <h3 class="page-title">Thêm sản phẩm</h3>
+                        <h3 class="page-title">${title}</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="product.html">Sản phẩm</a></li>
-                            <li class="breadcrumb-item active">Thêm sản phẩm</li>
+                            <li class="breadcrumb-item active">${title}</li>
                         </ul>
                     </div>
 
@@ -59,20 +60,20 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="add-product" method="post" enctype="multipart/form-data"
-                                  accept-charset="UTF-8">
+                            <form action="add-product" method="post" enctype="multipart/form-data">
                                 <c:if test="${type=='add'}">
                                     <div class="form-group" style="display: none">
                                         <input class="form-control" type="text" value="add" name="type">
                                     </div>
                                     <div class="form-group">
-                                        <label>Ảnh</label>
-                                        <input class="form-control" type="file" name="img">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Tên sản phẩm</label>
                                         <input class="form-control" type="text" value="" name="name">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Ảnh</label>
+                                        <input class="form-control" type="file" name="img">
+                                    </div>
+
                                     <div class="form-group">
                                         <label>Danh mục</label>
                                         <label>Danh mục</label>
@@ -149,7 +150,7 @@
 
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="product" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <%--                        edit--%>
@@ -169,6 +170,10 @@
                                                readonly>
                                     </div>
                                     <div class="form-group">
+                                        <label>Tên sản phẩm</label>
+                                        <input class="form-control" type="text" name="name" value="${product.name}">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Ảnh</label>
                                         <input class="form-control" type="file" value="" name="img">
                                     </div>
@@ -180,10 +185,7 @@
                                             >
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${product.name}">
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Danh mục</label>
                                         <select class="form-control select" name="category_id">
@@ -295,7 +297,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="product" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                             </form>
@@ -304,6 +306,7 @@
                 </div>
             </div>
         </div>
+        <%System.out.println("Da ra them add-product.jsp");%>
         <!-- jQuery -->
         <script>
             CKEDITOR.replace('content');
@@ -316,7 +319,7 @@
         <!-- Select2 JS -->
         <script src="assets/js/select2.min.js"></script>
 
-        <!-- Custom JS -->
+        <!-- Custom JS -->hh
         <script src="assets/js/admin.js"></script>
     </div>
 </body>

@@ -2,6 +2,7 @@ package vn.thegioicaycanh.model.util;
 
 import vn.thegioicaycanh.model.Product.Product;
 import vn.thegioicaycanh.model.Product.ProductEntity;
+import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.header_footer.LoadHeaderFooter;
 
 import java.io.File;
@@ -10,6 +11,9 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.Normalizer;
 import java.util.List;
 
@@ -69,8 +73,8 @@ public class tempTest {
     }
 
     // Driver code
-    public static void main(String args[])
-    {
+//    public static void main(String args[])
+//    {
 //        try
 //        {
 //            String email ="nhatthy1224@gmail.com";
@@ -101,11 +105,28 @@ public class tempTest {
 //        }
 //        if(file.exists())
 //            System.out.println("Ton tai");
-        String convertedString =
-                Normalizer
-                        .normalize("Trịnh Quang Tiến", Normalizer.Form.NFD)
-                        .replaceAll("[^\\p{ASCII}]", "").replaceAll(" ","-");
-        System.out.println(convertedString);
-    }
+//        String convertedString =
+//                Normalizer
+//                        .normalize("Trịnh Quang Tiến", Normalizer.Form.NFD)
+//                        .replaceAll("[^\\p{ASCII}]", "").replaceAll(" ","-");
+//        System.out.println(convertedString);
+//    }
+public static void main(String[] args) throws SQLException {
+//    String name = "Có nên trồng chầu bà trong nhà?";
+//    name=name.replaceAll("(\\?)|(!)|(\\.)|,","");
+//    System.out.println(name);
+//    int value =0;
+//    Statement statement = DBCPDataSource.getStatement();
+//    int i=1;
+//    while(i<=3000) {
+//        ResultSet rs = statement.executeQuery("select sum(op.total_price) from order_product op where op.order_id="+i);
+//        if (rs.next())
+//            value = rs.getInt(1);
+//        statement.executeUpdate("update `order` set total_price=" + value + " where id=" + i);
+//        i++;
+//    }
+//    statement.close();
+}
 
 }
+

@@ -1,14 +1,7 @@
 package vn.thegioicaycanh.controller.user_page;
 
-import vn.thegioicaycanh.model.Product.Product;
-import vn.thegioicaycanh.model.feeback.Feedback;
-import vn.thegioicaycanh.model.feeback.Load_Feedback;
-import vn.thegioicaycanh.model.order.Load_Order;
-import vn.thegioicaycanh.model.order.Order;
-import vn.thegioicaycanh.model.user.LoadUser;
-import vn.thegioicaycanh.model.user.User;
 import vn.thegioicaycanh.model.warranty.LoadWarranty;
-import vn.thegioicaycanh.model.warranty.warranty;
+import vn.thegioicaycanh.model.warranty.Warranty;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/warranty")
 public class Warranty_direct extends HttpServlet {
@@ -37,7 +29,7 @@ public class Warranty_direct extends HttpServlet {
                 order_id = Integer.parseInt(request.getParameter("order_id"));
                 user_id = Integer.parseInt(request.getParameter("user_id"));
                 pro_id = Integer.parseInt(request.getParameter("pro_id"));
-                boolean saved = LoadWarranty.saveWarranty(new warranty(id,order_id,user_id,pro_id,null,null,null, 1,null));
+                boolean saved = LoadWarranty.saveWarranty(new Warranty(id,order_id,user_id,pro_id,null,null,null, 1,null));
             }
         }
         session.setAttribute("title","Bảo hành");

@@ -24,7 +24,12 @@ public class Home_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         initAttr();
-
+        HttpSession session = request.getSession(false);
+        if(session==null)
+        {
+            session = request.getSession();
+            session.setAttribute("cart",new Cart());
+        }
         if(request.getSession().getAttribute("user_id")!=null){
             System.out.println("Day la user_id: "+request.getSession().getAttribute("user_id"));
         }

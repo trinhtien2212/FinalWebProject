@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LoadWarranty {
     // Insert warranty
-    public static boolean saveWarranty(warranty warranty){
+    public static boolean saveWarranty(Warranty warranty){
         try {
             Statement statement = DBCPDataSource.getStatement();
             synchronized (statement) {
@@ -29,7 +29,7 @@ public class LoadWarranty {
         return false;
     }
     // Update warranty
-    public static boolean updateWarranty(warranty warranty){
+    public static boolean updateWarranty(Warranty warranty){
         try{
             String sql = "UPDATE warranty " +
                     "SET order_id = ?, user_id = ?, pro_id = ?, title = ?, message = ?, img = ?, date_created = ?,`status` = ?, email = ? " +
@@ -55,5 +55,84 @@ public class LoadWarranty {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public static List<Warranty> loadWarrantiesBy(String from_date,String to_date){
+        List<Warranty>warranties = new ArrayList<Warranty>();
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select w.*, s.name,p.name  from warranty w join `user` s on w.user_id=s.id join product p on w.pro_id=p.id where w.date_created between ? and ?");
+                                    pe.setString(1,from_date);
+            pe.setString(2,to_date);
+            synchronized (pe){
+                ResultSet resultSet = pe.executeQuery();
+                while (resultSet.next()){
+                    warranties.add(getWarranty(resultSet));
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return warranties;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return warranties;
+    }
+    public static Warranty getWarranty(ResultSet resultSet){
+        Warranty warranty = new Warranty();
+        try {
+            warranty.setId(resultSet.getInt(1));
+            warranty.setOrder_id(resultSet.getInt(2));
+            warranty.setUser_id(resultSet.getInt(3));
+            warranty.setPro_id(resultSet.getInt(4));
+            warranty.setTitle(resultSet.getString(5));
+            warranty.setMessage(resultSet.getString(6));
+            warranty.setImg(resultSet.getString(7));
+            warranty.setDate_created(resultSet.getDate(8));
+            warranty.setStatus(resultSet.getInt(9));
+            warranty.setEmail(resultSet.getString(10));
+            warranty.setUser_name(resultSet.getString(11));
+            warranty.setProduct_name(resultSet.getString(12));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  warranty;
+    }
+
+    public static Warranty loadWarrantyBy(int id) {
+        Warranty warranty = new Warranty();
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select w.*, s.name,p.name  from warranty w join `user` s on w.user_id=s.id join product p on w.pro_id=p.id where w.id=?");
+            pe.setInt(1,id);
+            synchronized (pe){
+                ResultSet resultSet = pe.executeQuery();
+                if (resultSet.next()){
+                    warranty=getWarranty(resultSet);
+                }
+                resultSet.close();
+            }
+            pe.close();
+            return warranty;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean updateWarranty(int id, int status) {
+        int isUpdate = 0;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("update warranty set status=? where id = ?");
+            pe.setInt(1,status);
+            pe.setInt(2,id);
+            synchronized (pe){
+                isUpdate=pe.executeUpdate();
+            }
+            pe.close();
+            return isUpdate==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+
     }
 }

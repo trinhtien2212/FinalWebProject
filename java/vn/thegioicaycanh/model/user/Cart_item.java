@@ -1,7 +1,5 @@
 package vn.thegioicaycanh.model.user;
 
-import vn.thegioicaycanh.model.Product.Product;
-
 public class Cart_item {
     private int id;
     private String img;
@@ -9,15 +7,19 @@ public class Cart_item {
     private double price;
     private double price_sale;
     private int quantity;
+    private boolean sale;
+    private int type_weight;
     private double totalPrice;
 
-    public Cart_item(int id, String img, String name, double price, double price_sale, int quantity) {
+    public Cart_item(int id, String img, String name, double price, double price_sale, int quantity,boolean sale,int type_weight) {
         this.id = id;
         this.img = img;
         this.name = name;
         this.price = price;
         this.price_sale = price_sale;
         this.quantity = quantity;
+        this.sale=sale;
+        this.type_weight=type_weight;
         calTotalPrice();
     }
 
@@ -35,10 +37,26 @@ public class Cart_item {
         this.totalPrice = quantity*getPriceForCal();
     }
    public double getPriceForCal(){
-        if(price_sale==-1)
+        if(!sale)
             return this.price;
         return this.price_sale;
    }
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    public int getType_weight() {
+        return type_weight;
+    }
+
+    public void setType_weight(int type_weight) {
+        this.type_weight = type_weight;
+    }
 
     public int getId() {
         return id;
@@ -94,5 +112,19 @@ public class Cart_item {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart_item{" +
+                "id=" + id +
+                ", img='" + img + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", price_sale=" + price_sale +
+                ", quantity=" + quantity +
+                ", isSale=" + sale +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }

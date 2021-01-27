@@ -142,4 +142,42 @@ public class Coupon_Con_DB {
             System.out.println(c.getCoupon_code_type_name());
         }
     }
+
+    public static int[] checkSubMoney(int user_id, String code,int coupon_code_type_id) {
+        int[] checkCouponcode = null ;//0:percent,1:coupon_code_id;
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("select c.percent,c.id from coupon_code c join user_code u on  c.id = u.coupon_code_id where c.CODE=? and c.coupon_code_type_id=? and u.user_id =?");
+            pe.setString(1,code);
+            pe.setInt(2,coupon_code_type_id);
+            pe.setInt(3,user_id);
+            System.out.println("Cau query: "+pe.toString());
+            synchronized (pe){
+                ResultSet rs = pe.executeQuery();
+                if(rs.next()) {
+                    checkCouponcode=new int[2];
+                    checkCouponcode[0] = rs.getInt(1);
+                    checkCouponcode[1] = rs.getInt(2);
+                }
+            }
+            pe.close();
+            return checkCouponcode;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    return checkCouponcode;
+    }
+
+    public static void deleteCouponCode(int user_id, int coupon_code_id) {
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("delete from user_code where user_id=? and coupon_code_id=?");
+            pe.setInt(1,user_id);
+            pe.setInt(2,coupon_code_id);
+            synchronized (pe){
+                pe.executeUpdate();
+            }
+            pe.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

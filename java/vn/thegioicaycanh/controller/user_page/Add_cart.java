@@ -31,19 +31,24 @@ public class Add_cart extends HttpServlet {
                 cart.addProduct(product_id,user_id);
             else if (action.equalsIgnoreCase("sub"))
                 cart.subProduct(product_id,user_id);
+            else if(action.equalsIgnoreCase("del"))
+                cart.deleteProduct(product_id,user_id);
         }else{
             if(action.equalsIgnoreCase("add"))
                 cart.addProduct(product_id);
             else if(action.equalsIgnoreCase("sub"))
                 cart.subProduct(product_id);
+            else if(action.equalsIgnoreCase("del"))
+                cart.deleteProduct(product_id);
 //            session.setAttribute("cart",cart);
         }
+        String currentPage = request.getParameter("current-page");
         double position = 0;
         if(request.getParameter("position")!=null){
             position = Double.parseDouble(request.getParameter("position"));
-        }
-        request.setAttribute("position",position);
-        String currentPage = request.getParameter("current-page");
-        request.getRequestDispatcher(currentPage).forward(request,response);
+            request.setAttribute("position",position);
+            request.getRequestDispatcher(currentPage).forward(request,response);
+        }else request.getRequestDispatcher(currentPage).forward(request,response);
+
     }
 }

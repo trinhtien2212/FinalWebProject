@@ -125,9 +125,11 @@
                              data-setbg="${dp.img}">
                             <div class="product__discount__percent">-${dp.percent_sale}%</div>
                             <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-money"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li class="fast-checkout cursor-pointer" data-pro_id="${dp.id}"><a ><i class="fa fa-money"></i></a></li>
+                                <c:if test="${sessionScope.user_id!=null}">
+                                    <li class="addFa cursor-pointer" data-current_page="home" data-pro_id="${dp.id}"><a><i class="fa fa-heart"></i></a></li>
+                                </c:if>
+                                <li class="addCart cursor-pointer" data-current_page="home" data-pro_id="${dp.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="product__discount__item__text">
@@ -183,9 +185,11 @@
                             <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="${c.img}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-money"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li class="fast-checkout cursor-pointer" data-pro_id="${c.id}"><a ><i class="fa fa-money"></i></a></li>
+                                    <c:if test="${sessionScope.user_id!=null}">
+                                        <li class="addFa cursor-pointer" data-current_page="home" data-pro_id="${c.id}"><a><i class="fa fa-heart"></i></a></li>
+                                    </c:if>
+                                    <li class="addCart cursor-pointer" data-current_page="home" data-pro_id="${c.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">

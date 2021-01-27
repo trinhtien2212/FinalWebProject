@@ -13,14 +13,18 @@ import java.util.List;
 
 public class LoadWarranty {
     // Insert warranty
-    public static boolean insertWarranty(int order_id, int user_id, int pro_id){
+    public static boolean insertWarranty(int order_id, int user_id, int pro_id, String email, int status, String title, String message){
         try {
-           PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("INSERT INTO warranty(order_id, user_id, pro_id) VALUES (?,?,?)");
+           PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("INSERT INTO warranty(order_id, user_id, pro_id, email,`status`,title, message) VALUES (?, ?, ?, ?, ?, ?, ?)");
            preparedStatement.setInt(1,order_id);
            preparedStatement.setInt(2,user_id);
            preparedStatement.setInt(3,pro_id);
+           preparedStatement.setString(4,email);
+           preparedStatement.setInt(5,status);
+           preparedStatement.setString(6,title);
+           preparedStatement.setString(7,message);
            synchronized (preparedStatement){
-               preparedStatement.executeQuery();
+               preparedStatement.executeUpdate();
            }
            preparedStatement.close();
             return true;

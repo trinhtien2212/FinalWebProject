@@ -3,9 +3,7 @@ package vn.thegioicaycanh.model.notifications;
 import vn.thegioicaycanh.model.coupon_code.CouponCode;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +52,28 @@ public class Notification_Con_DB {
         return null;
     }
 
+    // Insert email of footer in database
+    public static boolean insertEmail(String email, int status){
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("INSERT INTO notifications(email,`status`) VALUES (?, ?)");
+            preparedStatement.setString(1,email);
+            preparedStatement.setInt(2,status);
+            synchronized (preparedStatement){
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return true;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(loadNotificationsFormSql("select * from notifications"));
-        for(Notifications a:loadNotificationsFormSql("select * from notifications")){
-            System.out.println(a.getId());
-        }
+//        for(Notifications a:loadNotificationsFormSql("select * from notifications")){
+//            System.out.println(a.getId());
+//        }
+        System.out.println(insertEmail("sylvietran12@gmail.com",1));
     }
 }

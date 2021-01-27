@@ -35,10 +35,10 @@
     <div class="sticky-top">
         <div class="container">
             <div class="row">
-                <select id="selectest" class="mdb-select md-form col-md-2 mx-3">
+                <select id="selectest" class="mdb-select md-form col-md-2 mx-3" onchange="window.location=this.value">
                     <option value="" disabled>Chọn loại</option>
                     <option value="" disabled selected>Sản phẩm khuyến mãi</option>
-                    <option value="">Mã khuyến mãi</option>
+                    <option value="coupon_code">Mã khuyến mãi</option>
                 </select>
                 <select id="select_category" class="mdb-select md-form col-md-2 mx-3">
                     <c:if test="${cate_id==0}">
@@ -192,7 +192,7 @@
                     <c:forEach items="${data}" var="sp">
                         <c:set var="p" value="${sp.price}"></c:set>
                         <c:set var="ps" value="${sp.price_sale}"></c:set>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 sale-p">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
                                  data-setbg="${sp.img}">
@@ -208,6 +208,10 @@
                             <div class="product__discount__item__text">
                                 <h5><a href="#">${sp.name}</a></h5>
                                 <div class="product__item__price"><%= Util.formatCurrency((double)pageContext.getAttribute("ps")) %> <span><%= Util.formatCurrency((double)pageContext.getAttribute("p")) %></span></div>
+                            </div>
+                            <div class="progress-style progress none-margin">
+                                <div class="progress-bar bg-success progress-past" role="progressbar" style="width:61%" aria-valuenow="${sp.dayRest}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <p class="progress-text">Còn ${sp.dayRest} ngày</p>
                             </div>
                         </div>
                     </div>

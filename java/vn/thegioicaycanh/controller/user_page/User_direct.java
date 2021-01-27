@@ -11,6 +11,8 @@ import vn.thegioicaycanh.model.favorist_list.FavoristList;
 import vn.thegioicaycanh.model.favorist_list.Favorist_list_Con_DB;
 import vn.thegioicaycanh.model.order.Load_Order;
 import vn.thegioicaycanh.model.order.Order;
+import vn.thegioicaycanh.model.order_product.OrderProduct;
+import vn.thegioicaycanh.model.order_product.OrderProduct_Con_DB;
 import vn.thegioicaycanh.model.user.LoadUser;
 import vn.thegioicaycanh.model.user.User;
 import vn.thegioicaycanh.model.user_code.UserCode;
@@ -57,32 +59,32 @@ public class User_direct extends HttpServlet {
             // Ma giam gia
             List<CouponCode> couponCodes = Coupon_Con_DB.loadCouponCodeByUserId(user.getId());
             session.setAttribute("coupon_code", couponCodes);
-            for(CouponCode c: couponCodes){
+            for (CouponCode c : couponCodes) {
                 System.out.println(c.getName());
             }
             // Don hang cua toi
+            int order_id = 0;
             List<Order> orders = Load_Order.loadOderByUserId(user.getId());
-            request.setAttribute("order",orders);
-
-            System.out.println(user.getId());
+            request.setAttribute("order", orders);
             // San pham yeu thich
             List<Product> favoristLists = ProductEntity.loadFavoriteProduct(user.getId());
             session.setAttribute("favorite", favoristLists);
             session.setAttribute("title", "Trang của tôi");
-            request.getRequestDispatcher("user_page/user.jsp").forward(request,response);
-        } else{
+            request.getRequestDispatcher("user_page/user.jsp").forward(request, response);
+        } else {
             System.out.println("session ko co gi het");
-            request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+            request.getRequestDispatcher("user_page/Login.jsp").forward(request, response);
         }
     }
+
     // Tach dia chi
-    protected void getDetailAddress(String address, HttpSession session){
-        String [] arr = address.split(",");
-        String city = arr[arr.length-1];
-        String district = arr[arr.length-2];
-        String ward = arr[arr.length-3];
+    protected void getDetailAddress(String address, HttpSession session) {
+        String[] arr = address.split(",");
+        String city = arr[arr.length - 1];
+        String district = arr[arr.length - 2];
+        String ward = arr[arr.length - 3];
         String detail = "";
-        for(int i=0; i< arr.length-3;i++){
+        for (int i = 0; i < arr.length - 3; i++) {
             detail += arr[i] + " ";
         }
         session.setAttribute("city", city);

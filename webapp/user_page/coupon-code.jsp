@@ -43,7 +43,7 @@
     <div class="sticky-top">
         <div class="container">
             <div class="row">
-                <select class="mdb-select md-form col-md-2 mx-3" id="cat_id">
+                <select class="mdb-select md-form col-md-2 mx-3" id="cat_id" onchange="window.location=this.value">
                     <c:if test="${cat_id==0}">
                     <option data="" disabled selected>Chọn loại</option>
                     <option value="shopping-sale" >Sản phẩm khuyến mãi</option>

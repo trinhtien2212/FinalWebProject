@@ -47,8 +47,8 @@
                 <div class="footer__widget no_flex">
                     <h6>Để lại thông tin liên hệ</h6>
                     <p>Sản phẩm mới nhất, chương trình khuyến mãi</p>
-                    <form action="#">
-                        <input type="text" placeholder="Email">
+                    <form action="email_footer" method="get">
+                        <input type="email" placeholder="Email" name="email">
                         <button type="submit" class="site-btn">Gửi</button>
                     </form>
                     <a class="term" href="TermAndCondition_direct">Xem thêm chính sách và điều khoản <i class="fa fa-arrow-right"></i></a>

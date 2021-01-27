@@ -37,7 +37,7 @@ public class Add_category_direct extends HttpServlet {
         }
 
         String name = request.getParameter("name");
-        int active = request.getParameter("active")==null?0:1;
+        int active = request.getParameter("active")==null ? 0 : 1;
         String slug= request.getParameter("slug");
 
         if(type.equalsIgnoreCase("add")){

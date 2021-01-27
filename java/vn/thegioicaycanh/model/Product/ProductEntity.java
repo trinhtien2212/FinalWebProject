@@ -3,6 +3,7 @@ package vn.thegioicaycanh.model.Product;
 import com.mysql.jdbc.JDBC4PreparedStatement;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.order.Order;
+import vn.thegioicaycanh.model.user.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -361,6 +362,95 @@ public static void vidu(String s){
         }
         return productList;
     }
+    public static Product loadCountStarByIdProAndIdStar(int idpro,int nstar){
+//        List<Product> productList = new ArrayList<>();
+        Product product=new Product();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT COUNT(rating_type_id)as soluong FROM rating WHERE pro_id=? and rating_type_id=?");
+            preparedStatement.setString(1, String.valueOf(idpro));
+            preparedStatement.setString(2, String.valueOf(nstar));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+//                    Product product = new Product();
+                    product.setCountstar(resultSet.getInt(1));
+                    return  product;
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return product;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return product;
+    }
+    public static Product loadCountCommentByIdPro(int idpro){
+//        List<Product> productList = new ArrayList<>();
+        Product product=new Product();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT COUNT(`comment`) from rating WHERE pro_id=? and `comment`is not null");
+            preparedStatement.setString(1, String.valueOf(idpro));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+//                    Product product = new Product();
+                    product.setContcomment(resultSet.getInt(1));
+                    return  product;
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return product;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return product;
+    }
+    public static Product loadCountAvgstarByIdPro(int idpro){
+//        List<Product> productList = new ArrayList<>();
+        Product product=new Product();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT ROUND(AVG(rating_type_id),1) as tb FROM rating where pro_id=?");
+            preparedStatement.setString(1, String.valueOf(idpro));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+//                    Product product = new Product();
+                    product.setAvgstar(resultSet.getInt(1));
+                    return  product;
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return product;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return product;
+    }
+    public static List<Product> loadRelativeProduct(int cateid,int proid) {
+        List<Product> productList = new ArrayList<Product>();
+
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("SELECT * from product WHERE category_id=? and id <>? LIMIT 4");
+
+            pe.setInt(1, cateid);
+            pe.setInt(2, proid);
+//            System.out.println((JDBC4PreparedStatement)pe.asSql());
+            synchronized (pe) {
+                ResultSet resultSet = pe.executeQuery();
+                System.out.println(resultSet.getStatement().toString());
+                while (resultSet.next()) productList.add(getProduct(resultSet));
+                resultSet.close();
+            }
+            pe.close();
+            return productList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return productList;
+    }
 
     public static void main(String[] args) throws SQLException {
 //        String s= "Shopping_sorted_By_Price_Direct".toLowerCase();
@@ -383,7 +473,14 @@ public static void vidu(String s){
 
 //        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
 //        System.out.println(getNameProductById(3));
-        System.out.println(loadFavorateByIdUser(3).size());
+//        System.out.println(loadFavorateByIdUser(3).size());
+//        System.out.println(loadCountStarByIdProAndIdStar(3,5).getCountstar());
+//        System.out.println(loadCountCommentByIdPro(3).getContcomment());
+//        System.out.println(loadCountAvgstarByIdPro(3).getAvgstar());
+        for(Product p:loadRelativeProduct(3,3)){
+            System.out.println(p.getId());
+
+        }
     }
 
 }

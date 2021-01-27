@@ -59,14 +59,106 @@
                     <c:set var="price" value="${product.price}"></c:set>
                     <c:set var="pricesale" value="${product.price_sale}"></c:set>
                     <h3>${product.name}</h3>
-                    <div class="product__details__rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <span>(03 reviews)</span>
-                    </div>
+<%--                    <div class="product__details__rating">--%>
+<%--                        <i class="fa fa-star"></i>--%>
+<%--                        <i class="fa fa-star"></i>--%>
+<%--                        <i class="fa fa-star"></i>--%>
+<%--                        <i class="fa fa-star"></i>--%>
+<%--                        <i class="fa fa-star-half-o"></i>--%>
+
+<%--                        <span>(${procountcomment.contcomment} bình luận)</span>--%>
+<%--                    </div>--%>
+                    <c:if test="${proavgstar.avgstar==5}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar==4}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar==3}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar==2}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar==1}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar>1&&proavgstar.avgstar<2}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar>2&&proavgstar.avgstar<3}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar>3&&proavgstar.avgstar<4}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${proavgstar.avgstar>4&&proavgstar.avgstar<5}">
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span>(${procountcomment.contcomment} bình luận)</span>
+                        </div>
+                    </c:if>
+
                     <div class="product__details__price"><%= Util.formatCurrency((double)pageContext.getAttribute("pricesale")) %><span><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></span> </div>
                     <!-- <div class="product__item__price">110.000 VNĐ <span>130.000 VNĐ</span></div>(-15%) -->
                     <!-- <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
@@ -84,16 +176,17 @@
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>Trình trạng hàng</b> <span><c:if test="${product.active}">Còn hàng</c:if><c:if test="${!product.active}">Hết hàng</c:if></span></li>
-                        <li><b>Giao hàng</b> <span>Giao hàng trong ngày. <samp>Miễn phí vận chuyển</samp></span></li>
-                        <li><b>Cân nặng</b> <span>0.5 kg</span></li>
-                        <li><b>Chia sẻ</b>
-                            <div class="share">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </li>
+<%--                        <li><b>Giao hàng</b> <span>Giao hàng trong ngày. <samp>Miễn phí vận chuyển</samp></span></li>--%>
+                        <li><b>Thông tin sản phẩm</b> <span>${product.description}
+<%--                        <li><b>Cân nặng</b> <span>0.5 kg</span></li>--%>
+<%--                        <li><b>Chia sẻ</b>--%>
+<%--                            <div class="share">--%>
+<%--                                <a href="${applicationScope.social_media.fb}"><i class="fa fa-facebook"></i></a>--%>
+<%--                                <a href="${applicationScope.social_media.in}"><i class="fa fa-instagram"></i></a>--%>
+<%--                                <a href="${applicationScope.social_media.tw}"><i class="fa fa-twitter"></i></a>--%>
+<%--                                <a href="${applicationScope.social_media.pi}"><i class="fa fa-pinterest-p"></i></a>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -151,14 +244,89 @@
         <div class="product-rating-overview__briefing">
             <div class="product-rating-overview__score-wrapper">
 
-                <span class="product-rating-overview__rating-score">4.9/5</span>
-                <div class="starratingcontain">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
+                <span class="product-rating-overview__rating-score">${proavgstar.avgstar}/5</span>
+                <c:if test="${proavgstar.avgstar==5}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar==4}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar==3}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar==2}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar==1}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar>1&&proavgstar.avgstar<2}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar>2&&proavgstar.avgstar<3}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar>3&&proavgstar.avgstar<4}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                    </div>
+                </c:if>
+                <c:if test="${proavgstar.avgstar>4&&proavgstar.avgstar<5}">
+                    <div class="starratingcontain">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                </c:if>
+
                 <span class="product-rating-overview__rating-score-out-of"></span><br>
 
             </div>
@@ -228,128 +396,96 @@
             </div> -->
         </div>
         <div class="product-rating-overview__filters"><div class="product-rating-overview__filter product-rating-overview__filter--active product-rating-overview__filter--all">tất cả</div>
-            <div class="product-rating-overview__filter">5 Sao (1)</div>
-            <div class="product-rating-overview__filter">4 Sao (1)</div>
-            <div class="product-rating-overview__filter">3 Sao (0)</div>
-            <div class="product-rating-overview__filter">2 Sao (0)</div><div class="product-rating-overview__filter">1 Sao (0)</div>
-            <div class="product-rating-overview__filter product-rating-overview__filter--with-comment">Có Bình luận (3)</div>
-            <div class="product-rating-overview__filter product-rating-overview__filter--with-photo">Có hình ảnh / video (0)
+            <div class="product-rating-overview__filter">5 Sao (${prostar5.countstar})</div>
+            <div class="product-rating-overview__filter">4 Sao (${prostar4.countstar})</div>
+            <div class="product-rating-overview__filter">3 Sao (${prostar3.countstar})</div>
+            <div class="product-rating-overview__filter">2 Sao (${prostar2.countstar})</div>
+            <div class="product-rating-overview__filter">1 Sao (${prostar1.countstar})</div>
+            <div class="product-rating-overview__filter product-rating-overview__filter--with-comment">Có Bình luận (${procountcomment.contcomment})</div>
+<%--            <div class="product-rating-overview__filter product-rating-overview__filter--with-photo">Có hình ảnh / video (0)--%>
             </div>
         </div>
     </div>
     <!-- comment section begin -->
+<c:forEach items="${usercomment}" var="cv">
     <div class="comment-reviews">
-        <a class="shopee-product-rating__avatar"></a>
-        <div class="shopee-avatar">
-            <div class="shopee-avatar__placeholder">
-                <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-headshot">
-                    <g>
-                        <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10">
+        <a class="shopee-product-rating__avatar" ></a>
+        <div class="shopee-avatar" >
+<%--            <div class="shopee-avatar" style="width: 50px;height: 50px;border-color: #00acc1;display: block">--%>
+<%--                <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-headshot">--%>
+<%--                    <g>--%>
+<%--                        <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10">--%>
 
-                        </circle>
-                        <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10">
+<%--                        </circle>--%>
+<%--                        <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10">--%>
 
-                        </path>
-                    </g>
-                </svg>
-            </div>
+<%--                        </path>--%>
+<%--                    </g>--%>
+<%--                </svg>--%>
+                <img style="border-radius: 50% ;display: block;height: 30px;width: 30px" class="shopee-avatar__img" src="${cv.avatar}">
+<%--            </div>--%>
         </div>
-        <b>Võ Văn Tuấn7717</b><i class="fa fa-check-circle" style="color:  #7fad39;font-size: 20px;margin-left: 5px; margin-right: 5px;"></i><i style="color: #7fad39 ;">Đã mua hàng ở thế giới cây cảnh</i><br>
-        <i class="size-time">2020-10-02 07:43</i><br>
-        <i>Đánh giá:</i><b class="sao">4/5</b>
+        <b>${cv.name}</b><i class="fa fa-check-circle" style="color:  #7fad39;font-size: 20px;margin-left: 5px; margin-right: 5px;"></i><i style="color: #7fad39 ;">Đã mua hàng ở thế giới cây cảnh</i><br>
+        <i class="size-time">${cv.date_created_commnent}</i><br>
+        <i>Đánh giá: </i><b class="sao"><c:if test="${cv.rating_type_id==1}">5/5</c:if><c:if test="${cv.rating_type_id==2}">4/5</c:if><c:if test="${cv.rating_type_id==3}">3/5</c:if><c:if test="${cv.rating_type_id==4}">2/5</c:if><c:if test="${cv.rating_type_id==5}">1/5</c:if></b>
+        <c:if test="${cv.rating_type_id==1}">
         <div class="starrating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
-            <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+            <i class="fa fa-star"></i>
         </div>
-        <i>Phân loại hàng:</i> Cây để bàn<br>
-        <i>Nhận xét:</i>Giao hàng nhanh...đóng gói cẩn thận..<br>
-        <div class="containhuuich" >
-            <div class="huuich">
-                <i>="class="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>
+        </c:if>
+        <c:if test="${cv.rating_type_id==2}">
+            <div class="starrating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
             </div>
-            <i style="float: left;margin-left: 5px;color:#7fad39 ;padding-top: 2px;cursor: pointer;">Gửi trả lời</i>
+        </c:if>
+        <c:if test="${cv.rating_type_id==3}">
+            <div class="starrating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+            </div>
+        </c:if>
+        <c:if test="${cv.rating_type_id==4}">
+            <div class="starrating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+            </div>
+        </c:if>
+        <c:if test="${cv.rating_type_id==5}">
+            <div class="starrating">
+                <i class="fa fa-star"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+                <i style="color: #edbb0e;" class="fa fa-star-o"></i>
+            </div>
+        </c:if>
+<%--        <i>Phân loại hàng:</i> Cây để bàn<br>--%>
+        <i>Nhận xét : </i>${cv.comment}<br>
+        <div class="containhuuich" >
+<%--            <div class="huuich">--%>
+<%--                <i>="class="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>--%>
+<%--            </div>--%>
+<%--            <i style="float: left;margin-left: 5px;color:#7fad39 ;padding-top: 2px;cursor: pointer;">Gửi trả lời</i>--%>
         </div>
         </a>
     </div>
+    </c:forEach>
     <!-- end binh luan 1 -->
-    <div class="comment-reviews">
-        <a class="shopee-product-rating__avatar"></a>
-        <div class="shopee-avatar">
-            <div class="shopee-avatar__placeholder">
-                <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-headshot">
-                    <g>
-                        <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10">
 
-                        </circle>
-                        <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10">
-
-                        </path>
-                    </g>
-                </svg>
-            </div>
-        </div>
-        <b>Ngô Tấn Đạt7727</b><i class="fa fa-check-circle" style="color:  #7fad39;font-size: 20px;margin-left: 5px; margin-right: 5px;"></i><i style="color: #7fad39 ;">Đã mua hàng ở thế giới cây cảnh</i><br>
-        <i class="size-time">2020-10-02 07:43</i><br>
-        <i>Đánh giá:</i><b class="sao">4.5/5</b>
-        <div class="starrating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i style="color: #edbb0e;"class="fa fa-star-half-o"></i>
-        </div>
-        <i>Phân loại hàng:</i> Cây để bàn<br>
-        <i>Nhận xét:</i>Tôi rất hài lòng..<br>
-        <div class="containhuuich" >
-            <div class="huuich">
-                <i class="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>
-            </div>
-            <i style="float: left;margin-left: 5px;color:#7fad39 ;padding-top: 2px;cursor: pointer;">Gửi trả lời</i>
-        </div>
-        </a>
-    </div>
-    <!-- end binh luan 2 -->
-    <div class="comment-reviews">
-        <a class="shopee-product-rating__avatar"></a>
-        <div class="shopee-avatar">
-            <div class="shopee-avatar__placeholder">
-                <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-headshot">
-                    <g>
-                        <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10">
-
-                        </circle>
-                        <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10">
-
-                        </path>
-                    </g>
-                </svg>
-            </div>
-        </div>
-        <b>Võ Hoàng Sơn7737</b><i class="fa fa-check-circle" style="color:  #7fad39;font-size: 20px;margin-left: 5px; margin-right: 5px;"></i><i style="color: #7fad39 ;">Đã mua hàng ở thế giới cây cảnh</i><br>
-        <i class="size-time">2020-10-02 07:43</i><br>
-        <i>Đánh giá:</i><b class="sao">5/5</b>
-        <div class="starrating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-        </div>
-        <i>Phân loại hàng:</i> Cây để bàn<br>
-        <i>Nhận xét:</i>Chất lượng cây rất tốt, cây phát triển khỏe mạnh...<br>
-
-        <div class="containhuuich" >
-            <div class="huuich">
-                <i class="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>
-            </div>
-            <i style="float: left;margin-left: 5px;color:#7fad39 ;padding-top: 2px;cursor: pointer;">Gửi trả lời</i>
-        </div>
-        </a>
-    </div>
-    <!-- end binh luan 3 -->
     <!-- comment section end -->
 </section>
 <!-- Product Reviews Section End -->
@@ -364,9 +500,14 @@
             </div>
         </div>
         <div class="row">
+            <c:forEach items="${relaproducts}" var="rl">
+                <c:set var="price" value="${rl.price}"></c:set>
+                <c:set var="pricesale" value="${rl.price_sale}"></c:set>
+<%--                <%= Util.formatCurrency((double)pageContext.getAttribute("pricesale")) %>--%>
+<%--                <%= Util.formatCurrency((double)pageContext.getAttribute("price")) %>--%>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1_1.jpg">
+                    <div class="product__item__pic set-bg" data-setbg="${rl.img}">
                         <ul class="product__item__pic__hover">
                             <li><a href="#"><i class="fa fa-money"></i></a></li>
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -374,56 +515,12 @@
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">Cây hương thảo</a></h6>
-                        <h5>250.000 VNĐ</h5>
+                        <h6><a href="#">${rl.name}</a></h6>
+                        <h5><%= Util.formatCurrency((double)pageContext.getAttribute("pricesale")) %> <span> <%= Util.formatCurrency((double)pageContext.getAttribute("pricesale")) %> </span></h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1_2.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-money"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Xương rồng sen đá mini kèm chậu</a></h6>
-                        <h5>45.000 VNĐ <span>50.000 VNĐ</span></h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1_3.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-money"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Xương rồng trứng chim lớn</a></h6>
-                        <h5>29.000 VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1_4.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-money"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Xương rồng tai thỏ </a></h6>
-                        <h5>36.000 VNĐ</h5>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 </section>

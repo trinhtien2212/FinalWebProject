@@ -3,6 +3,7 @@ package vn.thegioicaycanh.model.user;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import vn.thegioicaycanh.model.notifications.Notifications;
+import vn.thegioicaycanh.model.order.Order;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -208,11 +209,39 @@ public class LoadUser {
         }
         return false;
     }
+    public static List<User> loadOrderCommentByIdUser(int idUser){
+        List<User> userList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT u.avarta,u.`name`,r.date_created,r.rating_type_id\t,r.`comment` FROM `user` u JOIN rating r on u.id=r.user_id WHERE r.pro_id=?");
+            preparedStatement.setString(1, String.valueOf(idUser));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    User user = new User();
+                    user.setAvatar(resultSet.getString(1));
+                    user.setName(resultSet.getString(2));
+                    user.setDate_created_commnent(resultSet.getDate(3));
+                    user.setRating_type_id(resultSet.getInt(4));
+                    user.setComment(resultSet.getString(5));
+                    userList.add(user);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return userList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return userList;
+    }
 
 
     public static void main(String[] args) {
 //        Syzstem.out.println(updateUserInAdimin(1,"sfdsa",324234,"name","Nam","20/12/2010","hung vuong","20/12/2020"));
         System.out.println(loadUserById(6));
+        for(User u:loadOrderCommentByIdUser(3)){
+            System.out.println(u.getComment()+"/"+u.getRating_type_id());
+        }
     }
 
 }

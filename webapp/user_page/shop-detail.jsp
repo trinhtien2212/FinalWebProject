@@ -395,7 +395,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="product-rating-overview__filters"><div class="product-rating-overview__filter product-rating-overview__filter--active product-rating-overview__filter--all">tất cả</div>
+        <div class="product-rating-overview__filters"><div class="product-rating-overview__filter product-rating-overview__filter--active product-rating-overview__filter--all">tất cả (${totalratestar})</div>
             <div class="product-rating-overview__filter">5 Sao (${prostar5.countstar})</div>
             <div class="product-rating-overview__filter">4 Sao (${prostar4.countstar})</div>
             <div class="product-rating-overview__filter">3 Sao (${prostar3.countstar})</div>

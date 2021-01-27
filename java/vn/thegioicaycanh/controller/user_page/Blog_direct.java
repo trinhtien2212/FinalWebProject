@@ -36,7 +36,7 @@ public class Blog_direct extends HttpServlet {
         request.setAttribute("direct_to","user_page/blog.jsp");
         request.setAttribute("title","Bài viết");
         request.setAttribute("home_page_data",new Home_page());
-
+        request.setAttribute("pages",pages);
         request.setAttribute("url",url);
 //        request.setAttribute("data", Blog_Con_DB.loadLimitBlog(1,10));
         request.setAttribute("newBlog",Blog_Con_DB.loadNewBlogs(12));

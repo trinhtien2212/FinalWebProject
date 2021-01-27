@@ -37,11 +37,14 @@ public class ShopDetail_direct extends HttpServlet {
         List<User> users= LoadUser.loadOrderCommentByIdUser(id);
         request.setAttribute("product",products);
 
+        int totalratestar=prostar5.getCountstar()+prostar4.getCountstar()+prostar3.getCountstar()+prostar2.getCountstar()+prostar1.getCountstar();
+
         request.setAttribute("prostar5",prostar5);
         request.setAttribute("prostar4",prostar4);
         request.setAttribute("prostar3",prostar3);
         request.setAttribute("prostar2",prostar2);
         request.setAttribute("prostar1",prostar1);
+        request.setAttribute("totalratestar",totalratestar);
         request.setAttribute("procountcomment",procountcomment);
         request.setAttribute("proavgstar",proavgstar);
         request.setAttribute("relaproducts",relaproducts);

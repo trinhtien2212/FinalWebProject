@@ -84,7 +84,7 @@
                                             <a href="add_ratingstype?type=enterEdit&id=${r.id}"class="table-action-btn btn btn-sm bg-success-light">
                                                 <i class="far fa-edit mr-1"></i>Sửa
                                             </a>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>
+<%--                                            <button onclick="{add_ratingstype?type=delete&id=${r.id}}" type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>--%>
                                         </td>
                                     </tr>
                                     </c:forEach>

@@ -162,6 +162,58 @@ public class Load_Order {
         }
         return orderList;
     }
+    // load trang danh sach don hang theo tinh trang (status=1..6) trong trang danh sach don hang
+    public static List<Order> loadOrderByIdUser(int idUser){
+        List<Order> orderList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select DISTINCT op.order_id id,p.`name`,od.date_created,sum(op.quantity) soluong FROM order_product op JOIN product p ON op.pro_id=p.id  JOIN `order` od on od.id=op.order_id JOIN `user` us on us.id=od.user_id WHERE us.id=? GROUP BY p.`name`,op.order_id,od.date_created");
+            preparedStatement.setString(1, String.valueOf(idUser));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Order order = new Order();
+                    order.setId(resultSet.getInt(1));
+                    order.setName_product(resultSet.getString(2));
+                    order.setDate_created(resultSet.getDate(3));
+                    order.setNumber_product(resultSet.getInt(4));
+                    orderList.add(order);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return orderList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return orderList;
+    }
+    public static List<Order> loadOrderStatusByIdUser(int idUser){
+        List<Order> orderList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT p.id,p.name,o.`status`,(sum(p.price * op.quantity)) AS total, o.date_created FROM \n" +
+                    "product p JOIN order_product op on p.id=op.pro_id JOIN `order` o on o.id=op.order_id JOIN `user` u on u.id=o.user_id\n" +
+                    "WHERE u.id=?");
+            preparedStatement.setString(1, String.valueOf(idUser));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Order order = new Order();
+                    order.setId(resultSet.getInt(1));
+                    order.setName_product(resultSet.getString(2));
+                    order.setStatus(resultSet.getInt(3));
+                    order.setTotal_pay(resultSet.getDouble(4));
+                    order.setDate_created(resultSet.getDate(5));
+                    orderList.add(order);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return orderList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return orderList;
+    }
     // Update tình trạng đơn hàng
     public  static boolean updateStatus(int id, String status){
         String sql = "UPDATE `order` SET `status` = ? WHERE id = ?";
@@ -183,7 +235,11 @@ public class Load_Order {
     public static void main(String[] args) {
 //        System.out.println(loadOrderFormSql("SELECT * FROM `order` "));
 //        System.out.println(loadOderByUserId(5));
-        System.out.println(loadOrder_view(2));
+//        System.out.println(loadOrder_view(2));
 //        System.out.println(loadOrderByStatus("2","2019-01-01","2020-05-08"));
+//        System.out.println(loadOderByUserId(3).size());
+        for(Order o:loadOrderByIdUser(3)){
+            System.out.println(o.getId()+"/"+o.getName_product()+"/"+o.getDate_created()+"/"+o.getNumber_product());
+        }
     }
 }

@@ -26,9 +26,25 @@ public class Order {
     private double total_pay;
     private int count_id;
     private double ship_price;
+    private String name_product;
+    private int number_product;
     public Order() {
     }
+    public String getName_product() {
+        return name_product;
+    }
 
+    public void setName_product(String name_product) {
+        this.name_product = name_product;
+    }
+
+    public int getNumber_product() {
+        return number_product;
+    }
+
+    public void setNumber_product(int number_product) {
+        this.number_product = number_product;
+    }
     public int getId() {
         return id;
     }

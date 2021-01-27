@@ -2,6 +2,7 @@ package vn.thegioicaycanh.model.Product;
 
 import com.mysql.jdbc.JDBC4PreparedStatement;
 import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
+import vn.thegioicaycanh.model.order.Order;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -336,6 +337,30 @@ public static void vidu(String s){
         }
         return false;
     }
+    public static List<Product> loadFavorateByIdUser(int idUser){
+        List<Product> productList = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT p.id,p.`name`,p.date_created FROM product p join favorist_list f on p.id=f.pro_id join `user` u on u.id=f.user_id\n" +
+                    "WHERE u.id=?");
+            preparedStatement.setString(1, String.valueOf(idUser));
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Product product = new Product();
+                    product.setId(resultSet.getInt(1));
+                    product.setName(resultSet.getString(2));
+                    product.setDate_created(resultSet.getDate(3));
+                    productList.add(product);
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return productList;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return productList;
+    }
 
     public static void main(String[] args) throws SQLException {
 //        String s= "Shopping_sorted_By_Price_Direct".toLowerCase();
@@ -352,12 +377,13 @@ public static void vidu(String s){
 //        System.out.println(list1);
 
 //        List<Product> products = loadProductBy("%", "cay thuong xuan", "%", "2020-01-15", "2021-01-22");
-            Statement statement = DBCPDataSource.getStatement();
-            int i=statement.executeUpdate("insert into product(name,price,discription,content,supplier_id,type_weight,active,percent_sale,price_sale,category_id,quantity,is_sale,date_start_sale,date_end_sale,slug,img,date_created) value('cây ng? hành',23659.0,'','<p>&nbsp;</p>\\r\\n\\r\\n<div class=\"eJOY__extension_root_class\" id=\"eJOY__extension_root\" style=\"all:unset\">&nbsp;</div>',23,1,1,0,0.0,1,15,0,'20200221','20200221','cay-ngu-hanh','imgs/products/default_img.png','2021-01-23 16:10:59')");
-        System.out.println(i);
+//            Statement statement = DBCPDataSource.getStatement();
+//            int i=statement.executeUpdate("insert into product(name,price,discription,content,supplier_id,type_weight,active,percent_sale,price_sale,category_id,quantity,is_sale,date_start_sale,date_end_sale,slug,img,date_created) value('cây ng? hành',23659.0,'','<p>&nbsp;</p>\\r\\n\\r\\n<div class=\"eJOY__extension_root_class\" id=\"eJOY__extension_root\" style=\"all:unset\">&nbsp;</div>',23,1,1,0,0.0,1,15,0,'20200221','20200221','cay-ngu-hanh','imgs/products/default_img.png','2021-01-23 16:10:59')");
+//        System.out.println(i);
 
 //        List<Product>products = loadProductBy("%","cay thuong xuan","%","2020-01-15","2021-01-22");
-        System.out.println(getNameProductById(3));
+//        System.out.println(getNameProductById(3));
+        System.out.println(loadFavorateByIdUser(3).size());
     }
 
 }

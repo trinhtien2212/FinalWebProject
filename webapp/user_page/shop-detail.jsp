@@ -83,7 +83,7 @@
                     <a href="#" class="primary-btn">MUA NGAY</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
-                        <li><b>Trình trạng hàng</b> <span><c:if test="${product.active}">còn hàng</c:if><c:if test="${!product.active}">hết hàng</c:if></span></li>
+                        <li><b>Trình trạng hàng</b> <span><c:if test="${product.active}">Còn hàng</c:if><c:if test="${!product.active}">Hết hàng</c:if></span></li>
                         <li><b>Giao hàng</b> <span>Giao hàng trong ngày. <samp>Miễn phí vận chuyển</samp></span></li>
                         <li><b>Cân nặng</b> <span>0.5 kg</span></li>
                         <li><b>Chia sẻ</b>
@@ -268,7 +268,7 @@
         <i>Nhận xét:</i>Giao hàng nhanh...đóng gói cẩn thận..<br>
         <div class="containhuuich" >
             <div class="huuich">
-                <i>="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>
+                <i>="class="fa fa-thumbs-up"></i> <i style="color: #7fad39;">Hữu ích (5)</i>
             </div>
             <i style="float: left;margin-left: 5px;color:#7fad39 ;padding-top: 2px;cursor: pointer;">Gửi trả lời</i>
         </div>

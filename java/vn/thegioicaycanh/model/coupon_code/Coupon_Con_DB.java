@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Coupon_Con_DB {
@@ -66,7 +67,7 @@ public class Coupon_Con_DB {
             couponcode.setName(resultSet.getString(2));
             couponcode.setCoupon_code_type_id(resultSet.getInt(3));
             couponcode.setPercent(resultSet.getInt(4));
-            couponcode.setDiscription(resultSet.getString(5));
+            couponcode.setDescription(resultSet.getString(5));
             couponcode.setCode(resultSet.getString(6));
             return couponcode;
 
@@ -136,11 +137,82 @@ public class Coupon_Con_DB {
         }
         return couponCodes;
     }
-    public static void main(String[] args) {
-        for (CouponCode c : loadCouponCode_view()
-        ) {
-            System.out.println(c.getCoupon_code_type_name());
+    // Load ma giam gia bang ID
+    public static CouponCode loadCouponCodeById(int coupon_id){
+        CouponCode couponCode = new CouponCode();
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT * FROM coupon_code WHERE id = ?");
+            preparedStatement.setInt(1,coupon_id);
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    couponCode.setId(resultSet.getInt(1));
+                    couponCode.setName(resultSet.getString(2));
+                    couponCode.setCoupon_code_type_id(resultSet.getInt(3));
+                    couponCode.setPercent(resultSet.getInt(4));
+                    couponCode.setDescription(resultSet.getString(5));
+                    couponCode.setCode(resultSet.getString(6));
+                    couponCode.setDate_start(resultSet.getDate(7));
+                    couponCode.setDate_end(resultSet.getDate(8));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
         }
+        return couponCode;
+    }
+    // Them ma giam gia o trang admin
+    public static boolean insertCouponCode(String name,int coupon_code_type_id, int percent, String description, String code, String date_start, String date_end){
+        String sql = "INSERT INTO coupon_code(`name`,coupon_code_type_id, percent, description, code, date_start, date_end) VALUES (?,?,?,?,?,?,?)";
+        int update=0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, coupon_code_type_id);
+            preparedStatement.setInt(3, percent);
+            preparedStatement.setString(4,description);
+            preparedStatement.setString(5, code);
+            preparedStatement.setString(6,date_start);
+            preparedStatement.setString(7, date_end);
+            synchronized (preparedStatement){
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    // Sua ma giam gia
+    public static boolean updateCouponCode(int id, String name, int coupon_code_type_id, int percent, String description, String code, String date_start, String date_end){
+        String sql = "UPDATE coupon_code SET name = ?, coupon_code_type_id = ?, percent = ?, description = ?, code = ?, date_start = ?, date_end = ? WHERE id = ?";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, coupon_code_type_id);
+            preparedStatement.setInt(3, percent);
+            preparedStatement.setString(4,description);
+            preparedStatement.setString(5, code);
+            preparedStatement.setString(6,date_start);
+            preparedStatement.setString(7, date_end);
+            preparedStatement.setInt(8, id);
+            synchronized (preparedStatement) {
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(loadCouponCodeById(1));
     }
 
     public static int[] checkSubMoney(int user_id, String code,int coupon_code_type_id) {

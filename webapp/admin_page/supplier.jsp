@@ -48,10 +48,10 @@
 						<h3 class="page-title">Nhà cung cấp</h3>
 					</div>
 					<div class="col-auto text-right">
-						<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
-							<i class="fas fa-filter"></i>
-						</a>
-						<a href="add-service-list.html" class="btn btn-primary add-button ml-3">
+<%--						<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">--%>
+<%--							<i class="fas fa-filter"></i>--%>
+<%--						</a>--%>
+						<a href="add-supplier?type=enteradd" class="btn btn-primary add-button ml-3">
 							<i class="fas fa-plus"></i>
 						</a>
 					</div>
@@ -112,7 +112,7 @@
 									<thead>
 									<tr>
 										<th>ID</th>
-										<th>Hình</th>
+<%--										<th>Hình</th>--%>
 										<th>Tên nhà cung cấp</th>
 										<th>Địa chỉ</th>
 										<th>Điện thoại</th>
@@ -124,15 +124,17 @@
 									<c:forEach items="${sup_view}" var="su">
 									<tr>
 										<td>${su.id}</td>
-										<td><img class="rounded service-img mr-1" src="${su.logo}" alt="Hình ảnh danh mục"></td>
+<%--										<td><img class="rounded service-img mr-1" src="${su.logo}" alt="Hình ảnh danh mục"></td>--%>
 										<td>${su.name}</td>
 										<td>${su.address}</td>
 										<td>${su.phone}</td>
 										<td>${su.email}</td>
 										<td class="text-right">
-											<a href="edit-service-list.html" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Sửa</a>
-											<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>
-
+											<a href="add-supplier?type=enterEdit&id=${su.id}" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Sửa</a>
+<%--&lt;%&ndash;											<button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i> Xóa</button>&ndash;%&gt;--%>
+<%--											<a href="add-supplier?type=delete&id=${r.id}" style="margin-top: 5px;color: red "--%>
+<%--											   class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i>--%>
+<%--												Xóa</a>--%>
 										</td>
 									</tr>
 									</c:forEach>

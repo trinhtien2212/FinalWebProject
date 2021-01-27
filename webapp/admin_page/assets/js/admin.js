@@ -192,9 +192,13 @@ $(document).ready(function () {
 	$('#formPass').submit(function (e) {
 		e.preventDefault();
 		let passwd = $('#passwd').val();
+		let pass_again = $('#pass-again').val();
+		let checkpass = false;
+		let checkpass_again = false;
 		if (passwd.length < 8) {
 			$('#mk-notice').addClass("visible");
 			$('#mk-notice').removeClass("invisible");
+			checkpass=false;
 		}
 		let up = false,
 			num = false;
@@ -207,21 +211,27 @@ $(document).ready(function () {
 				num = true;
 			}
 		}
+
+		if (passwd == pass_again) {
+			$('#mka-notice').removeClass("visible");
+			$('#mka-notice').addClass("invisible");
+			checkpass_again=true;
+		} else {
+			$('#mka-notice').addClass("visible");
+			$('#mka-notice').removeClass("invisible");
+		}
 		if (num == false || up == false) {
 			$('#mk-notice').addClass("visible");
 			$('#mk-notice').removeClass("invisible");
 
-		} else
+		} else{
+			$('#mk-notice').addClass("invisible");
+			$('#mk-notice').removeClass("visible");
+			checkpass=true;
+		}
+		if(checkpass==true && checkpass_again==true){
 			$(this).unbind('submit').submit();
-	});
-	$('#formPass').submit(function (e) {
-		e.preventDefault();
-		let pass = $('#passwd').val();
-		let pass_again = $('#pass-again').val();
-		if (pass == pass_again) {
-			$(this).unbind('submit').submit();
-		} else
-			$('#mka-notice').addClass("visible");
-		$('#mka-notice').removeClass("invisible");
+		}
+
 	});
 });

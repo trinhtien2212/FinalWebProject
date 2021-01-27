@@ -1,3 +1,4 @@
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -32,16 +33,19 @@
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs tab">
                 <li class="nav-item">
-                    <a href="#profile" data-target="#profile" data-toggle="tab" class="nav-link active nav-link-2">Tài Khoản</a>
+                    <a href="#profile" data-target="#profile" data-toggle="tab" class="nav-link active nav-link-2">Tài
+                        Khoản</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#messages" data-target="#messages" data-toggle="tab" class="nav-link nav-link-2">Đổi Mật Khẩu</a>
+                    <a href="#messages" data-target="#messages" data-toggle="tab" class="nav-link nav-link-2">Đổi Mật
+                        Khẩu</a>
                 </li>
                 <li class="nav-item">
                     <a href="#edit" data-target="#edit" data-toggle="tab" class="nav-link nav-link-2">Đơn Hàng</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#my-coupon-code" data-target="#my-coupon-code" data-toggle="tab" class="nav-link nav-link-2">Mã khuyến
+                    <a href="#my-coupon-code" data-target="#my-coupon-code" data-toggle="tab"
+                       class="nav-link nav-link-2">Mã khuyến
                         mãi</a>
                 </li>
                 <li class="nav-item">
@@ -112,7 +116,8 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label">Quận/ Huyện: <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="district" name="district" value="${sessionScope.district}"
+                                            <input type="text" id="district" name="district"
+                                                   value="${sessionScope.district}"
                                                    placeholder="Quận/ Huyện"
                                                    class="validate[required,custom[email]] form-control input-sm">
                                         </div>
@@ -133,7 +138,8 @@
                                     <div class="row">
                                         <label class="col-md-3 control-label">Địa chỉ chi tiết: <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="address" name="address" value="${sessionScope.detail}"
+                                            <input type="text" id="address" name="address"
+                                                   value="${sessionScope.detail}"
                                                    placeholder="Địa chỉ chi tiết"
                                                    class="validate[required] form-control input-sm">
                                         </div>
@@ -212,38 +218,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <a href="order-detail.html">673617832</a>
-                                </td>
-                                <td>30/10/2020</td>
-                                <td>90.000 VNĐ</td>
-                                <td>Giao hàng thành công</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#">219844147</a>
-                                </td>
-                                <td>12/04/2020</td>
-                                <td>156.000 VNĐ</td>
-                                <td>Giao hàng thành công</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#">972084147</a>
-                                </td>
-                                <td>09/09/2019</td>
-                                <td>350.000 VNĐ</td>
-                                <td>Đã hủy</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="/sales/order/view/404252736">404252736</a>
-                                </td>
-                                <td>14/04/2018</td>
-                                <td>172.000 VNĐ</td>
-                                <td>Đã hủy</td>
-                            </tr>
+                            <c:forEach items="${sessionScope.order}" var="o">
+                                <tr>
+                                    <td>
+                                        <a href="order-detail.html">${o.id}</a>
+                                    </td>
+                                    <td>${o.date_created}</td>
+                                    <td>${o.total_pay}</td>
+                                    <td>
+                                        <c:if test="${o.status==1}">Đã hủy </c:if>
+                                        <c:if test="${o.status==2}">Bị từ chối </c:if>
+                                        <c:if test="${o.status==3}">Đang xử lí </c:if>
+                                        <c:if test="${o.status==4}">Đang đóng gói </c:if>
+                                        <c:if test="${o.status==5}">Đang vận chuyển </c:if>
+                                        <c:if test="${o.status==6}">Thành công </c:if>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -275,21 +266,21 @@
                 <div class="tab-pane " id="like">
                     <div class="row">
                         <c:forEach items="${sessionScope.favorite}" var="f">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="${f.img}">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">${f.name}</a></h6>
-                                    <h5>${f.price}</h5>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="${f.img}">
+                                        <ul class="product__item__pic__hover">
+                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6><a href="#">${f.name}</a></h6>
+                                        <h5>${f.price}</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </c:forEach>
                     </div>
                 </div>

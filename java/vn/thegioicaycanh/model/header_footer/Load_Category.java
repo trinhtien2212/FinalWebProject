@@ -72,10 +72,68 @@ public class Load_Category {
         return null;
     }
 
-    public static void main(String[] args) {
-        List<Category>c = loadCategory_view();
-        for(Category c1:c){
-            System.out.println(c1);
+    public static Category loadCategoryById(int cate_id){
+        Category category = new Category();
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT c.id, c.name, c.slug, count(p.id) FROM categories c JOIN product p ON c.id = p.category_id WHERE c.id = ?");
+            preparedStatement.setInt(1,cate_id);
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    category.setId(resultSet.getInt(1));
+                    category.setName(resultSet.getString(2));
+                    category.setSlug(resultSet.getString(3));
+                    category.setNumOfProduct(resultSet.getInt(4));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
         }
+        return category;
+    }
+    // Them danh muc o trang admin
+    public static boolean insertCategory(String name, int active, String slug){
+        String sql = "INSERT INTO categories(name,active,slug) value (?,?,?)";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, active);
+            preparedStatement.setString(3, slug);
+            synchronized (preparedStatement){
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    // Sua danh muc o trang admin
+    public  static boolean updateCategory(int id, String name, int active, String slug){
+        String sql = "UPDATE categories SET name = ?, active = ?, slug = ? WHERE id = ?";
+        int update = 0;
+        try{
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, active);
+            preparedStatement.setString(3, slug);
+            preparedStatement.setInt(4,id);
+            synchronized (preparedStatement) {
+                update = preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            return update == 1;
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+//        System.out.println(insertCategory("Cây ăn quả",0,"cay-an-qua"));
     }
 }

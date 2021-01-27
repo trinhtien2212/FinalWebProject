@@ -9,6 +9,8 @@ import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType;
 import vn.thegioicaycanh.model.coupon_code_type.CouponCodeType_Con_DB;
 import vn.thegioicaycanh.model.favorist_list.FavoristList;
 import vn.thegioicaycanh.model.favorist_list.Favorist_list_Con_DB;
+import vn.thegioicaycanh.model.order.Load_Order;
+import vn.thegioicaycanh.model.order.Order;
 import vn.thegioicaycanh.model.user.LoadUser;
 import vn.thegioicaycanh.model.user.User;
 import vn.thegioicaycanh.model.user_code.UserCode;
@@ -46,6 +48,9 @@ public class User_direct extends HttpServlet {
             for(CouponCode c: couponCodes){
                 System.out.println(c.getName());
             }
+            // Don hang cua toi
+            List<Order> orders = Load_Order.loadOderByUserId(user.getId());
+            session.setAttribute("order",orders);
             // San pham yeu thich
             List<Product> favoristLists = ProductEntity.loadFavoriteProduct(user.getId());
             session.setAttribute("favorite", favoristLists);

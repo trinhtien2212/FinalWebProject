@@ -59,13 +59,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <form action="view_order" method="post">
                             <div class="card-header" data-toggle="collapse" data-target="#gener-info" role="button"
                                  aria-expanded="false" aria-controls="gener-info">
                                 <h4 class="card-title">Thông tin chung</h4>
                             </div>
                             <div class="collapse card-body" id="gener-info">
-                                <form action="#">
+                                <form action="view_order" method="post">
+
+                                    <div class="form-group" style="display: none">
+                                        <input class="form-control" type="text" value="add" name="type">
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-md-3">Mã đơn hàng</label>
                                         <div class="col-md-9">
@@ -127,11 +130,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-
-                                        <c:if test="${type==null}">
-                                            <div class="form-group" style="display: none">
-                                                <input class="form-control" type="text" value="add" name="type">
-                                            </div>
                                             <label class="col-md-3">Trạng thái đơn hàng</label>
                                             <select class="form-control select col-md-9" name="status">
                                                 <option disabled>Tình trạng đơn hàng</option>
@@ -154,12 +152,9 @@
                                                     Thành công
                                                 </option>
                                             </select>
-                                            <div class="col-md-3">
-                                                <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                            </div>
-                                        </c:if>
-
-
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
                                     </div>
                                 </form>
                             </div>

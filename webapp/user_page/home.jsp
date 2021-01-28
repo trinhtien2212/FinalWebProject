@@ -53,7 +53,7 @@
                         </div>
                         <ul>
                             <c:forEach var="cate" items="${applicationScope.category}">
-                            <li><a href="/${cate.slug}">${cate.name}</a></li>
+                            <li><a href="shopping?cate_id=${cate.id}">${cate.name}</a></li>
                             </c:forEach>
                         </ul>
                     </div>

@@ -23,7 +23,12 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 
-<body>
+<body
+        <c:if test="${position != null}">
+            <c:out value="Co vo"></c:out>
+            onload="load(${position})"
+        </c:if>
+>
 
 <jsp:include page="Menu.jsp"></jsp:include>
 

@@ -187,6 +187,7 @@
                 <div class="row">
                     <c:forEach var="sgd" items="${data}">
                         <c:set var="p" value="${sgd.price}"></c:set>
+                        <c:set var="p_s" value="${sgd.price_sale}"></c:set>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="${sgd.img}">
@@ -200,7 +201,11 @@
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="shop-details.html">${sgd.name}</a></h6>
+                                <c:if test="${sgd.is_sale==true}">
+                                    <span style="text-decoration: line-through"><%= Util.formatCurrency((double)pageContext.getAttribute("p_s")) %></span>
+                                </c:if>
                                 <h5><%= Util.formatCurrency((double)pageContext.getAttribute("p")) %></h5>
+
                             </div>
                         </div>
                     </div>

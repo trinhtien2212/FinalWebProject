@@ -24,44 +24,7 @@
     </a>
 
     <ul class="nav user-menu">
-        <!-- Notifications -->
-        <li class="nav-item dropdown noti-dropdown">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <i class="far fa-bell"></i> <span class="badge badge-pill"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right notifications">
-                <div class="topnav-dropdown-header">
-                    <span class="notification-title">Thông Báo</span>
-                    <a href="javascript:void(0)" class="clear-noti"> xóa tất cả </a>
-                </div>
-                <div class="noti-content">
-                    <ul class="notification-list">
-                        <li class="notification-message">
-                            <a href="admin-notification.html">
-                                <div class="media">
-												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt=""
-                                                         src="assets/img/customer/ong.jpg">
-												</span>
-                                    <div class="media-body">
-                                        <p class="noti-details">
-                                            <span class="noti-title">Ung Thành Vũ đã gửi phản hồi</span>
-                                        </p>
-                                        <p class="noti-time">
-                                            <span class="notification-time">15 Tháng Chín 2020 10:20</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="topnav-dropdown-footer">
-                    <a href="admin-notification.html">Tất cả Thông báo</a>
-                </div>
-            </div>
-        </li>
-        <!-- /Notifications -->
+
         <!-- User Menu -->
         <li class="nav-item dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
@@ -73,7 +36,7 @@
 						</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="admin">Thông tin cá nhân</a>
+                <a class="dropdown-item" href="../user">Thông tin cá nhân</a>
                 <a class="dropdown-item" href="../handle-login?logout=true">Đăng xuất</a>
             </div>
         </li>
@@ -152,10 +115,6 @@
                                <c:if test="${current_page=='supplier'}">class="active"</c:if>>Nhà cung cấp</a></li>
 
                     </ul>
-                </li>
-                <li <c:if test="${current_page=='user-info'}">class="active"</c:if>>
-                    <a href="admin"><i class="fas fa-user-plus"></i>
-                        <span>Thông tin cá nhân</span></a>
                 </li>
                 <li <c:if test="${current_page=='setting'}">class="active"</c:if>>
                     <a href="setting"><i class="fas fa-cog"></i> <span>Thiết lập</span></a>

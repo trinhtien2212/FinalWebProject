@@ -63,7 +63,7 @@
                         <div class="card-body">
 
                             <!-- Form -->
-                            <form action="add-admin" method="post" accept-charset="UTF-8">
+                            <form action="add-admin" method="post" accept-charset="UTF-8" id="login-form">
                                 <c:if test="${type=='add'}">
                                     <div class="form-group" style="display: none">
                                         <input class="form-control" type="text" value="add" name="type">
@@ -72,7 +72,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Tên</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" name="name">
+                                            <input type="text" class="form-control" name="name" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -84,13 +84,14 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Mật khẩu</label>
                                         <div class="col-md-10">
-                                            <input type="password" class="form-control" name="pass">
+                                            <input id="pass" type="password" required class="form-control" name="pass">
+                                            <label style="color: red" id="pw-notice">Mật khẩu phải dài từ 8 kí tự và chứa cả chữ in hoa và số</label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Điện thoại</label>
                                         <div class="col-md-10">
-                                            <input type="number" class="form-control" name="phone">
+                                            <input type="tel" class="form-control" name="phone" required>
                                         </div>
                                     </div>
 
@@ -112,19 +113,19 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Ngày sinh</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="date" value="" name="birthday">
+                                            <input class="form-control" type="date" value="" name="birthday" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Địa chỉ</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" name="address">
+                                            <input type="text" class="form-control" name="address" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Quyền</label><br>
                                         <div class="col-md-10">
-                                            <select class="form-control select" name="role_id">
+                                            <select class="form-control select" name="role_id" required>
                                                 <option disabled>Chọn quyền</option>
                                                 <option value="1">Người dùng</option>
                                                 <option value="2">Admin</option>
@@ -133,7 +134,7 @@
                                         </div>
                                     </div>
                                     <div class="status-toggle">
-                                        <label>Hiển thị</label>
+                                        <label>Kích hoạt</label>
                                         <input id="rating_2" class="check" name="active" value="true" type="checkbox"
                                                checked>
                                         <label for="rating_2" class="checktoggle">checkbox</label>
@@ -145,7 +146,7 @@
                                 </c:if>
                                 <c:if test="${type=='edit'}">
                                     <div class="form-group" style="display: none">
-                                        <input class="form-control" type="text" value="edit" name="type">
+                                        <input class="form-control" type="text" value="edit" name="type" >
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">ID</label>
@@ -157,26 +158,20 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Tên</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" name="name" value="${user.name}">
+                                            <input type="text" class="form-control" required name="name" value="${user.name}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Email</label>
                                         <div class="col-md-10">
-                                            <input type="email" class="form-control" name="email" value="${user.email}">
+                                            <input type="email"  required class="form-control" name="email" value="${user.email}">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-2">Mật khẩu</label>
-                                        <div class="col-md-10">
-                                            <input type="password" class="form-control" name="pass"
-                                                   placeholder="Đổi mật khẩu?">
-                                        </div>
-                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Điện thoại</label>
                                         <div class="col-md-10">
-                                            <input type="number" class="form-control" name="phone"
+                                            <input type="tel" class="form-control" name="phone" required
                                                    value="${user.phone}">
                                         </div>
                                     </div>
@@ -206,20 +201,20 @@
                                         <div class="col-md-10">
                                             <input class="form-control" type="date"
                                                    value="<%=Util.dateFormatNoTime((Date)pageContext.getAttribute("birthday"))%>"
-                                                   name="birthday">
+                                                   name="birthday" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Địa chỉ</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="address"
-                                                   value="${user.address}">
+                                                   value="${user.address}" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Quyền</label><br>
                                         <div class="col-md-10">
-                                            <select class="form-control select" name="role_id">
+                                            <select class="form-control select" name="role_id" required>
                                                 <option disabled>Chọn quyền</option>
                                                 <option value="1" <c:if test="${user.role_id==1}">selected</c:if>>Người
                                                     dùng
@@ -234,7 +229,7 @@
                                         </div>
                                     </div>
                                     <div class="status-toggle">
-                                        <label class="col-form-label col-md-2">Hiển thị</label>
+                                        <label class="col-form-label col-md-2">Kích hoạt</label>
                                         <div class="col-md-10">
                                             <input id="rating_2" class="check" name="active" value="true"
                                                    type="checkbox"

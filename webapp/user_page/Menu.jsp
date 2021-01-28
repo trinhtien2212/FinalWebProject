@@ -59,46 +59,46 @@
             <%--            <c:set var="page_menu" scope="request" value="${requestScope.page_menu}"></c:set>--%>
             <c:choose>
                 <c:when test="${page_menu=='home'}">
-                    <li class="active"><a href="./home">Trang Chủ</a></li>
-                    <li><a href="./direct?page_menu=discount">Giảm giá</a></li>
-                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li class="active"><a href="home">Trang Chủ</a></li>
+                    <li><a href="shopping-sale">Giảm giá</a></li>
+                    <li><a href="shopping">Mua Sắm</a></li>
+                    <li><a href="blog">Bài Viết</a></li>
+                    <li><a href="contact">Liên Hệ</a></li>
                 </c:when>
                 <c:when test="${page_menu=='discount'}">
-                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                    <li class="active"><a href="/home?page_menu=discount">Giảm giá</a></li>
-                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li ><a href="home">Trang Chủ</a></li>
+                    <li class="active"><a href="shopping-sale">Giảm giá</a></li>
+                    <li><a href="shopping">Mua Sắm</a></li>
+                    <li><a href="blog">Bài Viết</a></li>
+                    <li><a href="contact">Liên Hệ</a></li>
                 </c:when>
                 <c:when test="${page_menu=='shopping'}">
-                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                    <li class="active"><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li ><a href="home">Trang Chủ</a></li>
+                    <li><a href="shopping-sale">Giảm giá</a></li>
+                    <li class="active"><a href="shopping">Mua Sắm</a></li>
+                    <li><a href="blog">Bài Viết</a></li>
+                    <li><a href="contact">Liên Hệ</a></li>
                 </c:when>
                 <c:when test="${page_menu=='blog'}">
-                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li class="active"><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li ><a href="home">Trang Chủ</a></li>
+                    <li><a href="shopping-sale">Giảm giá</a></li>
+                    <li><a href="shopping">Mua Sắm</a></li>
+                    <li class="active"><a href="blog">Bài Viết</a></li>
+                    <li><a href="contact">Liên Hệ</a></li>
                 </c:when>
                 <c:when test="${page_menu=='contact'}">
-                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li ><a href="home">Trang Chủ</a></li>
+                    <li><a href="shopping-sale">Giảm giá</a></li>
+                    <li><a href="shopping">Mua Sắm</a></li>
+                    <li><a href="blog">Bài Viết</a></li>
+                    <li class="active"><a href="contact">Liên Hệ</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                    <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                    <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                    <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                    <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                    <li ><a href="home">Trang Chủ</a></li>
+                    <li><a href="shopping-sale">Giảm giá</a></li>
+                    <li><a href="shopping">Mua Sắm</a></li>
+                    <li><a href="blog">Bài Viết</a></li>
+                    <li><a href="contact">Liên Hệ</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -180,46 +180,46 @@
                         <c:set var="page_menu" scope="request" value="${requestScope.page_menu}"></c:set>
                         <c:choose>
                             <c:when test="${page_menu=='home'}">
-                                <li class="active"><a href="./home">Trang Chủ</a></li>
-                                <li><a href="./direct?page_menu=discount">Giảm giá</a></li>
-                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li class="active"><a href="home">Trang Chủ</a></li>
+                                <li><a href="shopping-sale">Giảm giá</a></li>
+                                <li><a href="shopping">Mua Sắm</a></li>
+                                <li><a href="blog">Bài Viết</a></li>
+                                <li><a href="contact">Liên Hệ</a></li>
                             </c:when>
                             <c:when test="${page_menu=='discount'}">
-                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                                <li class="active"><a href="/home?page_menu=discount">Giảm giá</a></li>
-                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li ><a href="home">Trang Chủ</a></li>
+                                <li class="active"><a href="shopping-sale">Giảm giá</a></li>
+                                <li><a href="shopping">Mua Sắm</a></li>
+                                <li><a href="blog">Bài Viết</a></li>
+                                <li><a href="contact">Liên Hệ</a></li>
                             </c:when>
                             <c:when test="${page_menu=='shopping'}">
-                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                                <li class="active"><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li ><a href="home">Trang Chủ</a></li>
+                                <li><a href="shopping-sale">Giảm giá</a></li>
+                                <li class="active"><a href="shopping">Mua Sắm</a></li>
+                                <li><a href="blog">Bài Viết</a></li>
+                                <li><a href="contact">Liên Hệ</a></li>
                             </c:when>
                             <c:when test="${page_menu=='blog'}">
-                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li class="active"><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li ><a href="home">Trang Chủ</a></li>
+                                <li><a href="shopping-sale">Giảm giá</a></li>
+                                <li><a href="shopping">Mua Sắm</a></li>
+                                <li class="active"><a href="blog">Bài Viết</a></li>
+                                <li><a href="contact">Liên Hệ</a></li>
                             </c:when>
                             <c:when test="${page_menu=='contact'}">
-                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li class="active"><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li ><a href="home">Trang Chủ</a></li>
+                                <li><a href="shopping-sale">Giảm giá</a></li>
+                                <li><a href="shopping">Mua Sắm</a></li>
+                                <li><a href="blog">Bài Viết</a></li>
+                                <li class="active"><a href="contact">Liên Hệ</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li ><a href="/direct?page_menu=home">Trang Chủ</a></li>
-                                <li><a href="/direct?page_menu=discount">Giảm giá</a></li>
-                                <li><a href="/direct?page_menu=shopping">Mua Sắm</a></li>
-                                <li><a href="/direct?page_menu=blog">Bài Viết</a></li>
-                                <li><a href="/direct?page_menu=contact">Liên Hệ</a></li>
+                                <li ><a href="home">Trang Chủ</a></li>
+                                <li><a href="shopping-sale">Giảm giá</a></li>
+                                <li><a href="shopping">Mua Sắm</a></li>
+                                <li><a href="blog">Bài Viết</a></li>
+                                <li><a href="contact">Liên Hệ</a></li>
                             </c:otherwise>
                         </c:choose>
                     </ul>

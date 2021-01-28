@@ -1,3 +1,4 @@
+<%@ page import="vn.thegioicaycanh.model.util.Util" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -34,7 +35,6 @@
 
 </head>
 
-<body>
 <div class="main-wrapper">
     <jsp:include page="menu.jsp"></jsp:include>
 
@@ -59,176 +59,97 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                            <div class="card-header" data-toggle="collapse" data-target="#gener-info" role="button"
-                                 aria-expanded="false" aria-controls="gener-info">
-                                <h4 class="card-title">Thông tin chung</h4>
-                            </div>
-                            <div class="collapse card-body" id="gener-info">
-                                <form action="view_order" method="post">
-                                    <c:if test="${type==null}">
-                                    <div class="form-group" style="display: none">
-                                        <input class="form-control" type="text" value="" name="type">
+                        <div class="card-header" data-toggle="collapse" data-target="#gener-info" role="button"
+                             aria-expanded="false" aria-controls="gener-info">
+                            <h4 class="card-title">Thông tin chung</h4>
+                        </div>
+                        <div class="collapse card-body" id="gener-info">
+                            <form action="view_order" method="post">
+
+                                <div class="form-group row" style="display: none">
+                                    <input class="form-control" type="text" value="${view_order.id}" name="id">
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Mã đơn hàng</label>
+                                    <div class="col-md-9">
+                                        ${view_order.id}
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Mã đơn hàng</label>
-                                        <div class="col-md-9">
-                                            ${view_order.id}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Ngày tạo</label>
+                                    <div class="col-md-9">
+                                        ${view_order.date_created}
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Ngày tạo</label>
-                                        <div class="col-md-9">
-                                            ${view_order.date_created}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Mã người mua</label>
+                                    <div class="col-md-9">
+                                        ${view_order.user_id}
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Mã người mua</label>
-                                        <div class="col-md-9">
-                                            customer-${view_order.user_id}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Người mua</label>
+                                    <div class="col-md-9">
+                                        ${view_order.user_name}
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Người mua</label>
-                                        <div class="col-md-9">
-                                            ${view_order.user_name}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Tổng tiền</label>
+                                    <div class="col-md-9">
+                                        <%=Util.formatCurrency((double)request.getAttribute("t_p"))%>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Tổng tiền</label>
-                                        <div class="col-md-9">
-                                            ${view_order.total_pay}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Tiền vận chuyển</label>
+                                    <div class="col-md-9">
+                                                <%=Util.formatCurrency((double)request.getAttribute("ship"))%>
+
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Tiền vận chuyển</label>
-                                        <div class="col-md-9">
-                                            ${view_order.ship_price}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Thành tiền</label>
+                                    <div class="col-md-9">
+                                                    <%=Util.formatCurrency((double)request.getAttribute("total"))%>
+
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Thành tiền</label>
-                                        <div class="col-md-9">
-                                            ${view_order.total_pay+view_order.ship_price}
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Phương thức thanh toán</label>
+                                    <div class="col-md-9">
+                                        <c:if test="${view_order.payment==true}">Tiền mặt</c:if>
+                                        <c:if test="${view_order.payment==false}">Thanh toán qua Momo</c:if>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3">Phương thức thanh toán</label>
-                                        <div class="col-md-9">
-                                            <c:if test="${view_order.payment==true}">Tiền mặt</c:if>
-                                            <c:if test="${view_order.payment==false}">Thanh toán qua Momo</c:if>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                            <label class="col-md-3">Trạng thái đơn hàng</label>
-                                            <select class="form-control select col-md-9" name="status">
-                                                <option disabled>Tình trạng đơn hàng</option>
-                                                <option value="1" <c:if test="${view_order.status==1}">selected</c:if>>
-                                                    Đã hủy
-                                                </option>
-                                                <option value="2" <c:if test="${view_order.status==2}">selected</c:if>>
-                                                    Bị từ chối
-                                                </option>
-                                                <option value="3" <c:if test="${view_order.status==3}">selected</c:if>>
-                                                    Đang xử lí
-                                                </option>
-                                                <option value="4" <c:if test="${view_order.status==4}">selected</c:if>>
-                                                    Đang đóng gói
-                                                </option>
-                                                <option value="5" <c:if test="${view_order.status==5}">selected</c:if>>
-                                                    Đang vận chuyển
-                                                </option>
-                                                <option value="6" <c:if test="${view_order.status==6}">selected</c:if>>
-                                                    Thành công
-                                                </option>
-                                            </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                    </div>
-                                    </c:if>
-                                    <c:if test="${type=='edit'}">
-                                        <div class="form-group" style="display: none">
-                                            <input class="form-control" type="text" value="edit" name="type">
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Mã đơn hàng</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.id}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Ngày tạo</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.date_created}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Mã người mua</label>
-                                            <div class="col-md-9">
-                                                customer-${view_order.user_id}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Người mua</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.user_name}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Tổng tiền</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.total_pay}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Tiền vận chuyển</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.ship_price}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Thành tiền</label>
-                                            <div class="col-md-9">
-                                                    ${view_order.total_pay+view_order.ship_price}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Phương thức thanh toán</label>
-                                            <div class="col-md-9">
-                                                <c:if test="${view_order.payment==true}">Tiền mặt</c:if>
-                                                <c:if test="${view_order.payment==false}">Thanh toán qua Momo</c:if>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">Trạng thái đơn hàng</label>
-                                            <select class="form-control select col-md-9" name="status">
-                                                <option disabled>Tình trạng đơn hàng</option>
-                                                <option value="1" <c:if test="${view_order.status==1}">selected</c:if>>
-                                                    Đã hủy
-                                                </option>
-                                                <option value="2" <c:if test="${view_order.status==2}">selected</c:if>>
-                                                    Bị từ chối
-                                                </option>
-                                                <option value="3" <c:if test="${view_order.status==3}">selected</c:if>>
-                                                    Đang xử lí
-                                                </option>
-                                                <option value="4" <c:if test="${view_order.status==4}">selected</c:if>>
-                                                    Đang đóng gói
-                                                </option>
-                                                <option value="5" <c:if test="${view_order.status==5}">selected</c:if>>
-                                                    Đang vận chuyển
-                                                </option>
-                                                <option value="6" <c:if test="${view_order.status==6}">selected</c:if>>
-                                                    Thành công
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        </div>
-                                    </c:if>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3">Trạng thái đơn hàng</label>
+                                    <select class="form-control select col-md-9" name="status">
+                                        <option disabled>Tình trạng đơn hàng</option>
+                                        <option value="1" <c:if test="${view_order.status==1}">selected</c:if>>
+                                            Đã hủy
+                                        </option>
+                                        <option value="2" <c:if test="${view_order.status==2}">selected</c:if>>
+                                            Bị từ chối
+                                        </option>
+                                        <option value="3" <c:if test="${view_order.status==3}">selected</c:if>>
+                                            Đang xử lí
+                                        </option>
+                                        <option value="4" <c:if test="${view_order.status==4}">selected</c:if>>
+                                            Đang đóng gói
+                                        </option>
+                                        <option value="5" <c:if test="${view_order.status==5}">selected</c:if>>
+                                            Đang vận chuyển
+                                        </option>
+                                        <option value="6" <c:if test="${view_order.status==6}">selected</c:if>>
+                                            Thành công
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                     <div class="card">
                         <div class="card-header" data-toggle="collapse" data-target="#customer-info" role="button"
@@ -282,11 +203,12 @@
                                     </thead>
                                     <tbody>
                                     <c:forEach var="lipro" items="${list_pro}">
+                                        <c:set var="p" value="${lipro.price}"></c:set>
                                         <tr>
                                             <td>${lipro.pro_id}</td>
                                             <td>${lipro.pro_name}</td>
                                             <td>${lipro.quantity}</td>
-                                            <td>${lipro.price}</td>
+                                            <td><%=Util.formatCurrency((double)pageContext.getAttribute("p"))%></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -301,6 +223,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -50,12 +50,18 @@
             <!-- /Page Header -->
 
             <ul class="nav nav-tabs menu-tabs">
-                <li class="nav-item active">
-                    <a class="nav-link">Thiết lập chung</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="setting-address">Địa chỉ</a>
-                </li>
+                <ul class="nav nav-tabs menu-tabs">
+                    <li class="nav-item active">
+                        <a class="nav-link">Thiết lập chung</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="setting-address">Địa chỉ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="term-and-condition">Điều khoản điều kiện</a>
+                    </li>
+
+                </ul>
 
             </ul>
 

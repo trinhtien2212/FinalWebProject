@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Trạng thái hoàn trả</label><br>
-                                        <select class="form-control select" name="status">
+                                        <select class="form-control select" name="status" required>
                                             <option disabled>Chọn Danh Mục</option>
                                             <option value="1" <c:if test="${warranty.status==1}">selected</c:if>>Chờ xử lí</option>
                                             <option value="2" <c:if test="${warranty.status==2}">selected</c:if>>Đã xử lí</option>
@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Mô tả</label>
-                                        <textarea style="height: 100px;" class="form-control" type="text">${warranty.message}</textarea>
+                                        <textarea disabled style="height: 100px;" class="form-control" type="text">${warranty.message}</textarea>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>

@@ -24,22 +24,26 @@ public class Handle_google_login extends HttpServlet {
 
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        User user_same_email = LoadUser.loadAUserByEmail(email);
+        User user_same_email = LoadUser.loadAUserByEmailGG_FB(email);
 
         //Kiem tra xem email da duoc dang ki chua
         if(user_same_email !=null){
-            Login_handle.notifyError(2,"Email đã được đăng kí, vui lòng đăng nhập bằng email khác!",request,response);
-            return;
-        }
-
-        //neu email chua duoc dang ki, luu email
-        boolean isSaved = LoadUser.saveUserLoginByFb_GG(email,name);
-        if(isSaved){
             Login_handle.deleteAvailableSession(request);
-            User user = LoadUser.loadAUserByEmail(email);
-            Login_handle.successLogin(request,response,user);
-        }else{
-           Login_handle.notifyError(2,"Đã xảy ra lỗi, vui lòng đăng nhập lại!",request,response);
+           Login_handle.successLogin(request,response,user_same_email);
+        }
+        else if(LoadUser.loadAUserByEmail(email)!=null){
+            Login_handle.notifyError(2,"Email đã được đăng kí, vui lòng đăng nhập",request,response);
+        }
+        else {
+            //neu email chua duoc dang ki, luu email
+            boolean isSaved = LoadUser.saveUserLoginByFb_GG(email, name);
+            if (isSaved) {
+                Login_handle.deleteAvailableSession(request);
+                User user = LoadUser.loadAUserByEmail(email);
+                Login_handle.successLogin(request, response, user);
+            } else {
+                Login_handle.notifyError(2, "Đã xảy ra lỗi, vui lòng đăng nhập lại!", request, response);
+            }
         }
 
     }

@@ -53,11 +53,37 @@ public class Load_ForgetPass {
         }
         return null;
     }
+    public static ForgetPass loadForgetPassByEmailKey(String email,String key){
+        ForgetPass fp=null;
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select * from forget_pass where email=? and key_forget=?");
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2,key);
+            System.out.println(preparedStatement.toString());
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    fp = new ForgetPass();
+                    fp.setEmail(resultSet.getString(1));
+                    fp.setUser_id(resultSet.getInt(2));
+                    fp.setKey_forget(resultSet.getString(3));
+                    fp.setDate_end(resultSet.getDate(4));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return fp;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public static boolean deleteForgetPassByKey(String key){
         boolean isDeleted=false;
         try {
             PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("delete from forget_pass where key_forget=?");
             preparedStatement.setString(1,key);
+            System.out.println("Delete: "+preparedStatement.toString());
             synchronized (preparedStatement){
                 isDeleted = preparedStatement.executeUpdate()==1;
             }
@@ -89,5 +115,30 @@ public class Load_ForgetPass {
 //        System.out.println(saveForgetPass(fp));
         updateNewPass(-801806291,1);
 
+    }
+
+    public static ForgetPass loadForgetPassByEmail(String email_forget_pass) {
+        ForgetPass fp=null;
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select * from forget_pass where email=?");
+            preparedStatement.setString(1,email_forget_pass);
+
+            synchronized (preparedStatement){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    fp = new ForgetPass();
+                    fp.setEmail(resultSet.getString(1));
+                    fp.setUser_id(resultSet.getInt(2));
+                    fp.setKey_forget(resultSet.getString(3));
+                    fp.setDate_end(resultSet.getDate(4));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+            return fp;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }

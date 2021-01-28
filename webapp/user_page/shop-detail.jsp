@@ -29,7 +29,12 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 
-<body>
+<body
+        <c:if test="${position != null}">
+            <c:out value="Co vo"></c:out>
+            onload="load(${position})"
+        </c:if>
+>
 <jsp:include page="Menu.jsp"></jsp:include>
 <jsp:include page="search_bar.jsp"></jsp:include>
 <!-- Product Details Section Begin -->
@@ -164,17 +169,13 @@
                     <!-- <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                         vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                         quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p> -->
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn" style="background-color: #7fad3926;color: #7fad39;border: 1px solid  #7fad39;"><i style="color: #7fad39 ;font-size: 15px;" class="fa fa-cart-plus"></i>THÊM VÀO GIỎ HÀNG</a>
-                    <a href="#" class="primary-btn">MUA NGAY</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                    <ul>
+
+                    <a  class="addCart cursor-pointer primary-btn" data-current_page="shop-detail" data-pro_id="${id}" style="background-color: #7fad3926;color: #7fad39;border: 1px solid  #7fad39;"><i style="color: #7fad39 ;font-size: 15px;" class="fa fa-cart-plus"></i>THÊM VÀO GIỎ HÀNG</a>
+                    <a  class="fast-checkout cursor-pointer primary-btn" data-pro_id="${id}">MUA NGAY</a>
+                    <c:if test="${sessionScope.user_id!=null}">
+                    <a class="addFa cursor-pointer heart-icon" data-current_page="shop-detail" data-pro_id="${id}"><span class="icon_heart_alt"></span></a>
+                    </c:if>
+                        <ul>
                         <li><b>Trình trạng hàng</b> <span><c:if test="${product.active}">Còn hàng</c:if><c:if test="${!product.active}">Hết hàng</c:if></span></li>
 <%--                        <li><b>Giao hàng</b> <span>Giao hàng trong ngày. <samp>Miễn phí vận chuyển</samp></span></li>--%>
                         <li><b>Thông tin sản phẩm</b> <span>${product.description}

@@ -18,7 +18,7 @@ public class LoadUser {
 
     public static boolean saveUserLoginByFb_GG(String email,String name){
         boolean isSaved = false;
-        String sql = "insert into user(name,email,avatar,`password`,active,role_id,date_created) values(?,?,'imgs/user/default_avarta',-1,1,1,CURRENT_DATE);";
+        String sql = "insert into user(name,email,avatar,`password`,active,role_id,date_created) values(?,?,'imgs/user/default_avatar.png',-1,1,1,CURRENT_DATE);";
         try {
             PreparedStatement preparedStatement = DBCPDataSource.preparedStatement(sql);
             preparedStatement.setString(1,name);
@@ -213,7 +213,7 @@ public class LoadUser {
     public static List<User> loadOrderCommentByIdUser(int idUser){
         List<User> userList = new ArrayList<>();
         try{
-            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT u.avarta,u.`name`,r.date_created,r.rating_type_id\t,r.`comment` FROM `user` u JOIN rating r on u.id=r.user_id WHERE r.pro_id=?");
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("SELECT u.avatar,u.`name`,r.date_created,r.rating_type_id,r.`comment` FROM `user` u JOIN rating r on u.id=r.user_id WHERE r.pro_id=?");
             preparedStatement.setString(1, String.valueOf(idUser));
             synchronized (preparedStatement){
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -268,7 +268,7 @@ public class LoadUser {
         try {
             int id = getMaxUserId() + 1;
             PreparedStatement pe = DBCPDataSource.preparedStatement(sql);
-            long passKey = id * name.hashCode() * pass.hashCode();
+            long passKey = id * email.hashCode() * pass.hashCode();
             peSetAttribute(pe, name, email, phone, sex, birthday, address, active, role_id);
             pe.setLong(9,passKey);
             pe.setInt(10, id);
@@ -329,5 +329,41 @@ public class LoadUser {
         return false;
     }
 
+    public static void changePassword(int user_id, String email, String pass) {
+        long p = user_id*email.hashCode()*pass.hashCode();
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("update user set password=? where id=?");
+            pe.setLong(1,p);
+            pe.setInt(2,user_id);
+            synchronized (pe){
+                pe.executeUpdate();
+            }
+            pe.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static User loadAUserByEmailGG_FB(String email) {
+        try {
+            PreparedStatement preparedStatement = DBCPDataSource.preparedStatement("select * from user where email=? and password=-1");
+            preparedStatement.setString(1,email);
+            User user = null;
+            synchronized (preparedStatement){
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    user = getUser(rs);
+                }
+                rs.close();
+            }
+            preparedStatement.close();
+            return user;
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+        return null;
+    }
 }
 

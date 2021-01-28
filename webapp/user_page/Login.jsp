@@ -20,10 +20,11 @@
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
 <body>
-<form id="form" method="get" class="invisible_type_page" action="handle-google-login" accept-charset="UTF-8">
+<form id="form" method="post" class="invisible_type_page" action="handle-google-login" accept-charset="UTF-8">
     <input type="text" name="name" id="name-form">
     <input type="text" name="email" id="email-form">
 </form>
+<%System.out.println("Co vao day+/+/+/+/+/++/");%>
 <jsp:include page="Menu.jsp"></jsp:include>
 
 <jsp:include page="search_bar.jsp"></jsp:include>
@@ -65,7 +66,7 @@
 <!-- Dialog Forget Password -->
 <!-- Dialog Email -->
 <%-- dang dang nhap thi phai co modal hien thi quen mat khau  --%>
-<c:if test="${status==1}">
+
 <div class="modal fade" id="change-pass" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog forget-dialog" role="document">
         <div class="modal-content forget-content">
@@ -87,38 +88,38 @@
         </div>
     </div>
 </div>
-</c:if>
-<%-- Xac thuc da gui email--%>
-<c:if test="${status==3}">
-<div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog forget-dialog" role="document">
-        <div class="modal-content forget-content">
-            <div class="modal-header forget-header">
-                <h5 class="modal-title forget-title" >Quên Mật Khẩu?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="x">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body forget-body">
-                <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
-                <div>
-                    <p>Email đã được gửi, nếu email đã đăng kí, vui lòng kiểm tra hộp thư!</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary forget-send" data-dismiss="modal">ĐÓNG</button>
-            </div>
-        </div>
-    </div>
-</div>
-</c:if>
+
+<%--&lt;%&ndash; Xac thuc da gui email&ndash;%&gt;--%>
+<%--<c:if test="${status==3}">--%>
+<%--<div class="modal fade" id="notify-forget" tabindex="-1" role="dialog" aria-hidden="true">--%>
+<%--    <div class="modal-dialog forget-dialog" role="document">--%>
+<%--        <div class="modal-content forget-content">--%>
+<%--            <div class="modal-header forget-header">--%>
+<%--                <h5 class="modal-title forget-title" >Quên Mật Khẩu?</h5>--%>
+<%--                <button type="button" class="close" data-dismiss="modal" aria-label="x">--%>
+<%--                    <span aria-hidden="true">&times;</span>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body forget-body">--%>
+<%--                <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->--%>
+<%--                <div>--%>
+<%--                    <p>Email đã được gửi, nếu email đã đăng kí, vui lòng kiểm tra hộp thư!</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-primary forget-send" data-dismiss="modal">ĐÓNG</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--</c:if>--%>
 
 <c:if test="${status==2}">
     <div class="modal fade" id="wrong_info_login" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog forget-dialog" role="document">
             <div class="modal-content forget-content">
                 <div class="modal-header forget-header">
-                    <h5 class="modal-title forget-title">Sai thông tin đăng nhập!</h5>
+                    <h5 class="modal-title forget-title">Thông báo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="x">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -126,7 +127,7 @@
                 <div class="modal-body forget-body">
                     <!-- <h5 class="forget-h5">Vui lòng nhập Email bạn đã đăng kí để lấy lại mật khẩu</h5> -->
                     <div>
-                        <p>Email hoặc mật khẩu sai. Vui lòng nhập lại!</p>
+                        <p>${status_content}</p>
                     </div>
                 </div>
                 <div class="modal-footer">

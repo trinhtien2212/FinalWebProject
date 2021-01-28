@@ -38,7 +38,7 @@ public class ShopDetail_direct extends HttpServlet {
         request.setAttribute("product",products);
 
         int totalratestar=prostar5.getCountstar()+prostar4.getCountstar()+prostar3.getCountstar()+prostar2.getCountstar()+prostar1.getCountstar();
-
+        request.setAttribute("id",id);
         request.setAttribute("prostar5",prostar5);
         request.setAttribute("prostar4",prostar4);
         request.setAttribute("prostar3",prostar3);

@@ -6,6 +6,7 @@ import vn.thegioicaycanh.model.database.connection_pool.DBCPDataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class TermAndCondition_Con_DB {
     public static TermAndCondition getTermAndCondition(ResultSet rs){
@@ -40,6 +41,20 @@ public class TermAndCondition_Con_DB {
             throwables.printStackTrace();
         }
         return null;
+    }
+    public static void saveTerm_condition(String content ){
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("update term_and_condition set content=? ");
+            pe.setString(1,content);
+            synchronized (pe){
+                pe.executeUpdate();
+            }
+            pe.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
 }

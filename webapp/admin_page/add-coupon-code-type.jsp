@@ -63,15 +63,15 @@
                     <form action="add-coupon-code-type" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
                         <c:if test="${type=='add'}">
                             <div class="form-group" style="display: none">
-                                <input class="form-control" type="text" value="add" name="type">
+                                <input class="form-control" type="text" value="add" name="type" >
                             </div>
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input class="form-control" type="text" value="" name="name">
+                                <input class="form-control" type="text" value="" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label>Chọn ảnh</label>
-                                <input class="form-control" type="file" name="img">
+                                <input class="form-control" type="file" name="img" required>
                             </div>
                             <div class="mt-4">
                                 <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input class="form-control" type="text" value="${cct.name}" name="name">
+                                <input class="form-control" type="text" value="${cct.name}" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label>Chọn ảnh</label>

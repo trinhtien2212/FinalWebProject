@@ -525,7 +525,8 @@ $(document).ready(function () {
                 $(this).unbind('submit').submit();
             }
 
-        });
+        })
+
     });
 
     //add cart

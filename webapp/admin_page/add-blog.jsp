@@ -66,22 +66,22 @@
                                         <input class="form-control" type="text" value="add" name="type">
                                     </div>
                                     <div class="form-group">
-                                        <label>Title</label>
-                                        <input class="form-control" type="text" value="" name="name">
+                                        <label>Tên bài viết</label>
+                                        <input class="form-control" type="text" value="" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
-                                        <input class="form-control" type="file" name="img">
+                                        <input class="form-control" type="file" name="img" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Tóm tắt</label>
                                         <textarea style="height: 100px;" class="form-control" type="text"
-                                                  name="description"></textarea>
+                                                  name="description" required></textarea>
                                     </div>
                                     <div>
                                         <label>Mô tả dài</label>
-                                        <textarea name="content" id="content" cols="30" rows="10">
+                                        <textarea name="content" id="content" cols="30" rows="10" required>
 
 										</textarea>
                                     </div>
@@ -109,8 +109,8 @@
                                                readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label>Title</label>
-                                        <input class="form-control" type="text" value="${blog.name}" name="name">
+                                        <label>Tên bài viết</label>
+                                        <input class="form-control" type="text" value="${blog.name}" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
@@ -128,11 +128,11 @@
                                     <div class="form-group">
                                         <label>Tóm tắt</label>
                                         <textarea style="height: 100px;" class="form-control" type="text"
-                                                  name="description">${blog.description}</textarea>
+                                                  name="description" required>${blog.description}</textarea>
                                     </div>
                                     <div>
                                         <label>Mô tả dài</label>
-                                        <textarea name="content" id="content" cols="30" rows="10">
+                                        <textarea name="content" id="content" cols="30" rows="10" required>
                                             ${blog.content}
 										</textarea>
                                     </div>

@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @WebServlet(urlPatterns = "/handle-login")
 public class Login_handle extends HttpServlet {
@@ -22,18 +28,53 @@ public class Login_handle extends HttpServlet {
 
         request.setAttribute("page_menu","login");
         request.setAttribute("title","Đăng nhập");
+        //Nhan form thay doi mat khau
+        if(request.getParameter("email-change-pass")!=null){
+            String email = request.getParameter("email-change-pass");
+            String key = request.getParameter("key");
+            System.out.println("Day la key: "+key);
+            String pass = request.getParameter("new-pass");
+            ForgetPass fp = Load_ForgetPass.loadForgetPassByEmailKey(email,key);
+            if(fp!=null){
+                LoadUser.changePassword(fp.getUser_id(),fp.getEmail(),pass);
+                Load_ForgetPass.deleteForgetPassByKey(key);
+                request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
+                return;
+            }else{
+                notifyError(2,"Sai thông tin lấy lại mật khẩu!",request,response);
+                return;
+            }
+        }
+
+
         //Xu li nhan link doi mat khau
-        if(request.getParameter("conform-login")!=null){
+        if(request.getParameter("conform-fp")!=null){
             String key =request.getParameter("key");
             ForgetPass fp = Load_ForgetPass.loadForgetPassByKey(key);
-            if(fp !=null){
-
+            if(fp !=null) {
+                long diffInMillies = Math.abs(new Date().getTime() - fp.getDate_end().getTime());
+                long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                if (diff <= 3) {
+                    request.setAttribute("title", "Đổi mật khẩu");
+                    request.setAttribute("key",key);
+                    System.out.println("co vao day ne*********");
+                    request.getRequestDispatcher("user_page/change-forgot-password.jsp").forward(request, response);
+                    return;
+                }
+            }else{
+                notifyError(2,"Sai thông tin",request,response);
+                return;
             }
 
         }
         //Xu li nhan form quen mat khau
         if(request.getParameter("email_forget_pass")!=null){
+            if(Load_ForgetPass.loadForgetPassByEmail(request.getParameter("email_forget_pass"))!=null){
+                notifyError(2,"Email đã đăng kí nhận mail thay đổi mật khẩu",request,response);
+                return;
+            }
             User user = LoadUser.loadAUserByEmail(request.getParameter("email_forget_pass"));
+
             if(user !=null){
                 ForgetPass fp= new ForgetPass(user.getId(),user.getEmail(),user.getPassword());
                 boolean succSave=Load_ForgetPass.saveForgetPass(fp);
@@ -63,7 +104,7 @@ public class Login_handle extends HttpServlet {
                 request.setAttribute("status",1);
                 request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
             }
-            //neu login=admin thi chuyen den trang login cua admin
+            //neu login=admin thi chuyen den trang login cho dang nhap lai
             else if(request.getParameter("login").equalsIgnoreCase("admin")){
                 HttpSession session =request.getSession();
                 if(session.getAttribute("user_id") !=null){
@@ -103,7 +144,7 @@ public class Login_handle extends HttpServlet {
             pass = request.getParameter("pass");
         }
         if(email.isEmpty() || pass.isEmpty()){
-            notifyError(2,"Phải nhập cả email va password",request,response);
+            notifyError(2,"Phải nhập cả email và mật khẩu",request,response);
             return;
         }
         System.out.println(email);
@@ -150,7 +191,7 @@ public class Login_handle extends HttpServlet {
                 session.setAttribute("role_id", user.getRole_id());
                 session.setAttribute("loginedAdmin",true);
                 System.out.println("Sap sua vao admin_page/product");
-                response.sendRedirect("admin_page/product"); //TODO
+                response.sendRedirect("admin_page/dashboard");
             }
         }
 
@@ -158,7 +199,7 @@ public class Login_handle extends HttpServlet {
     public static void notifyError(int status_id,String status_content,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("status",status_id);
         request.setAttribute("status_content",status_content);
-        request.getRequestDispatcher("user_page/login.jsp").forward(request,response);
+        request.getRequestDispatcher("user_page/Login.jsp").forward(request,response);
     }
 
 }

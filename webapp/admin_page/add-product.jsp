@@ -63,21 +63,20 @@
                             <form action="add-product" method="post" enctype="multipart/form-data">
                                 <c:if test="${type=='add'}">
                                     <div class="form-group" style="display: none">
-                                        <input class="form-control" type="text" value="add" name="type">
+                                        <input class="form-control" type="text" value="add" name="type" >
                                     </div>
                                     <div class="form-group">
                                         <label>Tên sản phẩm</label>
-                                        <input class="form-control" type="text" value="" name="name">
+                                        <input class="form-control" type="text" value="" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
-                                        <input class="form-control" type="file" name="img">
+                                        <input class="form-control" type="file" name="img" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Danh mục</label>
-                                        <label>Danh mục</label>
-                                        <select class="form-control select" name="category_id">
+                                        <select class="form-control select" name="category_id" required>
                                             <option value="1">Cây để bàn</option>
                                             <option value="2">Cây dây leo</option>
                                             <option value="3">Cây tết</option>
@@ -88,21 +87,21 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Giá</label>
-                                        <input class="form-control" type="text" value="" name="price">
+                                        <input class="form-control" type="number" value="" name="price" placeholder="ví dụ: 20000" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Nhà cung cấp</label>
-                                        <input class="form-control" type="text" value="" name="supplier_id">
+                                        <input class="form-control" type="number" value="" name="supplier_id" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Số lượng</label>
-                                        <input class="form-control" type="text" value="" name="quantity">
+                                        <input class="form-control" type="number" value="" name="quantity" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Loại</label><br>
-                                        <select class="form-control select" name="type_weight">
+                                        <select class="form-control select" name="type_weight" required>
                                             <option disabled>Chọn Danh Mục</option>
                                             <option value="1">Lớn</option>
                                             <option value="2">Trung Bình</option>
@@ -123,12 +122,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Phần trăm khuyến mãi</label>
-                                        <input class="form-control" type="text" value="" placeholder="ví dụ: 20"
+                                        <input class="form-control" type="number" value="" placeholder="ví dụ: 20"
                                                name="percent_sale">
                                     </div>
                                     <div class="form-group">
                                         <label>Giá khuyến mãi</label>
-                                        <input class="form-control" type="text" value="" name="price_sale">
+                                        <input class="form-control" type="number" value="" name="price_sale">
                                     </div>
                                     <div class="form-group">
                                         <label>Khuyến mãi từ</label>
@@ -141,11 +140,11 @@
                                     <div class="form-group">
                                         <label>Mô tả ngắn</label>
                                         <textarea style="height: 100px;" class="form-control" type="text"
-                                                  name="description"></textarea>
+                                                  name="description" required></textarea>
                                     </div>
                                     <div>
                                         <label>Mô tả dài</label>
-                                        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                                        <textarea name="content" id="content" cols="30" rows="10" required></textarea>
                                     </div>
 
                                     <div class="mt-4">
@@ -171,7 +170,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${product.name}">
+                                        <input class="form-control" type="text" name="name" value="${product.name}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
@@ -188,7 +187,7 @@
 
                                     <div class="form-group">
                                         <label>Danh mục</label>
-                                        <select class="form-control select" name="category_id">
+                                        <select class="form-control select" name="category_id" required>
                                             <option value="1" <c:if test="${product.category_id==1}">selected</c:if>>Cây
                                                 để bàn
                                             </option>
@@ -211,25 +210,25 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Giá</label>
-                                        <input class="form-control" type="text" value="${product.price}"
+                                        <input class="form-control" type="number" value="${product.price}" required
                                                name="price">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Nhà cung cấp</label>
-                                        <input class="form-control" type="text" value="${product.supplier_id}"
+                                        <input class="form-control" type="number" value="${product.supplier_id}" required
                                                name="supplier_id">
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Số lượng</label>
-                                        <input class="form-control" type="text" name="quantity"
+                                        <input class="form-control" type="number" name="quantity" required
                                                value="${product.quantity}">
                                     </div>
                                     <div class="form-group">
                                         <label>Loại</label><br>
-                                        <select class="form-control select" name="type_weight">
+                                        <select class="form-control select" name="type_weight" required>
                                             <option disabled>Chọn Danh Mục</option>
                                             <option value="4" <c:if test="${product.type_weight==4}">selected</c:if>>
                                                 Lớn
@@ -259,12 +258,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Phần trăm khuyến mãi</label>
-                                        <input class="form-control" type="text" value="${product.percent_sale}"
+                                        <input class="form-control" type="number" value="${product.percent_sale}"
                                                placeholder="ví dụ: 20" name="percent_sale">
                                     </div>
                                     <div class="form-group">
                                         <label>Giá khuyến mãi</label>
-                                        <input class="form-control" type="text" value="${product.price_sale}"
+                                        <input class="form-control" type="number" value="${product.price_sale}"
                                                name="price_sale">
                                     </div>
                                     <div class="form-group">
@@ -288,12 +287,12 @@
                                     <div class="form-group">
                                         <label>Mô tả ngắn</label>
                                         <textarea style="height: 100px;" class="form-control" type="text"
-                                                  name="description">${product.description}</textarea>
+                                                  name="description" required>${product.description}</textarea>
                                     </div>
                                     <div>
                                         <label>Mô tả dài</label>
                                         <textarea name="content" id="content" cols="30"
-                                                  rows="10">${p.content}</textarea>
+                                                  rows="10" required>${product.content}</textarea>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
@@ -319,7 +318,7 @@
         <!-- Select2 JS -->
         <script src="assets/js/select2.min.js"></script>
 
-        <!-- Custom JS -->hh
+        <!-- Custom JS -->
         <script src="assets/js/admin.js"></script>
     </div>
 </body>

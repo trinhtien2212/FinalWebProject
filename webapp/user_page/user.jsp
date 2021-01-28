@@ -64,12 +64,12 @@
                             <div class="form-group" style="display: none">
                                 <input class="form-control" type="text" value="edit" name="type">
                             </div>
-                            <form id="formAcount" class="formAcount validate clearfix" >
+                            <form id="formAcount" class="formAcount validate clearfix" action="user" method="post">
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Họ tên: <span>(*)</span></label>
                                         <div class="col-lg-6 col-md-9">
-                                            <input type="text" id="fullName" name="fullName"
+                                            <input type="text" id="fullName" name="fullName" required
                                                    value="${sessionScope.user_name}" placeholder="Họ tên"
                                                    class="validate[required,minSize[4],maxSize[32]] form-control input-sm">
                                         </div>
@@ -101,7 +101,7 @@
                                         <div class="col-lg-6 col-md-9">
                                             <input type="text" id="email" name="email" value="${sessionScope.user_mail}"
                                                    placeholder="Email"
-                                                   class="validate[required,custom[email]] form-control input-sm">
+                                                   class="validate[required,custom[email]] form-control input-sm" required>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                 <h1>THAY ĐỔI MẬT KHẨU</h1>
                                 <div class="content">Bạn nên cập nhật mật khẩu thường xuyên vì lí do bảo mật</div>
                             </header>
-                            <form id="formPass" class="formAcount validate clearfix">
+                            <form id="formPass" class="formAcount validate clearfix" method="post" action="user">
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Mật khẩu mới: </label>
@@ -277,9 +277,8 @@
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="${f.img}">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li class="subFa cursor-pointer" data-current_page="user" data-pro_id="${f.id}"><a ><i class="fa fa-close"></i></a></li>
+                                            <li class="addCart cursor-pointer" data-current_page="user" data-pro_id="${f.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
@@ -300,8 +299,10 @@
                 <img src="${sessionScope.user_avatar}" class="mx-auto img-fluid img-circle d-block" alt="Ảnh đại diện">
                 <label class="load-ava">
                     <span class="custom-file-control">Đổi Ảnh</span>
+                    <form action="saveAvatar" method="post" enctype="multipart/form-data">
                     <input type="file" id="file" class="custom-file-input">
-
+                        <input type="submit" value="Lưu">
+                    </form>
                 </label>
             </div>
             <h6 class="mt-2">${sessionScope.user_name}</h6>

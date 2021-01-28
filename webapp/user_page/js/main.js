@@ -565,6 +565,18 @@ $(document).ready(function () {
         window.location.href=directUrl;
         // console.log(directUrl);
     });
+
+    //add favouristlist
+    $('.subFa').click(function (e){
+        var scroll = $(window).scrollTop();
+        let currentPage = $(this).data('current_page');
+        let id = $(this).data('pro_id');
+        let directUrl = "add-favourist?current-page="+currentPage+"&id="+id+"&position="+scroll+"&action=sub";
+        window.location.href=directUrl;
+        // console.log(directUrl);
+    });
+
+
     //fast checkout
     $('.fast-checkout').click(function (e){
         let id = $(this).data('pro_id');

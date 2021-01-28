@@ -36,7 +36,12 @@ public class User_direct extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("city")!=null){
+       if(request.getParameter("passwd")!=null){
+           String pass= request.getParameter("passwd");
+           int user_id = (int)session.getAttribute("user_id");
+           LoadUser.changePassword(user_id,(String) session.getAttribute("user_email"),pass);
+       }
+        if(request.getAttribute("city")!=null){
             int user_id = (int)session.getAttribute("user_id");
             String name=request.getParameter("fullName");
             String birthday=request.getParameter("birthday");
@@ -55,6 +60,8 @@ public class User_direct extends HttpServlet {
             session.setAttribute("user_birth", user.getBirthday());
             session.setAttribute("user_phone", user.getPhone());
             session.setAttribute("user_id", user.getId());
+            session.setAttribute("user_email",user.getEmail());
+            session.setAttribute("user_avatar",user.getAvatar());
             getDetailAddress(user.getAddress(), session);
             // Ma giam gia
             List<CouponCode> couponCodes = Coupon_Con_DB.loadCouponCodeByUserId(user.getId());

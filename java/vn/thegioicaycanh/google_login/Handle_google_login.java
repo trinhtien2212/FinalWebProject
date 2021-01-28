@@ -32,7 +32,7 @@ public class Handle_google_login extends HttpServlet {
            Login_handle.successLogin(request,response,user_same_email);
         }
         else if(LoadUser.loadAUserByEmail(email)!=null){
-            Login_handle.notifyError(2,"Email đã được đăng kí, vui lòng đăng nhập",request,response);
+            Login_handle.notifyError(2,"Email đã được đăng kí trước đó, vui lòng đăng nhập",request,response);
         }
         else {
             //neu email chua duoc dang ki, luu email

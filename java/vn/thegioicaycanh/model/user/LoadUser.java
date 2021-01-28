@@ -97,7 +97,7 @@ public class LoadUser {
     }
 //   ,
     public static boolean updateUser(String name, String birthday, int phone,String email,String city,String distric,String ward, String detailaddress,int user_id){
-        String sql= "Update user set address = '"+detailaddress+","+ward+","+distric+","+city+"', name ='"+name+"', phone= "+phone+",email='"+email+"'birthday='"+birthday+"' where id="+user_id;
+        String sql= "Update user set address = '"+detailaddress+","+ward+","+distric+","+city+"', name ='"+name+"', phone= "+phone+",email='"+email+"',birthday='"+birthday+"' where id="+user_id;
         return excuteSql(sql);
     }
     public  static boolean updateUserInAdimin(int id,String email,long password,String name,String sex,String birthday,String address,String datecreated){
@@ -364,6 +364,22 @@ public class LoadUser {
 
         }
         return null;
+    }
+
+    public static void saveAvatar(String urlImg, int id) {
+        try {
+            PreparedStatement pe = DBCPDataSource.preparedStatement("update user set avatar=? where id=?");
+            pe.setString(1,urlImg);
+            pe.setInt(2,id);
+            synchronized (pe){
+                pe.executeUpdate();
+            }
+            pe.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
 

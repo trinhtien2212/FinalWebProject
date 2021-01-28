@@ -90,10 +90,6 @@
                                                 <a href="add-category?type=enterEdit&id=${c_view.id}"
                                                    class="btn btn-sm bg-success-light mr-2">
                                                     <i class="far fa-edit mr-1"></i> Sửa</a>
-                                                <button type="button" class="btn btn-outline-danger btn-sm"><i
-                                                        class="fa fa-trash-o"></i> Xóa
-                                                </button>
-
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -69,6 +69,8 @@ public class Coupon_Con_DB {
             couponcode.setPercent(resultSet.getInt(4));
             couponcode.setDescription(resultSet.getString(5));
             couponcode.setCode(resultSet.getString(6));
+            couponcode.setDate_end(resultSet.getDate(7));
+            couponcode.setDate_start(resultSet.getDate(8));
             return couponcode;
 
         } catch (SQLException throwables) {

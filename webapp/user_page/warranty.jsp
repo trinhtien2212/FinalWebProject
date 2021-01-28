@@ -33,16 +33,13 @@
         <div class="guarantee_wrap sign__in sign__up">
 
             <div class="sign__in__form sign__up__form">
-                <form action="warranty" method="post">
+                <form action="warrantity_update" method="get">
                     <input type="number" name="user_id" id="user_id" placeholder="Mã khách hàng" value="${user_id}" disabled>
-                    <input type="number" name="pro_id" id="pro_id" placeholder="Mã sản phẩm" value="${pro_id}" disabled>
-                    <input type="email" name="mail" id="mail" placeholder="Email (*)" value="${email}" required><br>
-                    <input type="number" name="order-id" id="order-id" placeholder="Mã đơn hàng" disabled value="${order_id}"><br>
+                    <input type="email" name="mail" id="mail" placeholder="Email (*)" value="" required><br>
                     <input type="text" name="war_title" id="war-title" placeholder="Tiêu đề">
                     <textarea name="description" id="description" cols="30" rows="10" placeholder="Mô tả"
                               required></textarea>
-                    <button id="add-img" type="button" name="war_img">Thêm ảnh</button>
-                    <input type="submit" name="submit" id="submit" value="Gửi" href="warrantity_update"><br>
+                    <input type="submit" name="submit" id="submit" value="Gửi" href=""><br>
                 </form>
             </div>
 

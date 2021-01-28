@@ -29,20 +29,12 @@ public class Warranty_direct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("title","Bảo hành");
-        if(session != null){
-            int order_id;
-            int user_id;
-            int pro_id;
-            if(request.getParameter("user_id") != null){
-                int id = Integer.parseInt(request.getParameter("id"));
-                order_id = Integer.parseInt(request.getParameter("order_id"));
-                user_id = (int) session.getAttribute("user_id");
-                pro_id = Integer.parseInt(request.getParameter("pro_id"));
-                boolean isInsert = LoadWarranty.insertWarranty(order_id,user_id,pro_id);
-                if(isInsert)
-                    request.getRequestDispatcher("user_page/warranty.jsp").forward(request,response);
-            }
-        }
+        int order_id = Integer.parseInt(request.getParameter("order_id"));
+        int user_id = (int) session.getAttribute("user_id");
+        int pro_id = Integer.parseInt(request.getParameter("pro_id"));
+        System.out.println("order_id: "+ order_id +", user_id: " + user_id + ", pro_id: " + pro_id);
+//        boolean isInsert = LoadWarranty.insertWarranty(order_id,user_id,pro_id);
+        request.getRequestDispatcher("user_page/warranty.jsp").forward(request,response);
     }
 }
 

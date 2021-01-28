@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
-@WebServlet(name = "InfoUserUpdate_direct")
+@WebServlet(urlPatterns = "/updateinfouser")
 public class InfoUserUpdate_direct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

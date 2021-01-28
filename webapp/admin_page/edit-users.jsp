@@ -65,9 +65,9 @@
                                                 <input type="email" class="form-control" name="email" value="${user.email}"  required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row" style="display: none" >
                                             <label class="col-form-label col-md-2">Password</label>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10" >
                                                 <input type="password" class="form-control" name="password" value="${user.password}"  required>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="mt-4">
                                             <button class="btn btn-primary" type="submit">Cập Nhật</button>
-                                            <a href="categories.html" class="btn btn-link">Hủy</a>
+                                            <a href="users" class="btn btn-link">Hủy</a>
                                         </div>
                                     </form>
                                 </div>

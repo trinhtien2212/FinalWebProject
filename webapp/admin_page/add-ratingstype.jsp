@@ -60,7 +60,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Loại đánh giá</label>
                                         <div class="col-md-10" name>
-                                            <input type="text" class="form-control" name="name">
+                                            <input type="text" class="form-control" name="name" required>
                                         </div>
                                     </div>
                                     <div class="status-toggle">
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
-                                        <a href="add-admin.html" class="btn btn-link">Hủy</a>
+                                        <a href="ratingstype" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='edit'}">
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
-                                        <a href="add-admin.html" class="btn btn-link">Hủy</a>
+                                        <a href="ratingstype" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                             </form>

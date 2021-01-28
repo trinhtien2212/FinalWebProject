@@ -22,6 +22,7 @@ public class Coupon_code_direct extends HttpServlet {
         request.setAttribute("type_page","coupon_code");
         request.setAttribute("page_menu","discount");
         request.setAttribute("title","Mã giảm giá");
+
 //        request.setAttribute("coupon_code_data", Coupon_Con_DB.loadAllCouponCode());
         request.getRequestDispatcher("user_page/coupon-code.jsp").forward(request,response);
 

@@ -61,7 +61,10 @@
                                 <h1>HỒ SƠ CỦA TÔI</h1>
                                 <div class="content">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
                             </header>
-                            <form id="formAcount" class="formAcount validate clearfix">
+                            <div class="form-group" style="display: none">
+                                <input class="form-control" type="text" value="edit" name="type">
+                            </div>
+                            <form id="formAcount" class="formAcount validate clearfix" >
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <label class="col-md-3 control-label"> Họ tên: <span>(*)</span></label>
@@ -213,7 +216,7 @@
                             <tr>
                                 <th>Mã đơn hàng</th>
                                 <th>Ngày mua</th>
-                                <th>Tổng tiền</th>
+                                <th>Thanh toán</th>
                                 <th>Trạng thái đơn hàng</th>
                             </tr>
                             </thead>
@@ -224,7 +227,10 @@
                                         <a href="order_detail?id=${o.id}">${o.id}</a>
                                     </td>
                                     <td>${o.date_created}</td>
-                                    <td>${o.total_pay}</td>
+                                    <td>
+                                        <c:if test="${o.payment==true}">Tiền mặt</c:if>
+                                        <c:if test="${o.payment==false}">Ví momo</c:if>
+                                    </td>
                                     <td>
                                         <c:if test="${o.status==1}">Đã hủy </c:if>
                                         <c:if test="${o.status==2}">Bị từ chối </c:if>

@@ -17,24 +17,18 @@ public class Warranty_update extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int warranty_id = Integer.parseInt(request.getParameter("warranty_id"));
         int order_id = Integer.parseInt(request.getParameter("order_id"));
         int user_id = Integer.parseInt(request.getParameter("user_id"));
         int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-        String title = request.getParameter("title");
-        String message = request.getParameter("message");
-        String img = request.getParameter("img");
+        String title = request.getParameter("war_title");
+        String message = request.getParameter("description");
         String date_created = request.getParameter("date_created");
-        int status = Integer.parseInt(request.getParameter("status"));
-        String email = request.getParameter("email");
-
-        Warranty warranty = new Warranty(warranty_id, order_id, user_id, pro_id,title, message,img,status,email);
-        boolean saved = LoadWarranty.updateWarranty(warranty);
-        if(saved){
-            request.setAttribute("status", 1);
-        } else {
-            request.setAttribute("status", 0);
-        }
+        int status = 0;
+        String email = request.getParameter("mail");
+        boolean isInsert = LoadWarranty.insertWarranty(order_id,user_id,pro_id,email,status,title,message);
+        if (isInsert)
+            status=1;
+        request.getRequestDispatcher("user_page/warranty.jsp").forward(request,response);
 
     }
 }

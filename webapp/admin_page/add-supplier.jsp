@@ -71,23 +71,23 @@
 <%--                                    </div>--%>
                                     <div class="form-group">
                                         <label>Nhà cung cấp</label>
-                                        <input id="name_supplier"class="form-control" type="text" value="" name="supplier_id">
+                                        <input id="name_supplier"class="form-control" type="text" value="" name="supplier_id" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ</label>
-                                        <input id="address" class="form-control" type="text" name="address">
+                                        <input id="address" class="form-control" type="text" name="address" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Điện thoại</label>
-                                        <input id="phone" class="form-control" type="text"  name="phone">
+                                        <input id="phone" class="form-control" type="text"  name="phone" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input id="email" class="form-control" type="text"  name="email">
+                                        <input id="email" class="form-control" type="text"  name="email" required>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="supplier" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <c:if test="${type=='edit'}">
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-                                        <a href="categories.html" class="btn btn-link">Hủy</a>
+                                        <a href="supplier" class="btn btn-link">Hủy</a>
                                     </div>
                                 </c:if>
                                 <%--                        edit--%>

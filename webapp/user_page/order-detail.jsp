@@ -88,7 +88,7 @@
                                 <div class="product-item">
                                     <img src="${pl.img}" alt="${pl.pro_name}">
                                     <div class="product-info">
-                                        <a class="product-name" href="#">${pl.pro_name}</a>
+                                        <a class="product-name" href="shop-detail?id=${pl.id}">${pl.pro_name}</a>
                                         <p class="product-seller">Cung cấp bởi Thế Giới Cây Cảnh</p>
                                         <div class="product-review">
                                             <a id="btn-comment" href="#" data-toggle="modal"
@@ -132,7 +132,7 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <a class="view-list-order" href="my-order.html">Quay lại đơn hàng của tôi</a>
+                    <a class="view-list-order" href="user">Quay lại đơn hàng của tôi</a>
                     <button class="cancel-order" disabled="">Hủy Đơn Hàng</button>
                 </div>
             </div>

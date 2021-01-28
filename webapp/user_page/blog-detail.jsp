@@ -38,12 +38,6 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Tìm kiếm bài viết">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Bài viết mới nhất</h4>
@@ -159,14 +153,14 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="${rb.avatar}" alt="blog-name">
+                                <a href="blog-detail?id=${rb.id}"><img src="${rb.avatar}" alt="blog-name"></a>
                             </div>
                             <div class="blog__item__text">
                                 <ul>
                                     <li><i class="fa fa-calendar-o"></i>${rb.date_created}</li>
                                     <li><i class="fa fa-eye"></i> ${rb.numOfRead}</li>
                                 </ul>
-                                <h5><a href="#">${rb.name}
+                                <h5><a href="blog-detail?id=${rb.id}">${rb.name}
                                 </a></h5>
                                 <p>${rb.description}</p>
                             </div>

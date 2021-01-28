@@ -36,8 +36,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="sign__in__form">
                     <form action="handle-login" id="login-form" method="post" accept-charset="UTF-8">
-                        <button><a href="sign-in.html" class="btn-dn">ĐĂNG NHẬP</a></button>
-                        <button><a href="sign-up.html" class="btn-dk">ĐĂNG KÝ</a></button>
+                        <button><a href="handle-login?login=user" class="btn-dn">ĐĂNG NHẬP</a></button>
+                        <button><a href="handle-sign-up" class="btn-dk">ĐĂNG KÝ</a></button>
                         <br>
                         <input type="email" name="email" id="email" placeholder="Nhập email" required>
                         <br>

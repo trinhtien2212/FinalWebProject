@@ -31,7 +31,12 @@
     <link rel="stylesheet" href="user_page/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="user_page/css/style.css" type="text/css">
 </head>
-<body>
+<body
+        <c:if test="${position != null}">
+            <c:out value="Co vo"></c:out>
+            onload="load(${position})"
+        </c:if>
+>
 <jsp:include page="Menu.jsp"></jsp:include>
 <jsp:include page="search_bar.jsp"></jsp:include>
 <!-- Product Section Begin -->
@@ -92,7 +97,7 @@
                                             <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                                 <c:set var="np" value="${new_pros.get(j)}"></c:set>
                                                 <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                                <a href="#" class="latest-product__item">
+                                                <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size">
                                                         <img src="${np.img}" alt="">
                                                     </div>
@@ -112,7 +117,7 @@
                                             <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                                 <c:set var="np" value="${new_pros.get(j)}"></c:set>
                                                 <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                                <a href="#" class="latest-product__item">
+                                                <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size">
                                                         <img src="${np.img}" alt="">
                                                     </div>
@@ -190,14 +195,14 @@
                         <div class="col-custom product-area col-12">
                             <div class="single-product position-relative">
                                 <div class="product-image">
-                                    <a class="d-block" href="product-details.html">
+                                    <a class="d-block" href="shop-detail?id=${sl.id}">
                                         <img src="${sl.img}" alt="${sl.name}"
                                              class="product-image-1 w-100">
                                     </a>
                                 </div>
                                 <div class="product-content-listview">
                                     <div class="product-item-text">
-                                        <h5><a href="shop-details.html">${sl.name}</a></h5>
+                                        <h5><a href="shop-detail?id=${sl.id}">${sl.name}</a></h5>
                                         <h6><%= Util.formatCurrency((double)pageContext.getAttribute("p"))%></h6>
                                     </div>
                                     <div class="add-action-listview d-flex">

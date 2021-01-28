@@ -206,7 +206,7 @@
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
-                                <h5><a href="#">${sp.name}</a></h5>
+                                <h5><a href="shop-detail?id=${sp.id}">${sp.name}</a></h5>
                                 <div class="product__item__price"><%= Util.formatCurrency((double)pageContext.getAttribute("ps")) %> <span><%= Util.formatCurrency((double)pageContext.getAttribute("p")) %></span></div>
                             </div>
                             <div class="progress-style progress none-margin">

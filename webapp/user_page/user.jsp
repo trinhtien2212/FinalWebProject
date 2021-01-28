@@ -282,7 +282,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="#">${f.name}</a></h6>
+                                        <h6><a href="shop-detail?id=${f.id}">${f.name}</a></h6>
                                         <h5><%= Util.formatCurrency((double) pageContext.getAttribute("price"))%></h5>
                                     </div>
                                 </div>
@@ -300,7 +300,7 @@
                 <label class="load-ava">
                     <span class="custom-file-control">Đổi Ảnh</span>
                     <form action="saveAvatar" method="post" enctype="multipart/form-data">
-                    <input type="file" id="file" class="custom-file-input">
+                    <input type="file" id="file" class="custom-file-input" name="avatar">
                         <input type="submit" value="Lưu">
                     </form>
                 </label>

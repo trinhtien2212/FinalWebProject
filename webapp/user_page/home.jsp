@@ -84,7 +84,7 @@
                             <span>${fn: toUpperCase(home_page_data.mes_1)}</span>
                             <h2 style="max-width: 60%">${home_page_data.mes_2}</h2>
                             <p>${home_page_data.mes_3}</p>
-                            <a href="#" class="primary-btn">MUA NGAY</a>
+                            <a href="shopping" class="primary-btn">MUA NGAY</a>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
     <section class="sale-intro container">
         <div class="section-title">
             <h4 class="tit-box">
-                <a href="product-sale.html">Giảm giá</a>
+                <a href="shopping-sale">Giảm giá</a>
             </h4>
         </div>
         <div class="row sale">
@@ -120,7 +120,9 @@
                     <c:set var="price_sale" value="${dp.price_sale}"></c:set>
                     <c:set var="c_id" value="${dp.category_id}"></c:set>
                 <div class="col-lg-3">
+
                     <div class="product__discount__item">
+
                         <div class="product__discount__item__pic set-bg"
                              data-setbg="${dp.img}">
                             <div class="product__discount__percent">-${dp.percent_sale}%</div>
@@ -132,8 +134,9 @@
                                 <li class="addCart cursor-pointer" data-current_page="home" data-pro_id="${dp.id}"><a ><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
+
                         <div class="product__discount__item__text">
-                            <h5><a href="#">${dp.name}</a></h5>
+                            <h5><a href="shop-detail?id=${dp.id}">${dp.name}</a></h5>
 
                             <div class="product__item__price"><%= Util.formatCurrency((double) pageContext.getAttribute("price_sale"))%><span><%= Util.formatCurrency((double)pageContext.getAttribute("price")) %></span></div>
 
@@ -143,6 +146,7 @@
                             <p class="progress-text">Còn ${dp.dayRest} ngày</p>
                         </div>
                     </div>
+
                 </div>
                 </c:forEach>
             </div>
@@ -193,7 +197,7 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">${c.name}</a></h6>
+                                <h6><a href="shop-detail?id=${c.id}">${c.name}</a></h6>
                                 <h5><%= Util.formatCurrency((double) pageContext.getAttribute("price"))%></h5>
                             </div>
                         </div>
@@ -242,7 +246,7 @@
                                 <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                     <c:set var="np" value="${new_pros.get(j)}"></c:set>
                                 <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                <a href="#" class="latest-product__item">
+                                    <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                     <div class="latest-product__item__pic fix_size">
                                         <img src="${np.img}" alt="">
                                     </div>
@@ -266,7 +270,7 @@
                                 <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                     <c:set var="np" value="${most_rating.get(j)}"></c:set>
                                     <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                    <a href="#" class="latest-product__item">
+                                    <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                         <div class="latest-product__item__pic fix_size">
                                             <img src="${np.img}" alt="">
                                         </div>
@@ -290,7 +294,7 @@
                                 <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                     <c:set var="np" value="${for_you.get(j)}"></c:set>
                                     <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                    <a href="#" class="latest-product__item">
+                                    <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                         <div class="latest-product__item__pic fix_size">
                                             <img src="${np.img}" alt="">
                                         </div>

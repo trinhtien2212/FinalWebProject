@@ -92,7 +92,7 @@
                                             <c:forEach var="j" begin="${i*3}" end="${i*3+2}" step="1">
                                                 <c:set var="np" value="${new_pros.get(j)}"></c:set>
                                                 <c:set var="price_new_pos" value="${np.price}"></c:set>
-                                                <a href="#" class="latest-product__item">
+                                                <a href="shop-detail?id=${np.id}" class="latest-product__item">
                                                     <div class="latest-product__item__pic fix_size">
                                                         <img src="${np.img}" alt="">
                                                     </div>
@@ -200,7 +200,7 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="shop-details.html">${sgd.name}</a></h6>
+                                <h6><a href="shop-detail?id=${sgd.id}">${sgd.name}</a></h6>
                                 <c:if test="${sgd.is_sale==true}">
                                     <span style="text-decoration: line-through"><%= Util.formatCurrency((double)pageContext.getAttribute("p_s")) %></span>
                                 </c:if>

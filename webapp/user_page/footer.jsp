@@ -23,7 +23,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.html"><img src="${applicationScope.header.logo}" alt=""></a>
+                        <a href="home"><img src="${applicationScope.header.logo}" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: ${applicationScope.address.get(0).address}</li>

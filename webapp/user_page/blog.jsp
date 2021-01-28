@@ -106,14 +106,14 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="${b.avatar}" alt="">
+                                <a href="blog-detail?id=${b.id}"><img src="${b.avatar}" alt=""></a>
                             </div>
                             <div class="blog__item__text">
                                 <ul>
                                     <li><i class="fa fa-calendar-o"></i> ${b.date_created}</li>
 <%--                                    <li><i class="fa fa-comment-o"></i> ${b.id}</li>--%>
                                 </ul>
-                                <h5><a href="blog-details.html">${b.name}</a></h5>
+                                <h5><a href="blog-detail?id=${b.id}">${b.name}</a></h5>
                                     <%--                    <p>Trong nhà của bạn không thể thiếu cây xanh phải không. Cây xanh mang đến không gian sống trong lành, thư thái và thoải mái. Cây xanh còn giúp…</p>--%>
                                 <a href="blog-detail?id=${b.id}" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
                             </div>
